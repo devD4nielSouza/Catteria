@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Catteria.API/Catteria.API.csproj" />
+  <Project Path="Catteria.Application/Catteria.Application.csproj" />
+  <Project Path="Catteria.Domain/Catteria.Domain.csproj" />
+  <Project Path="Catteria.Infraestructure/Catteria.Infraestructure.csproj" />
+  <Project Path="Catteria.UI/Catteria.UI.csproj" />
+</Solution>

@@ -1,0 +1,6 @@
+@Catteria.API_HostAddress = http://localhost:5273
+
+GET {{Catteria.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
