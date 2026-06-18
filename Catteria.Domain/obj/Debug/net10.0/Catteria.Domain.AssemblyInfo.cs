@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Catteria.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+86f317fa29b8eb892c8d605b88ea7a28cc156b94")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da91aebd0534c5f9bb1df1c5e56d622bd746a4a4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Catteria.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Catteria.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
