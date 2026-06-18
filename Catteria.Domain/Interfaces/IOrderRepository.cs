@@ -20,15 +20,15 @@ namespace Catteria.Domain.Interfaces
         /// </summary>
         Task<int> CountAsync();
         /// <summary>
-        /// Adiciona um usuario
+        /// Adiciona um pedido
         /// </summary>
         Task AddAsync(Order order);
         /// <summary>
-        /// Atualiza um usuario
+        /// Atualiza um pedido
         /// </summary>
         Task UpdateAsync(Order order);
         /// <summary>
-        /// Deleta um usuario
+        /// Deleta um pedido
         /// </summary>
         Task DeleteAsync(int id);
     }
