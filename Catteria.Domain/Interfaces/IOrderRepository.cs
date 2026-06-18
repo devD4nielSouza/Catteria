@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Catteria.Domain.Interfaces
 {
-    public interface IOrder
+    public interface IOrderRepository
     {
         ///<summary>
         ///Busca todos os pedidos

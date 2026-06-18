@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Catteria.Infraestructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c72113f30184713c37e90c28bc5db98f509335c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ffa772e2592401b2d783f5f4177b549cd3005096")]
 [assembly: System.Reflection.AssemblyProductAttribute("Catteria.Infraestructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Catteria.Infraestructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

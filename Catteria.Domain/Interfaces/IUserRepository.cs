@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Catteria.Domain.Interfaces
 {
-    internal class IUser
+    internal class IUserRepository
     {
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Catteria.Domain.Interfaces
 {
-    public interface ICategories
+    public interface ICategoryRepository
     {
         /// <summary>
         /// Faz uma lista com todas as categorias
