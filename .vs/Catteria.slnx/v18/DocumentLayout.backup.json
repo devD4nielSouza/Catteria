@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{83028F0F-CEB0-042D-E0EB-2268997BFD31}|Catteria.Domain\\Catteria.Domain.csproj|c:\\users\\daniel.osbibiano\\source\\repos\\catteria\\catteria.domain\\interfaces\\iorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83028F0F-CEB0-042D-E0EB-2268997BFD31}|Catteria.Domain\\Catteria.Domain.csproj|solutionrelative:catteria.domain\\interfaces\\iorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{83028F0F-CEB0-042D-E0EB-2268997BFD31}|Catteria.Domain\\Catteria.Domain.csproj|c:\\users\\daniel.osbibiano\\source\\repos\\catteria\\catteria.domain\\interfaces\\iuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83028F0F-CEB0-042D-E0EB-2268997BFD31}|Catteria.Domain\\Catteria.Domain.csproj|solutionrelative:catteria.domain\\interfaces\\iuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83028F0F-CEB0-042D-E0EB-2268997BFD31}|Catteria.Domain\\Catteria.Domain.csproj|c:\\users\\daniel.osbibiano\\source\\repos\\catteria\\catteria.domain\\interfaces\\icategories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83028F0F-CEB0-042D-E0EB-2268997BFD31}|Catteria.Domain\\Catteria.Domain.csproj|solutionrelative:catteria.domain\\interfaces\\icategories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{83028F0F-CEB0-042D-E0EB-2268997BFD31}|Catteria.Domain\\Catteria.Domain.csproj|c:\\users\\daniel.osbibiano\\source\\repos\\catteria\\catteria.domain\\interfaces\\iproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83028F0F-CEB0-042D-E0EB-2268997BFD31}|Catteria.Domain\\Catteria.Domain.csproj|solutionrelative:catteria.domain\\interfaces\\iproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,37 +18,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ICategories.cs",
-              "DocumentMoniker": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.Domain\\Interfaces\\ICategories.cs",
-              "RelativeDocumentMoniker": "Catteria.Domain\\Interfaces\\ICategories.cs",
-              "ToolTip": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.Domain\\Interfaces\\ICategories.cs",
-              "RelativeToolTip": "Catteria.Domain\\Interfaces\\ICategories.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAhAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "IUser.cs",
+              "DocumentMoniker": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.Domain\\Interfaces\\IUser.cs",
+              "RelativeDocumentMoniker": "Catteria.Domain\\Interfaces\\IUser.cs",
+              "ToolTip": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.Domain\\Interfaces\\IUser.cs",
+              "RelativeToolTip": "Catteria.Domain\\Interfaces\\IUser.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T17:24:24.539Z",
+              "WhenOpened": "2026-06-18T18:03:06.838Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IProducts.cs",
+              "DocumentMoniker": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.Domain\\Interfaces\\IProducts.cs",
+              "RelativeDocumentMoniker": "Catteria.Domain\\Interfaces\\IProducts.cs",
+              "ToolTip": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.Domain\\Interfaces\\IProducts.cs",
+              "RelativeToolTip": "Catteria.Domain\\Interfaces\\IProducts.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-18T18:01:23.501Z",
               "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "IOrder.cs",
-              "DocumentMoniker": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.Domain\\Interfaces\\IOrder.cs",
-              "RelativeDocumentMoniker": "Catteria.Domain\\Interfaces\\IOrder.cs",
-              "ToolTip": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.Domain\\Interfaces\\IOrder.cs",
-              "RelativeToolTip": "Catteria.Domain\\Interfaces\\IOrder.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T17:12:22.738Z",
-              "EditorCaption": ""
             }
           ]
         }
