@@ -65,23 +65,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\daniel.osbibiano\\.nuget\\packages\\": {},
+    "C:\\Users\\matheus.valmeida2\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.UI\\Catteria.UI.csproj",
+      "projectUniqueName": "C:\\Users\\matheus.valmeida2\\source\\repos\\Catteria2\\Catteria.UI\\Catteria.UI.csproj",
       "projectName": "Catteria.UI",
-      "projectPath": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.UI\\Catteria.UI.csproj",
-      "packagesPath": "C:\\Users\\daniel.osbibiano\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.UI\\obj\\",
+      "projectPath": "C:\\Users\\matheus.valmeida2\\source\\repos\\Catteria2\\Catteria.UI\\Catteria.UI.csproj",
+      "packagesPath": "C:\\Users\\matheus.valmeida2\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\matheus.valmeida2\\source\\repos\\Catteria2\\Catteria.UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\daniel.osbibiano\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\matheus.valmeida2\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -97,11 +97,11 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.Application\\Catteria.Application.csproj": {
-              "projectPath": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.Application\\Catteria.Application.csproj"
+            "C:\\Users\\matheus.valmeida2\\source\\repos\\Catteria2\\Catteria.Application\\Catteria.Application.csproj": {
+              "projectPath": "C:\\Users\\matheus.valmeida2\\source\\repos\\Catteria2\\Catteria.Application\\Catteria.Application.csproj"
             },
-            "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.Infraestructure\\Catteria.Infraestructure.csproj": {
-              "projectPath": "C:\\Users\\daniel.osbibiano\\source\\repos\\Catteria\\Catteria.Infraestructure\\Catteria.Infraestructure.csproj"
+            "C:\\Users\\matheus.valmeida2\\source\\repos\\Catteria2\\Catteria.Infraestructure\\Catteria.Infraestructure.csproj": {
+              "projectPath": "C:\\Users\\matheus.valmeida2\\source\\repos\\Catteria2\\Catteria.Infraestructure\\Catteria.Infraestructure.csproj"
             }
           }
         }

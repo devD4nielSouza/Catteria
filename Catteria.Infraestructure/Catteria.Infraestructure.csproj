@@ -11,4 +11,8 @@
     <ProjectReference Include="..\Catteria.Domain\Catteria.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
