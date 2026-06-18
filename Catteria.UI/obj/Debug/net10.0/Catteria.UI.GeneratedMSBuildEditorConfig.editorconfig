@@ -19,41 +19,41 @@ build_property.TargetFrameworkIdentifier = .NETCoreApp
 build_property.TargetFrameworkVersion = v10.0
 build_property.RootNamespace = Catteria.UI
 build_property.RootNamespace = Catteria.UI
-build_property.ProjectDir = C:\Users\graziella.ssilva\source\repos\Catteria\Catteria.UI\
+build_property.ProjectDir = C:\Users\matheus.valmeida2\source\repos\Catteria2\Catteria.UI\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\graziella.ssilva\source\repos\Catteria\Catteria.UI
+build_property.MSBuildProjectDirectory = C:\Users\matheus.valmeida2\source\repos\Catteria2\Catteria.UI
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/graziella.ssilva/source/repos/Catteria/Catteria.UI/Views/Home/Index.cshtml]
+[C:/Users/matheus.valmeida2/source/repos/Catteria2/Catteria.UI/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/graziella.ssilva/source/repos/Catteria/Catteria.UI/Views/Home/Privacy.cshtml]
+[C:/Users/matheus.valmeida2/source/repos/Catteria2/Catteria.UI/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/graziella.ssilva/source/repos/Catteria/Catteria.UI/Views/Shared/Error.cshtml]
+[C:/Users/matheus.valmeida2/source/repos/Catteria2/Catteria.UI/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/graziella.ssilva/source/repos/Catteria/Catteria.UI/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/matheus.valmeida2/source/repos/Catteria2/Catteria.UI/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/graziella.ssilva/source/repos/Catteria/Catteria.UI/Views/_ViewImports.cshtml]
+[C:/Users/matheus.valmeida2/source/repos/Catteria2/Catteria.UI/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/graziella.ssilva/source/repos/Catteria/Catteria.UI/Views/_ViewStart.cshtml]
+[C:/Users/matheus.valmeida2/source/repos/Catteria2/Catteria.UI/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/graziella.ssilva/source/repos/Catteria/Catteria.UI/Views/Shared/_Layout.cshtml]
+[C:/Users/matheus.valmeida2/source/repos/Catteria2/Catteria.UI/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-fv1pk4p8xm
