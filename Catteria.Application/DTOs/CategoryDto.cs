@@ -16,7 +16,7 @@ namespace Catteria.Application.DTOs
         public string Name { get; set; } = string.Empty;
     }
 
-    public class UpdateCategory
+    public class UpdateCategoryDto
     {
         public string Name { get; set; } = string.Empty;
     }
