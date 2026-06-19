@@ -6,5 +6,6 @@ namespace Catteria.Application.Interfaces
 {
     internal class IUserService
     {
+        //Deixa vazio Por enquanto!
     }
 }
