@@ -12,4 +12,16 @@ namespace Catteria.Application.DTOs
 
         public decimal UnitPrice { get; set; }
     }
+
+    public class CreateCartItemDto
+    {
+        public string ProductName { get; set; } = string.Empty;
+        public decimal UnitPrice { get; set; }
+    }
+
+    public class UpdateCartItemDto
+    {
+        public string ProductName { get; set; } = string.Empty;
+        public decimal UnitPrice { get; set; }
+    }
 }

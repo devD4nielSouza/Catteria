@@ -13,6 +13,7 @@ namespace Catteria.Domain.Entities
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         // Propriedade de navegação
+        //Comando do entity framework para criar uma coleção(lista) de Items no carrinho
         public virtual ICollection<CartItem> Items { get; set; } = new List<CartItem>();
 
     }

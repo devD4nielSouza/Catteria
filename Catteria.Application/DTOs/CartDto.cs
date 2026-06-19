@@ -8,10 +8,22 @@ namespace Catteria.Application.DTOs
     {
         public int Id { get; set; }
 
-        public string UserId { get; set; } = string.Empty;
+        public int UserId { get; set; }
 
         public decimal Total { get; set; }
 
-        public List<CartItemDto> Items { get; set; } = [];
+
+        public List<CartItemDto> Items { get; set; } = []; //Cria uma lista de items do carrinho vazia
+    }
+
+    public class CreateCartDto
+    {
+        public int UserId { get; set; }
+        public decimal Total { get; set; }
+    }
+
+    public class UpdateCartDto
+    {
+        public decimal Total { get; set; }
     }
 }
