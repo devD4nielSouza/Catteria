@@ -16,7 +16,7 @@ namespace Catteria.Domain.Interfaces
         /// Busca uma categoria por ID
         /// </summary>
         /// <returns>Objeto categoria</returns>
-        Task<Category?> GetById(int id);
+        Task<Category?> GetByIdAsync(int id);
         /// <summary>
         /// Conta a quantidade de categoria 
         /// </summary>

@@ -8,7 +8,7 @@ namespace Catteria.Application.DTOs
     {
         public string Name { get; set; } = string.Empty;
         public int Id { get; set; }
-        public int ProductsCount { get; set; }
+        public int ProductCount { get; set; }
     }
 
     public class CreateCategoryDto
