@@ -1,0 +1,6 @@
+C:\Users\daniel.osbibiano\source\repos\Catteria\Catteria.Infraestructure\obj\Debug\net10.0\Catteria.Infraestructure.csproj.AssemblyReference.cache
+C:\Users\daniel.osbibiano\source\repos\Catteria\Catteria.Infraestructure\obj\Debug\net10.0\Catteria.Infraestructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\daniel.osbibiano\source\repos\Catteria\Catteria.Infraestructure\obj\Debug\net10.0\Catteria.Infraestructure.AssemblyInfoInputs.cache
+C:\Users\daniel.osbibiano\source\repos\Catteria\Catteria.Infraestructure\obj\Debug\net10.0\Catteria.Infraestructure.AssemblyInfo.cs
+C:\Users\daniel.osbibiano\source\repos\Catteria\Catteria.Infraestructure\obj\Debug\net10.0\Catteria.Infraestructure.csproj.CoreCompileInputs.cache
+C:\Users\daniel.osbibiano\source\repos\Catteria\Catteria.Infraestructure\obj\Debug\net10.0\Catteria.Infraestructure.sourcelink.json
