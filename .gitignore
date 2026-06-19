@@ -1,1 +1,95 @@
-.vs/ 
+# Visual Studio / .NET (Razor Pages) .gitignore
+
+# User-specific
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+[Bb]in/
+[Oo]bj/
+**/bin/
+**/obj/
+
+# Rider / ReSharper
+.idea/
+*.sln.iml
+_ReSharper*/
+*.DotSettings.user
+
+# Visual Studio cache / db
+*.VC.db
+*.VC.VC.opendb
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+project.assets.json
+project.nuget.cache
+*.csproj.nuget.g.props
+*.csproj.nuget.g.targets
+
+# MSBuild generated
+*.dotCover
+TestResults/
+*.TestResult
+
+# Publish folder
+publish/
+*.Publish.xml
+
+# IIS Express
+IISExpress/
+*.vspscc
+
+# User secrets
+secrets.json
+
+# Entity Framework migrations history (if generated)
+__EFMigrationsHistory
+
+# Local DB
+*.mdf
+*.ldf
+App_Data/
+
+# VS Code
+.vscode/
+
+# Node
+node_modules/
+
+# Logs, temp, backups
+*.log
+*.tmp
+~$*
+*.bak
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage*/
+*.coverage
+*.coveragexml
+
+# JetBrains Rider output
+out/
+
+# Common generated files that can cause conflicts
+*.AssemblyInfo.cs
+*.AssemblyInfo.cs.attributes
+
+# Lock files (if you're using them for frontend tools)
+package-lock.json
+yarn.lock
+
+# Sqlite/DB files
+*.db
+*.sqlite
+
+# End of file
