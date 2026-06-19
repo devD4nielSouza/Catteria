@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Catteria.Application.Interfaces
 {
-    internal class IOrderService
+    public interface IOrderService
     {
+
     }
 }
