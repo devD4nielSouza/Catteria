@@ -1,0 +1,16 @@
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\bin\Debug\net10.0\Catteria.Application.deps.json
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\bin\Debug\net10.0\Catteria.Application.dll
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\bin\Debug\net10.0\Catteria.Application.pdb
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\bin\Debug\net10.0\Catteria.Domain.dll
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\bin\Debug\net10.0\Catteria.Domain.pdb
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.csproj.AssemblyReference.cache
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.AssemblyInfoInputs.cache
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.AssemblyInfo.cs
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.csproj.CoreCompileInputs.cache
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.sourcelink.json
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.15205C22.Up2Date
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.dll
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\refint\Catteria.Application.dll
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.pdb
+C:\Users\matheus.valmeida2\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\ref\Catteria.Application.dll
