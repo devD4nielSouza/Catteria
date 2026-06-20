@@ -14,7 +14,7 @@ namespace Catteria.Domain.Interfaces
         /// <summary>
         /// Busca por id
         /// </summary>
-        Task<Order?> GetById(int id);
+        Task<Order?> GetByIdAsync(int id);
         ///<summary>
         ///Conta os pedidos
         /// </summary>
