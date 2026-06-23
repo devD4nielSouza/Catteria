@@ -1,4 +1,5 @@
-```md
+tire os emojis dos topicos
+
 # ROADMAP — CATTERIA
 
 > Guia passo a passo para desenvolver a solução Catteria, uma cafeteria temática com gatos, sistema próprio de delivery e painel administrativo.  
@@ -34,7 +35,7 @@
 
 A arquitetura em camadas separa o código em projetos com responsabilidades específicas.
 
-### Benefícios
+### Benefícios:
 
 - Organização
 - Manutenção
@@ -43,31 +44,32 @@ A arquitetura em camadas separa o código em projetos com responsabilidades espe
 - Testabilidade
 
 ### Estrutura da Solução
+
 ```
 
-┌──────────────┐ ┌──────────────┐
-│ Catteria.API │ │ Catteria.UI │
-│ (API REST) │ │ (MVC) │
-└───────┬──────┘ └───────┬──────┘
-│ │
+┌──────────────┐   ┌──────────────┐
+│ Catteria.API │   │  Catteria.UI │
+│  (API REST)  │   │    (MVC)     │
+└───────┬──────┘   └───────┬──────┘
+│                  │
 └─────────┬────────┘
 │
 ┌──────────▼──────────┐
 │ Catteria.Application │
-│ Services / DTOs │
+│ Services / DTOs      │
 └──────────┬──────────┘
 │
 ┌──────────▼──────────┐
-│ Catteria.Domain │
-│ Entidades │
+│   Catteria.Domain   │
+│ Entidades           │
 └──────────▲──────────┘
 │
 ┌──────────┴──────────┐
 │ Catteria.Infrastructure │
-│ EF Core / Banco │
+│ EF Core / Banco     │
 └─────────────────────┘
 
-````
+```
 
 ---
 
@@ -83,7 +85,7 @@ Uma Solution (.sln) agrupa todos os projetos da aplicação.
 mkdir Catteria
 cd Catteria
 dotnet new sln -n Catteria
-````
+```
 
 ---
 
@@ -194,7 +196,7 @@ Catteria.Domain
 - OrderItem
 - Cart
 - CartItem
-- User (a implementar)
+- User ❌ (a implementar)
 
 ### Interfaces
 
@@ -202,7 +204,7 @@ Catteria.Domain
 - ICategoryRepository
 - IOrderRepository
 - ICartRepository
-- IUserRepository (a implementar)
+- IUserRepository ❌
 
 ---
 
@@ -222,9 +224,9 @@ ViewModels
 - ProductService ✔
 - CategoryService ✔
 - OrderService ✔
-- CartService (a implementar)
-- UserService (a implementar)
-- AuthService (a implementar)
+- CartService ❌
+- UserService ❌
+- AuthService ❌
 
 ---
 
@@ -240,9 +242,9 @@ ViewModels
 
 ### Falta
 
-- OrderConfiguration (a implementar)
-- CartConfiguration (a implementar)
-- UserConfiguration (a implementar)
+- OrderConfiguration ❌
+- CartConfiguration ❌
+- UserConfiguration ❌
 
 ---
 
@@ -257,14 +259,14 @@ dotnet ef database update -p Catteria.Infrastructure -s Catteria.API
 
 ## 10. Identity — Autenticação
 
-### Implementar
+### Implementar:
 
-- Registro (a implementar)
-- Login (a implementar)
-- Logout (a implementar)
-- Roles (a implementar)
+- Registro ❌
+- Login ❌
+- Logout ❌
+- Roles ❌
 
-### Roles
+### Roles:
 
 - Admin
 - Customer
@@ -275,27 +277,21 @@ dotnet ef database update -p Catteria.Infrastructure -s Catteria.API
 
 ### Controllers
 
-- ProductController (a implementar)
-- CategoryController (a implementar)
-- OrderController (a implementar)
-- CartController (a implementar)
-- AuthController (a implementar)
+- ProductController ❌
+- CategoryController ❌
+- OrderController ❌
+- CartController ❌
+- AuthController ❌
 
 ---
 
-## 12. Sistema de Pedidos e Carrinho
+## 12. Sistema de Pedidos
 
-### Carrinho
+### Pedido:
 
-- Adicionar item (a implementar)
-- Remover item (a implementar)
-- Atualizar quantidade (a implementar)
-
-### Pedido
-
-- Criar Order (a implementar)
-- Criar OrderItems (a implementar)
-- Checkout (a implementar)
+- Criar Order ❌
+- Criar OrderItems ❌
+- Checkout ❌
 
 ---
 
@@ -304,19 +300,19 @@ dotnet ef database update -p Catteria.Infrastructure -s Catteria.API
 ### Controllers
 
 - HomeController ✔
-- ProductController (a implementar)
-- CartController (a implementar)
-- AccountController (a implementar)
-- AdminController (a implementar)
+- ProductController ❌
+- CartController ❌
+- AccountController ❌
+- AdminController ❌
 
 ---
 
 ## 14. Painel Administrativo
 
-- Dashboard (a implementar)
-- CRUD Produtos (a implementar)
-- CRUD Categorias (a implementar)
-- Gerenciar pedidos (a implementar)
+- Dashboard ❌
+- CRUD Produtos ❌
+- CRUD Categorias ❌
+- Gerenciar pedidos ❌
 
 ---
 
@@ -324,9 +320,9 @@ dotnet ef database update -p Catteria.Infrastructure -s Catteria.API
 
 ### Home
 
-- Banner (a implementar)
-- Produtos destaque (a implementar)
-- Espaço gatos (a implementar)
+- Banner ❌
+- Produtos destaque ❌
+- Espaço gatos ❌
 
 ### Estilo
 
@@ -350,20 +346,20 @@ dotnet run --project Catteria.UI
 ### Backend
 
 - Domain ✔
-- Application (em progresso)
-- Infrastructure (em progresso)
+- Application ⚠
+- Infrastructure ⚠
 
 ### Sistema
 
-- Carrinho (pendente)
-- Pedidos (pendente)
-- Login (pendente)
+- Carrinho ❌
+- Pedidos ❌
+- Login ❌
 
 ### Frontend
 
-- MVC (pendente)
-- Admin (pendente)
-- Design (pendente)
+- MVC ❌
+- Admin ❌
+- Design ❌
 
 ---
 
