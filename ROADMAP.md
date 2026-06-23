@@ -27,13 +27,14 @@
 
 ---
 
-## 1. 🧠 Entendendo a Arquitetura
+## 1. Entendendo a Arquitetura
 
 ### Por que usar camadas?
 
 A arquitetura em camadas separa o código em projetos com responsabilidades específicas.
 
 ### Benefícios:
+
 - Organização
 - Manutenção
 - Escalabilidade
@@ -66,11 +67,11 @@ A arquitetura em camadas separa o código em projetos com responsabilidades espe
 │ EF Core / Banco     │
 └─────────────────────┘
 
-````
+```
 
 ---
 
-## 2. 🏗️ Criação da Solution
+## 2. Criação da Solution
 
 ### O que é uma Solution?
 
@@ -82,11 +83,11 @@ Uma Solution (.sln) agrupa todos os projetos da aplicação.
 mkdir Catteria
 cd Catteria
 dotnet new sln -n Catteria
-````
+```
 
 ---
 
-## 3. 🧱 Criação das Camadas
+## 3. Criação das Camadas
 
 ### Domain
 
@@ -187,21 +188,21 @@ Catteria.Domain
 
 ### Entidades principais
 
-* Product
-* Category
-* Order
-* OrderItem
-* Cart
-* CartItem
-* User ❌ (a implementar)
+- Product
+- Category
+- Order
+- OrderItem
+- Cart
+- CartItem
+- User ❌ (a implementar)
 
 ### Interfaces
 
-* IProductRepository
-* ICategoryRepository
-* IOrderRepository
-* ICartRepository
-* IUserRepository ❌
+- IProductRepository
+- ICategoryRepository
+- IOrderRepository
+- ICartRepository
+- IUserRepository ❌
 
 ---
 
@@ -218,12 +219,12 @@ ViewModels
 
 ### Status
 
-* ProductService ✔
-* CategoryService ✔
-* OrderService ✔
-* CartService ❌
-* UserService ❌
-* AuthService ❌
+- ProductService ✔
+- CategoryService ✔
+- OrderService ✔
+- CartService ❌
+- UserService ❌
+- AuthService ❌
 
 ---
 
@@ -231,17 +232,17 @@ ViewModels
 
 ### Status atual
 
-* DbContext ✔
-* ProductRepository ✔
-* CategoryRepository ✔
-* OrderRepository ✔
-* CartRepository ✔
+- DbContext ✔
+- ProductRepository ✔
+- CategoryRepository ✔
+- OrderRepository ✔
+- CartRepository ✔
 
 ### Falta
 
-* OrderConfiguration ❌
-* CartConfiguration ❌
-* UserConfiguration ❌
+- OrderConfiguration ❌
+- CartConfiguration ❌
+- UserConfiguration ❌
 
 ---
 
@@ -258,15 +259,15 @@ dotnet ef database update -p Catteria.Infrastructure -s Catteria.API
 
 ### Implementar:
 
-* Registro ❌
-* Login ❌
-* Logout ❌
-* Roles ❌
+- Registro ❌
+- Login ❌
+- Logout ❌
+- Roles ❌
 
 ### Roles:
 
-* Admin
-* Customer
+- Admin
+- Customer
 
 ---
 
@@ -274,11 +275,11 @@ dotnet ef database update -p Catteria.Infrastructure -s Catteria.API
 
 ### Controllers
 
-* ProductController ❌
-* CategoryController ❌
-* OrderController ❌
-* CartController ❌
-* AuthController ❌
+- ProductController ❌
+- CategoryController ❌
+- OrderController ❌
+- CartController ❌
+- AuthController ❌
 
 ---
 
@@ -286,15 +287,15 @@ dotnet ef database update -p Catteria.Infrastructure -s Catteria.API
 
 ### Carrinho:
 
-* Adicionar item ❌
-* Remover item ❌
-* Atualizar quantidade ❌
+- Adicionar item ❌
+- Remover item ❌
+- Atualizar quantidade ❌
 
 ### Pedido:
 
-* Criar Order ❌
-* Criar OrderItems ❌
-* Checkout ❌
+- Criar Order ❌
+- Criar OrderItems ❌
+- Checkout ❌
 
 ---
 
@@ -302,20 +303,20 @@ dotnet ef database update -p Catteria.Infrastructure -s Catteria.API
 
 ### Controllers
 
-* HomeController ✔
-* ProductController ❌
-* CartController ❌
-* AccountController ❌
-* AdminController ❌
+- HomeController ✔
+- ProductController ❌
+- CartController ❌
+- AccountController ❌
+- AdminController ❌
 
 ---
 
 ## 14. 🧑‍💼 Painel Administrativo
 
-* Dashboard ❌
-* CRUD Produtos ❌
-* CRUD Categorias ❌
-* Gerenciar pedidos ❌
+- Dashboard ❌
+- CRUD Produtos ❌
+- CRUD Categorias ❌
+- Gerenciar pedidos ❌
 
 ---
 
@@ -323,15 +324,15 @@ dotnet ef database update -p Catteria.Infrastructure -s Catteria.API
 
 ### Home
 
-* Banner ❌
-* Produtos destaque ❌
-* Espaço gatos ❌
+- Banner ❌
+- Produtos destaque ❌
+- Espaço gatos ❌
 
 ### Estilo
 
-* Clean
-* Moderno
-* Aconchegante
+- Clean
+- Moderno
+- Aconchegante
 
 ---
 
@@ -348,21 +349,21 @@ dotnet run --project Catteria.UI
 
 ### Backend
 
-* Domain ✔
-* Application ⚠
-* Infrastructure ⚠
+- Domain ✔
+- Application ⚠
+- Infrastructure ⚠
 
 ### Sistema
 
-* Carrinho ❌
-* Pedidos ❌
-* Login ❌
+- Carrinho ❌
+- Pedidos ❌
+- Login ❌
 
 ### Frontend
 
-* MVC ❌
-* Admin ❌
-* Design ❌
+- MVC ❌
+- Admin ❌
+- Design ❌
 
 ---
 
@@ -379,4 +380,5 @@ dotnet run --project Catteria.UI
 9. Design
 
 ```
+
 ```
