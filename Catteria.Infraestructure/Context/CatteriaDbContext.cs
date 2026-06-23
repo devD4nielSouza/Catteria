@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Catteria.Infraestructure.Context
 {
-    internal class CatteriaDbContext : IdentityDbContext
+    public class CatteriaDbContext : IdentityDbContext
     {
         public CatteriaDbContext(DbContextOptions<CatteriaDbContext> options)
             : base(options)

@@ -12,7 +12,7 @@ namespace Catteria.Domain.Entities
         public decimal TotalValue { get; set; } // Valor total do pedido
         public string Status { get; set; } = string.Empty; // Status do pedido (ex: "Pendente", "Em andamento", "Concluído")
         public int IdUser { get; set; } // Chave estrangeira para o usuário que fez o pedido (relacionamento com a entidade User)
-        public virtual required User User { get; set; }
+        public virtual User? User { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }

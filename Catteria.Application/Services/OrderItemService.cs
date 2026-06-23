@@ -32,9 +32,17 @@ namespace Catteria.Application.Services
 
         public async Task<OrderItemDto> AddAsync(OrderItemDto dto)
         {
-            var item = new List<OrderItemDto>();
-            await _orderItemRepository.AddAsync(dto);
+            var item = new OrderItem
+            {
+                IdOrder = dto.IdOrder,
+                IdProduct = dto.IdProduct,
+                Quantity = dto.Quantity,
+                UnitPrice = dto.UnitPrice
+            };
+
+            await _orderItemRepository.AddAsync(item);
             return MapToDto(item);
+            
         }
         public async Task<OrderItemDto?> UpdateAsync(int id, UpdateOrderItemDto dto)
         {
@@ -61,8 +69,8 @@ namespace Catteria.Application.Services
             {
                 Id = item.Id,
                 Quantity = item.Quantity,
-                //IdOrder = item.IdOrder,
-                //IdProduct = item.IDProduct,
+                IdOrder = item.IdOrder,
+                IdProduct = item.IdProduct,
                 UnitPrice = item.UnitPrice
             };
         }
