@@ -1,4 +1,5 @@
 ﻿using Catteria.Domain.Entities;
+using Catteria.Infraestructure.Configurations;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,7 +14,32 @@ namespace Catteria.Infraestructure.Context
             : base(options)
         {
         }
+        /// <summary>
+        /// DbSet que representa a tabela de OrderItems no banco de dados.
+        /// </summary>
+        public DbSet<OrderItem> OrderItems { get; set; }
+        /// <summary>
+        /// DbSet que representa a tabela de Orders no banco de dados.
+        /// </summary>
+        public DbSet<Order> Orders { get; set; }
+        /// <summary>
+        /// DbSet que representa a tabela de Categories no banco de dados.
+        /// </summary>
+        public DbSet<Category> Categories { get; set; }
 
-        public DbSet<OrderItem> OrderItems { get; set; } // DbSet que representa a tabela de Games no banco de Dados
+        /// <summary>
+        /// DbSet que representa a tabela de Products no banco de dados.
+        /// </summary>
+        public DbSet<Product> Products { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Catteria.Infraestructure.Configurations
 {
-    public class GameConfiguration : IEntityTypeConfiguration<Product>
+    public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
