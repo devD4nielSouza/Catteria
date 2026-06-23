@@ -65,29 +65,16 @@ namespace Catteria.Application.ViewModels
         public IEnumerable<CategoryDto> Categories { get; set; } = new List<CategoryDto>();
     }
 
-
-
-    public class CheckoutViewModel
-    {
-        public CheckOutDto CheckouUser { get; set; }
-        public IEnumerable<CartItemDto> CartItem { get; set; } = new List<CartItemDto>();
-
-        public decimal TotalValue { get; set; }
-
-
-
-    }
-
     public class OrderDetailsViewModel
     {
 
 
-        public UserDto User { get; set; }
-        public OrderDto Order { get; set; }
+        public UserDto? User { get; set; }
+        public OrderDto? Order { get; set; }
         public decimal Total { get; set; }
 
         public IEnumerable<OrderItemDto> ItemsOrder { get; set; } = new List<OrderItemDto>();
-        public string status { get; set; }
+        public string status { get; set; } = string.Empty;
 
 
         //public class LoanDetailsViewModel
