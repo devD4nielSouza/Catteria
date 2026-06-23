@@ -70,7 +70,7 @@ namespace Catteria.Application.ViewModels
     public class CheckoutViewModel
     {
         public CheckOutDto CheckouUser { get; set; }
-        public IEnumerable<CartItemDto> CartItem {  get; set; } = new List <CartItemDto>();
+        public IEnumerable<CartItemDto> CartItem { get; set; } = new List<CartItemDto>();
 
         public decimal TotalValue { get; set; }
 
@@ -84,9 +84,9 @@ namespace Catteria.Application.ViewModels
 
         public UserDto User { get; set; }
         public OrderDto Order { get; set; }
-        public decimal Total {  get; set; }
+        public decimal Total { get; set; }
 
-        public IEnumerable<OrderItemDto> ItemsOrder { get; set; } = new List <OrderItemDto>();
+        public IEnumerable<OrderItemDto> ItemsOrder { get; set; } = new List<OrderItemDto>();
         public string status { get; set; }
 
 

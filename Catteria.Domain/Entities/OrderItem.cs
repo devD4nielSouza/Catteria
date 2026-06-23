@@ -12,7 +12,6 @@ namespace Catteria.Domain.Entities
         public int IdOrder { get; set; } // Chave estrangeira para o pedido (relacionamento com a entidade Order)
         public int IdProduct { get; set; } // Chave estrangeira para o produto (relacionamento com a entidade Product
         public decimal UnitPrice { get; set; }
-
         public virtual ICollection<Product> Products { get; set; } = new List<Product>();
         public virtual required Order Order { get; set; }
     }
