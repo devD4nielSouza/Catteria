@@ -1,3 +1,4 @@
+```md
 # ROADMAP — CATTERIA
 
 > Guia passo a passo para desenvolver a solução Catteria, uma cafeteria temática com gatos, sistema próprio de delivery e painel administrativo.  
@@ -33,7 +34,7 @@
 
 A arquitetura em camadas separa o código em projetos com responsabilidades específicas.
 
-### Benefícios:
+### Benefícios
 
 - Organização
 - Manutenção
@@ -42,32 +43,31 @@ A arquitetura em camadas separa o código em projetos com responsabilidades espe
 - Testabilidade
 
 ### Estrutura da Solução
-
 ```
 
-┌──────────────┐   ┌──────────────┐
-│ Catteria.API │   │  Catteria.UI │
-│  (API REST)  │   │    (MVC)     │
-└───────┬──────┘   └───────┬──────┘
-│                  │
+┌──────────────┐ ┌──────────────┐
+│ Catteria.API │ │ Catteria.UI │
+│ (API REST) │ │ (MVC) │
+└───────┬──────┘ └───────┬──────┘
+│ │
 └─────────┬────────┘
 │
 ┌──────────▼──────────┐
 │ Catteria.Application │
-│ Services / DTOs      │
+│ Services / DTOs │
 └──────────┬──────────┘
 │
 ┌──────────▼──────────┐
-│   Catteria.Domain   │
-│ Entidades           │
+│ Catteria.Domain │
+│ Entidades │
 └──────────▲──────────┘
 │
 ┌──────────┴──────────┐
 │ Catteria.Infrastructure │
-│ EF Core / Banco     │
+│ EF Core / Banco │
 └─────────────────────┘
 
-```
+````
 
 ---
 
@@ -83,7 +83,7 @@ Uma Solution (.sln) agrupa todos os projetos da aplicação.
 mkdir Catteria
 cd Catteria
 dotnet new sln -n Catteria
-```
+````
 
 ---
 
@@ -126,7 +126,7 @@ dotnet sln add Catteria.UI
 
 ---
 
-## 4. 🔗 Referências entre Projetos
+## 4. Referências entre Projetos
 
 ```
 Application → Domain
@@ -150,7 +150,7 @@ dotnet add Catteria.UI reference Catteria.Infrastructure
 
 ---
 
-## 5. 📦 Instalação dos Pacotes NuGet
+## 5. Instalação dos Pacotes NuGet
 
 ### Infrastructure
 
@@ -176,7 +176,7 @@ dotnet add Catteria.UI package Microsoft.EntityFrameworkCore.Design
 
 ---
 
-## 6. 🧩 Camada Domain
+## 6. Camada Domain
 
 ### Estrutura
 
@@ -194,7 +194,7 @@ Catteria.Domain
 - OrderItem
 - Cart
 - CartItem
-- User ❌ (a implementar)
+- User (a implementar)
 
 ### Interfaces
 
@@ -202,11 +202,11 @@ Catteria.Domain
 - ICategoryRepository
 - IOrderRepository
 - ICartRepository
-- IUserRepository ❌
+- IUserRepository (a implementar)
 
 ---
 
-## 7. ⚙️ Camada Application
+## 7. Camada Application
 
 ### Estrutura
 
@@ -222,13 +222,13 @@ ViewModels
 - ProductService ✔
 - CategoryService ✔
 - OrderService ✔
-- CartService ❌
-- UserService ❌
-- AuthService ❌
+- CartService (a implementar)
+- UserService (a implementar)
+- AuthService (a implementar)
 
 ---
 
-## 8. 🗄️ Camada Infrastructure
+## 8. Camada Infrastructure
 
 ### Status atual
 
@@ -240,13 +240,13 @@ ViewModels
 
 ### Falta
 
-- OrderConfiguration ❌
-- CartConfiguration ❌
-- UserConfiguration ❌
+- OrderConfiguration (a implementar)
+- CartConfiguration (a implementar)
+- UserConfiguration (a implementar)
 
 ---
 
-## 9. 🧪 Entity Framework — Migrations
+## 9. Entity Framework — Migrations
 
 ```bash
 dotnet ef migrations add InitialCreate -p Catteria.Infrastructure -s Catteria.API
@@ -255,78 +255,78 @@ dotnet ef database update -p Catteria.Infrastructure -s Catteria.API
 
 ---
 
-## 10. 🔐 Identity — Autenticação
+## 10. Identity — Autenticação
 
-### Implementar:
+### Implementar
 
-- Registro ❌
-- Login ❌
-- Logout ❌
-- Roles ❌
+- Registro (a implementar)
+- Login (a implementar)
+- Logout (a implementar)
+- Roles (a implementar)
 
-### Roles:
+### Roles
 
 - Admin
 - Customer
 
 ---
 
-## 11. 🌐 Projeto API
+## 11. Projeto API
 
 ### Controllers
 
-- ProductController ❌
-- CategoryController ❌
-- OrderController ❌
-- CartController ❌
-- AuthController ❌
+- ProductController (a implementar)
+- CategoryController (a implementar)
+- OrderController (a implementar)
+- CartController (a implementar)
+- AuthController (a implementar)
 
 ---
 
-## 12. 🛒 Sistema de Pedidos e Carrinho
+## 12. Sistema de Pedidos e Carrinho
 
-### Carrinho:
+### Carrinho
 
-- Adicionar item ❌
-- Remover item ❌
-- Atualizar quantidade ❌
+- Adicionar item (a implementar)
+- Remover item (a implementar)
+- Atualizar quantidade (a implementar)
 
-### Pedido:
+### Pedido
 
-- Criar Order ❌
-- Criar OrderItems ❌
-- Checkout ❌
+- Criar Order (a implementar)
+- Criar OrderItems (a implementar)
+- Checkout (a implementar)
 
 ---
 
-## 13. 🖥️ Projeto UI (MVC)
+## 13. Projeto UI (MVC)
 
 ### Controllers
 
 - HomeController ✔
-- ProductController ❌
-- CartController ❌
-- AccountController ❌
-- AdminController ❌
+- ProductController (a implementar)
+- CartController (a implementar)
+- AccountController (a implementar)
+- AdminController (a implementar)
 
 ---
 
-## 14. 🧑‍💼 Painel Administrativo
+## 14. Painel Administrativo
 
-- Dashboard ❌
-- CRUD Produtos ❌
-- CRUD Categorias ❌
-- Gerenciar pedidos ❌
+- Dashboard (a implementar)
+- CRUD Produtos (a implementar)
+- CRUD Categorias (a implementar)
+- Gerenciar pedidos (a implementar)
 
 ---
 
-## 15. 🎨 Front-End e Design
+## 15. Front-End e Design
 
 ### Home
 
-- Banner ❌
-- Produtos destaque ❌
-- Espaço gatos ❌
+- Banner (a implementar)
+- Produtos destaque (a implementar)
+- Espaço gatos (a implementar)
 
 ### Estilo
 
@@ -336,7 +336,7 @@ dotnet ef database update -p Catteria.Infrastructure -s Catteria.API
 
 ---
 
-## 16. ▶️ Executando a Aplicação
+## 16. Executando a Aplicação
 
 ```bash
 dotnet run --project Catteria.API
@@ -345,29 +345,29 @@ dotnet run --project Catteria.UI
 
 ---
 
-## 17. 📊 Resumo Final
+## 17. Resumo Final
 
 ### Backend
 
 - Domain ✔
-- Application ⚠
-- Infrastructure ⚠
+- Application (em progresso)
+- Infrastructure (em progresso)
 
 ### Sistema
 
-- Carrinho ❌
-- Pedidos ❌
-- Login ❌
+- Carrinho (pendente)
+- Pedidos (pendente)
+- Login (pendente)
 
 ### Frontend
 
-- MVC ❌
-- Admin ❌
-- Design ❌
+- MVC (pendente)
+- Admin (pendente)
+- Design (pendente)
 
 ---
 
-## 🚨 Prioridade Máxima
+## Prioridade Máxima
 
 1. Services
 2. Migrations
