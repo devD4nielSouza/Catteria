@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "k4JhpJ5PyXg=",
   "success": true,
   "projectFilePath": "C:\\Users\\graziella.ssilva\\source\\repos\\Catteria\\Catteria.Application\\Catteria.Application.csproj",
+=======
+  "dgSpecHash": "MWVjCG5UA6U=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\arnal\\source\\repos\\devD4nielSouza\\Catteria\\Catteria.Application\\Catteria.Application.csproj",
+>>>>>>> 5adad262aabd48ceae0519ee0e1e627361836fc3
   "expectedPackageFiles": [],
   "logs": []
 }

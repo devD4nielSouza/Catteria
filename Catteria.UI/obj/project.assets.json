@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net10.0": {
       "Azure.Core/1.47.1": {
@@ -3137,23 +3137,39 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\graziella.ssilva\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\arnal\\.nuget\\packages\\": {},
+>>>>>>> 5adad262aabd48ceae0519ee0e1e627361836fc3
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\graziella.ssilva\\source\\repos\\Catteria\\Catteria.UI\\Catteria.UI.csproj",
       "projectName": "Catteria.UI",
       "projectPath": "C:\\Users\\graziella.ssilva\\source\\repos\\Catteria\\Catteria.UI\\Catteria.UI.csproj",
       "packagesPath": "C:\\Users\\graziella.ssilva\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\graziella.ssilva\\source\\repos\\Catteria\\Catteria.UI\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\arnal\\source\\repos\\devD4nielSouza\\Catteria\\Catteria.UI\\Catteria.UI.csproj",
+      "projectName": "Catteria.UI",
+      "projectPath": "C:\\Users\\arnal\\source\\repos\\devD4nielSouza\\Catteria\\Catteria.UI\\Catteria.UI.csproj",
+      "packagesPath": "C:\\Users\\arnal\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\arnal\\source\\repos\\devD4nielSouza\\Catteria\\Catteria.UI\\obj\\",
+>>>>>>> 5adad262aabd48ceae0519ee0e1e627361836fc3
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\graziella.ssilva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\arnal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 5adad262aabd48ceae0519ee0e1e627361836fc3
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3167,13 +3183,22 @@
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\graziella.ssilva\\source\\repos\\Catteria\\Catteria.Application\\Catteria.Application.csproj": {
               "projectPath": "C:\\Users\\graziella.ssilva\\source\\repos\\Catteria\\Catteria.Application\\Catteria.Application.csproj"
             },
             "C:\\Users\\graziella.ssilva\\source\\repos\\Catteria\\Catteria.Infraestructure\\Catteria.Infraestructure.csproj": {
               "projectPath": "C:\\Users\\graziella.ssilva\\source\\repos\\Catteria\\Catteria.Infraestructure\\Catteria.Infraestructure.csproj"
+=======
+            "C:\\Users\\arnal\\source\\repos\\devD4nielSouza\\Catteria\\Catteria.Application\\Catteria.Application.csproj": {
+              "projectPath": "C:\\Users\\arnal\\source\\repos\\devD4nielSouza\\Catteria\\Catteria.Application\\Catteria.Application.csproj"
+            },
+            "C:\\Users\\arnal\\source\\repos\\devD4nielSouza\\Catteria\\Catteria.Infraestructure\\Catteria.Infraestructure.csproj": {
+              "projectPath": "C:\\Users\\arnal\\source\\repos\\devD4nielSouza\\Catteria\\Catteria.Infraestructure\\Catteria.Infraestructure.csproj"
+>>>>>>> 5adad262aabd48ceae0519ee0e1e627361836fc3
             }
           }
         }
@@ -3188,10 +3213,11 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net10.0": {
+        "framework": "net10.0",
         "targetAlias": "net10.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": {
@@ -3220,7 +3246,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200-preview.0.26103.119/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
