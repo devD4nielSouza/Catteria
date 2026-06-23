@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Catteria.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e9d1831233f532a01b13d67adaa66941ec74049")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ab6ba36c880cbac219e3f05dff02b0248ecb682")]
 [assembly: System.Reflection.AssemblyProductAttribute("Catteria.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Catteria.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

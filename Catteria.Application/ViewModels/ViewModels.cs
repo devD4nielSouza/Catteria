@@ -65,23 +65,30 @@ namespace Catteria.Application.ViewModels
         public IEnumerable<CategoryDto> Categories { get; set; } = new List<CategoryDto>();
     }
 
-    /// <summary>
-    /// ViewModel da página de carrinho.
-    /// Armazena os itens adicionados ao carrinho e o valor total da compra.
-    /// </summary>
-    public class CartViewModel
-    {
-        public IEnumerable<CartItemDto> CartItems { get; set; }
-        public decimal TotalValue { get; set; }
-    }
+
 
     public class CheckoutViewModel
     {
-        //Cliente não existe ainda
+        public CheckOutDto CheckouUser { get; set; }
+        public IEnumerable<CartItemDto> CartItem {  get; set; } = new List <CartItemDto>();
+
+        public decimal TotalValue { get; set; }
+
+
+
     }
 
     public class OrderDetailsViewModel
     {
+
+
+        public UserDto User { get; set; }
+        public OrderDto Order { get; set; }
+        public decimal Total {  get; set; }
+
+        public IEnumerable<OrderItemDto> ItemsOrder { get; set; } = new List <OrderItemDto>();
+        public string status { get; set; }
+
 
         //public class LoanDetailsViewModel
 

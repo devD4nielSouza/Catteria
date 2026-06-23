@@ -7,10 +7,10 @@ namespace Catteria.Domain.Interfaces
 {
     public interface IOrderItemRepository
     {
-        Task<OrderItem?> GetById(int id);
-        Task<IEnumerable<OrderItem>> GetAllAsync();
-        Task AddAsync(OrderItem orderItem);
-        Task DeleteAsync(int id);
-        Task UpdateAsync(OrderItem orderItem);
+        Task<OrderItem?> GetByIdAsync(int id);//busca um item pelo id
+        Task<IEnumerable<OrderItem>> GetAllAsync();// lista todos os itens
+        Task AddAsync(OrderItem orderItem); //adiciona um item
+        Task DeleteAsync(int id); //deleta com base no id
+        Task UpdateAsync(OrderItem orderItem);//Atualiza um item'   
     }
 }

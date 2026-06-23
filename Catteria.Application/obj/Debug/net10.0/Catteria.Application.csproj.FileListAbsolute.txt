@@ -30,3 +30,12 @@ C:\Users\daniel.osbibiano\source\repos\Catteria\Catteria.Application\obj\Debug\n
 C:\Users\daniel.osbibiano\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\refint\Catteria.Application.dll
 C:\Users\daniel.osbibiano\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.pdb
 C:\Users\daniel.osbibiano\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\ref\Catteria.Application.dll
+C:\Users\graziella.ssilva\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.csproj.AssemblyReference.cache
+C:\Users\graziella.ssilva\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\graziella.ssilva\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.AssemblyInfoInputs.cache
+C:\Users\graziella.ssilva\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.AssemblyInfo.cs
+C:\Users\graziella.ssilva\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.csproj.CoreCompileInputs.cache
+C:\Users\graziella.ssilva\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.sourcelink.json
+C:\Users\graziella.ssilva\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.dll
+C:\Users\graziella.ssilva\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\refint\Catteria.Application.dll
+C:\Users\graziella.ssilva\source\repos\Catteria\Catteria.Application\obj\Debug\net10.0\Catteria.Application.pdb
