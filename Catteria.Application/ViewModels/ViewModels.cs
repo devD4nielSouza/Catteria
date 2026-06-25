@@ -37,7 +37,7 @@ namespace Catteria.Application.ViewModels
         /// <summary>
         /// Armazena o ID da categoria selecionada pelo usuário.
         /// </summary>
-        public int? SelecetCategoryById { get; set; }
+        public int? SelectedCategoryById { get; set; }
     }
 
     /// <summary>
@@ -58,6 +58,7 @@ namespace Catteria.Application.ViewModels
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public decimal Price { get; set; }
         public string CoverImageUrl { get; set; } = string.Empty; // URL da imagem de capa do produto
         public int CategoryId { get; set; } // Chave estrangeira para a categoria do produto
         public bool IsFeatured { get; set; } // Indica se o produto é destaque ou não
@@ -102,7 +103,7 @@ namespace Catteria.Application.ViewModels
     /// </summary>
     public class DashboardViewModel
     {
-        public int TotaProducts { get; set; } // 
+        public int TotalProducts { get; set; } // 
         public int TotalCategories { get; set; } // 
         public int FeaturedOrders { get; set; } // 
         public IEnumerable<OrderDto> RecentOrder { get; set; } = new List<OrderDto>(); // 

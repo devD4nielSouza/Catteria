@@ -1,25 +1,51 @@
-using Catteria.UI.Models;
+// =============================================================================
+// HomeController
+// =============================================================================
+// 📌 CONCEITO: Controller MVC
+// Um Controller recebe requisições HTTP e retorna Views (páginas HTML).
+// Cada método público (Action) corresponde a uma URL.
+// Exemplo: HomeController.Index() → URL: /Home/Index ou /
+// =============================================================================
+
+using Catteria.Application.Interfaces;
+using Catteria.Application.Services;
+using Catteria.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace Catteria.UI.Controllers
 {
+    /// <summary>
+    /// Controller da página inicial (Home).
+    /// Área PÚBLICA — qualquer usuário pode acessar.
+    /// </summary>
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IProductService _productService;
+        private readonly ICategoryService _categoryService;
+
+        // 📌 CONCEITO: Dependency Injection no Controller
+        // Os serviços são injetados automaticamente pelo .NET
+        public HomeController(IProductService productService, ICategoryService categoryService)
         {
-            return View();
+            _productService = productService;
+            _categoryService = categoryService;
         }
 
-        public IActionResult Privacy()
+        /// <summary>
+        /// Página inicial — exibe produtos em destaque e categorias.
+        /// URL: / ou /Home/Index
+        /// </summary>
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
+            // Monta o ViewModel com os dados que a View precisa
+            var viewModel = new HomeViewModel
+            {
+                FeaturedProducts = await _productService.GetFeaturedAsync(),
+                Categories = await _categoryService.GetAllAsync(),
+              
+            };
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(viewModel);
         }
     }
 }
