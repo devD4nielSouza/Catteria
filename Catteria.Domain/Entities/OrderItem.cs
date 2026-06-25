@@ -10,9 +10,12 @@ namespace Catteria.Domain.Entities
         public int Quantity { get; set; } // Quantidade do produto no item do pedido
         public decimal SubTotal {  get; private set; } // Subtotal do item do pedido (preço do produto multiplicado pela quantidade)
         public int IdOrder { get; set; } // Chave estrangeira para o pedido (relacionamento com a entidade Order)
-        public int IdProduct { get; set; } // Chave estrangeira para o produto (relacionamento com a entidade Product
+        public int IdProduct { get; set; }
+        public Product? Product { get; set; }
+        public Order? Order { get; set; } 
+
         public decimal UnitPrice { get; set; }
-        public virtual ICollection<Product> Products { get; set; } = new List<Product>();
-        public virtual Order? Order { get; set; }
+
+        
     }
 }
