@@ -47,3 +47,7 @@ TestResults/
 # Arquivos gerados pelo .NET
 project.assets.json
 project.nuget.cache
+
+####
+Catteria.UI/Catteria.UI.csproj.user
+ 
