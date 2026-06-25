@@ -11,7 +11,7 @@ namespace Catteria.Infraestructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-            builder.HasKey();
+            builder.HasKey(o => o.Id);
 
             builder.Property(o => o.TotalValue);
 

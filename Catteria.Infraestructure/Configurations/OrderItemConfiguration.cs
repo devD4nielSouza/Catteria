@@ -11,7 +11,7 @@ namespace Catteria.Infraestructure.Configurations
     {
         public void Configure(EntityTypeBuilder<OrderItem> builder)
         {
-            builder.HasKey();
+            builder.HasKey(x => x.Id );
 
             builder.HasOne(x => x.Order)//Um itempedido tem um pedido
                 .WithMany(o => o.OrderItems)//Um pedido pode ter varios items peididos
