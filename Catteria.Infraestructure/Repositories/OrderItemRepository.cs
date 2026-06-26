@@ -10,7 +10,7 @@ namespace Catteria.Infraestructure.Repositories
 {
 
     // Repositório responsável pelas operações de acesso a dados da entidade OrderItem
-    internal class OrderItemRepository : IOrderItemRepository
+    public class OrderItemRepository : IOrderItemRepository
     {
         // Contexto do banco de dados (Entity Framework)
         private readonly CatteriaDbContext _context;
