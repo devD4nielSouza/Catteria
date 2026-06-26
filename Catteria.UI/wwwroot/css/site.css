@@ -103,7 +103,7 @@ body {
 }
 
 .login-image {
-    background: url(../imgs/catlogin.png) center/cover no-repeat;
+    background: url('/Imagens/CatLogin.png') center/cover no-repeat;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: left center;
