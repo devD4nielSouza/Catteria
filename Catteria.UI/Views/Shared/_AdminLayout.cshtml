@@ -1,0 +1,111 @@
+﻿@* =============================================================================
+   SenacGames.UI - Layout Administrativo (_AdminLayout.cshtml)
+   =============================================================================
+   📌 CONCEITO: Layout Admin com Sidebar
+   Este layout é usado nas páginas administrativas.
+   Possui uma SIDEBAR fixa à esquerda e o conteúdo à direita.
+
+   DESIGN: Baseado no protótipo Stitch "Dashboard Admin - SenacGames"
+   ============================================================================= *@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Catteria Admin</title>
+</head>
+<body>
+
+    <aside>
+
+        <div>
+            <img src="~/images/logo.png" alt="Logo" />
+        </div>
+
+        <nav>
+            <a asp-controller="Admin" asp-action="Index">
+                Dashboard
+            </a>
+
+            <br />
+
+            <a asp-controller="Admin" asp-action="Products">
+                Products
+            </a>
+
+            <br />
+
+            <a asp-controller="Admin" asp-action="Categories">
+                Categorias
+            </a>
+        </nav>
+
+        <hr />
+
+        <div>
+
+            <button onclick="toggleTheme()">
+                Alternar Tema
+            </button>
+
+            <br /><br />
+
+            <a asp-controller="Home" asp-action="Index">
+                Ver Site
+            </a>
+
+            <br /><br />
+
+            <form asp-controller="Account" asp-action="Logout" method="post">
+                <button type="submit">
+                    Sair
+                </button>
+            </form>
+
+        </div>
+
+    </aside>
+
+    <hr />
+
+    <main>
+
+        <header>
+
+            <h1>@ViewData["Title"]</h1>
+
+            @if (ViewData["Subtitle"] != null)
+            {
+                <p>@ViewData["Subtitle"]</p>
+            }
+
+            @if (ViewData["ActionButton"] != null)
+            {
+                @RenderSection("ActionButton", required: false)
+            }
+
+        </header>
+
+        @if (TempData["Success"] != null)
+        {
+            <div>
+                @TempData["Success"]
+            </div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div>
+                @TempData["Error"]
+            </div>
+        }
+
+        @RenderBody()
+
+    </main>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

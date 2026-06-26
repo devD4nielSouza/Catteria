@@ -1,6 +1,170 @@
-﻿namespace Catteria.UI.Views.Admin
-{
-    public class index
-    {
-    }
+﻿@* Dashboard Admin — Catteria *@
+@model DashboardViewModel
+@{
+    Layout = "_AdminLayout";
 }
+
+<style>
+    .page-title {
+        color: #4e4e4e;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .stat-card {
+        background: #ffffff;
+        border: 1px solid #f1e6dc;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+        transition: 0.2s;
+    }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+
+    .stat-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+        color: white;
+    }
+
+        .stat-icon.primary {
+            background: #4c78b2;
+        }
+
+        .stat-icon.secondary {
+            background: #a4bcdf;
+        }
+
+        .stat-icon.success {
+            background: #7cc6a3;
+        }
+
+    .stat-number {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #4e4e4e;
+    }
+
+    .stat-label {
+        color: #8c8c8c;
+        font-size: 0.9rem;
+    }
+
+    .table-catteria {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid #f1e6dc;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    }
+
+        .table-catteria thead {
+            background: #fdf7f2;
+        }
+
+    .btn-catteria-outline {
+        border: 1px solid #4c78b2;
+        color: #4c78b2;
+        background: transparent;
+        border-radius: 8px;
+        padding: 4px 10px;
+        font-size: 0.85rem;
+    }
+
+        .btn-catteria-outline:hover {
+            background: #4c78b2;
+            color: white;
+        }
+</style>
+
+@* HEADER *@
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h3 class="page-title mb-0">Visão Geral</h3>
+    </div>
+
+    <div class="d-none d-md-block opacity-25">
+        <img src="~/images/logo.png"
+             alt="Catteria"
+             style="height: 50px; filter: grayscale(100%);" />
+    </div>
+
+</div>
+
+@* CARDS *@
+<div class="row g-4 mb-4">
+
+    <div class="col-lg-4">
+        <div class="stat-card">
+            <div class="stat-icon primary">
+                <i class="bi bi-bag"></i>
+            </div>
+            <div class="stat-number">@Model.TotalProducts</div>
+            <div class="stat-label">Total de Produtos</div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="stat-card">
+            <div class="stat-icon secondary">
+                <i class="bi bi-tags"></i>
+            </div>
+            <div class="stat-number">@Model.TotalCategories</div>
+            <div class="stat-label">Categorias Ativas</div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="stat-card">
+            <div class="stat-icon success">
+                <i class="bi bi-star-fill"></i>
+            </div>
+            <div class="stat-number">@Model.FeaturedOrders</div>
+            <div class="stat-label">Pedidos em Destaque</div>
+        </div>
+    </div>
+
+</div>
+
+@* TABELA *@
+<div class="table-catteria">
+
+    <div class="p-3 d-flex justify-content-between align-items-center">
+        <h5 class="mb-0 fw-bold">
+            <i class="bi bi-clock-history me-2"></i>
+            Últimos Produtos
+        </h5>
+
+        <a asp-action="Product" class="btn-catteria-outline">
+            Ver todos
+        </a>
+    </div>
+
+    <table class="table table-hover mb-0">
+
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Destaque</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @* Aqui você pode futuramente iterar produtos *@
+        </tbody>
+
+    </table>
+
+</div>

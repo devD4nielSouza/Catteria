@@ -1,8 +1,7 @@
 ﻿@* Home — Catteria (Style Epic) *@
-
 @{
     ViewData["Title"] = "Home - Catteria";
-    Layout = null; // Tela cheia customizada para a Home
+    Layout = "_Layout"; // Tela cheia customizada para a Home
 }
 
 <!DOCTYPE html>
@@ -59,31 +58,6 @@
     </style>
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-catteria px-4 py-3 shadow-sm">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center fw-bold" asp-controller="Home" asp-action="Index" style="color: #4e4e4e;">
-                <i class="bi bi-cat me-2" style="color: #4c78b2; font-size: 1.5rem;"></i>
-                <span>Catteria</span>
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <div class="d-flex gap-2 mt-3 mt-lg-0">
-                    <a asp-controller="Account" asp-action="Login" class="btn btn-outline-secondary px-4 py-2" style="border-color: #4c78b2; color: #4c78b2;">
-                        <i class="bi bi-box-arrow-in-right me-1"></i> Entrar
-                    </a>
-                    <a asp-controller="Account" asp-action="Register" class="btn btn-catteria-primary px-4 py-2">
-                        <i class="bi bi-person-plus me-1"></i> Criar Conta
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
     <main class="container hero-section d-flex align-items-center">
         <div class="row align-items-center g-5 w-100m m-0">
             
