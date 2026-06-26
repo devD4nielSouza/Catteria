@@ -29,3 +29,121 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+/*===========================================================================================*/
+/*CSS DO LOGIN E REGISTER*/
+/*===========================================================================================*/
+body {
+    height: 100vh;
+    margin: 0;
+    background: #fdf7f2;
+}
+
+.login-container {
+    height: 100vh;
+}
+
+.login-image {
+    background: url(../imgs/catlogin.png) center/cover no-repeat;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left center;
+}
+
+.login-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 30px;
+}
+
+.form-box {
+    width: 100%;
+    max-width: 400px;
+    color: #4e4e4e;
+}
+
+.LoginImg {
+    width: 140px;
+    max-width: 280px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#forms1 {
+    background: #a4bcdf;
+}
+
+.btn {
+    background: #4c78b2;
+}
+
+.form-label {
+    color: #4e4e4e;
+}
+
+/* Corrigido de .forms-control para .form-control para aplicar corretamente */
+.form-control {
+    color: #4e4e4e;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+/*REGISTER*/
+
+body {
+    height: 100vh;
+    margin: 0;
+    background: #fdf7f2;
+}
+
+.login-container {
+    height: 100vh;
+}
+
+.login-image {
+    background: url(../imgs/catlogin.png) center/cover no-repeat;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left center;
+}
+
+.login-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 30px;
+}
+
+.form-box {
+    width: 100%;
+    max-width: 400px;
+    color: #4e4e4e;
+}
+
+.LoginImg {
+    width: 140px;
+    max-width: 280px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#forms1 {
+    background: #a4bcdf;
+}
+
+.btn {
+    background: #4c78b2;
+}
+
+.form-label {
+    color: #4e4e4e;
+}
+
+.forms-control {
+    color: #4e4e4e;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
