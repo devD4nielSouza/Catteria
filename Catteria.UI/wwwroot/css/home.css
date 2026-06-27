@@ -23,6 +23,14 @@ body {
     border-bottom: 1px solid rgba(255,255,255,0.3);
 }
 
+.whatsapp-icon {
+    width: 50px; /* Um tamanho menor para acompanhar o texto de 0.9rem */
+    margin-bottom:-20px;
+    margin-top:-20px;
+    height: auto;
+    display: block;
+}
+
 /* Navbar */
 .navbar-custom {
     background-color: var(--azul-claro);
@@ -149,44 +157,22 @@ body {
         background-color: var(--azul-medio);
         color: white;
     }
-
-/* Divisor de Corações Ondulado */
-.wave-divider {
-    background-color: var(--azul-claro);
-    height: 45px;
-    position: relative;
-    overflow: hidden;
-    margin-top: 20px;
-}
-
-.wave-scallop {
-    width: 100%;
-    height: 20px;
-    background-color: #fcf7e7;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    position: absolute;
-    top: 0;
-}
-
-.hearts-row {
-    position: absolute;
-    bottom: 5px;
-    width: 100%;
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--azul-fundo-card);
-    letter-spacing: 15px;
-}
-
+    
 /* Seção Sobre Nós */
 .about-section {
     background-color: var(--azul-claro);
     padding: 60px 0;
+    margin-top: 55px;
+    border-radius: 15px;
 }
 
 .fachadaImg {
     width: 100%;
     max-width: 300px;
     height: auto;
-    border-radius: 1
+    border-radius: 15px;
+}
+
+.col-md-8{
+    padding-right: 45px;
+}

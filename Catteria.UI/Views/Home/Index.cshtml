@@ -1,15 +1,4 @@
-﻿Aqui está o seu código HTML/Razor corrigido e otimizado.
-
-### Principais correções feitas:
-
-1. **Estrutura de Tags Fechadas:** A tag `<img>` é auto-contida em HTML5, portanto o fechamento `</img>` que estava dentro do `@foreach` foi removido e substituído por uma sintaxe limpa `<img />`.
-2. **Correção de Estrutura de Grid:** O botão "Veja tudo" estava solto dentro da `.row` de produtos, o que quebra o alinhamento do Bootstrap. Ele foi envolvido em uma `div` com a classe `col-12`.
-3. **Divs Desalinhadas no Final:** Havia um fechamento incorreto de `</div>` no final da seção de produtos que estava desalinhando o rodapé (`footer`) e o `copyright-bar`. A hierarquia foi reorganizada para que o rodapé e a barra de direitos autorais fiquem fora das seções de conteúdo principal, garantindo uma estrutura semântica correta.
-
----
-
-```html
-@model HomeViewModel
+﻿@model HomeViewModel
 @{
 	ViewData["Title"] = "Home";
 }
@@ -17,7 +6,12 @@
 <div class="top-bar">
 	<div class="container d-flex justify-content-between align-items-center">
 		<div>Bem-vindo, faça seu login ou cadastre-se!</div>
-		<div>(11) 999-999-8888</div>
+
+		<!-- Agrupamos o ícone e o número aqui -->
+		<div class="d-flex align-items-center gap-2">
+			<img class="whatsapp-icon" src="~/imagens/whatsapp.png" alt="WhatsApp" />
+			<div class="header2">(11) 999-999-8888</div>
+		</div>
 	</div>
 </div>
 
@@ -25,7 +19,7 @@
 	<div class="container d-flex align-items-center justify-content-between">
 		<div class="d-flex align-items-center gap-3 w-100">
 			<div>
-				<img class="logoImg" src="./img/logo 1.png" alt="Logo Catteria">
+				<img class="logoImg" src="~/imagens/logo1.png" alt="Logo Catteria">
 			</div>
 			<input type="text" class="search-bar" placeholder="Busca">
 			<div class="nav-links ms-auto d-none d-md-block">
@@ -45,7 +39,7 @@
 </div>
 
 <div>
-	<img class="Banner w-100" src="./img/banner 1.png" alt="Banner Principal">
+	<img class="Banner w-100" src="~/imagens/banner1.png" alt="Banner Principal">
 </div>
 
 <div class="section-title-bar">
@@ -55,30 +49,52 @@
 <div class="products-section">
 	<div class="container">
 		<div class="row">
-			@foreach (var product in Model.FeaturedProducts.Take(4))
+			@foreach (var product in Model.FeaturedProducts.Take(3))
 			{
 				<div class="col-md-4 col-sm-6 mb-4">
-					<div class="product-card">
-						<div class="product-image-box">
-							<span></span>
-							@if (!string.IsNullOrEmpty(product.CoverImageUrl))
-							{
-								<img src="@product.CoverImageUrl" alt="@product.Name" class="img-fluid" />
-							}
-							else
-							{
-								<h4>Imagem não encontrada</h4>
-							}
+					<a asp-controller="Products"
+					   asp-action="Details"
+					   asp-route-id="@product.Id"
+					   class="text-decoration-none">
 
-							<div class="fw-bold my-2">@product.Name</div>
-							<div class="product-price">R$ @product.Price</div>
+						<div class="product-card h-100">
+
+							<div class="product-image-box">
+								@if (!string.IsNullOrEmpty(product.CoverImageUrl))
+								{
+									<img src="@product.CoverImageUrl"
+										 alt="@product.Name"
+										 class="img-fluid" />
+								}
+								else
+								{
+									<img src="~/Imagens/"
+										 alt="Imagem não disponível"
+										 class="img-fluid" />
+								}
+							</div>
+
+							<div class="p-3 text-center">
+								<h5 class="fw-bold mb-2 text-dark">
+									@product.Name
+								</h5>
+
+								<div class="product-price">
+									R$ @product.Price.ToString("N2")
+								</div>
+							</div>
+
 						</div>
-					</div>
+					</a>
 				</div>
 			}
-			
+
 			<div class="col-12 text-center mt-3">
-				<a href="#" class="btn-veja-tudo">Veja tudo</a>
+				<a asp-controller="Products"
+				   asp-action="Index"
+				   class="btn-veja-tudo">
+					Veja tudo
+				</a>
 			</div>
 		</div>
 
@@ -93,7 +109,7 @@
 					<div class="about-facade-box mx-auto" style="max-width: 260px;">
 						<div class="facade-roof"></div>
 						<div style="font-size: 4rem;"></div>
-						<img class="fachadaImg img-fluid" src="./img/faixada.png" alt="Fachada da loja">
+						<img class="fachadaImg img-fluid" src="~/imagens/faixada.png" alt="Fachada da loja">
 					</div>
 				</div>
 				<div class="col-md-8">
@@ -118,7 +134,7 @@
 		<div class="row text-center text-md-start">
 			<div class="col-md-4 text-center mb-4 mb-md-0">
 				<div>
-					<img class="logoImg" src="./img/logo 2.png" alt="Logo Footer">
+					<img class="logoImg" src="~/imagens/logo2.png" alt="Logo Footer">
 				</div>
 				<h4 class="fw-bold" style="font-family: 'Comic Sans MS';">CATTERIA</h4>
 				<div class="footer-socials mt-2">
@@ -153,5 +169,3 @@
 <div class="copyright-bar text-center py-3">
 	© 2026 - Criado e Desenvolvido por: Graziella Santos Silva-Tl31
 </div>
-
-```
