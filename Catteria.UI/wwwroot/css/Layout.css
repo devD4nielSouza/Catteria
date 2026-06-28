@@ -6,6 +6,7 @@
     --bege-claro: #f5f0d7;
     --texto-escuro: #1e354f;
     --bege-fundo: #fcf7e7;
+    --branco: #ffffff;
 }
 
 body {
@@ -25,13 +26,18 @@ main {
 
 /* Top Bar */
 .top-bar {
-    background-color: var(--azul-claro);
+    background-color: var(--branco);
     padding: 8px 0;
     font-size: 0.9rem;
     color: var(--texto-escuro);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+.whatsappIcon {
+    margin: -20px 0 -20px 683px ;
+    height:50px;
+    width:auto;
+}
 /* Navbar */
 .navbar-custom {
     background-color: var(--azul-claro);
