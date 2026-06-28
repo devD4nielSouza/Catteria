@@ -90,7 +90,7 @@ namespace Catteria.Infraestructure.Identity
                         Price = 10,
                         CategoryId = sanduiches.Id,
                         IsFeatured = true,
-                        CoverImageUrl = "",
+                        CoverImageUrl = "https://truffle-assets.tastemadecontent.net/cdn-cgi/image/width=360/ed1fb867-sanduiche-de-presunto-s-thumb.jpg",
                         CreatedAt = DateTime.Now
 
                     },
@@ -101,7 +101,7 @@ namespace Catteria.Infraestructure.Identity
                         Price = 250,
                         CategoryId = sobremesas.Id,
                         IsFeatured = true,
-                        CoverImageUrl = "",
+                        CoverImageUrl = "https://www.receitasdemae.com.br/wp-content/uploads/2014/10/Sorvete-de-chocolate.jpg",
                         CreatedAt = DateTime.Now
 
                     },
@@ -112,7 +112,7 @@ namespace Catteria.Infraestructure.Identity
                         Price = 350,
                         CategoryId = cafe.Id,
                         IsFeatured = true,
-                        CoverImageUrl = "",
+                        CoverImageUrl = "https://img.magnific.com/vetores-gratis/xicara-realista-de-cafe-preto-na-ilustracao-vetorial-de-pires_1284-66002.jpg?semt=ais_hybrid&w=740&q=80",
                         CreatedAt = DateTime.Now
 
                     },
@@ -122,8 +122,8 @@ namespace Catteria.Infraestructure.Identity
                         Description = "Bixcoito ou bulacha (SP VS RJ: O Filme) #publi #versus #SpVersusRj",
                         Price = 100,
                         CategoryId = biscoitos.Id,
-                        IsFeatured = true,
-                        CoverImageUrl = "",
+                        IsFeatured = false,
+                        CoverImageUrl = "https://media.istockphoto.com/id/1431335484/pt/foto/healthy-oatmeal-cookies-with-dates-nuts-and-flaxseed-on-a-wooden-board-on-a-gray-textured.jpg?s=612x612&w=0&k=20&c=gosLW17oaL2ytszK0d5mvw744Ex5EViXMdTy2vzcKXI=",
                         CreatedAt = DateTime.Now
                     }
                 };
@@ -137,7 +137,7 @@ namespace Catteria.Infraestructure.Identity
             // =====================================================================
             // 📌 CONCEITO: Roles no Identity
             // Roles são papéis que definem o nível de acesso do usuário.
-            // Exemplo: "Admin" pode gerenciar games, "User" só pode visualizar.
+            // Exemplo: "Admin" pode gerenciar produtos, "User" só pode visualizar.
             // =====================================================================
             if(!await roleManager.RoleExistsAsync("Admin"))
             {
