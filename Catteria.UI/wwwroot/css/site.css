@@ -29,6 +29,8 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+
 /*===========================================================================================*/
 /*CSS DO LOGIN E REGISTER*/
 /*===========================================================================================*/
@@ -147,3 +149,5 @@ body {
     color: #4e4e4e;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+

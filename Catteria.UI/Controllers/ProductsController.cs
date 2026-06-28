@@ -16,24 +16,27 @@ namespace Catteria.UI.Controllers
         }
 
         /// <summary>
-        /// Catalogo de produtos com filtro por categorias
+        ///
         /// </summary>
-        public async Task<IActionResult> Index(int? categoryId)
+        public async Task<IActionResult> Index(int? categoryId,string search)
         {
             var viewModel = new ProductListViewModel
             {
                 Categories = await _categoryService.GetAllAsync(),
                 SelectedCategoryById = categoryId
             };
+            viewModel.Products = await _productService.GetAllAsync();
 
-            // Se uma categoria foi selecionada, filtra os produtos
             if (categoryId.HasValue)
             {
                 viewModel.Products = await _productService.GetByCategoryAsync(categoryId.Value);
             }
-            else
+
+            if (!string.IsNullOrEmpty(search))
             {
-                viewModel.Products = await _productService.GetAllAsync();
+                viewModel.Products = viewModel.Products
+                    .Where(p => p.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
             }
 
             return View(viewModel);
