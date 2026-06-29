@@ -18,18 +18,18 @@ namespace Catteria.UI.Controllers
         /// <summary>
         ///
         /// </summary>
-        public async Task<IActionResult> Index(int? categoryId,string search)
+        public async Task<IActionResult> Index(int? SelectedCategoryById, string search)
         {
             var viewModel = new ProductListViewModel
             {
                 Categories = await _categoryService.GetAllAsync(),
-                SelectedCategoryById = categoryId
+                SelectedCategoryById = SelectedCategoryById
             };
             viewModel.Products = await _productService.GetAllAsync();
 
-            if (categoryId.HasValue)
+            if (SelectedCategoryById.HasValue)
             {
-                viewModel.Products = await _productService.GetByCategoryAsync(categoryId.Value);
+                viewModel.Products = await _productService.GetByCategoryAsync(SelectedCategoryById.Value);
             }
 
             if (!string.IsNullOrEmpty(search))

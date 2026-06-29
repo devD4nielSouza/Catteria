@@ -1,0 +1,253 @@
+﻿/*======================================
+    HERO
+======================================*/
+
+.cat-menu-hero {
+    background: linear-gradient(135deg,#a4bcdf,#dce7f7);
+    border-bottom: 4px solid #4c78b2;
+}
+
+    .cat-menu-hero h1 {
+        color: #4e4e4e;
+    }
+
+    .cat-menu-hero p {
+        color: #666;
+    }
+
+/*======================================
+    FILTRO
+======================================*/
+
+.cat-filter {
+    border-radius: 50px;
+    padding: 12px 20px;
+    border: 2px solid #a4bcdf;
+}
+
+    .cat-filter:focus {
+        border-color: #4c78b2;
+        box-shadow: 0 0 0 .25rem rgba(76,120,178,.2);
+    }
+
+/*======================================
+    CARD
+======================================*/
+
+.cat-card {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+    .cat-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 .8rem 1.6rem rgba(0,0,0,.15) !important;
+    }
+
+/*======================================
+    IMAGEM
+======================================*/
+
+.cat-image {
+    height: 230px;
+    background: #f4f4f4;
+    overflow: hidden;
+}
+
+    .cat-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: .35s;
+        display: block;
+    }
+
+.cat-card:hover img {
+    transform: scale(1.08);
+}
+
+.cat-no-image {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #888;
+}
+
+/*======================================
+    TEXTO
+======================================*/
+
+.cat-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 72px;
+}
+
+.cat-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #4c78b2;
+}
+
+/*======================================
+    BOTÃO
+======================================*/
+
+.cat-card .btn-primary {
+    background: #4c78b2;
+    border: none;
+}
+
+    .cat-card .btn-primary:hover {
+        background: #355b8d;
+    }
+
+/*======================================
+    RESPONSIVO
+======================================*/
+
+@media(max-width:768px) {
+
+    .cat-image {
+        height: 190px;
+    }
+}
+
+
+
+
+
+
+/*================================================================*/
+/*DETALHES DO MENU*/
+/*=================================================================*/
+
+
+/*======================================
+    HERO DETALHE
+======================================*/
+
+.product-details-hero {
+    background: linear-gradient(135deg,#a4bcdf,#dce7f7);
+    border-bottom: 4px solid #4c78b2;
+}
+
+    .product-details-hero h1 {
+        color: #4e4e4e;
+    }
+
+    .product-details-hero p {
+        color: #666;
+    }
+
+/*======================================
+    IMAGEM DO PRODUTO
+======================================*/
+
+.product-image-box {
+    height: 420px;
+    background: #f4f4f4;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+    border: 2px solid #a4bcdf;
+}
+
+    .product-image-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: .35s;
+        display: block;
+    }
+
+    .product-image-box:hover img {
+        transform: scale(1.06);
+    }
+
+.product-no-image {
+    color: #888;
+    font-size: 1.1rem;
+}
+
+/*======================================
+    INFORMAÇÕES DO PRODUTO
+======================================*/
+
+.product-info {
+    padding: 10px;
+}
+
+    .product-info h2 {
+        color: #4e4e4e;
+    }
+
+/*======================================
+    PREÇO
+======================================*/
+
+.product-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4c78b2;
+}
+
+/*======================================
+    BOTÕES
+======================================*/
+
+.product-info .btn-success {
+    background: #4c78b2;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 26px;
+}
+
+    .product-info .btn-success:hover {
+        background: #355b8d;
+    }
+
+.product-info .btn-outline-secondary {
+    border-radius: 50px;
+    padding: 12px 26px;
+    border: 2px solid #a4bcdf;
+    color: #4c78b2;
+}
+
+    .product-info .btn-outline-secondary:hover {
+        background: #a4bcdf;
+        color: #fff;
+        border-color: #4c78b2;
+    }
+
+/*======================================
+    INFORMAÇÕES EXTRAS
+======================================*/
+
+.product-extra-info ul li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+/*======================================
+    RESPONSIVO
+======================================*/
+
+@media(max-width:768px) {
+
+    .product-image-box {
+        height: 260px;
+    }
+
+    .product-price {
+        font-size: 1.6rem;
+    }
+}
