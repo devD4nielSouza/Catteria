@@ -151,7 +151,7 @@ namespace Catteria.UI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> DeleteGame(int id)
+        public async Task<IActionResult> DeleteProduct(int id)
         {
             ViewData["ActiveMenu"] = "Produtos";
             ViewData["Title"] = "Excluir Produto";
@@ -165,7 +165,7 @@ namespace Catteria.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteGameConfirmed(int id)
+        public async Task<IActionResult> DeleteProductConfirmed(int id)
         {
             await _productservice.DeleteAsync(id);
             TempData["Success"] = "Game excluído com sucesso!";
@@ -182,7 +182,7 @@ namespace Catteria.UI.Controllers
             ViewData["Title"] = "Gerenciar Categorias";
             ViewData["Subtitle"] = "Cadastre, edite e exclua categorias de produtos";
 
-            var categories = await _productservice.GetAllAsync();
+            var categories = await _categoryservice.GetAllAsync();
             return View(categories);
         }
 
