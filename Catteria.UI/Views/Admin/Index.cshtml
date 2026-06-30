@@ -1,6 +1,113 @@
-﻿namespace Catteria.UI.Views.Admin
-{
-    public class index
-    {
-    }
+﻿@* Catteria Admin — Dashboard View *@
+@model DashboardViewModel
+@{
+    Layout = "_AdminLayout";
 }
+
+@* Topo do Dashboard - Título Clean *@
+<div class="dashboard-header-container d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3 class="fw-bold mb-0 text-uppercase dashboard-main-title">Visão Geral</h3>
+        <p class="text-muted-catteria mb-0">Acompanhe as métricas e pedidos da sua cafeteria em tempo real.</p>
+    </div>
+</div>
+
+@* Cards de Métricas - Estilo Flutuante com Cantos Arredondados *@
+<div class="row g-4 mb-5">
+    <div class="col-lg-4">
+        <div class="stat-card">
+            <div class="stat-card-icon-box primary-box">
+                <i class="bi bi-cup-hot-fill"></i>
+            </div>
+            <div class="stat-card-info">
+                <div class="stat-card-number">@Model.TotalProducts</div>
+                <div class="stat-card-label">Produtos Cadastrados</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="stat-card">
+            <div class="stat-card-icon-box secondary-box">
+                <i class="bi bi-tags-fill"></i>
+            </div>
+            <div class="stat-card-info">
+                <div class="stat-card-number">@Model.TotalCategories</div>
+                <div class="stat-card-label">Categorias Ativas</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="stat-card">
+            <div class="stat-card-icon-box success-box">
+                <i class="bi bi-star-fill"></i>
+            </div>
+            <div class="stat-card-info">
+                <div class="stat-card-number">@Model.FeaturedOrders</div>
+                <div class="stat-card-label">Pedidos em Destaque</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Seção de Pedidos Recentes - Estilo Tabela Nuvem *@
+<div class="table-catteria-container">
+    <div class="p-3 d-flex justify-content-between align-items-center table-catteria-header">
+        <h5 class="mb-0 fw-bold table-catteria-title">
+            <i class="bi bi-receipt me-2 text-primary-catteria"></i>Últimos Pedidos Realizados
+        </h5>
+        <span class="badge badge-live-status">Tempo Real</span>
+    </div>
+    
+    <div class="table-responsive">
+        <table class="table table-hover mb-0 alignment-catteria-table">
+            <thead>
+                <tr>
+                    <th>Nº Pedido</th>
+                    <th>ID Usuário</th>
+                    <th>Data / Hora</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.RecentOrder != null && Model.RecentOrder.Any())
+                {
+                    @foreach (var order in Model.RecentOrder)
+                    {
+                        <tr>
+                            <td class="fw-bold text-primary-catteria">#@order.Id</td>
+                            <td class="fw-semibold text-dark-blue">Usuário #@order.IdUser</td>
+                            <td>@order.Date.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td class="fw-bold text-success-price">@order.TotalValue.ToString("C")</td>
+                            <td>
+                                @if (order.Status == "Concluído" || order.Status == "Pago")
+                                {
+                                    <span class="badge-status-catteria status-completed">@order.Status</span>
+                                }
+                                else if (order.Status == "Pendente" || order.Status == "Em andamento" || order.Status == "Preparando")
+                                {
+                                    <span class="badge-status-catteria status-waiting">@order.Status</span>
+                                }
+                                else
+                                {
+                                    <span class="badge-status-catteria status-default">@order.Status</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center py-5 text-muted">
+                            <i class="bi bi-inbox fs-3 d-block mb-2 text-opacity-50"></i>
+                            Nenhum pedido registrado no sistema até o momento.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

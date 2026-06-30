@@ -1,0 +1,353 @@
+﻿/* ==========================================================================
+   SISTEMA DE CORES DINÂMICO (CATTERIA COFFEE THEME)
+   ========================================================================== */
+:root, [data-theme="light"] {
+    /* Paleta Original do Site */
+    --azul-escuro: #2c7bb6;
+    --azul-medio: #3182bd;
+    --azul-claro: #a6c8e2;
+    --azul-fundo-card: #6baed6;
+    --bege-claro: #f5f0d7;
+    --texto-escuro: #1e354f;
+    /* Variáveis Semânticas para Troca de Tema (Modo Claro) */
+    --bg-main: #fcf7e7; /* Bege ultra claro idêntico ao site */
+    --bg-sidebar: #ffffff; /* Sidebar limpa e contrastante */
+    --bg-card: #ffffff; /* Fundo dos blocos/cards flutuantes */
+    --border-color: rgba(44, 123, 182, 0.15);
+    --texto-principal: var(--texto-escuro);
+    --texto-mutado: var(--azul-medio);
+    --shadow-sm: 0 4px 18px rgba(30, 53, 79, 0.04);
+}
+
+[data-theme="dark"] {
+    /* Cores Adaptadas para o Modo Escuro */
+    --azul-escuro: #58a6ff;
+    --azul-medio: #1f6feb;
+    --azul-claro: #388bfd;
+    --azul-fundo-card: #1f6feb;
+    --bege-claro: #21262d;
+    --texto-escuro: #f0f6fc;
+    /* Variáveis Semânticas para Troca de Tema (Modo Escuro) */
+    --bg-main: #0d1117; /* Fundo escuro fosco */
+    --bg-sidebar: #161b22; /* Sidebar escura */
+    --bg-card: #21262d; /* Blocos/cards escuros flutuantes */
+    --border-color: #30363d;
+    --texto-principal: #f0f6fc;
+    --texto-mutado: #8b949e;
+    --shadow-sm: 0 4px 18px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   RESET E CONFIGURAÇÕES BASE
+   ========================================================================== */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--texto-principal);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   SIDEBAR ADMINISTRATIVA (Estilo Clean / Stitch Adaptado)
+   ========================================================================== */
+.admin-sidebar {
+    width: 280px;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1.25rem;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.sidebar-top {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.brand-logo {
+    max-height: 55px;
+    object-fit: contain;
+    border-radius: 30px;
+}
+
+/* Painel de usuário interno da Sidebar */
+.user-profile-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background-color: rgba(166, 200, 226, 0.15);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+    .user-profile-summary .avatar-wrapper {
+        font-size: 1.75rem;
+        color: var(--azul-escuro);
+        display: flex;
+    }
+
+    .user-profile-summary .user-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .user-profile-summary .user-name {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--texto-principal);
+    }
+
+    .user-profile-summary .user-role {
+        font-size: 0.75rem;
+        color: var(--azul-medio);
+    }
+
+/* Links de Navegação do Menu */
+.admin-sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    color: var(--texto-principal);
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    margin-bottom: 0.25rem;
+}
+
+    .admin-sidebar .nav-link i {
+        font-size: 1.2rem;
+        color: var(--azul-medio);
+    }
+
+    .admin-sidebar .nav-link:hover {
+        background-color: var(--bege-claro);
+        color: var(--azul-escuro);
+    }
+
+    /* Estado Ativo (Página Atual) */
+    .admin-sidebar .nav-link.active {
+        background-color: var(--azul-escuro);
+        color: #ffffff;
+    }
+
+        .admin-sidebar .nav-link.active i {
+            color: #ffffff;
+        }
+
+/* Rodapé do Menu Lateral */
+.sidebar-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+}
+
+    .sidebar-footer .nav-link {
+        font-size: 0.9rem;
+    }
+
+    .sidebar-footer .text-danger:hover {
+        background-color: rgba(220, 53, 69, 0.1) !important;
+        color: #dc3545 !important;
+    }
+
+/* ==========================================================================
+   CONTEÚDO PRINCIPAL E CABEÇALHOS
+   ========================================================================== */
+.admin-content {
+    margin-left: 280px;
+    flex-grow: 1;
+    padding: 2.5rem;
+    background-color: var(--bg-main);
+    min-height: 100vh;
+    transition: background-color 0.25s ease;
+}
+
+.page-header {
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+    .page-header h1 {
+        font-size: 1.85rem;
+        font-weight: 700;
+        color: var(--texto-principal);
+        margin: 0;
+    }
+
+.text-muted-catteria {
+    color: var(--texto-mutado);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   ESTILOS DOS CARDS FLUTUANTES (DESIGN MODERN MANAGEMENT)
+   ========================================================================== */
+.stat-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.25s ease;
+}
+
+    .stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(44, 123, 182, 0.08);
+    }
+
+.stat-card-icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+.primary-box {
+    background-color: rgba(44, 123, 182, 0.12);
+    color: var(--azul-escuro);
+}
+
+.secondary-box {
+    background-color: rgba(107, 174, 214, 0.15);
+    color: var(--azul-medio);
+}
+
+.success-box {
+    background-color: rgba(245, 240, 215, 0.7);
+    color: #bfa100;
+    border: 1px solid rgba(44, 123, 182, 0.15);
+}
+
+.stat-card-number {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--texto-principal);
+    line-height: 1.1;
+}
+
+.stat-card-label {
+    font-size: 0.85rem;
+    color: var(--texto-mutado);
+    font-weight: 500;
+    margin-top: 0.2rem;
+}
+
+/* ==========================================================================
+   CONTAINER E TABELAS NUVEM CLEAN
+   ========================================================================== */
+.table-catteria-container {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.25s ease;
+}
+
+.table-catteria-header {
+    background-color: rgba(166, 200, 226, 0.1);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table-catteria-title {
+    color: var(--texto-principal);
+    font-size: 1rem;
+}
+
+.badge-live-status {
+    background-color: var(--azul-escuro);
+    color: #ffffff;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 20px;
+}
+
+.alignment-catteria-table th {
+    color: var(--texto-mutado);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 1.1rem 1.25rem;
+    letter-spacing: 0.5px;
+}
+
+.alignment-catteria-table td {
+    padding: 1.1rem 1.25rem;
+    vertical-align: middle;
+    color: var(--texto-principal);
+    font-size: 0.9rem;
+}
+
+/* Customização de Preços e Badges de Pedidos */
+.text-success-price {
+    color: #2e7d32 !important;
+    font-weight: 600;
+}
+
+.badge-status-catteria {
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.status-completed {
+    background-color: rgba(46, 125, 50, 0.1);
+    color: #2e7d32;
+    border: 1px solid rgba(46, 125, 50, 0.2);
+}
+
+.status-waiting {
+    background-color: rgba(239, 108, 0, 0.1);
+    color: #ef6c00;
+    border: 1px solid rgba(239, 108, 0, 0.2);
+}
+
+.status-default {
+    background-color: var(--bege-claro);
+    color: var(--texto-principal);
+    border: 1px solid var(--border-color);
+}
+
+/* Customização para formulários internos (Inputs) */
+.form-control, .form-select {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--azul-claro) !important;
+    border-radius: 8px !important;
+    color: var(--texto-principal) !important;
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: var(--azul-escuro) !important;
+        box-shadow: 0 0 0 0.25rem rgba(44, 123, 182, 0.2) !important;
+    }

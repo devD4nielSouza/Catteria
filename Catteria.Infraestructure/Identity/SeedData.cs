@@ -59,7 +59,8 @@ namespace Catteria.Infraestructure.Identity
                     new Category{ Name = "Bebidas quentes"},
                     new Category{ Name = "Bebidas geladas"},
                     new Category{ Name = "Sobremesas"},
-                    new Category{ Name = "Sanduiches"}
+                    new Category{ Name = "Sanduiches"},
+                    new Category{ Name = "Salgados" }
                 };
 
                 await context.Categories.AddRangeAsync(categories);
@@ -80,50 +81,91 @@ namespace Catteria.Infraestructure.Identity
                 var bebidasG = await context.Categories.FirstAsync(c => c.Name == "Bebidas geladas");
                 var sobremesas = await context.Categories.FirstAsync(c => c.Name == "Sobremesas");
                 var sanduiches = await context.Categories.FirstAsync(c => c.Name == "Sanduiches");
+                var salgados = await context.Categories.FirstAsync(c => c.Name == "Salgados");
 
                 var products = new List<Product>
                 {
                     new Product
                     {
                         Name = "Sanduiche de Presunto",
-                        Description = "Sanduiche iche ixi",
+                        Description = "Sanduiche de presunto com presunto Seara",
                         Price = 10,
                         CategoryId = sanduiches.Id,
                         IsFeatured = true,
-                        CoverImageUrl = "",
+                        CoverImageUrl = "https://www.sloopsorvetes.com.br/templates/yootheme/cache/82/Pudim%20de%20Leite%20Condensado-7%203-82f906bc.jpeg",
                         CreatedAt = DateTime.Now
 
                     },
                     new Product
                     {
-                        Name = "Sorvete de Chocolateesasas",
-                        Description = "Chocolateeeeeeeeeeeeee",
+                        Name = "Sorvete de Chocolate",
+                        Description = "Sorvete de Chocolate",
                         Price = 250,
                         CategoryId = sobremesas.Id,
                         IsFeatured = true,
-                        CoverImageUrl = "",
+                        CoverImageUrl = "https://www.sloopsorvetes.com.br/templates/yootheme/cache/82/Pudim%20de%20Leite%20Condensado-7%203-82f906bc.jpeg",
                         CreatedAt = DateTime.Now
 
                     },
                     new Product
                     {
                         Name = "Café com chocolate - Mix",
-                        Description = "chocalateeeeeee e quero caféeeeeeeeeeeeeeee",
+                        Description = "café batido com chocolate meio amargo",
                         Price = 350,
                         CategoryId = cafe.Id,
                         IsFeatured = true,
-                        CoverImageUrl = "",
+                        CoverImageUrl = "https://www.sloopsorvetes.com.br/templates/yootheme/cache/82/Pudim%20de%20Leite%20Condensado-7%203-82f906bc.jpeg",
                         CreatedAt = DateTime.Now
 
                     },
                     new Product
                     {
-                        Name = "Bixcoito bulacha",
-                        Description = "Bixcoito ou bulacha (SP VS RJ: O Filme) #publi #versus #SpVersusRj",
+                        Name = "Cookies",
+                        Description = "Cookies com gotas de chocolate",
                         Price = 100,
                         CategoryId = biscoitos.Id,
+                        IsFeatured = false,
+                        CoverImageUrl = "https://www.sloopsorvetes.com.br/templates/yootheme/cache/82/Pudim%20de%20Leite%20Condensado-7%203-82f906bc.jpeg",
+                        CreatedAt = DateTime.Now
+                    },
+                    new Product
+                    {
+                        Name = "Coxinha com catupiry",
+                        Description = "Coxinha com catupiry",
+                        Price = 100,
+                        CategoryId = salgados.Id,
+                        IsFeatured = false,
+                        CoverImageUrl = "https://www.sloopsorvetes.com.br/templates/yootheme/cache/82/Pudim%20de%20Leite%20Condensado-7%203-82f906bc.jpeg",
+                        CreatedAt = DateTime.Now
+                    },
+                    new Product
+                    {
+                        Name = "Chocolate quente",
+                        Description = "Chocolate quente com leite e cacau",
+                        Price = 100,
+                        CategoryId = biscoitos.Id,
+                        IsFeatured = false,
+                        CoverImageUrl = "https://www.sloopsorvetes.com.br/templates/yootheme/cache/82/Pudim%20de%20Leite%20Condensado-7%203-82f906bc.jpeg",
+                        CreatedAt = DateTime.Now
+                    },
+                    new Product
+                    {
+                        Name = "Bolo de morango",
+                        Description = "Bolo de morango com recheio de chocolate",
+                        Price = 10,
+                        CategoryId = bolos.Id,
                         IsFeatured = true,
-                        CoverImageUrl = "",
+                        CoverImageUrl = "https://www.sloopsorvetes.com.br/templates/yootheme/cache/82/Pudim%20de%20Leite%20Condensado-7%203-82f906bc.jpeg",
+                        CreatedAt = DateTime.Now
+                    },
+                    new Product
+                    {
+                        Name = "Chá de Camomila",
+                        Description = "Chá de Camomila",
+                        Price = 100,
+                        CategoryId = cha.Id,
+                        IsFeatured = true,
+                        CoverImageUrl = "https://www.sloopsorvetes.com.br/templates/yootheme/cache/82/Pudim%20de%20Leite%20Condensado-7%203-82f906bc.jpeg",
                         CreatedAt = DateTime.Now
                     }
                 };
@@ -137,7 +179,7 @@ namespace Catteria.Infraestructure.Identity
             // =====================================================================
             // 📌 CONCEITO: Roles no Identity
             // Roles são papéis que definem o nível de acesso do usuário.
-            // Exemplo: "Admin" pode gerenciar games, "User" só pode visualizar.
+            // Exemplo: "Admin" pode gerenciar produtos, "User" só pode visualizar.
             // =====================================================================
             if(!await roleManager.RoleExistsAsync("Admin"))
             {

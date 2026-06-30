@@ -1,6 +1,85 @@
-﻿namespace Catteria.UI.Views.Products
-{
-    public class Details
-    {
-    }
+﻿@model ProductDetailsViewModel
+
+@{
+    ViewData["Title"] = "Detalhes do Produto";
 }
+
+<div class="product-details-hero py-5 mb-5">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">@Model.Product.Name</h1>
+        <p class="lead mb-0">Confira os detalhes do seu pedido</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row g-5 align-items-center">
+
+        <!-- Imagem -->
+        <div class="col-lg-6">
+
+            <div class="product-image-box shadow-sm">
+
+                @if (!string.IsNullOrEmpty(@Model.Product.CoverImageUrl))
+                {
+                    <img src="@Model.Product.CoverImageUrl" alt="@Model.Product.Name" />
+                }
+                else
+                {
+                    <div class="product-no-image">
+                        Sem imagem disponível
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+        <!-- Info -->
+        <div class="col-lg-6">
+
+            <div class="product-info">
+
+                <h2 class="fw-bold mb-3">@Model.Product.Name</h2>
+
+                <p class="text-muted mb-4">
+                    @Model.Product.Description
+                </p>
+
+                <h3 class="product-price mb-4">
+                    R$ @Model.Product.Price.ToString("N2")
+                </h3>
+
+                <div class="d-flex gap-3 flex-wrap">
+
+                    <a href="#" class="btn btn-success btn-lg rounded-pill px-4">
+                        Comprar agora
+                    </a>
+
+                    <a asp-action="Index" class="btn btn-outline-secondary btn-lg rounded-pill px-4">
+                        Voltar ao cardápio
+                    </a>
+
+                </div>
+
+                <hr class="my-4" />
+
+                <div class="product-extra-info">
+
+                    <h5 class="fw-bold mb-2">Informações</h5>
+
+                    <ul class="list-unstyled">
+                        <li>✔ Produto preparado na hora</li>
+                        <li>✔ Ingredientes selecionados</li>
+                        <li>✔ Entrega rápida</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

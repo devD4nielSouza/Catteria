@@ -1,0 +1,106 @@
+﻿:root {
+    --azul-escuro: #2c7bb6;
+    --azul-medio: #3182bd;
+    --azul-claro: #a6c8e2;
+    --azul-fundo-card: #6baed6;
+    --bege-claro: #f5f0d7;
+    --texto-escuro: #1e354f;
+    --bege-fundo: #fcf7e7;
+    --branco: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: var(--bege-fundo);
+    color: var(--texto-escuro);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+/* Top Bar */
+.top-bar {
+    background-color: var(--branco);
+    padding: 8px 0;
+    font-size: 0.9rem;
+    color: var(--texto-escuro);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.whatsappIcon {
+    margin: -20px 0 -20px 683px ;
+    height:50px;
+    width:auto;
+}
+/* Navbar */
+.navbar-custom {
+    background-color: var(--azul-claro);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(44, 123, 182, 0.2);
+}
+
+.search-bar {
+    background-color: #ffffff;
+    border: 1px solid var(--azul-claro);
+    border-radius: 20px;
+    padding: 6px 15px;
+    width: 100%;
+    max-width: 250px;
+    color: var(--texto-escuro);
+    outline: none;
+}
+
+.nav-links a {
+    color: var(--texto-escuro);
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 15px;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+    .nav-links a:hover, .nav-links a.active {
+        color: var(--azul-escuro);
+    }
+
+.logoImg {
+    width: 60px;
+    height: auto;
+    border-radius: 30px;
+}
+
+/* Rodapé Combinando com o Head */
+.footer-custom {
+    background-color: var(--azul-claro) !important;
+    border-top: 1px solid rgba(44, 123, 182, 0.3);
+    color: var(--texto-escuro);
+}
+
+    .footer-custom h5, .footer-custom h4 {
+        color: var(--texto-escuro);
+        font-weight: 700;
+    }
+
+    .footer-custom a {
+        color: var(--texto-escuro);
+        text-decoration: none;
+        transition: opacity 0.2s;
+        font-weight: 500;
+    }
+
+        .footer-custom a:hover {
+            opacity: 0.8;
+            color: var(--azul-escuro);
+        }
+
+.copyright-bar {
+    background-color: var(--azul-escuro);
+    color: #ffffff;
+    font-size: 0.9rem;
+}

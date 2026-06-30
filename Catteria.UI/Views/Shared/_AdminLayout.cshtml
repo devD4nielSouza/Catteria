@@ -1,0 +1,107 @@
+﻿@* =============================================================================   Catteria.UI - Layout Administrativo (_AdminLayout.cshtml)   ============================================================================= *@<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>@ViewData["Title"] - Catteria Admin</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/DashboardAdmin.css" asp-append-version="true" />
+
+<script src="~/js/theme.js"></script>
+</head>
+<body>
+
+    <div class="admin-layout">
+
+        <aside class="admin-sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-header text-center">
+                    <img src="./Imagens/logo1.png" alt="Catteria Logo" class="brand-logo mb-2" />
+                </div>
+
+                <div class="user-profile-summary">
+                    <div class="avatar-wrapper">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">Gerente Catteria</span>
+                        <span class="user-role">Administrador</span>
+                    </div>
+                </div>
+
+                <nav class="nav flex-column mt-3">
+                    <a class="nav-link @(ViewData["ActiveMenu"]?.ToString() == "Dashboard" ? "active" : "")"
+                           asp-controller="Admin" asp-action="Index">
+                        <i class="bi bi-speedometer2"></i> <span>Dashboard</span>
+                    </a>
+                    <a class="nav-link @(ViewData["ActiveMenu"]?.ToString() == "Products" ? "active" : "")"
+                           asp-controller="Admin" asp-action="Product">
+                        <i class="bi bi-cup-hot"></i> <span>Produtos</span>
+                    </a>
+                    <a class="nav-link @(ViewData["ActiveMenu"]?.ToString() == "Categories" ? "active" : "")"
+                           asp-controller="Admin" asp-action="Categories">
+                        <i class="bi bi-tags"></i> <span>Categorias</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-footer">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-house-door"></i> Ver Site
+                </a>
+                <form asp-controller="Account" asp-action="Logout" method="post" class="w-100 m-0">
+                    <button type="submit" class="nav-link border-0 bg-transparent w-100 text-start text-danger">
+                        <i class="bi bi-box-arrow-left"></i> Sair
+                    </button>
+                </form>
+            </div>
+        </aside>
+
+        <div class="admin-content">
+            
+            <div class="page-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1>@ViewData["Title"]</h1>
+                        @if (ViewData["Subtitle"] != null)
+                        {
+                            <p class="text-muted-catteria mb-0">@ViewData["Subtitle"]</p>
+                        }
+                    </div>
+                    @if (ViewData["ActionButton"] != null)
+                    {
+                        <div class="action-button-wrapper">
+                            @RenderSection("ActionButton", required: false)
+                        </div>
+                    }
+                </div>
+            </div>
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i>@TempData["Success"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                    <i class="bi bi-exclamation-circle-fill me-2"></i>@TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            <main class="main-body-wrapper">
+                @RenderBody()
+            </main>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)</body>
+</html>

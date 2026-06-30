@@ -29,6 +29,8 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+
 /*===========================================================================================*/
 /*CSS DO LOGIN E REGISTER*/
 /*===========================================================================================*/
@@ -147,3 +149,103 @@ body {
     color: #4e4e4e;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+}
+
+.cat-menu-item-card:hover .cat-menu-item-img {
+    filter: grayscale(20%); /* Traz um pouco da cor de volta ao passar o mouse */
+}
+
+.cat-menu-item-no-img {
+    color: #888888;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Corpo do Texto do Card */
+.cat-menu-item-body {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.cat-menu-item-title {
+    font-size: 1.25rem;
+    color: #111111;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.cat-menu-item-rating {
+    color: #666666;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.cat-menu-item-desc {
+    color: #777777;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    text-align: left;
+    flex-grow: 1;
+}
+
+/* Rodapé do Card */
+.cat-menu-item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.cat-menu-item-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.cat-menu-item-action-btn {
+    background-color: #ffffff;
+    border: 1px solid #1a1a1a;
+    color: #1a1a1a;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .cat-menu-item-action-btn:hover {
+        background-color: #1a1a1a;
+        color: #ffffff;
+    }
+
+/* Área do Botão "Veja Tudo" inferior */
+.cat-menu-actions-bottom {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cat-menu-btn-see-all {
+    display: inline-block;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+    .cat-menu-btn-see-all:hover {
+        background-color: #444444;
+        color: #ffffff;
+    }
+    
