@@ -1,0 +1,157 @@
+﻿@model Catteria.Application.ViewModels.OrderDetailsViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Detalhes do Pedido";
+}
+
+<link rel="stylesheet" href="~/css/OrderDetails.css" />
+
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <div>
+                <h2 class="fw-bold text-dark-blue mb-1">Pedido #@(Model.Order?.Id ?? 0)</h2>
+                <p class="text-muted mb-0">Realizado em: @(Model.Order?.Date.ToString("dd/MM/yyyy HH:mm") ?? DateTime.Now.ToString("dd/MM/yyyy HH:mm"))</p>
+            </div>
+            <div>
+                <span id="orderBadgeStatus" class="badge-status-catteria status-waiting fs-6">
+                    <i class="bi bi-clock-history me-1"></i> @(Model.Order?.Status ?? "Pendente")
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="order-card-wrapper p-4 mb-4">
+                <h5 class="fw-bold text-dark-blue mb-4">
+                    <i class="bi bi-cup-hot me-2 text-primary-catteria"></i>Itens do Pedido
+                </h5>
+                <div class="table-responsive">
+                    <table class="table table-borderless alignment-order-table mb-0">
+                        <thead>
+                            <tr class="border-bottom">
+                                <th>Produto</th>
+                                <th class="text-center">Qtd</th>
+                                <th class="text-end">Preço Unitário</th>
+                                <th class="text-end">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.ItemsOrder != null && Model.ItemsOrder.Any())
+                            {
+                                @foreach (var item in Model.ItemsOrder)
+                                {
+                                    // Identifica o nome do produto baseado no IdProduct que o usuário adicionou
+                                    string nomeProduto = item.IdProduct == 101 ? "Cappuccino Italiano c/ Canela" :
+                                                         item.IdProduct == 204 ? "Croissant de Chocolate Belga" : "Produto Catteria";
+
+                                    <tr class="align-middle">
+                                        <td>
+                                            <div class="fw-semibold text-dark-blue">@nomeProduto</div>
+                                            <small class="text-muted">Código: #@item.IdProduct</small>
+                                        </td>
+                                        <td class="text-center fw-medium">@item.Quantity</td>
+                                        <td class="text-end">@item.UnitPrice.ToString("C")</td>
+                                        <td class="text-end fw-bold text-dark-blue">@((item.Quantity * item.UnitPrice).ToString("C"))</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted py-4">
+                                        <i class="bi bi-cart-x fs-3 d-block mb-2"></i>
+                                        Nenhum produto adicionado ao carrinho.
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="order-card-wrapper p-4">
+                <h5 class="fw-bold text-dark-blue mb-3">
+                    <i class="bi bi-person-vcard me-2 text-primary-catteria"></i>Dados do Cliente
+                </h5>
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <span class="text-muted d-block small">Identificador (ID)</span>
+                        <strong class="text-dark-blue">Usuário #@(Model.User?.Id ?? "Não identificado")</strong>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <span class="text-muted d-block small">E-mail do Cliente</span>
+                        <span class="text-dark-blue fw-bold">@(Model.User?.Email ?? "Não informado")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="order-card-wrapper p-4 mb-4 highlight-total-box">
+                <h5 class="fw-bold text-dark-blue mb-4">Resumo Financeiro</h5>
+                <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">Subtotal</span>
+                    <span class="text-dark-blue fw-medium">@(Model.Order?.TotalValue.ToString("C") ?? Model.Total.ToString("C"))</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="text-muted">Entrega</span>
+                    <span class="text-success fw-medium">Grátis</span>
+                </div>
+                <hr class="my-3 opacity-10">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="fs-5 fw-bold text-dark-blue">Total:</span>
+                    <span class="fs-4 fw-bold text-primary-catteria">@(Model.Order?.TotalValue.ToString("C") ?? Model.Total.ToString("C"))</span>
+                </div>
+            </div>
+
+            <div class="order-card-wrapper p-4 border-simulation" style="background-color: #fffdf5;">
+                <h6 class="fw-bold text-warning-emphasis mb-2">
+                    <i class="bi bi-sliders me-2"></i>Controle Interativo (JavaScript)
+                </h6>
+                <p class="small text-muted mb-3">Demonstre ao professor a mudança de status da simulação do pagamento em tempo real.</p>
+                <select id="simulateStatusSelector" class="form-select form-select-sm form-select-rounded" onchange="atualizarStatusSimulado()">
+                    <option value="Pendente">Pendente</option>
+                    <option value="Preparando">Em Andamento</option>
+                    <option value="Concluído">Concluído</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function atualizarStatusSimulado() {
+        const selector = document.getElementById("simulateStatusSelector");
+        const badge = document.getElementById("orderBadgeStatus");
+        const statusSelected = selector.value;
+
+        badge.className = "badge-status-catteria fs-6";
+
+        if (statusSelected === "Concluído" || statusSelected === "Pago") {
+            badge.classList.add("status-completed");
+            badge.innerHTML = `<i class="bi bi-check-circle-fill me-1"></i> Concluído / Pago`;
+        } else if (statusSelected === "Pendente") {
+            badge.classList.add("status-default");
+            badge.innerHTML = `<i class="bi bi-exclamation-circle-fill me-1"></i> Pedido Pendente`;
+        } else {
+            badge.classList.add("status-waiting");
+            badge.innerHTML = `<i class="bi bi-clock-history me-1"></i> Em Preparo na Cozinha`;
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const initialStatus = "@(Model.Order?.Status ?? "Preparando")";
+        const selector = document.getElementById("simulateStatusSelector");
+        
+        if (initialStatus === "Concluído" || initialStatus === "Pago") {
+            selector.value = "Concluído";
+        } else if (initialStatus === "Pendente") {
+            selector.value = "Pendente";
+        } else {
+            selector.value = "Preparando";
+        }
+        atualizarStatusSimulado();
+    });
+</script>

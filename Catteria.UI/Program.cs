@@ -8,7 +8,6 @@
 // - API: retorna JSON (dados) — AddControllers()
 // - MVC: retorna HTML (páginas) — AddControllersWithViews()
 // =============================================================================
-
 using Catteria.Application.Interfaces;
 using Catteria.Application.Services;
 using Catteria.Domain.Interfaces;
@@ -17,6 +16,7 @@ using Catteria.Infraestructure.Identity;
 using Catteria.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,7 +56,6 @@ builder.Services.ConfigureApplicationCookie(options =>
 // ========================================================================
 // CONCEITO: Registramos as dependências para que possam ser injetadas
 // nos controladores e outros serviços.
-
 // AddScoped: Cria uma nova instância do serviço para cada requisição HTTP.
 // Ideal para serviços que precisam de um ciclo de vida curto, como repositórios e serviços de aplicação.
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -66,6 +65,16 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 
+// ========================================================================
+// SUPORTE PARA MEMÓRIA E SESSION (CARRINHO TEMPORÁRIO)
+// ========================================================================
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Carrinho expira após 30 minutos de inatividade
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 // ========================================================================
 // MVC - Adiciona suporte para controladores e views (páginas HTML) | Razor
@@ -74,7 +83,7 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 //permitindo retornar páginas HTML renderizadas (Razor Views) a partir dos controladores.
 builder.Services.AddControllersWithViews();
 
-//Cria a aplicação a partir do Builder configurado
+// Cria a aplicação a partir do Builder configurado (Apenas UMA declaração aqui)
 var app = builder.Build();
 
 // =====================================================================================
@@ -91,37 +100,27 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles(); // Permite servir arquivos estáticos (CSS, JS, Imagens) da pasta wwwroot
 
-// Configura o roteamento das requisições para os controladores(controllers) e ações.
+// Configura o roteamento das requisições para os controladores (controllers) e ações.
 app.UseRouting();
+
+// Habilita o Middleware de Session LOGO APÓS o Routing e ANTES da Autenticação/Autorização
+app.UseSession();
 
 // Configura a autenticação e autorização para proteger rotas que exigem
 // login ou permissões específicas.
-
-//IMPORTANTE: A ordem dos middlewares é importante! UseAuthentication
-//deve vir antes de UseAuthorization, pois a autenticação precisa ocorrer
-//antes da autorização para que as permissões sejam verificadas corretamente.
-
 app.UseAuthentication(); // Habilita a autenticação (login)
 app.UseAuthorization(); // Habilita a autorização (permissões)
 
-// =================================
-// ROTAS - Configuração de rotas MVC
-// =================================
-
-//CONCEITO: Rota padrão para os controladores MVC. O formato é:
-// /{controller=Home}/{action=Index}/{id?}
-//Significa: /NomeController/NomeAcao/IdOpcional
-//Exemplo: /Games/Details/5 -> GamesController, Details action, id = 5
+// =================================//
+// ROTAS - Configuração de rotas MVC//
+// =================================//
 app.MapControllerRoute(
-    //name: Nome da rota (pode ser usado para referenciar a rota em outros lugares, como links)
-    //pattern: Define o formato da URL para as rotas MVC. O formato é: /{controller=Home}/{action=Index}/{id?}
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}"
-    );
+);
 
 //Seed Data: Popula o banco de dados com dados iniciais (categorias e jogos) se estiver vazio.
 await SeedData.SeedAsync(app.Services);
 
 // Inicia o servidor web e começa a ouvir as requisições HTTP.
-
 app.Run();

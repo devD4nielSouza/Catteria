@@ -249,3 +249,77 @@ body {
         color: #ffffff;
     }
     
+    /*CSS DO PEDIDO DO CLIENTE*/
+/ /* ==========================================================================
+   ESTILIZAÇÃO DA PÁGINA DE PEDIDOS - CATTERIA
+   ========================================================================== */
+.order-card-wrapper {
+    background-color: #ffffff;
+    border: 2px solid var(--azul-claro);
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(30, 53, 79, 0.05);
+}
+
+.text-dark-blue {
+    color: var(--texto-escuro) !important;
+}
+
+.text-primary-catteria {
+    color: var(--azul-escuro) !important;
+}
+
+.alignment-order-table th {
+    color: var(--texto-escuro);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--azul-claro) !important;
+}
+
+.alignment-order-table td {
+    padding: 16px 0;
+    color: var(--texto-escuro);
+}
+
+.highlight-total-box {
+    background-color: rgba(166, 200, 226, 0.15);
+    border: 2px solid var(--azul-escuro);
+}
+
+.badge-status-catteria {
+    padding: 0.4rem 0.9rem;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-completed {
+    background-color: #2e7d32;
+    color: white;
+}
+
+.status-waiting {
+    background-color: var(--azul-escuro);
+    color: white;
+}
+
+.status-default {
+    background-color: var(--bege-claro);
+    color: var(--texto-escuro);
+    border: 1px solid rgba(30, 53, 79, 0.2);
+}
+
+.border-simulation {
+    border: 2px dashed var(--azul-fundo-card) !important;
+}
+
+.form-select-rounded {
+    border: 1px solid var(--azul-claro) !important;
+    border-radius: 20px !important;
+    color: var(--texto-escuro) !important;
+    padding: 6px 12px !important;
+}

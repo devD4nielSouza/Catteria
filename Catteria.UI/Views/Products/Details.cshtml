@@ -15,7 +15,6 @@
 
     <div class="row g-5 align-items-center">
 
-        <!-- Imagem -->
         <div class="col-lg-6">
 
             <div class="product-image-box shadow-sm">
@@ -35,7 +34,6 @@
 
         </div>
 
-        <!-- Info -->
         <div class="col-lg-6">
 
             <div class="product-info">
@@ -52,8 +50,13 @@
 
                 <div class="d-flex gap-3 flex-wrap">
 
-                    <a href="#" class="btn btn-success btn-lg rounded-pill px-4">
-                        Comprar agora
+                    <a asp-controller="OrderDetails"
+                           asp-action="Adicionar"
+                           asp-route-id="@Model.Product.Id"
+                           asp-route-name="@Model.Product.Name"
+                           asp-route-price="@Model.Product.Price"
+                           class="btn btn-success btn-lg rounded-pill px-4">
+                        <i class="bi bi-cart-plus me-2"></i>Adicionar ao Carrinho
                     </a>
 
                     <a asp-action="Index" class="btn btn-outline-secondary btn-lg rounded-pill px-4">
@@ -81,5 +84,4 @@
         </div>
 
     </div>
-
 </div>
