@@ -45,7 +45,7 @@ namespace Catteria.UI.Controllers
         // CRUD DE PRODUTOS 
         // ==========================================
 
-        public async Task<IActionResult> Products()
+        public async Task<IActionResult> Product()
         {
             ViewData["ActiveMenu"] = "Produtos";
             ViewData["Title"] = "Gerenciar Produtos";
@@ -91,7 +91,7 @@ namespace Catteria.UI.Controllers
 
             await _productservice.CreateAsync(dto);
             TempData["Success"] = "Produto cadastrado com sucesso!";
-            return RedirectToAction(nameof(Products));
+            return RedirectToAction(nameof(Product));
         }
 
         /// <summary>
@@ -117,7 +117,9 @@ namespace Catteria.UI.Controllers
                 Price = product.Price,
                 Description = product.Description,
                 IsFeatured = product.IsFeatured,
-                CoverImageUrl = product.CoverImageUrl
+                CoverImageUrl = product.CoverImageUrl,
+                CategoryId = product.CategoryId,
+                Categories = categorie
             };
 
             return View(viewModel);
@@ -142,7 +144,7 @@ namespace Catteria.UI.Controllers
                 return NotFound();
 
             TempData["Success"] = "Produto atualizado com sucesso!";
-            return RedirectToAction(nameof(Products));
+            return RedirectToAction(nameof(Product));
         }
 
         /// <summary>
@@ -169,7 +171,7 @@ namespace Catteria.UI.Controllers
         {
             await _productservice.DeleteAsync(id);
             TempData["Success"] = "Game excluído com sucesso!";
-            return RedirectToAction(nameof(Products));
+            return RedirectToAction(nameof(Product));
         }
 
         // ==========================================
