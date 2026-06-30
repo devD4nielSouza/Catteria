@@ -47,7 +47,7 @@ namespace Catteria.UI.Controllers
 
         public async Task<IActionResult> Product()
         {
-            ViewData["ActiveMenu"] = "Produtos";
+            ViewData["ActiveMenu"] = "Products";
             ViewData["Title"] = "Gerenciar Produtos";
             ViewData["Subtitle"] = "Cadastre, edite e exclua produtos do catálogo";
 
