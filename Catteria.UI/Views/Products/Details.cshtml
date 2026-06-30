@@ -50,14 +50,18 @@
 
                 <div class="d-flex gap-3 flex-wrap">
 
-                    <a asp-controller="OrderDetails"
-                           asp-action="Adicionar"
-                           asp-route-id="@Model.Product.Id"
-                           asp-route-name="@Model.Product.Name"
-                           asp-route-price="@Model.Product.Price"
-                           class="btn btn-success btn-lg rounded-pill px-4">
-                        <i class="bi bi-cart-plus me-2"></i>Adicionar ao Carrinho
-                    </a>
+                    <button class="btn btn-success btn-lg rounded-pill px-4"
+                            onclick="addToCart(
+                        @Model.Product.Id,
+                        '@Model.Product.Name',
+                        @Model.Product.Price.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                        '@Model.Product.CoverImageUrl'
+                        )">
+
+                        <i class="bi bi-cart-plus me-2"></i>
+                        Adicionar ao Carrinho
+
+                    </button>
 
                     <a asp-action="Index" class="btn btn-outline-secondary btn-lg rounded-pill px-4">
                         Voltar ao cardápio
