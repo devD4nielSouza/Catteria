@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Catteria.Infraestructure.Migrations
 {
     [DbContext(typeof(CatteriaDbContext))]
-    [Migration("20260630132002_SegundaMigration")]
-    partial class SegundaMigration
+    [Migration("20260630175613_Teste")]
+    partial class Teste
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

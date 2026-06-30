@@ -351,3 +351,193 @@ body {
         border-color: var(--azul-escuro) !important;
         box-shadow: 0 0 0 0.25rem rgba(44, 123, 182, 0.2) !important;
     }
+
+
+/*Seção Categorias*/
+/*======================================
+    PALETA
+======================================*/
+
+:root {
+    --primary: #4d88c8;
+    --primary-dark: #2f6faa;
+    --primary-light: #9fc2e8;
+    --cream: #fff8e8;
+    --yellow: #f4ecae;
+    --text: #4e4e4e;
+    --text-light: #777;
+    --white: #ffffff;
+    --border: #d7e5f5;
+}
+
+/*======================================
+    TÍTULOS
+======================================*/
+
+.page-title {
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+.page-subtitle {
+    color: var(--text-light);
+}
+
+/*======================================
+    BOTÃO
+======================================*/
+
+.btn-primary-senac {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: .7rem 1.3rem;
+    font-weight: 600;
+    transition: .25s;
+}
+
+    .btn-primary-senac:hover {
+        background: var(--primary-dark);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(77,136,200,.25);
+    }
+
+/*======================================
+    TABELA
+======================================*/
+
+.table-senac {
+    background: var(--white);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    border: 3px solid var(--primary-light);
+}
+
+    .table-senac table {
+        margin: 0;
+    }
+
+    .table-senac thead {
+        background: linear-gradient( 90deg, var(--primary), var(--primary-dark) );
+    }
+
+        .table-senac thead th {
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 16px;
+        }
+
+    .table-senac tbody td {
+        padding: 18px 16px;
+        border-color: #eef4fb;
+        color: var(--text);
+    }
+
+    .table-senac tbody tr:hover {
+        background: #f4f9ff;
+    }
+
+/*======================================
+    BADGES
+======================================*/
+
+.badge {
+    background: var(--yellow) !important;
+    color: #6b5a00;
+    font-weight: 600;
+    padding: .55rem .8rem;
+    border-radius: 20px;
+}
+
+/*======================================
+    BOTÕES DE AÇÃO
+======================================*/
+
+.btn-outline-primary {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    border-radius: 12px;
+}
+
+    .btn-outline-primary:hover {
+        background: var(--primary);
+        color: white;
+    }
+
+.btn-outline-danger {
+    border: 2px solid #ef6b6b;
+    color: #ef6b6b;
+    border-radius: 12px;
+}
+
+    .btn-outline-danger:hover {
+        background: #ef6b6b;
+        color: white;
+    }
+
+/*======================================
+    ÍCONES
+======================================*/
+
+.bi {
+    font-size: 1rem;
+}
+
+/*======================================
+    CARTÃO
+======================================*/
+
+.admin-card {
+    background: var(--white);
+    border-radius: 20px;
+    border: 3px solid var(--primary-light);
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    padding: 2rem;
+}
+
+/*======================================
+    INPUTS
+======================================*/
+
+.form-control {
+    border-radius: 12px;
+    border: 2px solid #dfeaf7;
+}
+
+    .form-control:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 .2rem rgba(77,136,200,.15);
+    }
+
+/*======================================
+    LINKS
+======================================*/
+
+a {
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+/*======================================
+    SCROLLBAR
+======================================*/
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #edf5ff;
+}

@@ -1,8 +1,8 @@
-﻿@model CreateCategoryDto
+﻿@model CategoryDto
 
 @{
     Layout = "_AdminLayout";
-    ViewData["Title"] = "Nova Categoria";
+    ViewData["Title"] = "Editar Categoria";
 }
 
 <div class="container-fluid">
@@ -10,11 +10,11 @@
     <div class="mb-4">
 
         <h2 class="page-title mb-1">
-            Nova Categoria
+            Editar Categoria
         </h2>
 
         <p class="page-subtitle mb-0">
-            Cadastre uma nova categoria para organizar os produtos da Catteria.
+            Atualize as informações da categoria selecionada.
         </p>
 
     </div>
@@ -25,20 +25,21 @@
 
             <div class="admin-card">
 
-                <form asp-action="CreateCategory" method="post">
+                <form asp-action="UpdateCategory"
+                      asp-route-id="@Model.Id"
+                      method="post">
 
                     <div class="mb-4">
 
-                        <label asp-for="Name" class="form-label fw-semibold">
+                        <label class="form-label fw-semibold">
                             Nome da Categoria
                         </label>
 
-                        <input asp-for="Name"
+                        <input name="Name"
                                class="form-control"
+                               value="@Model.Name"
                                placeholder="Ex.: Cafés, Doces, Salgados..."
                                required />
-
-                        <span asp-validation-for="Name" class="text-danger small"></span>
 
                     </div>
 
@@ -51,7 +52,7 @@
 
                             <i class="bi bi-arrow-left me-1"></i>
 
-                            Voltar
+                            Cancelar
 
                         </a>
 
@@ -60,7 +61,7 @@
 
                             <i class="bi bi-check-lg me-1"></i>
 
-                            Cadastrar Categoria
+                            Salvar Alterações
 
                         </button>
 
