@@ -1,114 +1,124 @@
-﻿@model HomeViewModel
+﻿
+@model HomeViewModel
 @{
     ViewData["Title"] = "Home";
 }
-
 <div>
     <img class="Banner" src="~/Imagens/banner1.png" alt="Banner Catteria">
-    </div>
+</div>
+<div class="section-title-bar">
+    Cardápio
+</div>
+<div class="products-section">
+    <div class="container">
+    <div class="<div class="<div class="container">
+    <div class="row g-4 justify-content-center">
 
-    <div class="section-title-bar">
-        Cardápio
-    </div>
+    @foreach (var product in Model.FeaturedProducts.Take(4))
+    {
+        <div class="col-xl-3 col-lg-4 col-md-6">
 
-    <div class="products-section">
-        <div class="container">
-            <div class="row g-4 justify-content-center">
+            <div class="card cat-card shadow-sm h-100">
 
-                @foreach (var product in Model.FeaturedProducts.Take(4))
-                {
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="card cat-card shadow-sm h-100">
-                            <div class="cat-image">
-                                @if (!string.IsNullOrEmpty(product.CoverImageUrl))
-                                {
-                                    <img src="@product.CoverImageUrl" alt="@product.Name">
-                                }
-                                else
-                                {
-                                    <div class="cat-no-image">
-                                        Sem imagem
-                                    </div>
-                                }
-                            </div>
+                <div class="cat-image">
 
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="fw-bold">
-                                    @product.Name
-                                </h5>
-
-                                @if (!string.IsNullOrWhiteSpace(product.Description))
-                                {
-                                    <p class="text-muted cat-description">
-                                        @product.Description
-                                    </p>
-                                }
-
-                                <div class="mt-auto">
-                                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                                        <span class="cat-price">
-                                            R$ @product.Price.ToString("N2")
-                                        </span>
-
-                                        <div class="d-flex gap-2">
-                                            <a asp-controller="Products"
-                                                   asp-action="Details"
-                                                   asp-route-id="@product.Id"
-                                                   class="btn btn-primary rounded-pill">
-                                                Ver detalhes
-                                            </a>
-
-                                            <a asp-controller="OrderDetails"
-                                                   asp-action="Adicionar"
-                                                   asp-route-id="@product.Id"
-                                                   asp-route-name="@product.Name"
-                                                   asp-route-price="@product.Price"
-                                                   class="btn btn-success rounded-pill">
-                                                <i class="bi bi-cart-plus"></i> Adicionar
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    @if (!string.IsNullOrEmpty(product.CoverImageUrl))
+                    {
+                        <img src="@product.CoverImageUrl"
+                             alt="@product.Name">
+                    }
+                    else
+                    {
+                        <div class="cat-no-image">
+                            Sem imagem
                         </div>
-                    </div>
-                }
+                    }
 
-            </div>
+                </div>
 
-            <div class="text-center mt-5">
-                <a asp-controller="Products"
-                       asp-action="Index"
-                       class="btn-veja-tudo">
-                    Veja tudo
-                </a>
-            </div>
+                <div class="card-body d-flex flex-column">
 
-            <div class="wave-divider">
-                <div class="wave-scallop"></div>
-            </div>
+                    <h5 class="fw-bold">
+                        @product.Name
+                    </h5>
 
-            <div class="about-section">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-4 text-center mb-4 mb-md-0">
-                            <div class="about-facade-box mx-auto" style="max-width: 260px;">
-                                <div class="facade-roof"></div>
-                                <img class="fachadaImg" src="~/Imagens/faixada.png" alt="Fachada">
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <h2 class="fw-bold mb-3" style="font-family: 'Comic Sans MS', cursive, sans-serif; color: var(--texto-escuro);">Sobre nós</h2>
-                                <p style="text-align: justify; line-height: 1.6;">
-                                    A Catteria é uma cafeteria temática inspirada no universo dos gatos, localizada no bairro da Liberdade, em São Paulo. Unimos cafés especiais, deliciosas opções do nosso cardápio e um ambiente aconchegante para proporcionar momentos de conforto e tranquilidade. Nosso objetivo é oferecer uma experiência única, onde cada visita é tão acolhedora quanto um bom café.
-                                </p>
-                                <p style="text-align: justify; line-height: 1.6;">
-                                    Venha se apaixonar pelo primeiro espaço temático planejado inteiramente para os amantes de café e felinos. Nossos produtos são produzidos diariamente com todo o carinho que você merece.
-                                </p>
-                            </div>
+                    @if (!string.IsNullOrWhiteSpace(product.Description))
+                    {
+                        <p class="text-muted cat-description">
+                            @product.Description
+                        </p>
+                    }
+
+                    <div class="mt-auto">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <span class="cat-price">
+                                R$ @product.Price.ToString("N2")
+                            </span>
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="@product.Id"
+                               class="btn btn-primary rounded-pill">
+
+                                Ver detalhes
+
+                            </a>
+
                         </div>
+
                     </div>
+
                 </div>
 
             </div>
+
         </div>
+    }
+
+</div>
+
+<div class="text-center mt-5">
+
+    <a asp-controller="Products"
+       asp-action="Index"
+       class="btn-veja-tudo">
+
+        Veja tudo
+
+    </a>
+
+</div>
+        <div class="wave-divider">
+            <div class="wave-scallop"></div>
+        </div>
+
+        <div class="about-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center mb-4 mb-md-0">
+                        <div class="about-facade-box mx-auto" style="max-width: 260px;">
+                            <div class="facade-roof"></div>
+                            <img class="fachadaImg" src="~/Imagens/faixada.png" alt="Fachada">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h2 class="fw-bold mb-3" style="font-family: 'Comic Sans MS', cursive, sans-serif; color: var(--texto-escuro);">Sobre nós</h2>
+                        <p style="text-align: justify; line-height: 1.6;">
+                                A Catteria é uma cafeteria temática localizada na Liberdade, em São Paulo, 
+                                inspirada no universo dos gatos. Unimos cafés especiais, bebidas
+                                , doces e um ambiente aconchegante para oferecer uma experiência diferente e agradável aos nossos clientes.
+
+                        </p>
+                        <p style="text-align: justify; line-height: 1.6;">
+                                Nosso espaço foi criado para ser um lugar de encontro e pausa na rotina, seja para estudar,
+                                trabalhar ou aproveitar um momento com amigos e família. Com uma identidade criativa e um cardápio cuidadosamente preparado,
+                                a Catteria busca transformar cada visita em uma experiência única.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

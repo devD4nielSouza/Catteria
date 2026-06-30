@@ -3,14 +3,12 @@
 @{
     ViewData["Title"] = "Detalhes do Produto";
 }
-
 <div class="product-details-hero py-5 mb-5">
     <div class="container text-center">
         <h1 class="display-5 fw-bold">@Model.Product.Name</h1>
         <p class="lead mb-0">Confira os detalhes do seu pedido</p>
     </div>
 </div>
-
 <div class="container">
 
     <div class="row g-5 align-items-center">
@@ -19,7 +17,7 @@
 
             <div class="product-image-box shadow-sm">
 
-                @if (!string.IsNullOrEmpty(@Model.Product.CoverImageUrl))
+                @if (!string.IsNullOrEmpty(Model.Product.CoverImageUrl))
                 {
                     <img src="@Model.Product.CoverImageUrl" alt="@Model.Product.Name" />
                 }
@@ -63,23 +61,10 @@
 
                     </button>
 
-                    <a asp-action="Index" class="btn btn-outline-secondary btn-lg rounded-pill px-4">
+                    <a asp-action="Index"
+                       class="btn btn-catteria-outline btn-lg rounded-pill px-4">
                         Voltar ao cardápio
                     </a>
-
-                </div>
-
-                <hr class="my-4" />
-
-                <div class="product-extra-info">
-
-                    <h5 class="fw-bold mb-2">Informações</h5>
-
-                    <ul class="list-unstyled">
-                        <li>✔ Produto preparado na hora</li>
-                        <li>✔ Ingredientes selecionados</li>
-                        <li>✔ Entrega rápida</li>
-                    </ul>
 
                 </div>
 
@@ -87,5 +72,8 @@
 
         </div>
 
-    </div>
-</div>
+    </div></div>
+    <br style="clear: both;" />
+    <br />
+    <br />
+    <br />
