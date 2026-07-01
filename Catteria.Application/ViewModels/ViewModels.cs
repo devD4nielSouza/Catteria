@@ -66,6 +66,9 @@ namespace Catteria.Application.ViewModels
         public IEnumerable<CategoryDto> Categories { get; set; } = new List<CategoryDto>();
     }
 
+    /// <summary>
+    /// Utilizado no detalhe do pedido do cliente, para exibir os produtos que ele selecionou.
+    /// </summary>
     public class OrderDetailsViewModel
     {
 
