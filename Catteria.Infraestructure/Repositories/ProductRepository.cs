@@ -1,5 +1,4 @@
-﻿```csharp
-using Catteria.Domain.Entities;
+﻿using Catteria.Domain.Entities;
 using Catteria.Domain.Interfaces;
 using Catteria.Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
@@ -101,4 +100,3 @@ namespace Catteria.Infraestructure.Repositories
         }
     }
 }
-```
