@@ -170,7 +170,7 @@ namespace Catteria.UI.Controllers
         public async Task<IActionResult> DeleteProductConfirmed(int id)
         {
             await _productservice.DeleteAsync(id);
-            TempData["Success"] = "Game excluído com sucesso!";
+            TempData["Success"] = "Produto excluído com sucesso!";
             return RedirectToAction(nameof(Product));
         }
 
