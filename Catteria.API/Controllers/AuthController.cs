@@ -1,4 +1,5 @@
 ﻿using Catteria.Application.DTOs;
+using Catteria.Infraestructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,13 +12,20 @@ namespace Catteria.API.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly Catteria.Domain.Interfaces.IEmailSender _emailSender;
+        private readonly LinkGenerator _linkGenerator;
+
 
         public AuthController(
             UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager, 
+            Catteria.Domain.Interfaces.IEmailSender emailSender,
+            LinkGenerator linkGenerator)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailSender = emailSender;
+            _linkGenerator = linkGenerator;
         }
 
         [HttpPost("register")]
@@ -40,7 +48,33 @@ namespace Catteria.API.Controllers
                 return BadRequest(new { message = "Erro ao registrar.", errors });
             }
 
-            return Ok(new { message = "Usuario registrado com sucesso!" });
+            // A partir daqui: gerar token e enviar o email
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+            var link = _linkGenerator.GetUriByAction(
+                HttpContext,
+                action: "ConfirmarEmail",
+                controller: "Auth",
+                values: new { userId = user.Id, token });
+
+            await _emailSender.SendEmailAsync(
+                user.Email!,
+                "Confirme seu cadastro",
+                $"<p>Bem-vindo! Clique <a href='{link}'>aqui</a> para confirmar seu email.</p>");
+
+            return Ok(new { message = "Usuario registrado com sucesso! Verifique seu email para confirmar a conta." });
+        }
+
+        [HttpGet("confirmar-email")]
+        public async Task<IActionResult> ConfirmarEmail(string userId, string token)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null) return NotFound();
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            return result.Succeeded
+                ? Ok(new { message = "Email confirmado com sucesso!" })
+                : BadRequest(new { message = "Erro ao confirmar email." });
         }
 
         [HttpPost("login")]
