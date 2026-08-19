@@ -4,6 +4,7 @@ using Catteria.Domain.Interfaces;
 using Catteria.Infraestructure.Context;
 using Catteria.Infraestructure.Identity;
 using Catteria.Infraestructure.Repositories;
+using Catteria.Infraestructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
@@ -110,6 +111,11 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader();
     });
 });
+
+//======================================================================
+// EMAIL SENDER
+//======================================================================
+builder.Services.AddTransient<Catteria.Domain.Interfaces.IEmailSender, EmailSender>();
 
 var app = builder.Build();
 
