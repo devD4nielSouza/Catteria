@@ -73,6 +73,7 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 //builder.Services.AddScoped<IOrderItemRepository, OrderItemService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 // =====================================================================
 // 4. CONTROLLERS

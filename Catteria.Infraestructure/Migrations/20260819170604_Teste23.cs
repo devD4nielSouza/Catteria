@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Catteria.Infraestructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Teste : Migration
+    public partial class Teste23 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
