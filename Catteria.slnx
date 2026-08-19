@@ -1,6 +1,7 @@
 <Solution>
   <Project Path="Catteria.API/Catteria.API.csproj" />
   <Project Path="Catteria.Application/Catteria.Application.csproj" />
+  <Project Path="Catteria.Desktop/Catteria.Desktop.csproj" Id="51e51be8-9f1a-40c2-9264-d2f74c64064c" />
   <Project Path="Catteria.Domain/Catteria.Domain.csproj" />
   <Project Path="Catteria.Infraestructure/Catteria.Infraestructure.csproj" />
   <Project Path="Catteria.UI/Catteria.UI.csproj" />
