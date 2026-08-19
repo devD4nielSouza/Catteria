@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace Catteria.Desktop.DTOs
 {
-    internal class CategoriesDto
+    public class CategoriesDto
     {
+        public string Name { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public int ProductCount { get; set; }
+
+    }
+        public class CreateCategoriesDto
+        {
+            public string Name { get; set; } = string.Empty;
+        }
+
+        public class UpdateCategoriesDto
+        {
+            public string Name { get; set; } = string.Empty;
+        }
     }
 }

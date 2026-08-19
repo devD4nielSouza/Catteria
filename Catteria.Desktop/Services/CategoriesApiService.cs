@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Catteria.Desktop.Services
 {
-    internal class CategoriesApiService
+    public class CategoriesApiService
     {
+
+
     }
 }
