@@ -1,6 +1,12 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Carrinho";
+}
+
+@if (TempData["Erro"] != null)
+{
+    <div class="alert alert-warning">
+        @TempData["Erro"]
+    </div>
 }
 
 <div class="container py-5">
@@ -45,9 +51,12 @@
                 Total: R$ 0,00
             </h4>
 
-            <button class="btn btn-success btn-lg mt-2">
+            <a asp-controller="Cart"
+               asp-action="Pagamento"
+               class="btn btn-success btn-lg mt-2"
+            >
                 Finalizar Pedido
-            </button>
+            </a>
 
         </div>
 

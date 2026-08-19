@@ -1,4 +1,5 @@
 ﻿using Catteria.Application.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,12 +9,17 @@ namespace Catteria.UI.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-
+        private readonly Catteria.Domain.Interfaces.IEmailSender _emailSender;
+        private readonly LinkGenerator _linkGenerator;
         public AccountController(UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager,
+            Domain.Interfaces.IEmailSender emailSender,
+            LinkGenerator linkGenerator)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailSender = emailSender;
+            _linkGenerator = linkGenerator;
         }
 
         //=============================================
@@ -78,7 +84,11 @@ namespace Catteria.UI.Controllers
         {
             if (dto.Password != dto.ConfirmPassword)
             {
-                ModelState.AddModelError(string.Empty, "As senhas não coincidem");
+                ModelState.AddModelError(
+                    string.Empty,
+                    "As senhas não coincidem"
+                );
+
                 return View(dto);
             }
 
@@ -88,22 +98,70 @@ namespace Catteria.UI.Controllers
                 Email = dto.Email
             };
 
-            var result = await _userManager.CreateAsync(user, dto.Password);
+            var result = await _userManager.CreateAsync(
+                user,
+                dto.Password
+            );
 
             if (result.Succeeded)
             {
-                //Faz Login automático após o registro
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToAction("Index", "Home");
+                // Gera o token
+                var token = await _userManager
+                    .GenerateEmailConfirmationTokenAsync(user);
+
+                // URL da API que confirma o e-mail
+                var confirmationLink = _linkGenerator.GetUriByAction(
+                     HttpContext,
+                     action: "ConfirmarEmail",
+                     controller: "Auth",
+                     values: new { userId = user.Id, token })!;
+
+                // Envia o e-mail
+                await _emailSender.SendEmailAsync(
+                    user.Email!,
+                    "Confirme seu cadastro",
+                    $"""
+            <h2>Bem-vindo!</h2>
+
+            <p>
+                Obrigado por se cadastrar.
+            </p>
+
+            <p>
+                Clique no botão abaixo para confirmar seu e-mail:
+            </p>
+
+            <p>
+                <a href="{confirmationLink}">
+                    Confirmar meu e-mail
+                </a>
+            </p>
+            """
+                );
+
+                return RedirectToAction(
+                    "ConfirmEmailNotice",
+                    new { email = user.Email }
+                );
             }
 
-            // Se falhou, exibe os erros
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError(string.Empty, error.Description);
+                ModelState.AddModelError(
+                    string.Empty,
+                    error.Description
+                );
             }
 
             return View(dto);
+        }
+        // Exibe a página de aviso para confirmar o e-mail
+        [AllowAnonymous]
+        public IActionResult ConfirmEmailNotice(string email)
+        {
+            ViewBag.Email = email;
+
+            return View();
         }
 
         //=============================================

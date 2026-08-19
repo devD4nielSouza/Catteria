@@ -12,14 +12,13 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
-=======
+
     <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MailKit" Version="4.17.0" />
->>>>>>> fac67a616f87465a7c74bb7361025f69cd1918a5
+
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.9" />

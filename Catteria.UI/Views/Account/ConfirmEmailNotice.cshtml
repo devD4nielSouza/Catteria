@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Confirme seu e-mail";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-sm border-0 text-center">
+                <div class="card-body p-5">
+
+                    <h2 class="mb-4">
+                        Confirme seu e-mail
+                    </h2>
+
+                    <p class="text-muted">
+                        Seu cadastro foi realizado com sucesso!
+                    </p>
+
+                    <p>
+                        Enviamos um link de confirmação para o
+                        <strong>@ViewBag.Email</strong>.
+                    </p>
+
+                    <p class="text-muted small">
+                        Verifique sua caixa de entrada e também a
+                        pasta de spam.
+                    </p>
+
+                    <div class="mt-4">
+                        <a asp-controller="Account"
+                           asp-action="Login"
+                           class="btn btn-dark">
+                            Ir para o login
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -10,43 +10,78 @@ public class EmailSender : IEmailSender
 {
     private readonly IConfiguration _config;
 
-    // Construtor que recebe as configurações da aplicação via injeção de dependência
-    public EmailSender(IConfiguration config) => _config = config;
-
-    // Método assíncrono responsável por configurar e enviar o e-mail
-    public async Task SendEmailAsync(string email, string subject, string htmlMessage)
+    public EmailSender(IConfiguration config)
     {
-        // Cria uma nova instância de mensagem de e-mail
+        _config = config;
+    }
+
+    public async Task SendEmailAsync(
+        string email,
+        string subject,
+        string htmlMessage)
+    {
+        var from = _config["Email:From"];
+        var host = _config["Email:Host"];
+        var port = _config["Email:Port"];
+        var user = _config["Email:User"];
+        var password = _config["Email:Password"];
+
+        //if (string.IsNullOrWhiteSpace(email))
+        //    throw new Exception("Email do destinatário está vazio.");
+
+        //if (string.IsNullOrWhiteSpace(subject))
+        //    throw new Exception("Assunto do e-mail está vazio.");
+
+        //if (string.IsNullOrWhiteSpace(htmlMessage))
+        //    throw new Exception("Conteúdo HTML do e-mail está vazio.");
+
+        //if (string.IsNullOrWhiteSpace(from))
+        //    throw new Exception("Email:From não está configurado.");
+
+        //if (string.IsNullOrWhiteSpace(host))
+        //    throw new Exception("Email:Host não está configurado.");
+
+        //if (string.IsNullOrWhiteSpace(port))
+        //    throw new Exception("Email:Port não está configurado.");
+
+        //if (string.IsNullOrWhiteSpace(user))
+        //    throw new Exception("Email:User não está configurado.");
+
+        //if (string.IsNullOrWhiteSpace(password))
+        //    throw new Exception("Email:Password não está configurado.");
+
         var message = new MimeMessage();
-        
-        // Define o remetente buscando o endereço nas configurações da aplicação
-        message.From.Add(MailboxAddress.Parse(_config["Email:From"]));
-        
-        // Define o destinatário utilizando o endereço passado por parâmetro
-        message.To.Add(MailboxAddress.Parse(email));
-        
-        // Define o assunto do e-mail com base no parâmetro recebido
+
+        message.From.Add(
+            MailboxAddress.Parse(from)
+        );
+
+        message.To.Add(
+            MailboxAddress.Parse(email)
+        );
+
         message.Subject = subject;
-        
-        // Define o corpo do e-mail indicando que o formato do texto é HTML
-        message.Body = new TextPart("html") { Text = htmlMessage };
 
-        // Instancia o cliente SMTP e garante que seus recursos sejam liberados ao final do escopo (using)
+        message.Body = new TextPart("html")
+        {
+            Text = htmlMessage
+        };
+
         using var client = new SmtpClient();
-        
-        // Conecta ao servidor SMTP usando Host e Porta das configurações, habilitando criptografia TLS
-        await client.ConnectAsync(
-            _config["Email:Host"],
-            int.Parse(_config["Email:Port"]!),
-            SecureSocketOptions.StartTls);
 
-        // Autentica no servidor SMTP com o usuário e a senha definidos nas configurações
-        await client.AuthenticateAsync(_config["Email:User"], _config["Email:Password"]);
-        
-        // Envia a mensagem de e-mail montada anteriormente
+        await client.ConnectAsync(
+            host,
+            int.Parse(port),
+            SecureSocketOptions.StartTls
+        );
+
+        await client.AuthenticateAsync(
+            user,
+            password
+        );
+
         await client.SendAsync(message);
-        
-        // Desconecta e encerra a comunicação com o servidor SMTP de forma limpa
+
         await client.DisconnectAsync(true);
     }
 }

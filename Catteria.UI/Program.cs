@@ -14,6 +14,7 @@ using Catteria.Domain.Interfaces;
 using Catteria.Infraestructure.Context;
 using Catteria.Infraestructure.Identity;
 using Catteria.Infraestructure.Repositories;
+using Catteria.Infraestructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -50,6 +51,10 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LogoutPath = "/Account/Logout"; // Redireciona para Página de logout
     options.AccessDeniedPath = "/Account/AccessDenied"; // Redireciona para Página de acesso negado
 });
+
+//EMAIL SENDER - Serviço de envio de e-mails
+builder.Services.AddTransient<Catteria.Domain.Interfaces.IEmailSender, EmailSender>();
+
 
 // ========================================================================
 // DEPENDENCY INJECTION - Injeção de Dependências | Repositórios e Serviços
