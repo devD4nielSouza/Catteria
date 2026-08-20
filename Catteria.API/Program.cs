@@ -77,11 +77,15 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
+builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
+
+//Services
 builder.Services.AddScoped<IOrderService, OrderService>();
 //builder.Services.AddScoped<IOrderItemRepository, OrderItemService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 
 // =====================================================================
 // 4. CONTROLLERS

@@ -13,5 +13,7 @@ namespace Catteria.Domain.Entities
         
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
+        // coleção de favoritos
+        public virtual ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
     }
 }
