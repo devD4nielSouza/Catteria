@@ -110,11 +110,9 @@ namespace Catteria.UI.Controllers
                     .GenerateEmailConfirmationTokenAsync(user);
 
                 // URL da API que confirma o e-mail
-                var confirmationLink = _linkGenerator.GetUriByAction(
-                     HttpContext,
-                     action: "ConfirmarEmail",
-                     controller: "Auth",
-                     values: new { userId = user.Id, token })!;
+                var confirmationLink = $"http://localhost:5273/api/Auth/confirmar-email" +
+                      $"?userId={Uri.EscapeDataString(user.Id)}" +
+                      $"&token={Uri.EscapeDataString(token)}";
 
                 // Envia o e-mail
                 await _emailSender.SendEmailAsync(

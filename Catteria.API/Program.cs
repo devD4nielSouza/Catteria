@@ -5,6 +5,7 @@ using Catteria.Infraestructure.Context;
 using Catteria.Infraestructure.Identity;
 using Catteria.Infraestructure.Repositories;
 using Catteria.Infraestructure.Services;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
@@ -20,6 +21,12 @@ var builder = WebApplication.CreateBuilder(args);
 // =====================================================================
 builder.Services.AddDbContext<CatteriaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+//UTILIZADO PARA A VERIFICAÇÃO POR EMAIL FUNCIONAR NA UI NÃO APAGAR PELO AMOR DE DEUS
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(@"C:\Catteria\dp-keys"))
+    .SetApplicationName("Catteria");
 
 // =====================================================================
 // 2. ASP.NET CORE IDENTITY — Autenticação e Autorização

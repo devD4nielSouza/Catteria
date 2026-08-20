@@ -15,6 +15,7 @@ using Catteria.Infraestructure.Context;
 using Catteria.Infraestructure.Identity;
 using Catteria.Infraestructure.Repositories;
 using Catteria.Infraestructure.Services;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -40,9 +41,17 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     options.Password.RequireNonAlphanumeric = true;
     options.Password.RequiredLength = 6;
 })
+
+
 // Configura o Identity para usar o EF Core e a nossa DbContext personalizada (SenacGamesDbContext)
 .AddEntityFrameworkStores<CatteriaDbContext>()
 .AddDefaultTokenProviders();
+
+
+//UTILIZADO PARA A VERIFICAÇÃO POR EMAIL FUNCIONAR NA UI NÃO APAGAR PELO AMOR DE DEUS
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(@"C:\Catteria\dp-keys"))
+    .SetApplicationName("Catteria");
 
 //Configuração dos cookies de autenticação 
 builder.Services.ConfigureApplicationCookie(options =>

@@ -73,8 +73,8 @@ namespace Catteria.API.Controllers
 
             var result = await _userManager.ConfirmEmailAsync(user, token);
             return result.Succeeded
-                ? Ok(new { message = "Email confirmado com sucesso!" })
-                : BadRequest(new { message = "Erro ao confirmar email." });
+      ? Ok(new { message = "Email confirmado com sucesso!" })
+      : BadRequest(new { errors = result.Errors.Select(e => new { e.Code, e.Description }) });
         }
 
         [HttpPost("login")]
