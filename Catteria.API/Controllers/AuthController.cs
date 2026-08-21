@@ -1,4 +1,5 @@
 ﻿using Catteria.Application.DTOs;
+using Catteria.Domain.Entities;
 using Catteria.Infraestructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -10,15 +11,15 @@ namespace Catteria.API.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly Catteria.Domain.Interfaces.IEmailSender _emailSender;
         private readonly LinkGenerator _linkGenerator;
 
 
         public AuthController(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager, 
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager, 
             Catteria.Domain.Interfaces.IEmailSender emailSender,
             LinkGenerator linkGenerator)
         {
@@ -34,7 +35,7 @@ namespace Catteria.API.Controllers
             if (dto.Password != dto.ConfirmPassword)
                 return BadRequest(new { message = "Senhas não coincidem" });
 
-            var user = new IdentityUser
+            var user = new ApplicationUser
             {
                 UserName = dto.Email,
                 Email = dto.Email

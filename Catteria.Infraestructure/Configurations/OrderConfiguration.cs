@@ -16,11 +16,12 @@ namespace Catteria.Infraestructure.Configurations
             builder.Property(o => o.TotalValue);
 
             builder.Property(o => o.Status);
-                
+
 
             builder.HasOne(o => o.User)//Um pedido tem um usuario
                 .WithMany(u => u.Orders)//Um usuario pode ter varios pedidos
-                .HasForeignKey(o => o.IdUser);//Chave estrangeira é o id do usuario
+                .HasForeignKey(o => o.IdUser)//Chave estrangeira é o id do usuario
+                .OnDelete(DeleteBehavior.Restrict);
 
 
         }

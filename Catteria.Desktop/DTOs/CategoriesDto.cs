@@ -22,5 +22,4 @@ namespace Catteria.Desktop.DTOs
         {
             public string Name { get; set; } = string.Empty;
         }
-    }
 }

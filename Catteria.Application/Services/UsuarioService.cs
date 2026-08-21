@@ -1,16 +1,17 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Catteria.Application.DTOs;
+﻿using Catteria.Application.DTOs;
 using Catteria.Application.Interfaces;
+using Catteria.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace Catteria.Application.Services
 {
     public class UsuarioService : IUsuarioService
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public UsuarioService(
-            UserManager<IdentityUser> userManager,
+            UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
@@ -63,7 +64,7 @@ namespace Catteria.Application.Services
             if (existingUser != null)
                 return (false, null, "E-mail já cadastrado.");
 
-            var user = new IdentityUser
+            var user = new ApplicationUser
             {
                 UserName = dto.Nome,
                 Email = dto.Email

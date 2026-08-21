@@ -1,5 +1,6 @@
 using Catteria.Application.Interfaces;
 using Catteria.Application.Services;
+using Catteria.Domain.Entities;
 using Catteria.Domain.Interfaces;
 using Catteria.Infraestructure.Context;
 using Catteria.Infraestructure.Identity;
@@ -36,7 +37,7 @@ builder.Services.AddDataProtection()
 // AddIdentity registra os serviços do Identity no container de DI.
 // AddEntityFrameworkStores conecta o Identity ao banco via EF Core.
 // =====================================================================
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     // Configurações de senha (simplificadas para ensino)
     options.Password.RequireDigit = true;

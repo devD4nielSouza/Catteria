@@ -39,4 +39,4 @@ namespace Catteria.Desktop.DTOs
         public bool IsFeatured { get; set; }
     }
 }
-}
+

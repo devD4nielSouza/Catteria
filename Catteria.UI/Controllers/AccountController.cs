@@ -1,4 +1,5 @@
 ﻿using Catteria.Application.DTOs;
+using Catteria.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -7,12 +8,12 @@ namespace Catteria.UI.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly Catteria.Domain.Interfaces.IEmailSender _emailSender;
         private readonly LinkGenerator _linkGenerator;
-        public AccountController(UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+        public AccountController(UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
             Domain.Interfaces.IEmailSender emailSender,
             LinkGenerator linkGenerator)
         {
@@ -92,7 +93,7 @@ namespace Catteria.UI.Controllers
                 return View(dto);
             }
 
-            var user = new IdentityUser
+            var user = new ApplicationUser
             {
                 UserName = dto.Email,
                 Email = dto.Email

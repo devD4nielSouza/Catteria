@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Catteria.Application.DTOs;
+using Catteria.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,11 +8,12 @@ namespace Catteria.UI.Controllers
 {
     public class CartController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-
-        public CartController(UserManager<IdentityUser> userManager)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IHttpClientFactory _httpClientFactory;
+        public CartController(UserManager<ApplicationUser> userManager, IHttpClientFactory httpClientFactory)
         {
             _userManager = userManager;
+            _httpClientFactory = httpClientFactory;
         }
         public IActionResult Index()
         {
@@ -33,6 +36,32 @@ namespace Catteria.UI.Controllers
             }
 
             return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Criar([FromBody] CreateOrderDto dto)
+        {
+            var httpClient = _httpClientFactory.CreateClient("CatteriaApi");
+
+            var cookie = Request.Headers["Cookie"].ToString();
+
+            var request = new HttpRequestMessage(HttpMethod.Post, "api/Orders/CreateOrder")
+            {
+                Content = JsonContent.Create(dto)
+            };
+            request.Headers.Add("Cookie", cookie);
+
+            var response = await httpClient.SendAsync(request);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var erro = await response.Content.ReadAsStringAsync();
+                return StatusCode((int)response.StatusCode, erro);
+            }
+
+            var resultado = await response.Content.ReadFromJsonAsync<CreateOrderResponseDto>();
+            return Ok(resultado);
         }
     }
 }

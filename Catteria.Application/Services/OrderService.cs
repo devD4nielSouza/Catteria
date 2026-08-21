@@ -33,7 +33,10 @@ namespace Catteria.Application.Services
         //Task<OrderDto> CreateAsync(CreateOrderDto orderDto);
         public async Task<OrderDto> CreateAsync(CreateOrderDto dto)
         {
-            var order = new Order { Date = dto.Date, TotalValue = dto.TotalValue };
+            var order = new Order {
+                Date = DateTime.Now,
+                TotalValue = dto.TotalValue
+            };
             await _orderRepository.AddAsync(order);
             return MapToDto(order);
         }

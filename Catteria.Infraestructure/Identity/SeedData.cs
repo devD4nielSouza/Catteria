@@ -39,7 +39,7 @@ namespace Catteria.Infraestructure.Identity
             // Obtém o DbContext do container de Dependency Injection
             using var scope = serviceProvider.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<CatteriaDbContext>();
-            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
             // Aplica migrations pendentes automaticamente
@@ -198,7 +198,7 @@ namespace Catteria.Infraestructure.Identity
 
             if(adminUser == null)
             {
-                adminUser = new IdentityUser
+                adminUser = new ApplicationUser
                 {
                     UserName = adminEmail,
                     Email = adminEmail,

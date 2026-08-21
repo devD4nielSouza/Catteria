@@ -10,6 +10,7 @@
 // =============================================================================
 using Catteria.Application.Interfaces;
 using Catteria.Application.Services;
+using Catteria.Domain.Entities;
 using Catteria.Domain.Interfaces;
 using Catteria.Infraestructure.Context;
 using Catteria.Infraestructure.Identity;
@@ -32,7 +33,7 @@ builder.Services.AddDbContext<CatteriaDbContext>(options =>
 // =============================================
 // ASP.NET IDENTITY - Autenticação e Autorização
 // =============================================
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     //Options: Configura as regras de senha (exemplo: exigir letra maiúscula, número, etc.)
     options.Password.RequireDigit = true;
@@ -64,6 +65,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 //EMAIL SENDER - Serviço de envio de e-mails
 builder.Services.AddTransient<Catteria.Domain.Interfaces.IEmailSender, EmailSender>();
 
+//HTTP CLIENT - Serviço para fazer requisições HTTP externas (ex: API de terceiros)
+builder.Services.AddHttpClient();
 
 // ========================================================================
 // DEPENDENCY INJECTION - Injeção de Dependências | Repositórios e Serviços
@@ -89,6 +92,13 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+
+builder.Services.AddHttpClient("CatteriaApi", client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5273/");
+});
+
 
 // ========================================================================
 // MVC - Adiciona suporte para controladores e views (páginas HTML) | Razor

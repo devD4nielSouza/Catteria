@@ -1,21 +1,28 @@
 ﻿using Catteria.Application.DTOs;
 using Catteria.Application.Interfaces;
 using Catteria.Application.Services;
+using Catteria.Domain.Entities;
+using Catteria.Infraestructure.Context;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Catteria.API.Controllers
 {
     public class OrdersController : ControllerBase
     {
         private readonly IOrderService _orderService;
-
-        public OrdersController(IOrderService orderService)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly CatteriaDbContext _context;
+        public OrdersController(IOrderService orderService, UserManager<ApplicationUser> userManager, CatteriaDbContext context)
         {
             _orderService = orderService;
+            _userManager = userManager;
+            _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("All")]
         public async Task<ActionResult<IEnumerable<OrderDto>>> GetAll()
         {
             var orders = await _orderService.GetAllAsync();
@@ -34,14 +41,69 @@ namespace Catteria.API.Controllers
             return Ok(order);
         }
 
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<OrderDto>> Create([FromBody] CreateOrderDto dto)
+        [HttpPost("CreateOrder")]
+        [Authorize]
+        public async Task<IActionResult> CreateOrder(
+        [FromBody] CreateOrderDto dto)
         {
-            var order = await _orderService.CreateAsync(dto);
+            var userId = _userManager.GetUserId(User);
 
-            return CreatedAtAction(nameof(GetAll), new { id = order.Id }, order);
+            if (userId == null)
+            {
+                return Unauthorized(new
+                {
+                    message = "Usuário não autenticado."
+                });
+            }
+
+            if (dto.Items == null || !dto.Items.Any())
+            {
+                return BadRequest(new
+                {
+                    message = "O pedido não possui itens."
+                });
+            }
+
+            var order = new Order
+            {
+                IdUser = userId,
+                Date = DateTime.Now,
+                Status = "Pendente",
+                Observations = dto.Observations,
+                PaymentMethod = dto.PaymentMethod
+            };
+
+            decimal total = 0;
+
+            foreach (var item in dto.Items)
+            {
+                var subtotal = item.UnitPrice * item.Quantity;
+
+                total += subtotal;
+
+                var orderItem = new OrderItem
+                {
+                    IdProduct = item.IdProduct,
+                    Quantity = item.Quantity,
+                    UnitPrice = item.UnitPrice
+                };
+
+                order.OrderItems.Add(orderItem);
+            }
+
+            order.TotalValue = total;
+
+            _context.Orders.Add(order);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                message = "Pedido criado com sucesso!",
+                orderId = order.Id
+            });
         }
+
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]

@@ -181,7 +181,9 @@
                         </div>
 
                         <button type="submit"
-                                class="btn btn-dark w-100 mt-3">
+                                class="btn btn-dark w-100 mt-3"
+                                onclick="finalizarPedido()"
+                        >
                             Finalizar pagamento
                         </button>
 
@@ -206,6 +208,20 @@
 
                     <div id="listaProdutos">
                         <!-- Produtos inseridos pelo JavaScript -->
+                    </div>
+
+                    <div class="mt-4">
+                        <h5 class="mb-3">Observações do pedido</h5>
+
+                        <textarea id="observacoesPedido"
+                                  class="form-control"
+                                  rows="4"
+                                  maxlength="500"
+                                  placeholder="Ex: Retirar no período da tarde..."></textarea>
+
+                        <div class="form-text">
+                            Opcional. Máximo de 500 caracteres.
+                        </div>
                     </div>
 
                     <hr>
