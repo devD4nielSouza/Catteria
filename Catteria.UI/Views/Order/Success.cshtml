@@ -1,0 +1,183 @@
+﻿@model Catteria.Application.DTOs.OrderDto
+
+@{
+    ViewData["Title"] = "Pedido realizado";
+}
+
+<div class="container py-5">
+
+    <!-- Cabeçalho -->
+    <div class="text-center mb-5">
+
+        <div class="mb-3">
+            <i class="bi bi-check-circle-fill"
+               style="font-size: 70px;"></i>
+        </div>
+
+        <h1 class="fw-bold">
+            Pedido realizado com sucesso!
+        </h1>
+
+        <p class="text-muted">
+            Obrigado pela sua compra, @Model.CustomerName!
+        </p>
+
+    </div>
+
+
+    <!-- Card principal -->
+    <div class="card shadow-sm border-0 mx-auto"
+         style="max-width: 900px;">
+
+        <div class="card-body p-4">
+
+            <!-- Informações do pedido -->
+
+            <div class="row g-4 mb-4">
+
+                <div class="col-md-6">
+
+                    <small class="text-muted">
+                        Número do pedido
+                    </small>
+
+                    <h5 class="mb-0">
+                        #@Model.Id
+                    </h5>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <small class="text-muted">
+                        Data do pedido
+                    </small>
+
+                    <h5 class="mb-0">
+                        @Model.Date.ToString("dd/MM/yyyy HH:mm")
+                    </h5>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <small class="text-muted">
+                        Cliente
+                    </small>
+
+                    <h5 class="mb-0">
+                        @Model.CustomerName
+                    </h5>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <small class="text-muted">
+                        Forma de pagamento
+                    </small>
+
+                    <h5 class="mb-0">
+
+                        @if (Model.PaymentMethod == "pix")
+                        {
+                            <span>PIX</span>
+                        }
+                        else if (Model.PaymentMethod == "cartao")
+                        {
+                            <span>Cartão</span>
+                        }
+                        else if (Model.PaymentMethod == "retirada")
+                        {
+                            <span>Pagar na retirada</span>
+                        }
+                        else
+                        {
+                            <span>@Model.PaymentMethod</span>
+                        }
+
+                    </h5>
+
+                </div>
+
+            </div>
+
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <h4 class="mb-0">
+                    Resumo do pedido
+                </h4>
+
+                <span class="badge bg-warning text-dark">
+                    @Model.Status
+                </span>
+
+            </div>
+
+            <hr />
+
+
+            <!-- Produtos -->
+            @foreach (var item in Model.Items)
+            {
+                <div class="d-flex justify-content-between align-items-center py-3 border-bottom">
+
+                    <div>
+
+                        <h6 class="mb-1">
+                            @item.ProductName
+                        </h6>
+
+                        <small class="text-muted">
+                            @item.Quantity x
+                            @item.UnitPrice.ToString("C")
+                        </small>
+
+                    </div>
+
+                    <strong>
+                        @item.SubTotal.ToString("C")
+                    </strong>
+
+                </div>
+            }
+
+
+            <!-- Total -->
+
+            <div class="d-flex justify-content-between align-items-center mt-4">
+
+                <h5 class="mb-0">
+                    Total
+                </h5>
+
+                <h4 class="mb-0">
+                    @Model.TotalValue.ToString("C")
+                </h4>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Botão -->
+
+    <div class="text-center mt-4">
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="btn btn-dark px-4">
+
+            Continuar comprando
+
+        </a>
+
+    </div>
+
+</div>

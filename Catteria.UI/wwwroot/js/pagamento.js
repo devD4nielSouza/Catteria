@@ -35,8 +35,10 @@ formasPagamento.forEach(opcao => {
 
         if (this.value === "retirada") {
             pagamentoRetirada.style.display = "block";
+            
         }
 
+        carregarResumo();
     });
 
 });
@@ -124,10 +126,16 @@ function carregarResumo() {
         `;
     });
 
-    const total = subtotal + FRETE;
+    const formaPagamento = document.querySelector(
+        'input[name="formaPagamento"]:checked'
+    )?.value;
+
+    const frete = formaPagamento === "retirada" ? 0 : FRETE;
+
+    const total = subtotal + frete;
 
     subtotalElement.textContent = formatarPreco(subtotal);
-    freteElement.textContent = formatarPreco(FRETE);
+    freteElement.textContent = formatarPreco(frete);
     totalElement.textContent = formatarPreco(total);
 }
 
@@ -200,7 +208,7 @@ async function finalizarPedido() {
 
         alert("Pedido realizado com sucesso!");
 
-        window.location.href = "/Pedido/Sucesso";
+        window.location.href = `/Order/Success?id=${resultado.orderId}`;
 
     }
     catch (error) {

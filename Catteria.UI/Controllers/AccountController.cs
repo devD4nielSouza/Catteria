@@ -96,7 +96,10 @@ namespace Catteria.UI.Controllers
             var user = new ApplicationUser
             {
                 UserName = dto.Email,
-                Email = dto.Email
+                Email = dto.Email,
+                Name = dto.Name,
+                Address = dto.Address,
+                PhoneNumber = dto.Telephone
             };
 
             var result = await _userManager.CreateAsync(

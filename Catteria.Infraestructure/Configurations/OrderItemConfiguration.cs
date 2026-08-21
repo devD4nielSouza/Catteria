@@ -11,11 +11,15 @@ namespace Catteria.Infraestructure.Configurations
     {
         public void Configure(EntityTypeBuilder<OrderItem> builder)
         {
-            builder.HasKey(x => x.Id );
+            builder.HasKey(x => x.Id);
 
-            builder.HasOne(x => x.Order)//Um itempedido tem um pedido
-                .WithMany(o => o.OrderItems)//Um pedido pode ter varios items peididos
-                .HasForeignKey(x => x.IdOrder);//Chave estrangeira é o id do pedido
+            builder.HasOne(x => x.Order)
+                .WithMany(o => o.OrderItems)
+                .HasForeignKey(x => x.IdOrder);
+
+            builder.HasOne(x => x.Product)
+                .WithMany(p => p.OrderItems)
+                .HasForeignKey(x => x.IdProduct);
         }
     }
 }

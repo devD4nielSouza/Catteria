@@ -35,10 +35,10 @@ namespace Catteria.Infraestructure.Repositories
         public async Task<Order?> GetByIdAsync(int id)
         {
             return await _context.Orders
-                .Include(o => o.User) // pega o usuário relacionado ao pedido
-                .Include(o => o.OrderItems) // pega os itens relacionados ao pedido
-                .OrderByDescending(o => o.Date) // ordena pela data mais recente
-                .FirstOrDefaultAsync(o => o.Id == id); // procura o primeiro pedido com o ID informado
+                .Include(o => o.User)
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Product)
+                .FirstOrDefaultAsync(o => o.Id == id);
         }
 
         /// <summary>

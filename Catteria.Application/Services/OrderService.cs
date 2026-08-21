@@ -73,7 +73,22 @@ namespace Catteria.Application.Services
                 Date = order.Date,
                 TotalValue = order.TotalValue,
                 Status = order.Status,
-                IdUser = order.IdUser
+                IdUser = order.IdUser,
+
+                CustomerName = order.User?.Name ?? "",
+                PaymentMethod = order.PaymentMethod,
+
+                Items = order.OrderItems.Select(item => new OrderItemDto
+                {
+                    Id = item.Id,
+                    Quantity = item.Quantity,
+                    IdOrder = item.IdOrder,
+                    IdProduct = item.IdProduct,
+                    UnitPrice = item.UnitPrice,
+                    SubTotal = item.UnitPrice * item.Quantity,
+
+                    ProductName = item.Product?.Name ?? "Produto"
+                }).ToList()
             };
         }
 

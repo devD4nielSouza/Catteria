@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Catteria.API.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class OrdersController : ControllerBase
     {
         private readonly IOrderService _orderService;
@@ -89,6 +91,11 @@ namespace Catteria.API.Controllers
                 };
 
                 order.OrderItems.Add(orderItem);
+            }
+
+            if (dto.PaymentMethod != "retirada")
+            {
+                total += 10;
             }
 
             order.TotalValue = total;
