@@ -16,5 +16,12 @@ namespace Catteria.Desktop.Forms
         {
             InitializeComponent();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
