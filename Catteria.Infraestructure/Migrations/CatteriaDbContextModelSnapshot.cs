@@ -40,28 +40,6 @@ namespace Catteria.Infraestructure.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Catteria.Domain.Entities.Favorite", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.HasKey("UserId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Favorites");
-                });
-
             modelBuilder.Entity("Catteria.Domain.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -390,25 +368,6 @@ namespace Catteria.Infraestructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Catteria.Domain.Entities.Favorite", b =>
-                {
-                    b.HasOne("Catteria.Domain.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Catteria.Domain.Entities.User", "User")
-                        .WithMany("Favorites")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Catteria.Domain.Entities.Order", b =>
                 {
                     b.HasOne("Catteria.Domain.Entities.User", "User")
@@ -516,8 +475,6 @@ namespace Catteria.Infraestructure.Migrations
 
             modelBuilder.Entity("Catteria.Domain.Entities.User", b =>
                 {
-                    b.Navigation("Favorites");
-
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618

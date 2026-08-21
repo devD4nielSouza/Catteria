@@ -32,8 +32,6 @@ namespace Catteria.Infraestructure.Context
         /// </summary>
         public DbSet<Product> Products { get; set; }
 
-        public DbSet<Favorite> Favorites { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -42,7 +40,6 @@ namespace Catteria.Infraestructure.Context
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
-            modelBuilder.ApplyConfiguration(new FavoriteConfiguration());
         }
     }
 }

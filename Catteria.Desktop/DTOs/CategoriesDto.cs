@@ -13,13 +13,14 @@ namespace Catteria.Desktop.DTOs
         public int ProductCount { get; set; }
 
     }
-    public class CreateCategoriesDto
-    {
-        public string Name { get; set; } = string.Empty;
-    }
+        public class CreateCategoriesDto
+        {
+            public string Name { get; set; } = string.Empty;
+        }
 
-    public class UpdateCategoriesDto
-    {
-        public string Name { get; set; } = string.Empty;
+        public class UpdateCategoriesDto
+        {
+            public string Name { get; set; } = string.Empty;
+        }
     }
 }
