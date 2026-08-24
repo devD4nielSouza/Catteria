@@ -51,15 +51,15 @@
             lblNome = new Label();
             lblFormTitulo = new Label();
             gridCategorias = new DataGridView();
+            colId = new DataGridViewTextBoxColumn();
+            colName = new DataGridViewTextBoxColumn();
+            colProductCount = new DataGridViewTextBoxColumn();
             pnlToolbar = new Panel();
             btnAtualizar = new Guna.UI2.WinForms.Guna2Button();
             btnExcluir = new Guna.UI2.WinForms.Guna2Button();
             btnEditar = new Guna.UI2.WinForms.Guna2Button();
             btnNova = new Guna.UI2.WinForms.Guna2Button();
             lblTitulo = new Label();
-            colId = new DataGridViewTextBoxColumn();
-            colName = new DataGridViewTextBoxColumn();
-            colProductCount = new DataGridViewTextBoxColumn();
             pnlForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridCategorias).BeginInit();
             pnlToolbar.SuspendLayout();
@@ -169,6 +169,22 @@
             gridCategorias.Size = new Size(552, 318);
             gridCategorias.TabIndex = 7;
             // 
+            // colId
+            // 
+            colId.HeaderText = "ID";
+            colId.Name = "colId";
+            // 
+            // colName
+            // 
+            colName.HeaderText = "Nome da Categoria";
+            colName.Name = "colName";
+            colName.Width = 225;
+            // 
+            // colProductCount
+            // 
+            colProductCount.HeaderText = "Total de Produtos";
+            colProductCount.Name = "colProductCount";
+            // 
             // pnlToolbar
             // 
             pnlToolbar.Controls.Add(btnAtualizar);
@@ -263,26 +279,11 @@
             lblTitulo.TabIndex = 5;
             lblTitulo.Text = "🏷️ Gerenciamento de Categorias";
             // 
-            // colId
-            // 
-            colId.HeaderText = "ID";
-            colId.Name = "colId";
-            // 
-            // colName
-            // 
-            colName.HeaderText = "Nome da Categoria";
-            colName.Name = "colName";
-            colName.Width = 225;
-            // 
-            // colProductCount
-            // 
-            colProductCount.HeaderText = "Total de Produtos";
-            colProductCount.Name = "colProductCount";
-            // 
             // CategoriesUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 248, 241);
             Controls.Add(pnlForm);
             Controls.Add(gridCategorias);
             Controls.Add(pnlToolbar);

@@ -1,6 +1,6 @@
 ﻿namespace Catteria.Desktop.UserControls
 {
-    partial class PerfilUserControl
+    partial class OrdersUserControl
     {
         /// <summary> 
         /// Variável de designer necessária.
@@ -28,15 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SuspendLayout();
-            // 
-            // PerfilUserControl
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(253, 247, 242);
-            Name = "PerfilUserControl";
-            ResumeLayout(false);
+            components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         }
 
         #endregion

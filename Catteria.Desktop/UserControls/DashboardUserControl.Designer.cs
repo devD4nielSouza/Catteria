@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             cardCategorias = new Panel();
             cardCategoriasLblNumero = new Label();
             cardCategoriasLblTitulo = new Label();
@@ -46,6 +46,12 @@
             cardProdutosLblDesc = new Label();
             pnlCorProdutos = new Guna.UI2.WinForms.Guna2Panel();
             lblUltimosProdutos = new Label();
+            colId = new DataGridViewTextBoxColumn();
+            colTitle = new DataGridViewTextBoxColumn();
+            colCategoryName = new DataGridViewTextBoxColumn();
+            colReleaseYear = new DataGridViewTextBoxColumn();
+            colIsFeatured = new DataGridViewCheckBoxColumn();
+            colCreatedAt = new DataGridViewTextBoxColumn();
             cardCategorias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridUltimosProdutos).BeginInit();
             cardProdutos.SuspendLayout();
@@ -53,7 +59,7 @@
             // 
             // cardCategorias
             // 
-            cardCategorias.BackColor = Color.FromArgb(255, 248, 241);
+            cardCategorias.BackColor = Color.White;
             cardCategorias.Controls.Add(cardCategoriasLblNumero);
             cardCategorias.Controls.Add(cardCategoriasLblTitulo);
             cardCategorias.Controls.Add(cardCategoriasLblDesc);
@@ -65,7 +71,7 @@
             // cardCategoriasLblNumero
             // 
             cardCategoriasLblNumero.AutoSize = true;
-            cardCategoriasLblNumero.BackColor = Color.FromArgb(255, 248, 241);
+            cardCategoriasLblNumero.BackColor = Color.White;
             cardCategoriasLblNumero.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cardCategoriasLblNumero.Location = new Point(31, 62);
             cardCategoriasLblNumero.Name = "cardCategoriasLblNumero";
@@ -76,7 +82,7 @@
             // cardCategoriasLblTitulo
             // 
             cardCategoriasLblTitulo.AutoSize = true;
-            cardCategoriasLblTitulo.BackColor = Color.FromArgb(255, 248, 241);
+            cardCategoriasLblTitulo.BackColor = Color.White;
             cardCategoriasLblTitulo.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
             cardCategoriasLblTitulo.ForeColor = Color.FromArgb(164, 188, 233);
             cardCategoriasLblTitulo.Location = new Point(25, 43);
@@ -88,7 +94,7 @@
             // cardCategoriasLblDesc
             // 
             cardCategoriasLblDesc.AutoSize = true;
-            cardCategoriasLblDesc.BackColor = Color.FromArgb(255, 248, 241);
+            cardCategoriasLblDesc.BackColor = Color.White;
             cardCategoriasLblDesc.Font = new Font("Century Gothic", 8.25F);
             cardCategoriasLblDesc.ForeColor = SystemColors.ControlDarkDark;
             cardCategoriasLblDesc.Location = new Point(31, 107);
@@ -101,6 +107,7 @@
             // 
             gridUltimosProdutos.BackgroundColor = Color.FromArgb(164, 188, 233);
             gridUltimosProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridUltimosProdutos.Columns.AddRange(new DataGridViewColumn[] { colId, colTitle, colCategoryName, colReleaseYear, colIsFeatured, colCreatedAt });
             gridUltimosProdutos.Location = new Point(24, 260);
             gridUltimosProdutos.Name = "gridUltimosProdutos";
             gridUltimosProdutos.Size = new Size(671, 215);
@@ -130,17 +137,17 @@
             // 
             // pnlCorCategorias
             // 
-            pnlCorCategorias.CustomizableEdges = customizableEdges13;
+            pnlCorCategorias.CustomizableEdges = customizableEdges1;
             pnlCorCategorias.FillColor = Color.FromArgb(164, 188, 233);
             pnlCorCategorias.Location = new Point(346, 59);
             pnlCorCategorias.Name = "pnlCorCategorias";
-            pnlCorCategorias.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            pnlCorCategorias.ShadowDecoration.CustomizableEdges = customizableEdges2;
             pnlCorCategorias.Size = new Size(253, 18);
             pnlCorCategorias.TabIndex = 6;
             // 
             // cardProdutos
             // 
-            cardProdutos.BackColor = Color.FromArgb(255, 248, 241);
+            cardProdutos.BackColor = Color.White;
             cardProdutos.Controls.Add(cardProdutosLblNumero);
             cardProdutos.Controls.Add(cardProdutosLblTitulo);
             cardProdutos.Controls.Add(cardProdutosLblDesc);
@@ -152,7 +159,7 @@
             // cardProdutosLblNumero
             // 
             cardProdutosLblNumero.AutoSize = true;
-            cardProdutosLblNumero.BackColor = Color.FromArgb(255, 248, 241);
+            cardProdutosLblNumero.BackColor = Color.White;
             cardProdutosLblNumero.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cardProdutosLblNumero.Location = new Point(31, 62);
             cardProdutosLblNumero.Name = "cardProdutosLblNumero";
@@ -163,7 +170,7 @@
             // cardProdutosLblTitulo
             // 
             cardProdutosLblTitulo.AutoSize = true;
-            cardProdutosLblTitulo.BackColor = Color.FromArgb(255, 248, 241);
+            cardProdutosLblTitulo.BackColor = Color.White;
             cardProdutosLblTitulo.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
             cardProdutosLblTitulo.ForeColor = Color.FromArgb(76, 120, 178);
             cardProdutosLblTitulo.Location = new Point(31, 43);
@@ -175,7 +182,7 @@
             // cardProdutosLblDesc
             // 
             cardProdutosLblDesc.AutoSize = true;
-            cardProdutosLblDesc.BackColor = Color.FromArgb(255, 248, 241);
+            cardProdutosLblDesc.BackColor = Color.White;
             cardProdutosLblDesc.Font = new Font("Century Gothic", 8.25F);
             cardProdutosLblDesc.ForeColor = SystemColors.ControlDarkDark;
             cardProdutosLblDesc.Location = new Point(31, 107);
@@ -186,11 +193,11 @@
             // 
             // pnlCorProdutos
             // 
-            pnlCorProdutos.CustomizableEdges = customizableEdges15;
+            pnlCorProdutos.CustomizableEdges = customizableEdges3;
             pnlCorProdutos.FillColor = Color.FromArgb(76, 120, 178);
             pnlCorProdutos.Location = new Point(24, 59);
             pnlCorProdutos.Name = "pnlCorProdutos";
-            pnlCorProdutos.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            pnlCorProdutos.ShadowDecoration.CustomizableEdges = customizableEdges4;
             pnlCorProdutos.Size = new Size(267, 18);
             pnlCorProdutos.TabIndex = 6;
             // 
@@ -205,10 +212,46 @@
             lblUltimosProdutos.TabIndex = 3;
             lblUltimosProdutos.Text = "💾 Últimos produtos cadastrados";
             // 
+            // colId
+            // 
+            colId.HeaderText = "ID";
+            colId.Name = "colId";
+            colId.Width = 70;
+            // 
+            // colTitle
+            // 
+            colTitle.HeaderText = "Título";
+            colTitle.Name = "colTitle";
+            colTitle.Width = 140;
+            // 
+            // colCategoryName
+            // 
+            colCategoryName.HeaderText = "Categoria";
+            colCategoryName.Name = "colCategoryName";
+            colCategoryName.Width = 110;
+            // 
+            // colReleaseYear
+            // 
+            colReleaseYear.HeaderText = "Ano";
+            colReleaseYear.Name = "colReleaseYear";
+            // 
+            // colIsFeatured
+            // 
+            colIsFeatured.HeaderText = "Destaque";
+            colIsFeatured.Name = "colIsFeatured";
+            // 
+            // colCreatedAt
+            // 
+            colCreatedAt.HeaderText = "Cadastrado em";
+            colCreatedAt.Name = "colCreatedAt";
+            colCreatedAt.Resizable = DataGridViewTriState.True;
+            colCreatedAt.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
             // DashboardUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 248, 241);
             Controls.Add(pnlCorProdutos);
             Controls.Add(pnlCorCategorias);
             Controls.Add(lblUltimosProdutos);
@@ -219,6 +262,7 @@
             Controls.Add(cardCategorias);
             Name = "DashboardUserControl";
             Size = new Size(788, 484);
+            Load += DashboardUserControl_Load;
             cardCategorias.ResumeLayout(false);
             cardCategorias.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)gridUltimosProdutos).EndInit();
@@ -244,5 +288,11 @@
         private Guna.UI2.WinForms.Guna2Panel pnlCorProdutos;
         private Label cardCategoriasLblTitulo;
         private Label lblUltimosProdutos;
+        private DataGridViewTextBoxColumn colId;
+        private DataGridViewTextBoxColumn colTitle;
+        private DataGridViewTextBoxColumn colCategoryName;
+        private DataGridViewTextBoxColumn colReleaseYear;
+        private DataGridViewCheckBoxColumn colIsFeatured;
+        private DataGridViewTextBoxColumn colCreatedAt;
     }
 }

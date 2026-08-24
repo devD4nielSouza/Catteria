@@ -196,6 +196,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 248, 241);
             Controls.Add(txtPesquisa);
             Controls.Add(btnNovo);
             Controls.Add(btnEditar);

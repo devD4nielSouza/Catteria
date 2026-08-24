@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Catteria.Desktop.UserControls
 {
-    public partial class UsuarioUserControl : UserControl
+    public partial class OrdersUserControl : UserControl
     {
-        public UsuarioUserControl()
+        public OrdersUserControl()
         {
             InitializeComponent();
         }
-
-       
-
     }
 }

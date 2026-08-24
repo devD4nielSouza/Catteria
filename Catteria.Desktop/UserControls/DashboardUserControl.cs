@@ -17,6 +17,9 @@ namespace Catteria.Desktop.UserControls
             InitializeComponent();
         }
 
-      
+        private void DashboardUserControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
