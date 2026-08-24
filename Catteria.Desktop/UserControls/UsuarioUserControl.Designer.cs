@@ -51,7 +51,6 @@
             colEmail = new DataGridViewTextBoxColumn();
             colPhone = new DataGridViewTextBoxColumn();
             colType = new DataGridViewTextBoxColumn();
-            colStatus = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)gridUsuarios).BeginInit();
             pnlToolbar.SuspendLayout();
             SuspendLayout();
@@ -60,7 +59,7 @@
             // 
             gridUsuarios.BackgroundColor = Color.FromArgb(164, 188, 233);
             gridUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridUsuarios.Columns.AddRange(new DataGridViewColumn[] { colId, colName, colEmail, colPhone, colType, colStatus });
+            gridUsuarios.Columns.AddRange(new DataGridViewColumn[] { colId, colName, colEmail, colPhone, colType });
             gridUsuarios.Location = new Point(14, 200);
             gridUsuarios.Name = "gridUsuarios";
             gridUsuarios.Size = new Size(744, 267);
@@ -208,11 +207,6 @@
             colType.HeaderText = "Tipo";
             colType.Name = "colType";
             // 
-            // colStatus
-            // 
-            colStatus.HeaderText = "Status";
-            colStatus.Name = "colStatus";
-            // 
             // UsuarioUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -245,6 +239,5 @@
         private DataGridViewTextBoxColumn colEmail;
         private DataGridViewTextBoxColumn colPhone;
         private DataGridViewTextBoxColumn colType;
-        private DataGridViewTextBoxColumn colStatus;
     }
 }
