@@ -30,6 +30,8 @@
         {
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -40,11 +42,10 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblSessao = new Label();
             pnlSidebar = new Panel();
             btnUsuarios = new Guna.UI2.WinForms.Guna2Button();
+            btnPedidos = new Guna.UI2.WinForms.Guna2Button();
             btnCategorias = new Guna.UI2.WinForms.Guna2Button();
             btnProdutos = new Guna.UI2.WinForms.Guna2Button();
             btnDashboard = new Guna.UI2.WinForms.Guna2Button();
@@ -58,7 +59,6 @@
             pnlConteudo = new Panel();
             lblUsuarioEmoji = new Label();
             pnlUsuario = new Guna.UI2.WinForms.Guna2Panel();
-            btnPedidos = new Guna.UI2.WinForms.Guna2Button();
             pnlSidebar.SuspendLayout();
             pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pblLogo).BeginInit();
@@ -76,6 +76,7 @@
             lblSessao.Size = new Size(17, 18);
             lblSessao.TabIndex = 0;
             lblSessao.Text = "...";
+       
             // 
             // pnlSidebar
             // 
@@ -109,6 +110,26 @@
             btnUsuarios.Size = new Size(197, 45);
             btnUsuarios.TabIndex = 1;
             btnUsuarios.Text = "Usuários";
+            // 
+            // btnPedidos
+            // 
+            btnPedidos.Animated = true;
+            btnPedidos.BackColor = SystemColors.Control;
+            btnPedidos.BorderRadius = 5;
+            btnPedidos.CustomizableEdges = customizableEdges3;
+            btnPedidos.DisabledState.BorderColor = Color.DarkGray;
+            btnPedidos.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnPedidos.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnPedidos.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnPedidos.FillColor = Color.FromArgb(253, 247, 242);
+            btnPedidos.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPedidos.ForeColor = Color.FromArgb(76, 120, 178);
+            btnPedidos.Location = new Point(0, 159);
+            btnPedidos.Name = "btnPedidos";
+            btnPedidos.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnPedidos.Size = new Size(197, 45);
+            btnPedidos.TabIndex = 1;
+            btnPedidos.Text = "Pedidos";
             // 
             // btnCategorias
             // 
@@ -286,26 +307,6 @@
             pnlUsuario.ShadowDecoration.CustomizableEdges = customizableEdges14;
             pnlUsuario.Size = new Size(197, 60);
             pnlUsuario.TabIndex = 0;
-            // 
-            // btnPedidos
-            // 
-            btnPedidos.Animated = true;
-            btnPedidos.BackColor = SystemColors.Control;
-            btnPedidos.BorderRadius = 5;
-            btnPedidos.CustomizableEdges = customizableEdges3;
-            btnPedidos.DisabledState.BorderColor = Color.DarkGray;
-            btnPedidos.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnPedidos.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnPedidos.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnPedidos.FillColor = Color.FromArgb(253, 247, 242);
-            btnPedidos.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPedidos.ForeColor = Color.FromArgb(76, 120, 178);
-            btnPedidos.Location = new Point(0, 159);
-            btnPedidos.Name = "btnPedidos";
-            btnPedidos.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnPedidos.Size = new Size(197, 45);
-            btnPedidos.TabIndex = 1;
-            btnPedidos.Text = "Pedidos";
             // 
             // MainForm
             // 

@@ -10,16 +10,19 @@ using System.Windows.Forms;
 
 namespace Catteria.Desktop.Forms
 {
-    public partial class UsuarioFormDialog : Form
+    public partial class CupomFormDialog : Form
     {
-        public UsuarioFormDialog()
+        public CupomFormDialog()
         {
             InitializeComponent();
         }
 
-        private void cmbPerfil_SelectedIndexChanged(object sender, EventArgs e)
+        private void txtAno_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true; // Cancela o evento, impedindo a digitação
+            }
         }
     }
 }

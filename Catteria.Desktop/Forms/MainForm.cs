@@ -22,6 +22,9 @@ namespace Catteria.Desktop.Forms
 
         }
 
+        private void lblSessao_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

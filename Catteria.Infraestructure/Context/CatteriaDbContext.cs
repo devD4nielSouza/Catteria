@@ -48,6 +48,7 @@ namespace Catteria.Infraestructure.Context
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new FavoriteConfiguration());
             modelBuilder.ApplyConfiguration(new CupomConfiguration());
             modelBuilder.ApplyConfiguration(new CupomUsoConfiguration());
         }
