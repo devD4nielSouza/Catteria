@@ -31,6 +31,14 @@ namespace Catteria.Infraestructure.Context
         /// DbSet que representa a tabela de Products no banco de dados.
         /// </summary>
         public DbSet<Product> Products { get; set; }
+        /// <summary>
+        /// DbSet que representa a tabela de Cupons no banco de dados.
+        /// </summary>
+        public DbSet<Cupom> Cupons { get; set; }
+        /// <summary>
+        /// DbSet que representa a tabela de CupomUsos no banco de dados.
+        /// </summary>
+        public DbSet<CupomUso> CupomUsos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,6 +48,8 @@ namespace Catteria.Infraestructure.Context
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new CupomConfiguration());
+            modelBuilder.ApplyConfiguration(new CupomUsoConfiguration());
         }
     }
 }

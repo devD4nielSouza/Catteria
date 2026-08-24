@@ -81,6 +81,9 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<ICupomRepository, CupomRepository>();
+builder.Services.AddScoped<CupomService>();
+
 
 // ========================================================================
 // SUPORTE PARA MEMÓRIA E SESSION (CARRINHO TEMPORÁRIO)
