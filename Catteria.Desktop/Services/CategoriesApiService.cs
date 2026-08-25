@@ -34,7 +34,35 @@ namespace Catteria.Desktop.Services
             }
         }
        
-       
+        /// <summary>
+        /// Cria uma nova categoria via POST /api/categories.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public async Task <(bool Sucess, CategoriesResponseDto? Categoria, string ErrorMessage)>
+            CreateAsync ( CreateCategoriesDto dto) 
+        {
+            return await _http.PostAsync <CategoriesResponseDto>("/api/categories", dto);
+        }
+
+        /// <summary>
+        /// Atualiza uma categoria via PUT /api/categories/{id}.
+        /// Requer perfil Admin.
+        /// </summary>
+        public async Task<(bool Success, CategoriesResponseDto? Categoria, string ErrorMessage)>
+            UpdateAsync(int id, UpdateCategoriesDto dto)
+        {
+            return await _http.PutAsync<CategoriesResponseDto>($"/api/categories/{id}", dto);
+        }
+
+        /// <summary>
+        /// Exclui uma categoria via DELETE /api/categories/{id}.
+        /// Requer perfil Admin.
+        /// </summary>
+        public async Task<(bool Success, string ErrorMessage)> DeleteAsync(int id)
+        {
+            return await _http.DeleteAsync($"/api/categories/{id}");
+        }
 
     }
 }

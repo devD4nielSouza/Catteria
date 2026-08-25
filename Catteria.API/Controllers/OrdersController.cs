@@ -24,12 +24,22 @@ namespace Catteria.API.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Retorna todos os pedidos.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("All")]
         public async Task<ActionResult<IEnumerable<OrderDto>>> GetAll()
         {
             var orders = await _orderService.GetAllAsync();
             return Ok(orders);
         }
+
+        /// <summary>
+        /// Retorna um pedido pelo ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 
         [HttpGet("{id}")]
 
@@ -43,6 +53,11 @@ namespace Catteria.API.Controllers
             return Ok(order);
         }
 
+        /// <summary>
+        /// Cria um novo pedido.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpPost("CreateOrder")]
         [Authorize]
         public async Task<IActionResult> CreateOrder(
@@ -111,6 +126,12 @@ namespace Catteria.API.Controllers
             });
         }
 
+        /// <summary>
+        /// Atualiza um pedido existente
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
@@ -124,6 +145,11 @@ namespace Catteria.API.Controllers
             return Ok(order);
         }
 
+        /// <summary>
+        /// Exclui um pedido existente
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(int id)

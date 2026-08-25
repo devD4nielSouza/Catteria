@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Catteria.Desktop.DTOs
 {
-    public class OrdesResponseDto
+    public class OrdersResponseDto
     {
 
         public int Id { get; set; }
