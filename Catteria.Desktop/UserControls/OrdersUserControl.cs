@@ -14,5 +14,10 @@ namespace Catteria.Desktop.UserControls
         {
             InitializeComponent();
         }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
