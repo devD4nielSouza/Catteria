@@ -58,9 +58,9 @@
             // 
             // lblTituloForm
             // 
-            lblTituloForm.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblTituloForm.ForeColor = Color.FromArgb(0, 75, 135);
-            lblTituloForm.Location = new Point(34, 20);
+            lblTituloForm.Font = new Font("Gill Sans MT", 16.25F, FontStyle.Bold);
+            lblTituloForm.ForeColor = Color.Gray;
+            lblTituloForm.Location = new Point(34, 27);
             lblTituloForm.Name = "lblTituloForm";
             lblTituloForm.Size = new Size(460, 36);
             lblTituloForm.TabIndex = 14;
@@ -68,8 +68,8 @@
             // 
             // lblCampTitulo
             // 
-            lblCampTitulo.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            lblCampTitulo.ForeColor = Color.FromArgb(51, 61, 75);
+            lblCampTitulo.Font = new Font("Gill Sans MT", 9.75F, FontStyle.Bold);
+            lblCampTitulo.ForeColor = Color.FromArgb(76, 120, 178);
             lblCampTitulo.Location = new Point(34, 68);
             lblCampTitulo.Name = "lblCampTitulo";
             lblCampTitulo.Size = new Size(460, 20);
@@ -82,7 +82,6 @@
             txtTitulo.BorderRadius = 6;
             txtTitulo.CustomizableEdges = customizableEdges1;
             txtTitulo.DefaultText = "";
-            txtTitulo.FillColor = Color.FromArgb(245, 247, 250);
             txtTitulo.Font = new Font("Segoe UI", 9.5F);
             txtTitulo.Location = new Point(34, 90);
             txtTitulo.Name = "txtTitulo";
@@ -94,8 +93,8 @@
             // 
             // lblCampDesc
             // 
-            lblCampDesc.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            lblCampDesc.ForeColor = Color.FromArgb(51, 61, 75);
+            lblCampDesc.Font = new Font("Gill Sans MT", 9.75F, FontStyle.Bold);
+            lblCampDesc.ForeColor = Color.FromArgb(76, 120, 178);
             lblCampDesc.Location = new Point(34, 146);
             lblCampDesc.Name = "lblCampDesc";
             lblCampDesc.Size = new Size(460, 20);
@@ -108,7 +107,6 @@
             txtDescricao.BorderRadius = 6;
             txtDescricao.CustomizableEdges = customizableEdges3;
             txtDescricao.DefaultText = "";
-            txtDescricao.FillColor = Color.FromArgb(245, 247, 250);
             txtDescricao.Font = new Font("Segoe UI", 9.5F);
             txtDescricao.Location = new Point(34, 168);
             txtDescricao.Multiline = true;
@@ -121,8 +119,8 @@
             // 
             // lblCampCover
             // 
-            lblCampCover.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            lblCampCover.ForeColor = Color.FromArgb(51, 61, 75);
+            lblCampCover.Font = new Font("Gill Sans MT", 9.75F, FontStyle.Bold);
+            lblCampCover.ForeColor = Color.FromArgb(76, 120, 178);
             lblCampCover.Location = new Point(34, 342);
             lblCampCover.Name = "lblCampCover";
             lblCampCover.Size = new Size(460, 20);
@@ -135,7 +133,6 @@
             txtCoverUrl.BorderRadius = 6;
             txtCoverUrl.CustomizableEdges = customizableEdges5;
             txtCoverUrl.DefaultText = "";
-            txtCoverUrl.FillColor = Color.FromArgb(245, 247, 250);
             txtCoverUrl.Font = new Font("Segoe UI", 9.5F);
             txtCoverUrl.Location = new Point(34, 364);
             txtCoverUrl.Name = "txtCoverUrl";
@@ -147,8 +144,8 @@
             // 
             // lblCampCategoria
             // 
-            lblCampCategoria.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            lblCampCategoria.ForeColor = Color.FromArgb(51, 61, 75);
+            lblCampCategoria.Font = new Font("Gill Sans MT", 9.75F, FontStyle.Bold);
+            lblCampCategoria.ForeColor = Color.FromArgb(76, 120, 178);
             lblCampCategoria.Location = new Point(34, 420);
             lblCampCategoria.Name = "lblCampCategoria";
             lblCampCategoria.Size = new Size(460, 20);
@@ -157,7 +154,7 @@
             // 
             // cmbCategoria
             // 
-            cmbCategoria.BackColor = Color.FromArgb(245, 247, 250);
+            cmbCategoria.BackColor = SystemColors.ControlLight;
             cmbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCategoria.FlatStyle = FlatStyle.Flat;
             cmbCategoria.Font = new Font("Segoe UI", 9.5F);
@@ -169,11 +166,11 @@
             // chkDestaque
             // 
             chkDestaque.AutoSize = true;
-            chkDestaque.Font = new Font("Segoe UI", 9.5F);
+            chkDestaque.Font = new Font("Gill Sans MT", 9.75F);
             chkDestaque.ForeColor = Color.FromArgb(51, 61, 75);
-            chkDestaque.Location = new Point(34, 494);
+            chkDestaque.Location = new Point(34, 491);
             chkDestaque.Name = "chkDestaque";
-            chkDestaque.Size = new Size(179, 21);
+            chkDestaque.Size = new Size(166, 22);
             chkDestaque.TabIndex = 25;
             chkDestaque.Text = "⭐ Marcar como destaque";
             // 
@@ -181,7 +178,7 @@
             // 
             btnSalvar.BorderRadius = 8;
             btnSalvar.CustomizableEdges = customizableEdges7;
-            btnSalvar.FillColor = Color.FromArgb(40, 167, 69);
+            btnSalvar.FillColor = Color.FromArgb(164, 188, 223);
             btnSalvar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSalvar.ForeColor = Color.White;
             btnSalvar.Location = new Point(34, 524);
@@ -193,13 +190,13 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.BorderColor = Color.FromArgb(224, 228, 235);
+            btnCancelar.BorderColor = Color.Gray;
             btnCancelar.BorderRadius = 8;
             btnCancelar.BorderThickness = 1;
             btnCancelar.CustomizableEdges = customizableEdges9;
             btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.FillColor = Color.FromArgb(245, 247, 250);
-            btnCancelar.Font = new Font("Segoe UI", 9.5F);
+            btnCancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancelar.ForeColor = Color.FromArgb(51, 61, 75);
             btnCancelar.Location = new Point(190, 524);
             btnCancelar.Name = "btnCancelar";
@@ -214,7 +211,6 @@
             txtAno.BorderRadius = 6;
             txtAno.CustomizableEdges = customizableEdges11;
             txtAno.DefaultText = "";
-            txtAno.FillColor = Color.FromArgb(245, 247, 250);
             txtAno.Font = new Font("Segoe UI", 9.5F);
             txtAno.Location = new Point(34, 286);
             txtAno.Name = "txtAno";
@@ -226,8 +222,8 @@
             // 
             // lblCampAno
             // 
-            lblCampAno.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            lblCampAno.ForeColor = Color.FromArgb(51, 61, 75);
+            lblCampAno.Font = new Font("Gill Sans MT", 9.75F, FontStyle.Bold);
+            lblCampAno.ForeColor = Color.FromArgb(76, 120, 178);
             lblCampAno.Location = new Point(34, 264);
             lblCampAno.Name = "lblCampAno";
             lblCampAno.Size = new Size(460, 20);
@@ -238,7 +234,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(618, 578);
+            BackColor = Color.FromArgb(253, 247, 242);
+            ClientSize = new Size(521, 578);
             Controls.Add(lblTituloForm);
             Controls.Add(lblCampTitulo);
             Controls.Add(txtTitulo);

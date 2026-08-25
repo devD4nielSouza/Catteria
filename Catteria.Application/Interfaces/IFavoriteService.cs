@@ -6,8 +6,8 @@ namespace Catteria.Application.Services
 {
     public interface IFavoriteService
     {
-        Task<bool> ToggleFavoriteAsync(int userId, int productId);
-        Task<IEnumerable<Product>> GetFavoritesByUserAsync(int userId);
-        Task<bool> IsFavoriteAsync(int userId, int productId);
+        Task<bool> ToggleFavoriteAsync(string userId, int productId);
+        Task<IEnumerable<Product>> GetFavoritesByUserAsync(string userId);
+        Task<bool> IsFavoriteAsync(string userId, int productId);
     }
 }

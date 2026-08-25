@@ -19,12 +19,12 @@ namespace Catteria.API.Controllers
             _favoriteService = favoriteService;
         }
 
-        private int GetUserId()
+        private string GetUserId()
         {
             var idClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
                 ?? User.FindFirst("id")?.Value
                 ?? throw new System.Exception("User id not found in claims.");
-            return int.Parse(idClaim);
+            return idClaim;
         }
 
         [HttpPost("{productId}")]

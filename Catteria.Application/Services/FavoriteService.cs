@@ -15,7 +15,7 @@ namespace Catteria.Application.Services
             _repo = repo;
         }
 
-        public async Task<bool> ToggleFavoriteAsync(int userId, int productId)
+        public async Task<bool> ToggleFavoriteAsync(string userId, int productId)
         {
             var existing = await _repo.GetAsync(userId, productId);
             if (existing != null)
@@ -29,12 +29,12 @@ namespace Catteria.Application.Services
             return true;
         }
 
-        public async Task<IEnumerable<Product>> GetFavoritesByUserAsync(int userId)
+        public async Task<IEnumerable<Product>> GetFavoritesByUserAsync(string userId)
         {
             return await _repo.GetFavoritesByUserAsync(userId);
         }
 
-        public async Task<bool> IsFavoriteAsync(int userId, int productId)
+        public async Task<bool> IsFavoriteAsync(string userId, int productId)
         {
             return await _repo.AnyAsync(userId, productId);
         }

@@ -48,19 +48,19 @@
             // 
             // lblTituloForm
             // 
-            lblTituloForm.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblTituloForm.ForeColor = Color.FromArgb(0, 75, 135);
-            lblTituloForm.Location = new Point(23, 14);
+            lblTituloForm.Font = new Font("Gill Sans MT", 16.25F, FontStyle.Bold);
+            lblTituloForm.ForeColor = Color.Gray;
+            lblTituloForm.Location = new Point(39, 18);
             lblTituloForm.Name = "lblTituloForm";
-            lblTituloForm.Size = new Size(460, 36);
+            lblTituloForm.Size = new Size(123, 33);
             lblTituloForm.TabIndex = 28;
             lblTituloForm.Text = "Cupom";
             // 
             // lblCampTitulo
             // 
-            lblCampTitulo.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            lblCampTitulo.ForeColor = Color.FromArgb(51, 61, 75);
-            lblCampTitulo.Location = new Point(39, 62);
+            lblCampTitulo.Font = new Font("Gill Sans MT", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCampTitulo.ForeColor = Color.FromArgb(76, 120, 178);
+            lblCampTitulo.Location = new Point(39, 65);
             lblCampTitulo.Name = "lblCampTitulo";
             lblCampTitulo.Size = new Size(460, 20);
             lblCampTitulo.TabIndex = 29;
@@ -72,9 +72,8 @@
             txtTitulo.BorderRadius = 6;
             txtTitulo.CustomizableEdges = customizableEdges1;
             txtTitulo.DefaultText = "";
-            txtTitulo.FillColor = Color.FromArgb(245, 247, 250);
             txtTitulo.Font = new Font("Segoe UI", 9.5F);
-            txtTitulo.Location = new Point(39, 84);
+            txtTitulo.Location = new Point(39, 90);
             txtTitulo.Name = "txtTitulo";
             txtTitulo.PlaceholderText = "Ex: CUPOM123";
             txtTitulo.SelectedText = "";
@@ -88,9 +87,8 @@
             txtAno.BorderRadius = 6;
             txtAno.CustomizableEdges = customizableEdges3;
             txtAno.DefaultText = "";
-            txtAno.FillColor = Color.FromArgb(245, 247, 250);
             txtAno.Font = new Font("Segoe UI", 9.5F);
-            txtAno.Location = new Point(39, 161);
+            txtAno.Location = new Point(39, 167);
             txtAno.Name = "txtAno";
             txtAno.PlaceholderText = "Ex: 20";
             txtAno.SelectedText = "";
@@ -101,9 +99,9 @@
             // 
             // lblCampCover
             // 
-            lblCampCover.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            lblCampCover.ForeColor = Color.FromArgb(51, 61, 75);
-            lblCampCover.Location = new Point(39, 138);
+            lblCampCover.Font = new Font("Gill Sans MT", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCampCover.ForeColor = Color.FromArgb(76, 120, 178);
+            lblCampCover.Location = new Point(39, 145);
             lblCampCover.Name = "lblCampCover";
             lblCampCover.Size = new Size(460, 20);
             lblCampCover.TabIndex = 35;
@@ -112,11 +110,11 @@
             // chkDestaque
             // 
             chkDestaque.AutoSize = true;
-            chkDestaque.Font = new Font("Segoe UI", 9.5F);
+            chkDestaque.Font = new Font("Gill Sans MT", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             chkDestaque.ForeColor = Color.FromArgb(51, 61, 75);
             chkDestaque.Location = new Point(39, 225);
             chkDestaque.Name = "chkDestaque";
-            chkDestaque.Size = new Size(117, 21);
+            chkDestaque.Size = new Size(115, 22);
             chkDestaque.TabIndex = 39;
             chkDestaque.Text = "⭐ Cupom Ativo";
             // 
@@ -124,7 +122,7 @@
             // 
             btnSalvar.BorderRadius = 8;
             btnSalvar.CustomizableEdges = customizableEdges5;
-            btnSalvar.FillColor = Color.FromArgb(40, 167, 69);
+            btnSalvar.FillColor = Color.FromArgb(164, 188, 223);
             btnSalvar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSalvar.ForeColor = Color.White;
             btnSalvar.Location = new Point(39, 284);
@@ -136,18 +134,18 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.BorderColor = Color.FromArgb(224, 228, 235);
+            btnCancelar.BorderColor = Color.Gray;
             btnCancelar.BorderRadius = 8;
             btnCancelar.BorderThickness = 1;
             btnCancelar.CustomizableEdges = customizableEdges7;
             btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.FillColor = Color.FromArgb(245, 247, 250);
-            btnCancelar.Font = new Font("Segoe UI", 9.5F);
+            btnCancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancelar.ForeColor = Color.FromArgb(51, 61, 75);
-            btnCancelar.Location = new Point(229, 284);
+            btnCancelar.Location = new Point(215, 284);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnCancelar.Size = new Size(100, 42);
+            btnCancelar.Size = new Size(115, 42);
             btnCancelar.TabIndex = 41;
             btnCancelar.Text = "Cancelar";
             // 
@@ -155,7 +153,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(253, 247, 242);
             ClientSize = new Size(558, 344);
+            Controls.Add(btnCancelar);
             Controls.Add(lblTituloForm);
             Controls.Add(lblCampTitulo);
             Controls.Add(txtTitulo);
@@ -163,7 +163,6 @@
             Controls.Add(lblCampCover);
             Controls.Add(chkDestaque);
             Controls.Add(btnSalvar);
-            Controls.Add(btnCancelar);
             Name = "CupomFormDialog";
             Text = "Cupom";
             ResumeLayout(false);

@@ -7,10 +7,10 @@ namespace Catteria.Domain.Interfaces
 {
     public interface IFavoriteRepository
     {
-        Task<Favorite?> GetAsync(int userId, int productId);
+        Task<Favorite?> GetAsync(string userId, int productId);
         Task AddAsync(Favorite favorite);
         Task RemoveAsync(Favorite favorite);
-        Task<IEnumerable<Product>> GetFavoritesByUserAsync(int userId);
-        Task<bool> AnyAsync(int userId, int productId);
+        Task<IEnumerable<Product>> GetFavoritesByUserAsync(string userId);
+        Task<bool> AnyAsync(string userId, int productId);
     }
 }

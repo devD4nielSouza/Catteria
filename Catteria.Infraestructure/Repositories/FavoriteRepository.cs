@@ -17,7 +17,7 @@ namespace Catteria.Infraestructure.Repositories
             _context = context;
         }
 
-        public async Task<Favorite?> GetAsync(int userId, int productId)
+        public async Task<Favorite?> GetAsync(string userId, int productId)
         {
             // Use FindAsync para retornar a entidade rastreada (útil para remoção posterior)
             return await _context.Favorites.FindAsync(userId, productId);
@@ -35,7 +35,7 @@ namespace Catteria.Infraestructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Product>> GetFavoritesByUserAsync(int userId)
+        public async Task<IEnumerable<Product>> GetFavoritesByUserAsync(string userId)
         {
             return await _context.Favorites
                 .AsNoTracking()
@@ -45,7 +45,7 @@ namespace Catteria.Infraestructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<bool> AnyAsync(int userId, int productId)
+        public async Task<bool> AnyAsync(string userId, int productId)
         {
             return await _context.Favorites
                 .AsNoTracking()

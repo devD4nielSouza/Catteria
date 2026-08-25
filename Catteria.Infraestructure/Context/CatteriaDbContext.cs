@@ -27,6 +27,8 @@ namespace Catteria.Infraestructure.Context
         /// </summary>
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<Favorite> Favorites { get; set; }
+
         /// <summary>
         /// DbSet que representa a tabela de Products no banco de dados.
         /// </summary>

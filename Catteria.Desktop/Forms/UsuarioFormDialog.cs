@@ -16,10 +16,5 @@ namespace Catteria.Desktop.Forms
         {
             InitializeComponent();
         }
-
-        private void cmbPerfil_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
