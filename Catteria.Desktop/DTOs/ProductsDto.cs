@@ -17,6 +17,8 @@ namespace Catteria.Desktop.DTOs
         public int CategoryId { get; set; } // Chave estrangeira para a categoria do produto
         public bool IsFeatured { get; set; } // Indica se o produto é destaque ou não
         public DateTime CreatedAt { get; set; } = DateTime.Now; // Data de criação do produto, definida automaticamente para a data atual
+
+        public string CategoryName { get; set; } = string.Empty;
     }
 
     public class CreateProductDto

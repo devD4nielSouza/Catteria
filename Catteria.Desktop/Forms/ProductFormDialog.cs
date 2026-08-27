@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Catteria.Desktop.DTOs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,18 @@ namespace Catteria.Desktop.Forms
 {
     public partial class ProductFormDialog : Form
     {
+
+        private List<CategoriesResponseDto> _categorias = new();
+        private ProductsResponseDto? _ProdutoExistente; 
         public ProductFormDialog()
         {
+            InitializeComponent();
+        }
+
+        public ProductFormDialog(List<CategoriesResponseDto> categorias, ProductsResponseDto? game)
+        {
+            _categorias = categorias;
+            _ProdutoExistente = game;
             InitializeComponent();
         }
     }
