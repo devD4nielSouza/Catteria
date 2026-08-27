@@ -33,10 +33,11 @@ namespace Catteria.Application.DTOs
     public class CreateOrderResponseDto
     {
         public string Message { get; set; } = string.Empty;
-
         public int OrderId { get; set; }
+        public string? CupomCodigo { get; set; }
+        public decimal Desconto { get; set; }
+        public decimal TotalValue { get; set; }
     }
-
     public class UpdateOrderDto
     {
         public string Status { get; set; } = string.Empty;

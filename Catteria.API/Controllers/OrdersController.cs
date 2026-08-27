@@ -142,21 +142,22 @@ namespace Catteria.API.Controllers
             order.Desconto = desconto;
 
             _context.Orders.Add(order);
-
             // NOVO: registra o uso do cupom, se aplicado
+            await _context.SaveChangesAsync(); // 1º save — aqui order.Id é preenchido pelo banco
+
             if (order.CupomId is not null)
             {
-                var cupomUso = new CupomUso(order.CupomId.Value, userId, order.Id);
+                var cupomUso = new CupomUso(order.CupomId.Value, userId, order.Id); // agora order.Id > 0
                 _context.CupomUsos.Add(cupomUso);
+                await _context.SaveChangesAsync(); // 2º save
             }
-
-             await _context.SaveChangesAsync(); // salva Order + CupomUso juntos
-           
-            return Ok(new
+            return Ok(new CreateOrderResponseDto
             {
-                message = "Pedido criado com sucesso.",
-                orderId = order.Id,
-                total = order.TotalValue
+                Message = "Pedido criado com sucesso!",
+                OrderId = order.Id,
+                CupomCodigo = dto.CupomCodigo,
+                Desconto = order.Desconto,
+                TotalValue = order.TotalValue
             });
         }
             /// <summary>
