@@ -17,7 +17,7 @@ namespace Catteria.Domain.Entities
         public string UsuarioId { get; private set; }
 
         // Id do pedido associado ao uso do cupom
-        public Guid OrderId { get; private set; }
+        public int OrderId { get; private set; }
 
         // Data e hora em que o cupom foi usado (UTC)
         public DateTime DataUso { get; private set; }
@@ -27,7 +27,7 @@ namespace Catteria.Domain.Entities
 
         // Construtor público que cria um novo registro de uso de cupom,
         // validando argumentos obrigatórios e inicializando propriedades.
-        public CupomUso(Guid cupomId, string usuarioId, Guid orderId)
+        public CupomUso(Guid cupomId, string usuarioId, int orderId)
         {
             // Valida que o cupomId não seja o Guid vazio
             if (cupomId == Guid.Empty)
@@ -36,9 +36,8 @@ namespace Catteria.Domain.Entities
             // Valida que o usuarioId não seja nulo, vazio ou somente espaços
             if (string.IsNullOrWhiteSpace(usuarioId))
                 throw new ArgumentException("UsuarioId inválido.", nameof(usuarioId));
-
-            // Valida que o orderId não seja o Guid vazio
-            if (orderId == Guid.Empty)
+            // Valida que o orderId não seja menor ou igual a zero
+            if (orderId <= 0)
                 throw new ArgumentException("OrderId inválido.", nameof(orderId));
 
             // Inicializa propriedades: gera um novo Id e marca a DataUso como UTC agora

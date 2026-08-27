@@ -21,7 +21,9 @@ namespace Catteria.Domain.Entities
         public string? Observations { get; set; }
 
         public string PaymentMethod { get; set; } = string.Empty;
-
+        public Guid? CupomId { get; set; }
+        public string? CupomCodigo { get; set; }
+        public decimal Desconto { get; set; }
         public virtual ApplicationUser? User { get; set; }
 
         public virtual ICollection<OrderItem> OrderItems { get; set; }

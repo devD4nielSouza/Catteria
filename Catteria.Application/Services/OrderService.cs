@@ -11,9 +11,14 @@ namespace Catteria.Application.Services
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
-        public OrderService(IOrderRepository orderRepository)
+        private readonly ICupomRepository _cupomRepository;
+        private readonly CupomService _cupomService;
+       
+        public OrderService(IOrderRepository orderRepository, ICupomRepository cupomRepository, CupomService cupomService )
         {
             _orderRepository = orderRepository;
+            _cupomRepository = cupomRepository;
+            _cupomService = cupomService;
         }
         //Task<IEnumerable<OrderDto>> GetAllAsync();
 
@@ -33,11 +38,39 @@ namespace Catteria.Application.Services
         //Task<OrderDto> CreateAsync(CreateOrderDto orderDto);
         public async Task<OrderDto> CreateAsync(CreateOrderDto dto)
         {
-            var order = new Order {
+            var totalValue = dto.TotalValue;
+            Guid? cupomIdAplicado = null;
+
+            if (!string.IsNullOrWhiteSpace(dto.CupomCodigo))
+            {
+                var resultado = await _cupomService.ValidarAsync(dto.CupomCodigo, dto.IdUser);
+
+                if (!resultado.Valido)
+                    throw new InvalidOperationException(resultado.MotivoInvalido);
+
+                var desconto = totalValue * (resultado.Cupom!.PercentualDesconto / 100m);
+                totalValue -= desconto;
+                cupomIdAplicado = resultado.Cupom.Id;
+            }
+
+            var order = new Order
+            {
                 Date = DateTime.Now,
-                TotalValue = dto.TotalValue
+                TotalValue = totalValue,
+                CupomId = cupomIdAplicado,
+                CupomCodigo = cupomIdAplicado is not null ? dto.CupomCodigo : null
             };
+
             await _orderRepository.AddAsync(order);
+
+            if (cupomIdAplicado is not null)
+            {
+                var cupomUso = new CupomUso(cupomIdAplicado.Value, dto.IdUser, order.Id);
+                await _cupomRepository.RegistrarUsoAsync(cupomUso);
+            }
+
+            await _cupomRepository.SalvarAlteracoesAsync(); // salva Order + CupomUso juntos, mesmo contexto
+
             return MapToDto(order);
         }
 
@@ -74,7 +107,9 @@ namespace Catteria.Application.Services
                 TotalValue = order.TotalValue,
                 Status = order.Status,
                 IdUser = order.IdUser,
-
+                CupomCodigo = order.CupomCodigo,
+                Desconto = order.Desconto,
+                PercentualDesconto = order.Desconto,
                 CustomerName = order.User?.Name ?? "",
                 PaymentMethod = order.PaymentMethod,
 

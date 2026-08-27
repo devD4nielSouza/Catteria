@@ -4,6 +4,7 @@ using Catteria.Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Catteria.Infraestructure.Migrations
 {
     [DbContext(typeof(CatteriaDbContext))]
-    partial class CatteriaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260825183226_TabelaFAvoritos2")]
+    partial class TabelaFAvoritos2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -206,9 +209,6 @@ namespace Catteria.Infraestructure.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<decimal>("Desconto")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("IdUser")
                         .IsRequired()

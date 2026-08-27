@@ -1,5 +1,4 @@
-﻿
-const listaProdutos = document.getElementById("listaProdutos");
+﻿const listaProdutos = document.getElementById("listaProdutos");
 const subtotalElement = document.getElementById("subtotal");
 const freteElement = document.getElementById("frete");
 const totalElement = document.getElementById("total");
@@ -15,6 +14,8 @@ const formasPagamento = document.querySelectorAll(
 const pagamentoPix = document.getElementById("pagamentoPix");
 const pagamentoCartao = document.getElementById("pagamentoCartao");
 const pagamentoRetirada = document.getElementById("pagamentoRetirada");
+
+let cupomAplicado = null; // { codigo, percentual }
 
 
 formasPagamento.forEach(opcao => {
@@ -132,11 +133,83 @@ function carregarResumo() {
 
     const frete = formaPagamento === "retirada" ? 0 : FRETE;
 
-    const total = subtotal + frete;
+    const desconto = cupomAplicado
+        ? subtotal * (cupomAplicado.percentual / 100)
+        : 0;
+
+    const total = subtotal + frete - desconto;
 
     subtotalElement.textContent = formatarPreco(subtotal);
     freteElement.textContent = formatarPreco(frete);
     totalElement.textContent = formatarPreco(total);
+
+    const linhaDesconto = document.getElementById("linhaDesconto");
+    const descontoElement = document.getElementById("desconto");
+
+    if (cupomAplicado) {
+        linhaDesconto.style.display = "flex";
+        descontoElement.textContent = `- ${formatarPreco(desconto)}`;
+    } else {
+        linhaDesconto.style.display = "none";
+    }
+}
+
+async function aplicarCupom() {
+
+    const inputCupom = document.getElementById("inputCupom");
+    const mensagemEl = document.getElementById("mensagemCupom");
+
+    const codigo = inputCupom.value.trim();
+
+    if (!codigo) {
+        mensagemEl.textContent = "Digite um código de cupom.";
+        mensagemEl.className = "form-text text-danger";
+        return;
+    }
+
+    try {
+
+        const response = await fetch("http://localhost:5273/api/cupons/validar", {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({ codigo })
+        });
+
+        const resultado = await response.json();
+
+        if (!response.ok || !resultado.valido) {
+
+            cupomAplicado = null;
+
+            mensagemEl.textContent = resultado.motivoInvalido || "Cupom inválido.";
+            mensagemEl.className = "form-text text-danger";
+
+            carregarResumo();
+            return;
+        }
+
+        cupomAplicado = {
+            codigo: codigo,
+            percentual: resultado.percentualDesconto
+        };
+
+        mensagemEl.textContent = `Cupom aplicado: ${resultado.percentualDesconto}% de desconto.`;
+        mensagemEl.className = "form-text text-success";
+
+        carregarResumo();
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+        mensagemEl.textContent = "Erro ao validar cupom. Tente novamente.";
+        mensagemEl.className = "form-text text-danger";
+    }
 }
 
 async function finalizarPedido() {
@@ -163,10 +236,11 @@ async function finalizarPedido() {
 
     const pedido = {
 
-
         observations: observacoes,
 
         paymentMethod: formaPagamento,
+
+        cupomCodigo: cupomAplicado ? cupomAplicado.codigo : null,
 
         items: cart.map(item => ({
             idProduct: Number(item.id),
@@ -205,6 +279,8 @@ async function finalizarPedido() {
         localStorage.removeItem("cart");
 
         localStorage.removeItem("observacoesPedido");
+
+        cupomAplicado = null;
 
         alert("Pedido realizado com sucesso!");
 

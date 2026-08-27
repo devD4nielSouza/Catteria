@@ -2,13 +2,14 @@
 using Catteria.Application.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Catteria.API.Controllers
 {
     // API/Controllers/CuponsController.cs
     [ApiController]
     [Route("api/cupons")]
-    [Authorize(Roles = "Admin")]
+
     public class CuponsController : ControllerBase
     {
         private readonly CupomService _cupomService;
@@ -19,6 +20,7 @@ namespace Catteria.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<List<CupomDto>>> Listar()
         {
             var cupons = await _cupomService.ListarAsync();
@@ -26,6 +28,7 @@ namespace Catteria.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<CupomDto>> Criar([FromBody] CriarCupomRequest request)
         {
             try
@@ -44,6 +47,7 @@ namespace Catteria.API.Controllers
         }
 
         [HttpPut("{id:guid}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<CupomDto>> Atualizar(Guid id, [FromBody] AtualizarCupomRequest request)
         {
             try
@@ -62,6 +66,7 @@ namespace Catteria.API.Controllers
         }
 
         [HttpPatch("{id:guid}/status")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AlternarStatus(Guid id, [FromQuery] bool ativo)
         {
             try
@@ -74,5 +79,21 @@ namespace Catteria.API.Controllers
                 return NotFound(new { mensagem = ex.Message });
             }
         }
+
+        [HttpPost("validar")]
+        public async Task<IActionResult> Validar([FromBody] ValidarCupomRequest request)
+        {
+            var usuarioId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+            var resultado = await _cupomService.ValidarAsync(request.Codigo, usuarioId);
+
+            return Ok(new
+            {
+                valido = resultado.Valido,
+                percentualDesconto = resultado.Cupom?.PercentualDesconto,
+                motivoInvalido = resultado.MotivoInvalido
+            });
+        }
+
+        public record ValidarCupomRequest(string Codigo);
     }
 }

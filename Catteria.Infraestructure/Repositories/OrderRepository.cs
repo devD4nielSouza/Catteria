@@ -55,7 +55,7 @@ namespace Catteria.Infraestructure.Repositories
         public async Task AddAsync(Order order)
         {
             await _context.Orders.AddAsync(order);
-            await _context.SaveChangesAsync();
+           
         }
 
         /// <summary>

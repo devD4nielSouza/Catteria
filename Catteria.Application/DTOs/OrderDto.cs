@@ -13,15 +13,18 @@ namespace Catteria.Application.DTOs
         public string IdUser { get; set; } // Chave estrangeira para o usuário que fez o pedido (relacionamento com a entidade User)
         public string CustomerName { get; set; } = string.Empty;
         public string PaymentMethod { get; set; } = string.Empty;
+        public string? CupomCodigo { get; set; }
+        public decimal Desconto { get; set; }
+        public decimal PercentualDesconto { get; set; }
         public List<OrderItemDto> Items { get; set; } = new();
     }
 
     public class CreateOrderDto
     {
-      
+        public string IdUser { get; set; } = string.Empty;
         public decimal TotalValue { get; set; } // Valor total do pedido
         public string? Observations { get; set; }
-
+        public string? CupomCodigo { get; set; }
         public string PaymentMethod { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
         public List<CreateOrderItemDto> Items { get; set; } = new();

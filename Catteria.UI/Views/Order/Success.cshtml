@@ -1,4 +1,5 @@
-﻿@model Catteria.Application.DTOs.OrderDto
+﻿
+@model Catteria.Application.DTOs.OrderDto
 
 @{
     ViewData["Title"] = "Pedido realizado";
@@ -36,7 +37,6 @@
             <div class="row g-4 mb-4">
 
                 <div class="col-md-6">
-
                     <small class="text-muted">
                         Número do pedido
                     </small>
@@ -44,12 +44,9 @@
                     <h5 class="mb-0">
                         #@Model.Id
                     </h5>
-
                 </div>
 
-
                 <div class="col-md-6">
-
                     <small class="text-muted">
                         Data do pedido
                     </small>
@@ -57,12 +54,9 @@
                     <h5 class="mb-0">
                         @Model.Date.ToString("dd/MM/yyyy HH:mm")
                     </h5>
-
                 </div>
 
-
                 <div class="col-md-6">
-
                     <small class="text-muted">
                         Cliente
                     </small>
@@ -70,12 +64,9 @@
                     <h5 class="mb-0">
                         @Model.CustomerName
                     </h5>
-
                 </div>
 
-
                 <div class="col-md-6">
-
                     <small class="text-muted">
                         Forma de pagamento
                     </small>
@@ -100,7 +91,6 @@
                         }
 
                     </h5>
-
                 </div>
 
             </div>
@@ -147,8 +137,46 @@
             }
 
 
-            <!-- Total -->
+            <!-- Cupom -->
+            @if (!string.IsNullOrEmpty(Model.CupomCodigo))
+            {
+                <div class="mt-4 p-3 rounded border">
 
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+                            <small class="text-muted">
+                                Cupom utilizado
+                            </small>
+
+                            <h5 class="mb-1">
+                                @Model.CupomCodigo
+                            </h5>
+
+                            <small class="text-success">
+                                @Model.PercentualDesconto% de desconto
+                            </small>
+                        </div>
+
+                        <div class="text-end">
+
+                            <small class="text-muted">
+                                Desconto
+                            </small>
+
+                            <h5 class="mb-0 text-success">
+                                - @Model.Desconto.ToString("C")
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+
+            <!-- Total -->
             <div class="d-flex justify-content-between align-items-center mt-4">
 
                 <h5 class="mb-0">

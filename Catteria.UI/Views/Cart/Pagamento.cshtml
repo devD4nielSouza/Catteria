@@ -222,7 +222,24 @@
                             Opcional. Máximo de 500 caracteres.
                         </div>
                     </div>
+                    <div class="mt-4">
+                        <h5 class="mb-3">Cupom de desconto</h5>
 
+                        <div class="input-group">
+                            <input type="text"
+                                   id="inputCupom"
+                                   class="form-control"
+                                   placeholder="Digite o código do cupom">
+
+                            <button type="button"
+                                    class="btn btn-outline-dark"
+                                    onclick="aplicarCupom()">
+                                Aplicar
+                            </button>
+                        </div>
+
+                        <div id="mensagemCupom" class="form-text"></div>
+                    </div>
                     <hr>
 
                     <div class="d-flex justify-content-between">
@@ -234,7 +251,12 @@
                         <span>Frete</span>
                         <strong id="frete">R$ 10,00</strong>
                     </div>
-
+                    <div class="d-flex justify-content-between mt-2 text-success"
+     id="linhaDesconto"
+     style="display: none;">
+    <span>Desconto</span>
+    <strong id="desconto">- R$ 0,00</strong>
+</div>
                     <hr>
 
                     <div class="d-flex justify-content-between fs-5">

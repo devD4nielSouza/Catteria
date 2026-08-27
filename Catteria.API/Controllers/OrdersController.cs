@@ -17,11 +17,13 @@ namespace Catteria.API.Controllers
         private readonly IOrderService _orderService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly CatteriaDbContext _context;
-        public OrdersController(IOrderService orderService, UserManager<ApplicationUser> userManager, CatteriaDbContext context)
+        private readonly CupomService _cupomService;
+        public OrdersController(IOrderService orderService, UserManager<ApplicationUser> userManager, CatteriaDbContext context, CupomService cupomService)
         {
             _orderService = orderService;
             _userManager = userManager;
             _context = context;
+            _cupomService = cupomService;
         }
 
         /// <summary>
@@ -61,7 +63,7 @@ namespace Catteria.API.Controllers
         [HttpPost("CreateOrder")]
         [Authorize]
         public async Task<IActionResult> CreateOrder(
-        [FromBody] CreateOrderDto dto)
+    [FromBody] CreateOrderDto dto)
         {
             var userId = _userManager.GetUserId(User);
 
@@ -90,13 +92,13 @@ namespace Catteria.API.Controllers
                 PaymentMethod = dto.PaymentMethod
             };
 
-            decimal total = 0;
+            decimal subtotal = 0;
 
             foreach (var item in dto.Items)
             {
-                var subtotal = item.UnitPrice * item.Quantity;
+                var subtotalItem = item.UnitPrice * item.Quantity;
 
-                total += subtotal;
+                subtotal += subtotalItem;
 
                 var orderItem = new OrderItem
                 {
@@ -108,12 +110,36 @@ namespace Catteria.API.Controllers
                 order.OrderItems.Add(orderItem);
             }
 
-            if (dto.PaymentMethod != "retirada")
+            // Frete
+            decimal frete = dto.PaymentMethod != "retirada" ? 10 : 0;
+
+            // Cupom
+            decimal desconto = 0;
+
+            if (!string.IsNullOrWhiteSpace(dto.CupomCodigo))
             {
-                total += 10;
+                var resultadoCupom =
+                    await _cupomService.ValidarAsync(dto.CupomCodigo, userId);
+
+                if (!resultadoCupom.Valido)
+                {
+                    return BadRequest(new
+                    {
+                        message = resultadoCupom.MotivoInvalido ?? "Cupom inválido."
+                    });
+                }
+
+                var percentual = resultadoCupom.Cupom!.PercentualDesconto;
+
+                desconto = subtotal * (percentual / 100);
+
+                order.CupomId = resultadoCupom.Cupom.Id;
             }
 
+            var total = subtotal + frete - desconto;
+
             order.TotalValue = total;
+            order.Desconto = desconto;
 
             _context.Orders.Add(order);
 
