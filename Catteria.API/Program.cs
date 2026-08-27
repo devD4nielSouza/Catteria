@@ -52,11 +52,14 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 // Configuração de Cookie Authentication para a API
 builder.Services.ConfigureApplicationCookie(options =>
 {
+    options.Cookie.Name = "CatteriaAuth";
+
     options.Events.OnRedirectToLogin = context =>
     {
         context.Response.StatusCode = 401;
         return Task.CompletedTask;
     };
+
     options.Events.OnRedirectToAccessDenied = context =>
     {
         context.Response.StatusCode = 403;
@@ -117,11 +120,12 @@ builder.Services.AddSwaggerGen(options =>
 // =====================================================================
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("AllowUI", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("http://localhost:5246")
               .AllowAnyMethod()
-              .AllowAnyHeader();
+              .AllowAnyHeader()
+              .AllowCredentials();
     });
 });
 
@@ -147,7 +151,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors("AllowAll");
+app.UseRouting();
+app.UseCors("AllowUI");
 
 // 📌 IMPORTANTE: UseAuthentication ANTES de UseAuthorization
 app.UseAuthentication();

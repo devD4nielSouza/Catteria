@@ -55,7 +55,17 @@
                         <a asp-controller="Home" asp-action="Index">Home</a>
                         <a asp-controller="Products" asp-action="Index">Cardápio</a>
                     <a asp-controller="Home" asp-action="Index" asp-fragment="sobre-nos">Sobre</a>
-                    
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+    <a asp-controller="Favorites"
+       asp-action="Index"
+       class="position-relative"
+       title="Meus favoritos">
+
+        <i class="bi bi-heart fs-4"></i>
+
+    </a>
+}
                         <a asp-controller="Cart" asp-action="Index" class="position-relative">
 
                             <i class="bi bi-cart3 fs-4"></i>

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Catteria.API.Controllers
 {
+
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
     public class FavoritesController : ControllerBase
     {
         private readonly IFavoriteService _favoriteService;
@@ -27,11 +27,29 @@ namespace Catteria.API.Controllers
             return idClaim;
         }
 
+
+        //[HttpPost("{productId}")]
+        //public async Task<IActionResult> Toggle(int productId)
+        //{
+        //    var userId = GetUserId();
+        //    var isFavorite = await _favoriteService.ToggleFavoriteAsync(userId, productId);
+        //    return Ok(new { isFavorite });
+        //}
+
+        [Authorize]
         [HttpPost("{productId}")]
         public async Task<IActionResult> Toggle(int productId)
         {
-            var userId = GetUserId();
-            var isFavorite = await _favoriteService.ToggleFavoriteAsync(userId, productId);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized();
+            }
+
+            var isFavorite = await _favoriteService
+                .ToggleFavoriteAsync(userId, productId);
+
             return Ok(new { isFavorite });
         }
 

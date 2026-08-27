@@ -57,9 +57,11 @@ builder.Services.AddDataProtection()
 //Configuração dos cookies de autenticação 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.LoginPath = "/Account/Login"; // Redireciona para Página de login
-    options.LogoutPath = "/Account/Logout"; // Redireciona para Página de logout
-    options.AccessDeniedPath = "/Account/AccessDenied"; // Redireciona para Página de acesso negado
+    options.Cookie.Name = "CatteriaAuth";
+
+    options.LoginPath = "/Account/Login";
+    options.LogoutPath = "/Account/Logout";
+    options.AccessDeniedPath = "/Account/AccessDenied";
 });
 
 //EMAIL SENDER - Serviço de envio de e-mails

@@ -89,44 +89,5 @@
     <br />
 
             @section Scripts {
-    <script>
-        async function toggleFavorite(productId) {
-            try {
-                const response = await fetch(`/api/Favorites/${productId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error('Erro ao alterar favorito.');
-                }
-
-                const data = await response.json();
-
-                const icon = document.getElementById('favoriteIcon');
-                const text = document.getElementById('favoriteText');
-                const button = document.getElementById('favoriteButton');
-
-                if (data.isFavorite) {
-                    icon.className = 'bi bi-heart-fill me-2';
-                    text.textContent = 'Remover dos favoritos';
-
-                    button.classList.remove('btn-outline-danger');
-                    button.classList.add('btn-danger');
-                } else {
-                    icon.className = 'bi bi-heart me-2';
-                    text.textContent = 'Adicionar aos favoritos';
-
-                    button.classList.remove('btn-danger');
-                    button.classList.add('btn-outline-danger');
-                }
-
-            } catch (error) {
-                console.error(error);
-                alert('Não foi possível alterar os favoritos.');
-            }
-        }
-    </script>
+    <script src="~/js/favorites.js"></script>
 }

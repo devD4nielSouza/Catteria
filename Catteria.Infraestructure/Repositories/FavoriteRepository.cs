@@ -41,7 +41,6 @@ namespace Catteria.Infraestructure.Repositories
                 .AsNoTracking()
                 .Where(f => f.UserId == userId)
                 .Select(f => f.Product!)
-                .Include(p => p.Category)
                 .ToListAsync();
         }
 
