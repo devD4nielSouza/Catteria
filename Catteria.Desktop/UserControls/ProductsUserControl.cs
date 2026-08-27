@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Catteria.Desktop.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,12 +13,18 @@ namespace Catteria.Desktop.UserControls
 {
     public partial class ProductsUserControl : UserControl
     {
+
+        private ProductsApiService _apiService = null;
+        private CategoriesApiService _categoriesService = null;
+
         public ProductsUserControl()
         {
             InitializeComponent();
         }
 
-  
- 
+        private void ProductsUserControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

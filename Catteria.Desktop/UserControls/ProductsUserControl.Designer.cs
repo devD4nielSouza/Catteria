@@ -206,6 +206,7 @@
             Controls.Add(gridProdutos);
             Name = "ProductsUserControl";
             Size = new Size(793, 482);
+            Load += ProductsUserControl_Load;
             ((System.ComponentModel.ISupportInitialize)gridProdutos).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -39,7 +39,7 @@ namespace Catteria.Desktop.Services
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task <(bool Sucess, CategoriesResponseDto? Categoria, string ErrorMessage)>
+        public async Task <(bool Success, CategoriesResponseDto? Categoria, string ErrorMessage)>
             CreateAsync ( CreateCategoriesDto dto) 
         {
             return await _http.PostAsync <CategoriesResponseDto>("/api/categories", dto);
