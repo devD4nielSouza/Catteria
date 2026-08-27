@@ -131,6 +131,7 @@
             btnSalvar.Size = new Size(140, 42);
             btnSalvar.TabIndex = 40;
             btnSalvar.Text = "💾 Salvar";
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // btnCancelar
             // 

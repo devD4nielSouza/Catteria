@@ -24,5 +24,17 @@ namespace Catteria.Desktop.Forms
                 e.Handled = true; // Cancela o evento, impedindo a digitação
             }
         }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtTitulo.Text))
+            {
+                MessageBox.Show(
+                    "Informe o titulo do game.",
+                    "Validação",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+        }
     }
 }

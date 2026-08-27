@@ -76,7 +76,6 @@
             lblSessao.Size = new Size(17, 18);
             lblSessao.TabIndex = 0;
             lblSessao.Text = "...";
-       
             // 
             // pnlSidebar
             // 
@@ -110,6 +109,7 @@
             btnUsuarios.Size = new Size(197, 45);
             btnUsuarios.TabIndex = 1;
             btnUsuarios.Text = "Usuários";
+            btnUsuarios.Click += btnUsuarios_Click;
             // 
             // btnPedidos
             // 
@@ -130,6 +130,7 @@
             btnPedidos.Size = new Size(197, 45);
             btnPedidos.TabIndex = 1;
             btnPedidos.Text = "Pedidos";
+            btnPedidos.Click += btnPedidos_Click;
             // 
             // btnCategorias
             // 
@@ -150,6 +151,7 @@
             btnCategorias.Size = new Size(197, 45);
             btnCategorias.TabIndex = 1;
             btnCategorias.Text = "Categorias";
+            btnCategorias.Click += btnCategorias_Click;
             // 
             // btnProdutos
             // 
@@ -172,6 +174,7 @@
             btnProdutos.Size = new Size(197, 45);
             btnProdutos.TabIndex = 1;
             btnProdutos.Text = "Produtos";
+            btnProdutos.Click += btnProdutos_Click;
             // 
             // btnDashboard
             // 
@@ -192,6 +195,7 @@
             btnDashboard.Size = new Size(197, 45);
             btnDashboard.TabIndex = 1;
             btnDashboard.Text = "Dashboard";
+            btnDashboard.Click += btnDashboard_Click;
             // 
             // pnlLogo
             // 
@@ -230,6 +234,7 @@
             btnLogout.Size = new Size(90, 33);
             btnLogout.TabIndex = 1;
             btnLogout.Text = "Sair";
+            btnLogout.Click += btnLogout_Click;
             // 
             // lblTituloApp
             // 

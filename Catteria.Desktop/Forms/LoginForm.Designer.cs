@@ -46,6 +46,8 @@
             btnEntrar = new Guna.UI2.WinForms.Guna2Button();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             btnSair = new Guna.UI2.WinForms.Guna2ImageRadioButton();
+            lblErro = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblCarregando = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             SuspendLayout();
             // 
@@ -112,6 +114,7 @@
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges2;
             txtEmail.Size = new Size(260, 36);
             txtEmail.TabIndex = 2;
+            txtEmail.KeyDown += txtEmail_KeyDown;
             // 
             // txtSenha
             // 
@@ -134,6 +137,7 @@
             txtSenha.Size = new Size(260, 36);
             txtSenha.TabIndex = 2;
             txtSenha.UseSystemPasswordChar = true;
+            txtSenha.KeyDown += txtSenha_KeyDown;
             // 
             // btnEntrar
             // 
@@ -153,6 +157,7 @@
             btnEntrar.Size = new Size(135, 31);
             btnEntrar.TabIndex = 3;
             btnEntrar.Text = "Login";
+            btnEntrar.Click += btnEntrar_Click;
             // 
             // guna2BorderlessForm1
             // 
@@ -175,12 +180,38 @@
             btnSair.TabIndex = 4;
             btnSair.CheckedChanged += btnSair_CheckedChanged;
             // 
+            // lblErro
+            // 
+            lblErro.BackColor = Color.Transparent;
+            lblErro.ForeColor = Color.Maroon;
+            lblErro.Location = new Point(169, 392);
+            lblErro.Name = "lblErro";
+            lblErro.Size = new Size(24, 17);
+            lblErro.TabIndex = 8;
+            lblErro.Text = "Erro";
+            lblErro.TextAlignment = ContentAlignment.TopCenter;
+            lblErro.Visible = false;
+            // 
+            // lblCarregando
+            // 
+            lblCarregando.BackColor = Color.Transparent;
+            lblCarregando.ForeColor = SystemColors.ControlDark;
+            lblCarregando.Location = new Point(144, 207);
+            lblCarregando.Name = "lblCarregando";
+            lblCarregando.Size = new Size(84, 17);
+            lblCarregando.TabIndex = 9;
+            lblCarregando.Text = "Autenticando...";
+            lblCarregando.TextAlignment = ContentAlignment.TopCenter;
+            lblCarregando.Visible = false;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(253, 247, 242);
             ClientSize = new Size(372, 430);
+            Controls.Add(lblCarregando);
+            Controls.Add(lblErro);
             Controls.Add(btnSair);
             Controls.Add(btnEntrar);
             Controls.Add(txtSenha);
@@ -211,5 +242,7 @@
      
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2ImageRadioButton btnSair;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblErro;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblCarregando;
     }
 }
