@@ -15,7 +15,9 @@ namespace Catteria.Desktop.Forms
     {
 
         private List<CategoriesResponseDto> _categorias = new();
-        private ProductsResponseDto? _ProdutoExistente; 
+        private ProductsResponseDto? _ProdutoExistente;
+
+        public CreateProductDto ProductDto { get; private set; }
         public ProductFormDialog()
         {
             InitializeComponent();

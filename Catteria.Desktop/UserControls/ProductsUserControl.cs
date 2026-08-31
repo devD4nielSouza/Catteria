@@ -104,12 +104,34 @@ namespace Catteria.Desktop.UserControls
             PopularGrid(filtrados);
         }
         private void txtPesquisa_TextChanged(object sender, EventArgs e) => FiltrarProdutos();
-        private void btnNovo_Click(object sender, EventArgs e)
+        private async void btnNovo_Click(object sender, EventArgs e)
         {
-            //using var form = new ProductFormDialog(_categorias, null);
-            //if(form.ShowDialog() == DialogResult.OK && form.Product)
+            using var form = new ProductFormDialog(_categorias, null);
+            if (form.ShowDialog() == DialogResult.OK && form.ProductDto != null)
+            {
+                var (success, _, error) = await _productsService.CreateAsync(form.ProductDto);
+                if (success)
+                {
+                    MessageBox.Show("Produto atualizado com sucesso!",
+                        "Sucesso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    await CarregarDadosAsync();
+
+                }
+                else
+                {
+                    MessageBox.Show($"{error}", "Erro",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
         }
 
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

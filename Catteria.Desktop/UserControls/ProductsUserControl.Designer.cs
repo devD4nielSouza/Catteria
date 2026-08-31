@@ -151,6 +151,7 @@
             btnEditar.Size = new Size(115, 45);
             btnEditar.TabIndex = 5;
             btnEditar.Text = "Editar";
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnNovo
             // 
@@ -208,7 +209,7 @@
             Controls.Add(gridProdutos);
             Name = "ProductsUserControl";
             Size = new Size(793, 482);
-            Load += this.ProductsUserControl_Load;
+            Load += ProductsUserControl_Load;
             ((System.ComponentModel.ISupportInitialize)gridProdutos).EndInit();
             ResumeLayout(false);
             PerformLayout();
