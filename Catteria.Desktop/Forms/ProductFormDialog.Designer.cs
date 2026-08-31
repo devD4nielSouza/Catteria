@@ -52,8 +52,8 @@
             chkDestaque = new CheckBox();
             btnSalvar = new Guna.UI2.WinForms.Guna2Button();
             btnCancelar = new Guna.UI2.WinForms.Guna2Button();
-            txtAno = new Guna.UI2.WinForms.Guna2TextBox();
-            lblCampAno = new Label();
+            lblCampPreco = new Label();
+            txtPreco = new Guna.UI2.WinForms.Guna2TextBox();
             SuspendLayout();
             // 
             // lblTituloForm
@@ -187,6 +187,7 @@
             btnSalvar.Size = new Size(140, 42);
             btnSalvar.TabIndex = 26;
             btnSalvar.Text = "💾 Salvar";
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // btnCancelar
             // 
@@ -205,30 +206,30 @@
             btnCancelar.TabIndex = 27;
             btnCancelar.Text = "Cancelar";
             // 
-            // txtAno
+            // lblCampPreco
             // 
-            txtAno.BorderColor = Color.FromArgb(224, 228, 235);
-            txtAno.BorderRadius = 6;
-            txtAno.CustomizableEdges = customizableEdges11;
-            txtAno.DefaultText = "";
-            txtAno.Font = new Font("Segoe UI", 9.5F);
-            txtAno.Location = new Point(34, 286);
-            txtAno.Name = "txtAno";
-            txtAno.PlaceholderText = "Ex: 2024";
-            txtAno.SelectedText = "";
-            txtAno.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            txtAno.Size = new Size(179, 40);
-            txtAno.TabIndex = 20;
+            lblCampPreco.Font = new Font("Gill Sans MT", 9.75F, FontStyle.Bold);
+            lblCampPreco.ForeColor = Color.FromArgb(76, 120, 178);
+            lblCampPreco.Location = new Point(34, 264);
+            lblCampPreco.Name = "lblCampPreco";
+            lblCampPreco.Size = new Size(460, 20);
+            lblCampPreco.TabIndex = 19;
+            lblCampPreco.Text = "PREÇO *";
             // 
-            // lblCampAno
+            // txtPreco
             // 
-            lblCampAno.Font = new Font("Gill Sans MT", 9.75F, FontStyle.Bold);
-            lblCampAno.ForeColor = Color.FromArgb(76, 120, 178);
-            lblCampAno.Location = new Point(34, 264);
-            lblCampAno.Name = "lblCampAno";
-            lblCampAno.Size = new Size(460, 20);
-            lblCampAno.TabIndex = 19;
-            lblCampAno.Text = "PREÇO *";
+            txtPreco.BorderColor = Color.FromArgb(224, 228, 235);
+            txtPreco.BorderRadius = 6;
+            txtPreco.CustomizableEdges = customizableEdges11;
+            txtPreco.DefaultText = "";
+            txtPreco.Font = new Font("Segoe UI", 9.5F);
+            txtPreco.Location = new Point(34, 287);
+            txtPreco.Name = "txtPreco";
+            txtPreco.PlaceholderText = "https://...";
+            txtPreco.SelectedText = "";
+            txtPreco.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            txtPreco.Size = new Size(460, 40);
+            txtPreco.TabIndex = 22;
             // 
             // ProductFormDialog
             // 
@@ -241,9 +242,9 @@
             Controls.Add(txtTitulo);
             Controls.Add(lblCampDesc);
             Controls.Add(txtDescricao);
-            Controls.Add(lblCampAno);
-            Controls.Add(txtAno);
+            Controls.Add(lblCampPreco);
             Controls.Add(lblCampCover);
+            Controls.Add(txtPreco);
             Controls.Add(txtCoverUrl);
             Controls.Add(lblCampCategoria);
             Controls.Add(cmbCategoria);
@@ -252,6 +253,7 @@
             Controls.Add(btnCancelar);
             Name = "ProductFormDialog";
             Text = "ProductFormDialog";
+            Load += ProductFormDialog_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -270,7 +272,7 @@
         private CheckBox chkDestaque;
         private Guna.UI2.WinForms.Guna2Button btnSalvar;
         private Guna.UI2.WinForms.Guna2Button btnCancelar;
-        private Guna.UI2.WinForms.Guna2TextBox txtAno;
-        private Label lblCampAno;
+        private Label lblCampPreco;
+        private Guna.UI2.WinForms.Guna2TextBox txtPreco;
     }
 }

@@ -128,11 +128,88 @@ namespace Catteria.Desktop.UserControls
             }
         }
 
-        private void btnEditar_Click(object sender, EventArgs e)
+        private async void btnEditar_Click(object sender, EventArgs e)
         {
+            var product = ObterProdutoSelecionado();
+            if (product == null)
+            {
+                MessageBox.Show($"Selecione um produto para editar",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+
+
+            }
+
+            using var form = new ProductFormDialog(_categorias, product);
+            if (form.ShowDialog() == DialogResult.OK && form.Update != null)
+            {
+                var (sucess, _, error) = await _productsService.UpdateAsync(product.Id, form.Update);
+                if (sucess)
+                {
+                    MessageBox.Show("Produto atualizado com sucesso!",
+                        "Sucesso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    await CarregarDadosAsync();
+                }
+                else
+                {
+                    MessageBox.Show($"{error}",
+                        "Erro",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+
 
         }
+
+        private ProductsResponseDto? ObterProdutoSelecionado()
+        {
+            if (gridProdutos.SelectedRows.Count == 0) return null;
+            var row = gridProdutos.SelectedRows[0];
+            var id = Convert.ToInt32(row.Cells["colId"].Value);
+            return _todosProdutos.FirstOrDefault(p => p.Id == id);
+        }
+
+        private async void btnExcluir_Click(object sender, EventArgs e)
+        {
+            var product = ObterProdutoSelecionado();
+            if (product == null)
+            {
+                MessageBox.Show("Selecione um produto para excluir.",
+                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
+            }
+            var conf = MessageBox.Show
+                ($"Tem certeza que deseja excluir esse produto:\n\"{product.Name}\"?",
+                "Confirmar Exclusão", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (conf != DialogResult.Yes) ;
+
+            var (success, error) = await _productsService.DeleteAsync(product.Id);
+            if (success)
+            {
+                MessageBox.Show("Produto excluido com sucesso!", "Sucesso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                await CarregarDadosAsync();
+            }
+            else
+            {
+                MessageBox.Show($"{error}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
+
+        private async void btnAtualizar_Click(object sender, EventArgs e) => await CarregarDadosAsync();
+
+
+
     }
-
-
 }

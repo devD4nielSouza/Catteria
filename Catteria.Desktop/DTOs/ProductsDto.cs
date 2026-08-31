@@ -8,7 +8,6 @@ namespace Catteria.Desktop.DTOs
 {
     public class ProductsResponseDto
     {
-
         public int Id { get; set; }
         public decimal Price { get; set; }
         public string Name { get; set; } = string.Empty;
