@@ -38,10 +38,10 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblTituloForm = new Label();
             lblCampTitulo = new Label();
-            txtTitulo = new Guna.UI2.WinForms.Guna2TextBox();
-            txtAno = new Guna.UI2.WinForms.Guna2TextBox();
+            txtCod = new Guna.UI2.WinForms.Guna2TextBox();
+            txtPorcent = new Guna.UI2.WinForms.Guna2TextBox();
             lblCampCover = new Label();
-            chkDestaque = new CheckBox();
+            chkWorking = new CheckBox();
             btnSalvar = new Guna.UI2.WinForms.Guna2Button();
             btnCancelar = new Guna.UI2.WinForms.Guna2Button();
             SuspendLayout();
@@ -66,36 +66,36 @@
             lblCampTitulo.TabIndex = 29;
             lblCampTitulo.Text = "CODIGO DO CUPOM *";
             // 
-            // txtTitulo
+            // txtCod
             // 
-            txtTitulo.BorderColor = Color.FromArgb(224, 228, 235);
-            txtTitulo.BorderRadius = 6;
-            txtTitulo.CustomizableEdges = customizableEdges1;
-            txtTitulo.DefaultText = "";
-            txtTitulo.Font = new Font("Segoe UI", 9.5F);
-            txtTitulo.Location = new Point(39, 90);
-            txtTitulo.Name = "txtTitulo";
-            txtTitulo.PlaceholderText = "Ex: CUPOM123";
-            txtTitulo.SelectedText = "";
-            txtTitulo.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtTitulo.Size = new Size(460, 40);
-            txtTitulo.TabIndex = 30;
+            txtCod.BorderColor = Color.FromArgb(224, 228, 235);
+            txtCod.BorderRadius = 6;
+            txtCod.CustomizableEdges = customizableEdges1;
+            txtCod.DefaultText = "";
+            txtCod.Font = new Font("Segoe UI", 9.5F);
+            txtCod.Location = new Point(39, 90);
+            txtCod.Name = "txtCod";
+            txtCod.PlaceholderText = "Ex: CUPOM123";
+            txtCod.SelectedText = "";
+            txtCod.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtCod.Size = new Size(460, 40);
+            txtCod.TabIndex = 30;
             // 
-            // txtAno
+            // txtPorcent
             // 
-            txtAno.BorderColor = Color.FromArgb(224, 228, 235);
-            txtAno.BorderRadius = 6;
-            txtAno.CustomizableEdges = customizableEdges3;
-            txtAno.DefaultText = "";
-            txtAno.Font = new Font("Segoe UI", 9.5F);
-            txtAno.Location = new Point(39, 167);
-            txtAno.Name = "txtAno";
-            txtAno.PlaceholderText = "Ex: 20";
-            txtAno.SelectedText = "";
-            txtAno.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtAno.Size = new Size(121, 40);
-            txtAno.TabIndex = 34;
-            txtAno.KeyPress += txtAno_KeyPress;
+            txtPorcent.BorderColor = Color.FromArgb(224, 228, 235);
+            txtPorcent.BorderRadius = 6;
+            txtPorcent.CustomizableEdges = customizableEdges3;
+            txtPorcent.DefaultText = "";
+            txtPorcent.Font = new Font("Segoe UI", 9.5F);
+            txtPorcent.Location = new Point(39, 167);
+            txtPorcent.Name = "txtPorcent";
+            txtPorcent.PlaceholderText = "Ex: 20";
+            txtPorcent.SelectedText = "";
+            txtPorcent.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtPorcent.Size = new Size(121, 40);
+            txtPorcent.TabIndex = 34;
+            txtPorcent.KeyPress += txtPorcent_KeyPress;
             // 
             // lblCampCover
             // 
@@ -107,16 +107,16 @@
             lblCampCover.TabIndex = 35;
             lblCampCover.Text = "PORCENTAGEM DO DESCONTO *";
             // 
-            // chkDestaque
+            // chkWorking
             // 
-            chkDestaque.AutoSize = true;
-            chkDestaque.Font = new Font("Gill Sans MT", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkDestaque.ForeColor = Color.FromArgb(51, 61, 75);
-            chkDestaque.Location = new Point(39, 225);
-            chkDestaque.Name = "chkDestaque";
-            chkDestaque.Size = new Size(115, 22);
-            chkDestaque.TabIndex = 39;
-            chkDestaque.Text = "⭐ Cupom Ativo";
+            chkWorking.AutoSize = true;
+            chkWorking.Font = new Font("Gill Sans MT", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkWorking.ForeColor = Color.FromArgb(51, 61, 75);
+            chkWorking.Location = new Point(39, 225);
+            chkWorking.Name = "chkWorking";
+            chkWorking.Size = new Size(115, 22);
+            chkWorking.TabIndex = 39;
+            chkWorking.Text = "⭐ Cupom Ativo";
             // 
             // btnSalvar
             // 
@@ -159,13 +159,14 @@
             Controls.Add(btnCancelar);
             Controls.Add(lblTituloForm);
             Controls.Add(lblCampTitulo);
-            Controls.Add(txtTitulo);
-            Controls.Add(txtAno);
+            Controls.Add(txtCod);
+            Controls.Add(txtPorcent);
             Controls.Add(lblCampCover);
-            Controls.Add(chkDestaque);
+            Controls.Add(chkWorking);
             Controls.Add(btnSalvar);
             Name = "CupomFormDialog";
             Text = "Cupom";
+            Load += CupomFormDialog_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -174,10 +175,10 @@
 
         private Label lblTituloForm;
         private Label lblCampTitulo;
-        private Guna.UI2.WinForms.Guna2TextBox txtTitulo;
-        private Guna.UI2.WinForms.Guna2TextBox txtAno;
+        private Guna.UI2.WinForms.Guna2TextBox txtCod;
+        private Guna.UI2.WinForms.Guna2TextBox txtPorcent;
         private Label lblCampCover;
-        private CheckBox chkDestaque;
+        private CheckBox chkWorking;
         private Guna.UI2.WinForms.Guna2Button btnSalvar;
         private Guna.UI2.WinForms.Guna2Button btnCancelar;
     }
