@@ -115,6 +115,7 @@
             btnAtualizar.Size = new Size(112, 45);
             btnAtualizar.TabIndex = 5;
             btnAtualizar.Text = "Atualizar";
+            btnAtualizar.Click += btnAtualizar_Click;
             // 
             // btnExcluir
             // 
@@ -133,6 +134,7 @@
             btnExcluir.Size = new Size(114, 45);
             btnExcluir.TabIndex = 5;
             btnExcluir.Text = "Excluir";
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnEditar
             // 

@@ -41,14 +41,14 @@
             btnExcluir = new Guna.UI2.WinForms.Guna2Button();
             btnAtualizar = new Guna.UI2.WinForms.Guna2Button();
             lblTitulo = new Label();
-            gridProdutos = new DataGridView();
+            gridPedidos = new DataGridView();
             colId = new DataGridViewTextBoxColumn();
             colDate = new DataGridViewTextBoxColumn();
             colPrice = new DataGridViewTextBoxColumn();
             colStatus = new DataGridViewTextBoxColumn();
             colPayment = new DataGridViewTextBoxColumn();
             colObservation = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)gridProdutos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridPedidos).BeginInit();
             SuspendLayout();
             // 
             // txtPesquisa
@@ -84,7 +84,7 @@
             btnEditar.FillColor = Color.FromArgb(64, 162, 66);
             btnEditar.Font = new Font("Segoe UI", 9F);
             btnEditar.ForeColor = Color.White;
-            btnEditar.Location = new Point(390, 63);
+            btnEditar.Location = new Point(337, 63);
             btnEditar.Name = "btnEditar";
             btnEditar.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnEditar.Size = new Size(115, 45);
@@ -102,13 +102,12 @@
             btnExcluir.FillColor = Color.FromArgb(209, 73, 63);
             btnExcluir.Font = new Font("Segoe UI", 9F);
             btnExcluir.ForeColor = Color.White;
-            btnExcluir.Location = new Point(511, 63);
+            btnExcluir.Location = new Point(458, 63);
             btnExcluir.Name = "btnExcluir";
             btnExcluir.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnExcluir.Size = new Size(114, 45);
             btnExcluir.TabIndex = 11;
             btnExcluir.Text = "Excluir";
-            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnAtualizar
             // 
@@ -121,7 +120,7 @@
             btnAtualizar.FillColor = Color.FromArgb(219, 209, 89);
             btnAtualizar.Font = new Font("Segoe UI", 9F);
             btnAtualizar.ForeColor = Color.White;
-            btnAtualizar.Location = new Point(631, 63);
+            btnAtualizar.Location = new Point(578, 63);
             btnAtualizar.Name = "btnAtualizar";
             btnAtualizar.ShadowDecoration.CustomizableEdges = customizableEdges16;
             btnAtualizar.Size = new Size(112, 45);
@@ -139,16 +138,16 @@
             lblTitulo.TabIndex = 8;
             lblTitulo.Text = "Gerenciador de Pedidos 📩";
             // 
-            // gridProdutos
+            // gridPedidos
             // 
-            gridProdutos.BackgroundColor = SystemColors.ActiveCaption;
-            gridProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridProdutos.Columns.AddRange(new DataGridViewColumn[] { colId, colDate, colPrice, colStatus, colPayment, colObservation });
-            gridProdutos.GridColor = SystemColors.InactiveCaption;
-            gridProdutos.Location = new Point(3, 120);
-            gridProdutos.Name = "gridProdutos";
-            gridProdutos.Size = new Size(787, 340);
-            gridProdutos.TabIndex = 7;
+            gridPedidos.BackgroundColor = SystemColors.ActiveCaption;
+            gridPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridPedidos.Columns.AddRange(new DataGridViewColumn[] { colId, colDate, colPrice, colStatus, colPayment, colObservation });
+            gridPedidos.GridColor = SystemColors.InactiveCaption;
+            gridPedidos.Location = new Point(3, 120);
+            gridPedidos.Name = "gridPedidos";
+            gridPedidos.Size = new Size(787, 340);
+            gridPedidos.TabIndex = 7;
             // 
             // colId
             // 
@@ -194,10 +193,11 @@
             Controls.Add(btnExcluir);
             Controls.Add(btnAtualizar);
             Controls.Add(lblTitulo);
-            Controls.Add(gridProdutos);
+            Controls.Add(gridPedidos);
             Name = "OrdersUserControl";
             Size = new Size(793, 482);
-            ((System.ComponentModel.ISupportInitialize)gridProdutos).EndInit();
+            Load += OrdersUserControl_Load;
+            ((System.ComponentModel.ISupportInitialize)gridPedidos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -209,7 +209,7 @@
         private Guna.UI2.WinForms.Guna2Button btnExcluir;
         private Guna.UI2.WinForms.Guna2Button btnAtualizar;
         private Label lblTitulo;
-        private DataGridView gridProdutos;
+        private DataGridView gridPedidos;
         private DataGridViewTextBoxColumn colId;
         private DataGridViewTextBoxColumn colDate;
         private DataGridViewTextBoxColumn colPrice;
