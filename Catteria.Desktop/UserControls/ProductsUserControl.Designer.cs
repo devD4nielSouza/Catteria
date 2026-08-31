@@ -169,6 +169,7 @@
             btnNovo.Size = new Size(107, 45);
             btnNovo.TabIndex = 5;
             btnNovo.Text = "Novo Produto";
+            btnNovo.Click += btnNovo_Click;
             // 
             // txtPesquisa
             // 
@@ -191,6 +192,7 @@
             txtPesquisa.ShadowDecoration.CustomizableEdges = customizableEdges10;
             txtPesquisa.Size = new Size(232, 36);
             txtPesquisa.TabIndex = 6;
+            txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
             // ProductsUserControl
             // 
@@ -206,7 +208,7 @@
             Controls.Add(gridProdutos);
             Name = "ProductsUserControl";
             Size = new Size(793, 482);
-            Load += ProductsUserControl_Load;
+            Load += this.ProductsUserControl_Load;
             ((System.ComponentModel.ISupportInitialize)gridProdutos).EndInit();
             ResumeLayout(false);
             PerformLayout();
