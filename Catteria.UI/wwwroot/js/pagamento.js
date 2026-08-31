@@ -16,11 +16,12 @@ const pagamentoCartao = document.getElementById("pagamentoCartao");
 const pagamentoRetirada = document.getElementById("pagamentoRetirada");
 
 let cupomAplicado = null; // { codigo, percentual }
+let debounceCupomTimer = null;
 
 
 formasPagamento.forEach(opcao => {
 
-    opcao.addEventListener("change", function () {
+    opcao.addEventListener("change", function() {
 
         pagamentoPix.style.display = "none";
         pagamentoCartao.style.display = "none";
@@ -36,7 +37,7 @@ formasPagamento.forEach(opcao => {
 
         if (this.value === "retirada") {
             pagamentoRetirada.style.display = "block";
-            
+
         }
 
         carregarResumo();
@@ -154,6 +155,28 @@ function carregarResumo() {
     }
 }
 
+function agendarVerificacaoCupom() {
+
+    clearTimeout(debounceCupomTimer);
+
+    const mensagemEl = document.getElementById("mensagemCupom");
+    const codigo = document.getElementById("inputCupom").value.trim();
+
+    if (!codigo) {
+        mensagemEl.textContent = "";
+        cupomAplicado = null;
+        carregarResumo();
+        return;
+    }
+
+    mensagemEl.textContent = "Verificando cupom...";
+    mensagemEl.className = "form-text text-muted";
+
+    debounceCupomTimer = setTimeout(() => {
+        aplicarCupom();
+    }, 600); // espera 600ms de silêncio antes de validar
+}
+
 async function aplicarCupom() {
 
     const inputCupom = document.getElementById("inputCupom");
@@ -162,14 +185,15 @@ async function aplicarCupom() {
     const codigo = inputCupom.value.trim();
 
     if (!codigo) {
-        mensagemEl.textContent = "Digite um código de cupom.";
-        mensagemEl.className = "form-text text-danger";
+        mensagemEl.textContent = "";
+        cupomAplicado = null;
+        carregarResumo();
         return;
     }
 
     try {
 
-        const response = await fetch("http://localhost:5273/api/cupons/validar", {
+        const response = await fetch("/Cart/ValidarCupom", {
             method: "POST",
 
             headers: {
@@ -296,8 +320,10 @@ async function finalizarPedido() {
 }
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
 
     carregarResumo();
+
+    document.getElementById("inputCupom")?.addEventListener("input", agendarVerificacaoCupom);
 
 });

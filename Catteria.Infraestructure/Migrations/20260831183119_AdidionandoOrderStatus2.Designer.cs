@@ -4,6 +4,7 @@ using Catteria.Infraestructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Catteria.Infraestructure.Migrations
 {
     [DbContext(typeof(CatteriaDbContext))]
-    partial class CatteriaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260831183119_AdidionandoOrderStatus2")]
+    partial class AdidionandoOrderStatus2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -323,12 +326,6 @@ namespace Catteria.Infraestructure.Migrations
                             Id = 6,
                             Description = "Pedido entregue ao cliente.",
                             Name = "Entregue"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Description = "Pedido cancelado.",
-                            Name = "Cancelado"
                         });
                 });
 

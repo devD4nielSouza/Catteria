@@ -67,6 +67,10 @@ namespace Catteria.Infraestructure.Identity
                 await context.SaveChangesAsync();
             }
 
+
+
+            await context.SaveChangesAsync();
+
             // =====================================================================
             // 2. SEED DE PRODUTOS
             // =====================================================================

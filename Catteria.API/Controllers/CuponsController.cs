@@ -1,6 +1,8 @@
 ﻿using Catteria.Application.DTOs;
 using Catteria.Application.Services;
+using Catteria.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -13,10 +15,11 @@ namespace Catteria.API.Controllers
     public class CuponsController : ControllerBase
     {
         private readonly CupomService _cupomService;
-
-        public CuponsController(CupomService cupomService)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public CuponsController(CupomService cupomService, UserManager<ApplicationUser> userManager)
         {
             _cupomService = cupomService;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -81,9 +84,14 @@ namespace Catteria.API.Controllers
         }
 
         [HttpPost("validar")]
+        [Authorize]
         public async Task<IActionResult> Validar([FromBody] ValidarCupomRequest request)
         {
-            var usuarioId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+            var usuarioId = _userManager.GetUserId(User); // trocado de User.FindFirstValue(ClaimTypes.NameIdentifier)
+
+            if (usuarioId == null)
+                return Unauthorized(new { message = "Usuário não autenticado." });
+
             var resultado = await _cupomService.ValidarAsync(request.Codigo, usuarioId);
 
             return Ok(new

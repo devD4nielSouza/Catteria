@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="~/css/Home.css" />
     <link rel="stylesheet" href="~/css/Layout.css" />
     <link rel="stylesheet" href="~/css/Menu.css" />
-
+    <link rel="stylesheet" href="~/css/MyOrders.css" />
 
 
 
@@ -66,6 +66,17 @@
 
     </a>
 }
+                       @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Order"
+                               asp-action="MyOrders"
+                               class="position-relative"
+                               title="Meus pedidos">
+
+                                <i class="bi bi-receipt fs-4"></i>
+
+                            </a>
+                        }
                         <a asp-controller="Cart" asp-action="Index" class="position-relative">
 
                             <i class="bi bi-cart3 fs-4"></i>
@@ -76,13 +87,12 @@
                             </span>
 
                         </a>
-
-
                         @if (User.Identity != null && User.Identity.IsAuthenticated)
                         {
                             if (User.IsInRole("Admin"))
                             {
-                                <a asp-controller="Admin" asp-action="Index" style="color: var(--azul-escuro);">Admin</a>
+                                <a asp-controller="Admin" asp-action="Index" style="color: var(--azul-escuro);">
+                                    <i class="bi bi-building fs-4"></i></a>
                             }
                             <span class="ms-2 text-truncate" style="max-width: 100px; font-weight: bold;"><i class="bi bi-person-circle"></i> @User.Identity.Name</span>
                         <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline ms-2">

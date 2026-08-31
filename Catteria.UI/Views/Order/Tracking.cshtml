@@ -1,0 +1,346 @@
+﻿@model Catteria.Application.DTOs.OrderDto
+
+@{
+    ViewData["Title"] = "Acompanhar pedido";
+
+    <link rel="stylesheet" href="~/css/tracking.css" />
+
+var statusId = Model.StatusId;
+
+    var statusAtual = Model.Status ?? "Pendente";
+
+    bool etapaRecebido = statusId >= 1;
+    bool etapaConfirmado = statusId >= 2;
+    bool etapaPreparando = statusId >= 3;
+    bool etapaPronto = statusId >= 4;
+    bool etapaEntrega = statusId >= 5;
+    bool etapaEntregue = statusId >= 6;
+
+
+}
+
+<div class="container py-5">
+
+    <!-- Cabeçalho -->
+    <div class="text-center mb-5">
+
+        <div class="tracking-header-icon mb-3">
+            <i class="bi bi-box-seam"></i>
+        </div>
+
+        <h1 class="fw-bold mb-2">
+            Acompanhar pedido
+        </h1>
+
+        <p class="text-muted mb-0">
+            Pedido #@Model.Id
+        </p>
+
+    </div>
+
+
+    <!-- Resumo do pedido -->
+    <div class="card tracking-card border-0 shadow-sm mb-4">
+
+        <div class="card-body p-4">
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+
+                    <div class="tracking-info">
+
+                        <span class="tracking-info-label">
+                            Pedido
+                        </span>
+
+                        <strong>
+                            #@Model.Id
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="tracking-info">
+
+                        <span class="tracking-info-label">
+                            Data
+                        </span>
+
+                        <strong>
+                            @Model.Date.ToString("dd/MM/yyyy HH:mm")
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="tracking-info">
+
+                        <span class="tracking-info-label">
+                            Total
+                        </span>
+
+                        <strong class="tracking-price">
+                            @Model.TotalValue.ToString("C")
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Status atual -->
+    <div class="card tracking-card border-0 shadow-sm mb-4">
+
+        <div class="card-body p-4">
+
+            <div class="current-status">
+
+                <div>
+
+                    <span class="text-muted small">
+                        Status atual
+                    </span>
+
+                    <h4 class="fw-bold mb-0">
+                        @statusAtual
+                    </h4>
+
+                </div>
+
+                <div class="current-status-icon">
+                    @if (statusId == 7)
+                    {
+                        <div class="card tracking-card border-0 shadow-sm mb-4">
+
+                            ```
+                            <div class="card-body p-4">
+
+                                <div class="cancelled-order">
+
+                                    <div class="cancelled-icon">
+                                        <i class="bi bi-x-circle-fill"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <h4 class="fw-bold mb-1">
+                                            Pedido cancelado
+                                        </h4>
+
+                                        <p class="text-muted mb-0">
+                                            Este pedido foi cancelado e não será processado.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        
+                    }
+                    @if (statusId >= 6)
+                    {
+                        <i class="bi bi-house-check-fill"></i>
+                    }
+                    else if (statusId >= 5)
+                    {
+                        <i class="bi bi-bicycle"></i>
+                    }
+                    else if (statusId >= 4)
+                    {
+                        <i class="bi bi-bag-check-fill"></i>
+                    }
+                    else if (statusId >= 3)
+                    {
+                        <i class="bi bi-cup-hot-fill"></i>
+                    }
+                    else if (statusId >= 2)
+                    {
+                        <i class="bi bi-check-circle-fill"></i>
+                    }
+                    else
+                    {
+                        <i class="bi bi-receipt"></i>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Linha do tempo -->
+    <div class="card tracking-card border-0 shadow-sm">
+
+        <div class="card-body p-4 p-md-5">
+
+            <h4 class="fw-bold mb-5">
+                Acompanhe seu pedido
+            </h4>
+
+
+            <div class="order-timeline">
+
+                <!-- Pedido recebido -->
+                <div class="timeline-item @(etapaRecebido ? "active" : "")">
+
+                    <div class="timeline-icon">
+                        <i class="bi bi-receipt"></i>
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h6 class="fw-bold">
+                            Pedido recebido
+                        </h6>
+
+                        <p>
+                            Recebemos seu pedido e ele está aguardando confirmação.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Confirmado -->
+                <div class="timeline-item @(etapaConfirmado ? "active" : "")">
+
+                    <div class="timeline-icon">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h6 class="fw-bold">
+                            Pedido confirmado
+                        </h6>
+
+                        <p>
+                            Seu pedido foi confirmado pela cafeteria.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Preparando -->
+                <div class="timeline-item @(etapaPreparando ? "active" : "")">
+
+                    <div class="timeline-icon">
+                        <i class="bi bi-cup-hot-fill"></i>
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h6 class="fw-bold">
+                            Preparando pedido
+                        </h6>
+
+                        <p>
+                            Estamos preparando seu pedido com todo cuidado.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Pronto -->
+                <div class="timeline-item @(etapaPronto ? "active" : "")">
+
+                    <div class="timeline-icon">
+                        <i class="bi bi-bag-check-fill"></i>
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h6 class="fw-bold">
+                            Pedido pronto
+                        </h6>
+
+                        <p>
+                            Seu pedido está pronto.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Saiu para entrega -->
+                <div class="timeline-item @(etapaEntrega ? "active" : "")">
+
+                    <div class="timeline-icon">
+                        <i class="bi bi-bicycle"></i>
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h6 class="fw-bold">
+                            Saiu para entrega
+                        </h6>
+
+                        <p>
+                            Seu pedido está a caminho.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Entregue -->
+                <div class="timeline-item @(etapaEntregue ? "active" : "")">
+
+                    <div class="timeline-icon">
+                        <i class="bi bi-house-check-fill"></i>
+                    </div>
+
+                    <div class="timeline-content">
+
+                        <h6 class="fw-bold">
+                            Pedido entregue
+                        </h6>
+
+                        <p>
+                            Seu pedido foi entregue. Aproveite!
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<style>
+
+
+</style>
+

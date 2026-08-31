@@ -1,0 +1,155 @@
+﻿.tracking-header-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f3e6df;
+    color: #8b5e4b;
+    font-size: 30px;
+}
+
+
+.tracking-card {
+    border-radius: 18px;
+}
+
+
+.tracking-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.tracking-info-label {
+    color: #888;
+    font-size: 13px;
+}
+
+
+.tracking-price {
+    color: #198754;
+}
+
+
+.current-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.current-status-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f3e6df;
+    color: #8b5e4b;
+    font-size: 23px;
+}
+
+
+.order-timeline {
+    position: relative;
+}
+
+
+    .order-timeline::before {
+        content: "";
+        position: absolute;
+        left: 22px;
+        top: 22px;
+        bottom: 22px;
+        width: 3px;
+        background: #e5e5e5;
+    }
+
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    min-height: 100px;
+    opacity: .4;
+}
+
+
+    .timeline-item.active {
+        opacity: 1;
+    }
+
+
+.timeline-icon {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #e5e5e5;
+    color: #777;
+    font-size: 19px;
+    border: 4px solid white;
+}
+
+
+.timeline-item.active .timeline-icon {
+    background: #8b5e4b;
+    color: white;
+}
+
+
+.timeline-content {
+    padding-top: 8px;
+}
+
+
+    .timeline-content h6 {
+        margin-bottom: 5px;
+    }
+
+
+    .timeline-content p {
+        color: #777;
+        margin-bottom: 25px;
+        font-size: 14px;
+    }
+
+
+@@media (max-width: 576px) {
+
+    .tracking-card .card-body {
+        padding: 25px !important;
+    }
+
+    .timeline-content p {
+        font-size: 13px;
+    }
+}
+
+.cancelled-order {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.cancelled-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f8d7da;
+    color: #842029;
+    font-size: 24px;
+}

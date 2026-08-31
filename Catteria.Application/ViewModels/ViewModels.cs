@@ -13,6 +13,7 @@ namespace Catteria.Application.ViewModels
     {
         public IEnumerable<ProductDto> FeaturedProducts { get; set; } = new List<ProductDto>();
         public IEnumerable<CategoryDto> Categories { get; set; } = new List<CategoryDto>();
+        public List<OrderDto> Orders { get; set; } = new();
     }
     /// <summary>
     /// ViewModel da página de cardápio.

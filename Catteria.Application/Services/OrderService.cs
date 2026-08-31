@@ -27,6 +27,12 @@ namespace Catteria.Application.Services
             var orders = await _orderRepository.GetAllAsync();
             return orders.Select(MapToDto);
         }
+        public async Task<IEnumerable<OrderDto>> GetByUserIdAsync(string userId)
+        {
+            var orders = await _orderRepository.GetByUserIdAsync(userId);
+
+            return orders.Select(MapToDto);
+        }
         //especifico
         //Task<OrderDto?> GetByIdAsync(int id);
         public async Task<OrderDto?> GetByIdAsync(int id)
@@ -69,19 +75,27 @@ namespace Catteria.Application.Services
                 await _cupomRepository.RegistrarUsoAsync(cupomUso);
             }
 
-            await _cupomRepository.SalvarAlteracoesAsync(); // salva Order + CupomUso juntos, mesmo contexto
+            await _cupomRepository.SalvarAlteracoesAsync();
 
-            return MapToDto(order);
+            var orderAtualizado = await _orderRepository.GetByIdAsync(order.Id);
+
+            return MapToDto(orderAtualizado!);
         }
 
         public async Task<OrderDto?> UpdateAsync(int id, UpdateOrderDto dto)
         {
             var order = await _orderRepository.GetByIdAsync(id);
-            if (order == null) return null;
 
-            order.Status = dto.Status;
+            if (order == null)
+                return null;
+
+            order.StatusId = dto.StatusId;
+
             await _orderRepository.UpdateAsync(order);
-            return MapToDto(order);
+
+            var orderAtualizado = await _orderRepository.GetByIdAsync(id);
+
+            return MapToDto(orderAtualizado!);
         }
 
         public async Task<bool> DeleteAsync(int id)
@@ -92,7 +106,6 @@ namespace Catteria.Application.Services
             await _orderRepository.DeleteAsync(id);
             return true;
         }
-
         public async Task<int> CountAsync()
         {
             return await _orderRepository.CountAsync();
@@ -105,7 +118,8 @@ namespace Catteria.Application.Services
                 Id = order.Id,
                 Date = order.Date,
                 TotalValue = order.TotalValue,
-                Status = order.Status,
+                StatusId = order.StatusId,
+                Status = order.Status?.Name ?? "Pendente",
                 IdUser = order.IdUser,
                 CupomCodigo = order.CupomCodigo,
                 Desconto = order.Desconto,

@@ -42,6 +42,8 @@ namespace Catteria.Infraestructure.Context
         /// </summary>
         public DbSet<CupomUso> CupomUsos { get; set; }
 
+        public DbSet<OrderStatus> OrderStatuses { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -53,6 +55,56 @@ namespace Catteria.Infraestructure.Context
             modelBuilder.ApplyConfiguration(new FavoriteConfiguration());
             modelBuilder.ApplyConfiguration(new CupomConfiguration());
             modelBuilder.ApplyConfiguration(new CupomUsoConfiguration());
+            modelBuilder.Entity<OrderStatus>().HasData(  
+             new OrderStatus
+             {
+                 Id = 1,
+                 Name = "Pendente",
+                 Description = "Pedido recebido e aguardando confirmação."
+             },
+
+             new OrderStatus
+             {
+                 Id = 2,
+                 Name = "Confirmado",
+                 Description = "Pedido confirmado."
+             },
+
+             new OrderStatus
+             {
+                 Id = 3,
+                 Name = "Preparando",
+                 Description = "O pedido está sendo preparado."
+             },
+
+             new OrderStatus
+             {
+                 Id = 4,
+                 Name = "Pronto",
+                 Description = "O pedido está pronto."
+             },
+
+             new OrderStatus
+             {
+                 Id = 5,
+                 Name = "Saiu para entrega",
+                 Description = "O pedido está a caminho."
+             },
+
+             new OrderStatus
+             {
+                 Id = 6,
+                 Name = "Entregue",
+                 Description = "Pedido entregue ao cliente."
+             },
+             new OrderStatus
+             {
+                 Id = 7,
+                 Name = "Cancelado",
+                 Description = "Pedido cancelado."
+             }
+
+            );
         }
     }
 }

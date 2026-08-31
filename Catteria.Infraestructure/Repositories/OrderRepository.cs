@@ -35,12 +35,22 @@ namespace Catteria.Infraestructure.Repositories
         public async Task<Order?> GetByIdAsync(int id)
         {
             return await _context.Orders
+                .Include(o => o.Status)
                 .Include(o => o.User)
                 .Include(o => o.OrderItems)
-                    .ThenInclude(oi => oi.Product)
+                    .ThenInclude(i => i.Product)
                 .FirstOrDefaultAsync(o => o.Id == id);
         }
-
+        public async Task<IEnumerable<Order>> GetByUserIdAsync(string userId)
+        {
+            return await _context.Orders
+                .Where(o => o.IdUser == userId)
+                .Include(o => o.Status)
+                .Include(o => o.OrderItems)
+                    .ThenInclude(i => i.Product)
+                .OrderByDescending(o => o.Date)
+                .ToListAsync();
+        }
         /// <summary>
         /// Conta a quantidade de pedidos cadastrados.
         /// </summary>

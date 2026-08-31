@@ -11,6 +11,7 @@ namespace Catteria.Application.Interfaces
         Task<IEnumerable<OrderDto>> GetAllAsync();
         //especifico
         Task<OrderDto?> GetByIdAsync(int id);
+        Task<IEnumerable<OrderDto>> GetByUserIdAsync(string userId);
         //criar
         Task<OrderDto> CreateAsync(CreateOrderDto orderDto);
         //atualizar

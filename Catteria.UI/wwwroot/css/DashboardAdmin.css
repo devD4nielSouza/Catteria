@@ -542,3 +542,8 @@ a {
 ::-webkit-scrollbar-track {
     background: #edf5ff;
 }
+
+.status-cancelled {
+    background: #f8d7da;
+    color: #842029;
+}

@@ -63,35 +63,37 @@ namespace Catteria.API.Controllers
         [HttpPost("CreateOrder")]
         [Authorize]
         public async Task<IActionResult> CreateOrder(
-         [FromBody] CreateOrderDto dto)
-        {
-            var userId = _userManager.GetUserId(User);
-
-            if (userId == null)
+            [FromBody] CreateOrderDto dto)
             {
-                return Unauthorized(new
+                var userId = _userManager.GetUserId(User);
+
+                if (userId == null)
                 {
-                    message = "Usuário não autenticado."
-                });
-            }
+                    return Unauthorized(new
+                    {
+                        message = "Usuário não autenticado."
+                    });
+                }
 
-            if (dto.Items == null || !dto.Items.Any())
-            {
-                return BadRequest(new
+                if (dto.Items == null || !dto.Items.Any())
                 {
-                    message = "O pedido não possui itens."
-                });
-            }
+                    return BadRequest(new
+                    {
+                        message = "O pedido não possui itens."
+                    });
+                }
 
-            var order = new Order
-            {
-                IdUser = userId,
-                Date = DateTime.Now,
-                Status = "Pendente",
-                Observations = dto.Observations,
-                PaymentMethod = dto.PaymentMethod
-            };
+                var order = new Order
+                {
+                    IdUser = userId,
+                    Date = DateTime.Now,
 
+                    // Status inicial do pedido
+                    StatusId = 1,
+
+                    Observations = dto.Observations,
+                    PaymentMethod = dto.PaymentMethod
+                };
             decimal subtotal = 0;
 
             foreach (var item in dto.Items)

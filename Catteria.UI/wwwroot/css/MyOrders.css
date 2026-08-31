@@ -1,0 +1,130 @@
+﻿.orders-header-icon {
+    ``` width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f3e6df;
+    color: #8b5e4b;
+    font-size: 30px;
+    ```
+}
+
+.orders-list {
+    ``` display: flex;
+    flex-direction: column;
+    gap: 15px;
+    ```
+}
+
+.order-card {
+    ``` display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 20px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, .06);
+    transition: transform .2s, box-shadow .2s;
+    ```
+}
+
+    .order-card:hover {
+        ``` transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, .09);
+        ```
+    }
+
+.order-main {
+    ``` display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    ```
+}
+
+.order-icon {
+    ``` width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f3e6df;
+    color: #8b5e4b;
+    font-size: 20px;
+    ```
+}
+
+.order-status {
+    ``` display: inline-flex;
+    align-items: center;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    ```
+}
+
+.order-status-progress {
+    ``` background: #fff3cd;
+    color: #856404;
+    ```
+}
+
+.order-status-success {
+    ``` background: #d1e7dd;
+    color: #0f5132;
+    ```
+}
+
+.order-status-cancelled {
+    ``` background: #f8d7da;
+    color: #842029;
+    ```
+}
+
+.order-total {
+    ``` min-width: 100px;
+    text-align: right;
+    ```
+}
+
+.empty-orders {
+    ``` text-align: center;
+    padding: 70px 20px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, .05);
+    ```
+}
+
+    .empty-orders > i {
+        ``` font-size: 55px;
+        color: #aaa;
+        ```
+    }
+
+@@media (max-width: 768px) {
+
+
+    .order-card {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .order-main {
+        width: 100%;
+    }
+
+    .order-status-area {
+        flex: 1;
+    }
+
+    .order-total {
+        text-align: left;
+    }
+
+}

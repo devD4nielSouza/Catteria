@@ -1,113 +1,367 @@
 ﻿@* Catteria Admin — Dashboard View *@
 @model DashboardViewModel
+
 @{
     Layout = "_AdminLayout";
 }
 
-@* Topo do Dashboard - Título Clean *@
 <div class="dashboard-header-container d-flex justify-content-between align-items-center mb-4">
+
+
     <div>
-        <h3 class="fw-bold mb-0 text-uppercase dashboard-main-title">Visão Geral</h3>
-        <p class="text-muted-catteria mb-0">Acompanhe as métricas e pedidos da sua cafeteria em tempo real.</p>
+
+        <h3 class="fw-bold mb-0 text-uppercase dashboard-main-title">
+            Visão Geral
+        </h3>
+
+        <p class="text-muted-catteria mb-0">
+            Acompanhe as métricas e pedidos da sua cafeteria em tempo real.
+        </p>
+
     </div>
+
+
 </div>
 
-@* Cards de Métricas - Estilo Flutuante com Cantos Arredondados *@
+<!-- Cards -->
+
 <div class="row g-4 mb-5">
+
     <div class="col-lg-4">
+
         <div class="stat-card">
+
             <div class="stat-card-icon-box primary-box">
                 <i class="bi bi-cup-hot-fill"></i>
             </div>
+
             <div class="stat-card-info">
-                <div class="stat-card-number">@Model.TotalProducts</div>
-                <div class="stat-card-label">Produtos Cadastrados</div>
+
+                <div class="stat-card-number">
+                    @Model.TotalProducts
+                </div>
+
+                <div class="stat-card-label">
+                    Produtos Cadastrados
+                </div>
+
             </div>
+
         </div>
+
     </div>
-    
+
+
     <div class="col-lg-4">
+
         <div class="stat-card">
+
             <div class="stat-card-icon-box secondary-box">
                 <i class="bi bi-tags-fill"></i>
             </div>
+
             <div class="stat-card-info">
-                <div class="stat-card-number">@Model.TotalCategories</div>
-                <div class="stat-card-label">Categorias Ativas</div>
+
+                <div class="stat-card-number">
+                    @Model.TotalCategories
+                </div>
+
+                <div class="stat-card-label">
+                    Categorias Ativas
+                </div>
+
             </div>
+
         </div>
+
     </div>
-    
+
+
     <div class="col-lg-4">
+
         <div class="stat-card">
+
             <div class="stat-card-icon-box success-box">
                 <i class="bi bi-star-fill"></i>
             </div>
+
             <div class="stat-card-info">
-                <div class="stat-card-number">@Model.FeaturedOrders</div>
-                <div class="stat-card-label">Pedidos em Destaque</div>
+
+                <div class="stat-card-number">
+                    @Model.FeaturedOrders
+                </div>
+
+                <div class="stat-card-label">
+                    Pedidos em Destaque
+                </div>
+
             </div>
+
         </div>
+
     </div>
+
+
 </div>
 
-@* Seção de Pedidos Recentes - Estilo Tabela Nuvem *@
+<!-- Pedidos -->
+
 <div class="table-catteria-container">
+
     <div class="p-3 d-flex justify-content-between align-items-center table-catteria-header">
+
         <h5 class="mb-0 fw-bold table-catteria-title">
-            <i class="bi bi-receipt me-2 text-primary-catteria"></i>Últimos Pedidos Realizados
+
+            <i class="bi bi-receipt me-2 text-primary-catteria"></i>
+
+            Últimos Pedidos Realizados
+
         </h5>
-        <span class="badge badge-live-status">Tempo Real</span>
+
+        <span class="badge badge-live-status">
+            Tempo Real
+        </span>
+
     </div>
-    
+
+
     <div class="table-responsive">
+
         <table class="table table-hover mb-0 alignment-catteria-table">
+
             <thead>
+
                 <tr>
+
                     <th>Nº Pedido</th>
-                    <th>ID Usuário</th>
+
+                    <th>Cliente</th>
+
                     <th>Data / Hora</th>
+
                     <th>Total</th>
+
                     <th>Status</th>
+
+                    @* <th>Ação</th> *@
+
                 </tr>
+
             </thead>
+
+
             <tbody>
+
                 @if (Model.RecentOrder != null && Model.RecentOrder.Any())
                 {
+
                     @foreach (var order in Model.RecentOrder)
                     {
+
                         <tr>
-                            <td class="fw-bold text-primary-catteria">#@order.Id</td>
-                            <td class="fw-semibold text-dark-blue">Usuário #@order.IdUser</td>
-                            <td>@order.Date.ToString("dd/MM/yyyy HH:mm")</td>
-                            <td class="fw-bold text-success-price">@order.TotalValue.ToString("C")</td>
-                            <td>
-                                @if (order.Status == "Concluído" || order.Status == "Pago")
+
+                            <td class="fw-bold text-primary-catteria">
+                                #@order.Id
+                            </td>
+
+
+                            <td class="fw-semibold text-dark-blue">
+
+                                @if (!string.IsNullOrWhiteSpace(order.CustomerName))
                                 {
-                                    <span class="badge-status-catteria status-completed">@order.Status</span>
-                                }
-                                else if (order.Status == "Pendente" || order.Status == "Em andamento" || order.Status == "Preparando")
-                                {
-                                    <span class="badge-status-catteria status-waiting">@order.Status</span>
+                                    @order.CustomerName
                                 }
                                 else
                                 {
-                                    <span class="badge-status-catteria status-default">@order.Status</span>
+                                    <span class="text-muted">
+                                        Usuário #@order.IdUser
+                                    </span>
                                 }
+
                             </td>
+
+
+                            <td>
+                                @order.Date.ToString("dd/MM/yyyy HH:mm")
+                            </td>
+
+
+                            <td class="fw-bold text-success-price">
+                                @order.TotalValue.ToString("C")
+                            </td>
+
+
+                            <td>
+
+                                @switch (order.StatusId)
+                                {
+                                    case 1:
+
+                                        <span class="badge-status-catteria status-waiting">
+                                            <i class="bi bi-clock me-1"></i>
+                                            @order.Status
+                                        </span>
+
+                                        break;
+
+                                    case 2:
+
+                                        <span class="badge-status-catteria status-waiting">
+                                            <i class="bi bi-check-circle me-1"></i>
+                                            @order.Status
+                                        </span>
+
+                                        break;
+
+                                    case 3:
+
+                                        <span class="badge-status-catteria status-waiting">
+                                            <i class="bi bi-cup-hot me-1"></i>
+                                            @order.Status
+                                        </span>
+
+                                        break;
+
+                                    case 4:
+
+                                        <span class="badge-status-catteria status-waiting">
+                                            <i class="bi bi-bag-check me-1"></i>
+                                            @order.Status
+                                        </span>
+
+                                        break;
+
+                                    case 5:
+
+                                        <span class="badge-status-catteria status-waiting">
+                                            <i class="bi bi-bicycle me-1"></i>
+                                            @order.Status
+                                        </span>
+
+                                        break;
+
+                                    case 6:
+
+                                        <span class="badge-status-catteria status-completed">
+                                            <i class="bi bi-house-check me-1"></i>
+                                            @order.Status
+                                        </span>
+
+                                        break;
+                                    case 7:
+
+                                        <span class="badge-status-catteria status-cancelled">
+                                            <i class="bi bi-x-circle me-1"></i>
+                                            @order.Status
+                                        </span>           
+
+                                        break;
+
+                                    default:
+
+                                        <span class="badge-status-catteria status-default">
+                                            @order.Status
+                                        </span>
+
+                                        break;
+                                }
+
+                            </td>
+
+
+                            @* <td>
+
+                                <form asp-controller="Admin"
+                                      asp-action="UpdateOrderStatus"
+                                      method="post"
+                                      class="d-flex gap-2">
+
+                                    <input type="hidden"
+                                           name="id"
+                                           value="@order.Id" />
+
+
+                                    <select name="statusId"
+                                            class="form-select form-select-sm"
+                                            style="min-width: 170px;">
+
+                                        <option value="1"
+                                                selected="@(order.StatusId == 1)">
+                                            Pendente
+                                        </option>
+
+                                        <option value="2"
+                                                selected="@(order.StatusId == 2)">
+                                            Confirmado
+                                        </option>
+
+                                        <option value="3"
+                                                selected="@(order.StatusId == 3)">
+                                            Preparando
+                                        </option>
+
+                                        <option value="4"
+                                                selected="@(order.StatusId == 4)">
+                                            Pronto
+                                        </option>
+
+                                        <option value="5"
+                                                selected="@(order.StatusId == 5)">
+                                            Saiu para entrega
+                                        </option>
+
+                                        <option value="6"
+                                                selected="@(order.StatusId == 6)">
+                                            Entregue
+                                        </option>
+
+                                        <option value="7"
+                                                selected="@(order.StatusId == 7)">
+                                            Cancelado
+                                        </option>
+
+                                    </select>
+
+
+                                    <button type="submit"
+                                            class="btn btn-sm btn-primary">
+
+                                        <i class="bi bi-check-lg"></i>
+
+                                    </button>
+
+                                </form>
+
+                            </td> *@
+
                         </tr>
+
                     }
+
                 }
                 else
                 {
+
                     <tr>
-                        <td colspan="5" class="text-center py-5 text-muted">
+
+                        <td colspan="6"
+                            class="text-center py-5 text-muted">
+
                             <i class="bi bi-inbox fs-3 d-block mb-2 text-opacity-50"></i>
+
                             Nenhum pedido registrado no sistema até o momento.
+
                         </td>
+
                     </tr>
+
                 }
+
             </tbody>
+
         </table>
+
     </div>
+
+
 </div>

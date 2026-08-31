@@ -63,5 +63,30 @@ namespace Catteria.UI.Controllers
             var resultado = await response.Content.ReadFromJsonAsync<CreateOrderResponseDto>();
             return Ok(resultado);
         }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> ValidarCupom([FromBody] ValidarCupomRequest request)
+        {
+            var httpClient = _httpClientFactory.CreateClient("CatteriaApi");
+
+            var cookie = Request.Headers["Cookie"].ToString();
+
+            var apiRequest = new HttpRequestMessage(HttpMethod.Post, "api/cupons/validar")
+            {
+                Content = JsonContent.Create(request)
+            };
+            apiRequest.Headers.Add("Cookie", cookie);
+
+            var response = await httpClient.SendAsync(apiRequest);
+
+            var conteudo = await response.Content.ReadAsStringAsync();
+
+            return StatusCode((int)response.StatusCode, conteudo.Length > 0
+                ? System.Text.Json.JsonSerializer.Deserialize<object>(conteudo)
+                : null);
+        }
+
+        public record ValidarCupomRequest(string Codigo);
     }
 }

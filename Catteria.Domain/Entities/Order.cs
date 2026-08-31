@@ -14,9 +14,11 @@ namespace Catteria.Domain.Entities
 
         public decimal TotalValue { get; set; }
 
-        public string Status { get; set; } = "Pendente";
+        public int StatusId { get; set; }
 
-        public string IdUser { get; set; }
+        public virtual OrderStatus Status { get; set; } = null!;
+
+        public string IdUser { get; set; } = string.Empty;
 
         public string? Observations { get; set; }
 
