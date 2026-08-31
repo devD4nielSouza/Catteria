@@ -186,6 +186,11 @@ namespace Catteria.Infraestructure.Identity
                 await roleManager.CreateAsync(new IdentityRole("Admin"));
             }
 
+            if (!await roleManager.RoleExistsAsync("Usuario"))
+            {
+                await roleManager.CreateAsync(new IdentityRole("Usuario"));
+            }
+            
             // =====================================================================
             // 4. SEED DO USUÁRIO ADMINISTRADOR
             // =====================================================================
