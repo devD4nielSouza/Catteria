@@ -144,9 +144,9 @@ namespace Catteria.Desktop.UserControls
             }
 
             using var form = new ProductFormDialog(_categorias, product);
-            if (form.ShowDialog() == DialogResult.OK && form.Update != null)
+            if (form.ShowDialog() == DialogResult.OK && form.UpdateDto != null)
             {
-                var (sucess, _, error) = await _productsService.UpdateAsync(product.Id, form.Update);
+                var (sucess, _, error) = await _productsService.UpdateAsync(product.Id, form.UpdateDto);
                 if (sucess)
                 {
                     MessageBox.Show("Produto atualizado com sucesso!",

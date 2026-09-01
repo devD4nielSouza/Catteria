@@ -14,6 +14,8 @@ namespace Catteria.Desktop.DTOs
         public decimal TotalValue { get; set; } // Valor total do pedido
         public string Status { get; set; } = string.Empty; // Status do pedido (ex: "Pendente", "Em andamento", "Concluído")
         public int IdUser { get; set; } // Chave estrangeira para o usuário que fez o pedido (relacionamento com a entidade User)
+
+        public string CustomerName { get; set; } = string.Empty;
     }
 
         public class CreateOrderDto

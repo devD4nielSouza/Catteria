@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -42,6 +40,10 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblSessao = new Label();
             pnlSidebar = new Panel();
             btnUsuarios = new Guna.UI2.WinForms.Guna2Button();
@@ -59,6 +61,7 @@
             pnlConteudo = new Panel();
             lblUsuarioEmoji = new Label();
             pnlUsuario = new Guna.UI2.WinForms.Guna2Panel();
+            btnCupom = new Guna.UI2.WinForms.Guna2Button();
             pnlSidebar.SuspendLayout();
             pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pblLogo).BeginInit();
@@ -80,6 +83,7 @@
             // pnlSidebar
             // 
             pnlSidebar.BackColor = Color.FromArgb(253, 247, 242);
+            pnlSidebar.Controls.Add(btnCupom);
             pnlSidebar.Controls.Add(btnUsuarios);
             pnlSidebar.Controls.Add(btnPedidos);
             pnlSidebar.Controls.Add(btnCategorias);
@@ -95,7 +99,7 @@
             btnUsuarios.Animated = true;
             btnUsuarios.BackColor = SystemColors.Control;
             btnUsuarios.BorderRadius = 5;
-            btnUsuarios.CustomizableEdges = customizableEdges1;
+            btnUsuarios.CustomizableEdges = customizableEdges3;
             btnUsuarios.DisabledState.BorderColor = Color.DarkGray;
             btnUsuarios.DisabledState.CustomBorderColor = Color.DarkGray;
             btnUsuarios.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -105,7 +109,7 @@
             btnUsuarios.ForeColor = Color.FromArgb(76, 120, 178);
             btnUsuarios.Location = new Point(2, 210);
             btnUsuarios.Name = "btnUsuarios";
-            btnUsuarios.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnUsuarios.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnUsuarios.Size = new Size(197, 45);
             btnUsuarios.TabIndex = 1;
             btnUsuarios.Text = "Usuários";
@@ -116,7 +120,7 @@
             btnPedidos.Animated = true;
             btnPedidos.BackColor = SystemColors.Control;
             btnPedidos.BorderRadius = 5;
-            btnPedidos.CustomizableEdges = customizableEdges3;
+            btnPedidos.CustomizableEdges = customizableEdges5;
             btnPedidos.DisabledState.BorderColor = Color.DarkGray;
             btnPedidos.DisabledState.CustomBorderColor = Color.DarkGray;
             btnPedidos.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -126,7 +130,7 @@
             btnPedidos.ForeColor = Color.FromArgb(76, 120, 178);
             btnPedidos.Location = new Point(0, 159);
             btnPedidos.Name = "btnPedidos";
-            btnPedidos.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnPedidos.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnPedidos.Size = new Size(197, 45);
             btnPedidos.TabIndex = 1;
             btnPedidos.Text = "Pedidos";
@@ -137,7 +141,7 @@
             btnCategorias.Animated = true;
             btnCategorias.BackColor = SystemColors.Control;
             btnCategorias.BorderRadius = 5;
-            btnCategorias.CustomizableEdges = customizableEdges5;
+            btnCategorias.CustomizableEdges = customizableEdges7;
             btnCategorias.DisabledState.BorderColor = Color.DarkGray;
             btnCategorias.DisabledState.CustomBorderColor = Color.DarkGray;
             btnCategorias.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -147,7 +151,7 @@
             btnCategorias.ForeColor = Color.FromArgb(76, 120, 178);
             btnCategorias.Location = new Point(0, 108);
             btnCategorias.Name = "btnCategorias";
-            btnCategorias.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnCategorias.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnCategorias.Size = new Size(197, 45);
             btnCategorias.TabIndex = 1;
             btnCategorias.Text = "Categorias";
@@ -160,7 +164,7 @@
             btnProdutos.BorderColor = Color.IndianRed;
             btnProdutos.BorderRadius = 5;
             btnProdutos.CustomBorderColor = Color.White;
-            btnProdutos.CustomizableEdges = customizableEdges7;
+            btnProdutos.CustomizableEdges = customizableEdges9;
             btnProdutos.DisabledState.BorderColor = Color.DarkGray;
             btnProdutos.DisabledState.CustomBorderColor = Color.DarkGray;
             btnProdutos.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -170,7 +174,7 @@
             btnProdutos.ForeColor = Color.FromArgb(76, 120, 178);
             btnProdutos.Location = new Point(0, 57);
             btnProdutos.Name = "btnProdutos";
-            btnProdutos.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnProdutos.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnProdutos.Size = new Size(197, 45);
             btnProdutos.TabIndex = 1;
             btnProdutos.Text = "Produtos";
@@ -181,7 +185,7 @@
             btnDashboard.Animated = true;
             btnDashboard.BackColor = SystemColors.Control;
             btnDashboard.BorderRadius = 5;
-            btnDashboard.CustomizableEdges = customizableEdges9;
+            btnDashboard.CustomizableEdges = customizableEdges11;
             btnDashboard.DisabledState.BorderColor = Color.DarkGray;
             btnDashboard.DisabledState.CustomBorderColor = Color.DarkGray;
             btnDashboard.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -191,7 +195,7 @@
             btnDashboard.ForeColor = Color.FromArgb(76, 120, 178);
             btnDashboard.Location = new Point(0, 6);
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnDashboard.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnDashboard.Size = new Size(197, 45);
             btnDashboard.TabIndex = 1;
             btnDashboard.Text = "Dashboard";
@@ -220,7 +224,7 @@
             // 
             btnLogout.BorderColor = Color.Brown;
             btnLogout.BorderRadius = 5;
-            btnLogout.CustomizableEdges = customizableEdges11;
+            btnLogout.CustomizableEdges = customizableEdges13;
             btnLogout.DisabledState.BorderColor = Color.DarkGray;
             btnLogout.DisabledState.CustomBorderColor = Color.DarkGray;
             btnLogout.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -230,7 +234,7 @@
             btnLogout.ForeColor = Color.White;
             btnLogout.Location = new Point(683, 17);
             btnLogout.Name = "btnLogout";
-            btnLogout.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnLogout.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnLogout.Size = new Size(90, 33);
             btnLogout.TabIndex = 1;
             btnLogout.Text = "Sair";
@@ -306,12 +310,30 @@
             pnlUsuario.Controls.Add(lblSessao);
             pnlUsuario.Controls.Add(lblUsuario);
             pnlUsuario.Controls.Add(lblUsuarioEmoji);
-            pnlUsuario.CustomizableEdges = customizableEdges13;
+            pnlUsuario.CustomizableEdges = customizableEdges15;
             pnlUsuario.Location = new Point(1, 80);
             pnlUsuario.Name = "pnlUsuario";
-            pnlUsuario.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            pnlUsuario.ShadowDecoration.CustomizableEdges = customizableEdges16;
             pnlUsuario.Size = new Size(197, 60);
             pnlUsuario.TabIndex = 0;
+            // 
+            // btnCupom
+            // 
+            btnCupom.CustomizableEdges = customizableEdges1;
+            btnCupom.DisabledState.BorderColor = Color.DarkGray;
+            btnCupom.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnCupom.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnCupom.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnCupom.FillColor = Color.FromArgb(253, 247, 242);
+            btnCupom.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
+            btnCupom.ForeColor = Color.FromArgb(76, 120, 178);
+            btnCupom.Location = new Point(3, 261);
+            btnCupom.Name = "btnCupom";
+            btnCupom.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnCupom.Size = new Size(194, 45);
+            btnCupom.TabIndex = 2;
+            btnCupom.Text = "Cupom";
+            btnCupom.Click += btnCupom_Click;
             // 
             // MainForm
             // 
@@ -352,7 +374,7 @@
         private Label lblPerfil;
         private Label lblUsuario;
         private Panel pnlConteudo;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+
         private Guna.UI2.WinForms.Guna2Button btnCategorias;
         private Guna.UI2.WinForms.Guna2Button btnProdutos;
         private Label lblUsuarioEmoji;
@@ -360,5 +382,6 @@
         private Guna.UI2.WinForms.Guna2Panel pnlUsuario;
         private Guna.UI2.WinForms.Guna2Button btnUsuarios;
         private Guna.UI2.WinForms.Guna2Button btnPedidos;
+        private Guna.UI2.WinForms.Guna2Button btnCupom;
     }
 }

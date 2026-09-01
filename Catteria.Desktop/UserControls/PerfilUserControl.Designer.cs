@@ -34,15 +34,15 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             card = new Guna.UI2.WinForms.Guna2Panel();
-            lblTitulo = new Label();
-            lblNome = new Label();
-            lblBadge = new Label();
-            sep = new Panel();
+            pnlAvatar = new Guna.UI2.WinForms.Guna2Panel();
             lblEmailLabel = new Label();
             lblEmailValor = new Label();
             lblRolesLabel = new Label();
             lblRolesValor = new Label();
-            pnlAvatar = new Guna.UI2.WinForms.Guna2Panel();
+            lblNome = new Label();
+            lblBadge = new Label();
+            sep = new Panel();
+            lblTitulo = new Label();
             card.SuspendLayout();
             SuspendLayout();
             // 
@@ -69,46 +69,16 @@
             card.Size = new Size(520, 380);
             card.TabIndex = 2;
             // 
-            // lblTitulo
+            // pnlAvatar
             // 
-            lblTitulo.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            lblTitulo.ForeColor = Color.FromArgb(76, 120, 178);
-            lblTitulo.Location = new Point(309, 22);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(157, 36);
-            lblTitulo.TabIndex = 3;
-            lblTitulo.Text = "⚙️ Meu Perfil";
-            // 
-            // lblNome
-            // 
-            lblNome.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblNome.ForeColor = Color.DimGray;
-            lblNome.Location = new Point(96, 57);
-            lblNome.Name = "lblNome";
-            lblNome.Size = new Size(411, 30);
-            lblNome.TabIndex = 5;
-            lblNome.Text = "Usuário";
-            lblNome.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblBadge
-            // 
-            lblBadge.BackColor = Color.FromArgb(76, 120, 178);
-            lblBadge.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblBadge.ForeColor = Color.White;
-            lblBadge.Location = new Point(220, 99);
-            lblBadge.Name = "lblBadge";
-            lblBadge.Size = new Size(160, 28);
-            lblBadge.TabIndex = 6;
-            lblBadge.Text = "Perfil";
-            lblBadge.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // sep
-            // 
-            sep.BackColor = Color.FromArgb(224, 228, 235);
-            sep.Location = new Point(26, 189);
-            sep.Name = "sep";
-            sep.Size = new Size(460, 1);
-            sep.TabIndex = 7;
+            pnlAvatar.BackgroundImage = (Image)resources.GetObject("pnlAvatar.BackgroundImage");
+            pnlAvatar.BackgroundImageLayout = ImageLayout.Stretch;
+            pnlAvatar.CustomizableEdges = customizableEdges1;
+            pnlAvatar.Location = new Point(40, 22);
+            pnlAvatar.Name = "pnlAvatar";
+            pnlAvatar.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            pnlAvatar.Size = new Size(137, 147);
+            pnlAvatar.TabIndex = 16;
             // 
             // lblEmailLabel
             // 
@@ -150,16 +120,46 @@
             lblRolesValor.TabIndex = 15;
             lblRolesValor.Text = "...";
             // 
-            // pnlAvatar
+            // lblNome
             // 
-            pnlAvatar.BackgroundImage = (Image)resources.GetObject("pnlAvatar.BackgroundImage");
-            pnlAvatar.BackgroundImageLayout = ImageLayout.Stretch;
-            pnlAvatar.CustomizableEdges = customizableEdges1;
-            pnlAvatar.Location = new Point(40, 22);
-            pnlAvatar.Name = "pnlAvatar";
-            pnlAvatar.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            pnlAvatar.Size = new Size(137, 147);
-            pnlAvatar.TabIndex = 16;
+            lblNome.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblNome.ForeColor = Color.DimGray;
+            lblNome.Location = new Point(96, 57);
+            lblNome.Name = "lblNome";
+            lblNome.Size = new Size(411, 30);
+            lblNome.TabIndex = 5;
+            lblNome.Text = "Usuário";
+            lblNome.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblBadge
+            // 
+            lblBadge.BackColor = Color.FromArgb(76, 120, 178);
+            lblBadge.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblBadge.ForeColor = Color.White;
+            lblBadge.Location = new Point(220, 99);
+            lblBadge.Name = "lblBadge";
+            lblBadge.Size = new Size(160, 28);
+            lblBadge.TabIndex = 6;
+            lblBadge.Text = "Perfil";
+            lblBadge.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // sep
+            // 
+            sep.BackColor = Color.FromArgb(224, 228, 235);
+            sep.Location = new Point(26, 189);
+            sep.Name = "sep";
+            sep.Size = new Size(460, 1);
+            sep.TabIndex = 7;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lblTitulo.ForeColor = Color.FromArgb(76, 120, 178);
+            lblTitulo.Location = new Point(309, 22);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(157, 36);
+            lblTitulo.TabIndex = 3;
+            lblTitulo.Text = "⚙️ Meu Perfil";
             // 
             // PerfilUserControl
             // 
@@ -170,6 +170,7 @@
             Controls.Add(card);
             Name = "PerfilUserControl";
             Size = new Size(788, 484);
+            Load += PerfilUserControl_Load;
             card.ResumeLayout(false);
             ResumeLayout(false);
         }

@@ -129,5 +129,8 @@ namespace Catteria.Desktop.Forms
         private void btnPedidos_Click(object sender, EventArgs e) => Navegar(new OrdersUserControl(), btnPedidos);
 
         private void btnUsuarios_Click(object sender, EventArgs e) => Navegar(new UsuarioUserControl(), btnUsuarios);
+
+        private void btnCupom_Click(object sender, EventArgs e) => Navegar(new CupomUserControl(), btnCupom);
+     
     }
 }

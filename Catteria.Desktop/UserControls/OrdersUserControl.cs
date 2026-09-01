@@ -1,4 +1,5 @@
 ﻿using Catteria.Desktop.DTOs;
+using Catteria.Desktop.Helpers;
 using Catteria.Desktop.Services;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,21 @@ namespace Catteria.Desktop.UserControls
 
             // Carrega os pedidos.
             await CarregarDadosAsync();
+
+            ConfigurarPermissoes();
+
+        }
+
+        /// <summary>
+        /// Mostra/esconde os botões de acordo com o perfil do usuário logado,
+        /// igual ao que é feito no ProductsUserControl. Aqui não existe "Novo"
+        /// porque pedidos não são criados manualmente pela tela do Desktop.
+        /// </summary>
+        private void ConfigurarPermissoes()
+        {
+            bool isAdmin = SessionManager.Instance.IsAdmin;
+            btnEditar.Visible = isAdmin;
+            btnExcluir.Visible = isAdmin;
         }
 
 
@@ -89,8 +105,124 @@ namespace Catteria.Desktop.UserControls
             }
         }
 
+        private void FiltrarPedidos()
+        {
+            // Pega o texto digitado na pesquisa.
+            string termo = txtPesquisa.Text.Trim();
 
+            // Se não foi digitado nada, mostra todos os pedidos.
+            if (string.IsNullOrEmpty(termo))
+            {
+                PopularGrid(_todosPedidos);
+                return;
+            }
 
+            // Procura o termo nos campos do pedido.
+            var pedidosFiltrados = _todosPedidos
+                .Where(p =>
+                    // ID do pedido
+                    p.Id.ToString().Contains(termo, StringComparison.OrdinalIgnoreCase)
+
+                    // Data
+                    || p.Date.ToString("dd/MM/yyyy HH:mm")
+                        .Contains(termo, StringComparison.OrdinalIgnoreCase)
+
+                    // Valor
+                    || p.TotalValue.ToString("C2")
+                        .Contains(termo, StringComparison.OrdinalIgnoreCase)
+
+                    // Status
+                    || (p.Status ?? "")
+                        .Contains(termo, StringComparison.OrdinalIgnoreCase)
+
+                    // Nome do cliente
+                    || (p.CustomerName ?? "")
+                        .Contains(termo, StringComparison.OrdinalIgnoreCase)
+                )
+                .ToList();
+
+            // Mostra somente os pedidos encontrados.
+            PopularGrid(pedidosFiltrados);
+        }
+
+        private void txtPesquisa_TextChanged(object sender, EventArgs e) => FiltrarPedidos();
+
+        private OrdersResponseDto? ObterPedidoSelecionado()
+        {
+            if (gridPedidos.SelectedRows.Count == 0) return null;
+            var row = gridPedidos.SelectedRows[0];
+            var id = Convert.ToInt32(row.Cells["colId"].Value); // ajuste o nome da coluna se for diferente
+            return _todosPedidos.FirstOrDefault(p => p.Id == id);
+        }
+
+        private async void btnEditar_Click(object sender, EventArgs e)
+        {
+            var pedido = ObterPedidoSelecionado();
+            if (pedido == null)
+            {
+                MessageBox.Show("Selecione um pedido para editar",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Dialog simples que só deixa escolher o novo status (ver OrderStatusFormDialog).
+            using var form = new OrderStatusFormDialog(pedido.Status);
+            if (form.ShowDialog() == DialogResult.OK && form.NovoStatus != null)
+            {
+                var updateDto = new UpdateOrderDto { Status = form.NovoStatus };
+                var (success, error) = await _ordersService.UpdateAsync(pedido.Id, updateDto);
+                if (success)
+                {
+                    MessageBox.Show("Status do pedido atualizado com sucesso!",
+                        "Sucesso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    await CarregarDadosAsync();
+                }
+                else
+                {
+                    MessageBox.Show($"{error}", "Erro",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private async void btnExcluir_Click(object sender, EventArgs e)
+        {
+            var pedido = ObterPedidoSelecionado();
+            if (pedido == null)
+            {
+                MessageBox.Show("Selecione um pedido para excluir.",
+                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var conf = MessageBox.Show(
+                $"Tem certeza que deseja excluir o pedido \"{pedido.Id}\"?",
+                "Confirmar Exclusão", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (conf != DialogResult.Yes) return;
+
+            var (success, error) = await _ordersService.DeleteAsync(pedido.Id);
+            if (success)
+            {
+                MessageBox.Show("Pedido excluído com sucesso!", "Sucesso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                await CarregarDadosAsync();
+            }
+            else
+            {
+                MessageBox.Show($"{error}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnAtualizar_Click(object sender, EventArgs e) => await CarregarDadosAsync();
     }
-    
+
 }
+
+
