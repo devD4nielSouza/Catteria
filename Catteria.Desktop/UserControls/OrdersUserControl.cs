@@ -1,4 +1,5 @@
 ﻿using Catteria.Desktop.DTOs;
+using Catteria.Desktop.Forms;
 using Catteria.Desktop.Helpers;
 using Catteria.Desktop.Services;
 using System;
@@ -21,11 +22,11 @@ namespace Catteria.Desktop.UserControls
         /// Serviço responsável por conversar com a API de pedidos.
         /// </summary>
         private OrdersApiService _ordersService = null!;
-
         /// <summary>
         /// Lista com todos os pedidos carregados da API.
         /// </summary>
         private List<OrdersResponseDto> _todosPedidos = new();
+        private List<OrderStatusResponseDto> _statusList = new();
 
         public OrdersUserControl()
         {
@@ -36,6 +37,10 @@ namespace Catteria.Desktop.UserControls
         {
             // Cria o serviço que irá conversar com a API.
             _ordersService = new OrdersApiService();
+
+
+            // carregar lista de status (ver método no service)
+            _statusList = await _ordersService.GetStatusesAsync();
 
             // Carrega os pedidos.
             await CarregarDadosAsync();
@@ -168,10 +173,14 @@ namespace Catteria.Desktop.UserControls
             }
 
             // Dialog simples que só deixa escolher o novo status (ver OrderStatusFormDialog).
-            using var form = new OrderStatusFormDialog(pedido.Status);
-            if (form.ShowDialog() == DialogResult.OK && form.NovoStatus != null)
+            using var form = new OrderFormDialog(_statusList, pedido);
+            if (form.ShowDialog() == DialogResult.OK && form.UpdateDto != null)
             {
-                var updateDto = new UpdateOrderDto { Status = form.NovoStatus };
+                // Mapear para o DTO que o OrdersApiService espera (ex.: UpdateOrderDto)
+                var updateDto = new UpdateOrderDto
+                {
+                    Status = form.UpdateDto.Status // ajuste conforme nomes reais
+                };
                 var (success, error) = await _ordersService.UpdateAsync(pedido.Id, updateDto);
                 if (success)
                 {
