@@ -26,7 +26,7 @@ namespace Catteria.Desktop.UserControls
 
         private async void UsuarioUserControl_Load(object sender, EventArgs e)
         {
-            if (DesignMode) return;
+
 
             _usuariosService = new UsuariosApiService();
 
@@ -87,7 +87,7 @@ namespace Catteria.Desktop.UserControls
                 .Where(u =>
                     (u.Nome ?? "").Contains(termo, StringComparison.OrdinalIgnoreCase)
                     || (u.Email ?? "").Contains(termo, StringComparison.OrdinalIgnoreCase)
-                    || (u.Phone ?? "").Contains(termo, StringComparison.OrdinalIgnoreCase)
+                    || (u.Telephone ?? "").Contains(termo, StringComparison.OrdinalIgnoreCase)
                     || (u.Type ?? "").Contains(termo, StringComparison.OrdinalIgnoreCase)
                     || (u.Address ?? "").Contains(termo, StringComparison.OrdinalIgnoreCase)
                 )
