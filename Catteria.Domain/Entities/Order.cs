@@ -26,6 +26,7 @@ namespace Catteria.Domain.Entities
         public Guid? CupomId { get; set; }
         public string? CupomCodigo { get; set; }
         public decimal Desconto { get; set; }
+        public decimal PercentualDesconto { get; set; }
         public virtual ApplicationUser? User { get; set; }
 
         public virtual ICollection<OrderItem> OrderItems { get; set; }

@@ -123,7 +123,7 @@ namespace Catteria.Application.Services
                 IdUser = order.IdUser,
                 CupomCodigo = order.CupomCodigo,
                 Desconto = order.Desconto,
-                PercentualDesconto = order.Desconto,
+                PercentualDesconto = order.PercentualDesconto,
                 CustomerName = order.User?.Name ?? "",
                 PaymentMethod = order.PaymentMethod,
 

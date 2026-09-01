@@ -18,13 +18,18 @@ namespace Catteria.UI.Controllers
         /// <summary>
         ///
         /// </summary>
-        public async Task<IActionResult> Index(int? SelectedCategoryById, string search)
+        public async Task<IActionResult> Index(int? SelectedCategoryById, string search, int page = 1)
         {
+            const int pageSize = 5;
+
             var viewModel = new ProductListViewModel
             {
                 Categories = await _categoryService.GetAllAsync(),
-                SelectedCategoryById = SelectedCategoryById
+                SelectedCategoryById = SelectedCategoryById,
+                CurrentPage = page,
+                PageSize = pageSize
             };
+
             viewModel.Products = await _productService.GetAllAsync();
 
             if (SelectedCategoryById.HasValue)
@@ -38,6 +43,15 @@ namespace Catteria.UI.Controllers
                     .Where(p => p.Name.Contains(search, StringComparison.OrdinalIgnoreCase))
                     .ToList();
             }
+
+            // Calcular total de itens
+            viewModel.TotalItems = viewModel.Products.Count();
+
+            // Aplicar paginação
+            viewModel.PaginatedProducts = viewModel.Products
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
 
             return View(viewModel);
         }

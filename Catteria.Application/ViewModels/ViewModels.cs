@@ -39,6 +39,31 @@ namespace Catteria.Application.ViewModels
         /// Armazena o ID da categoria selecionada pelo usuário.
         /// </summary>
         public int? SelectedCategoryById { get; set; }
+
+        /// <summary>
+        /// Página atual da paginação
+        /// </summary>
+        public int CurrentPage { get; set; } = 1;
+
+        /// <summary>
+        /// Total de itens por página
+        /// </summary>
+        public int PageSize { get; set; } = 5;
+
+        /// <summary>
+        /// Total de itens
+        /// </summary>
+        public int TotalItems { get; set; }
+
+        /// <summary>
+        /// Total de páginas
+        /// </summary>
+        public int TotalPages => (TotalItems + PageSize - 1) / PageSize;
+
+        /// <summary>
+        /// Produtos paginados
+        /// </summary>
+        public IEnumerable<ProductDto> PaginatedProducts { get; set; } = new List<ProductDto>();
     }
 
     /// <summary>

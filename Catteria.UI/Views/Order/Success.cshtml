@@ -140,33 +140,33 @@
             <!-- Cupom -->
             @if (!string.IsNullOrEmpty(Model.CupomCodigo))
             {
-                <div class="mt-4 p-3 rounded border">
+                <div class="mt-4 p-4 rounded border border-success bg-light">
 
                     <div class="d-flex justify-content-between align-items-center">
 
                         <div>
-                            <small class="text-muted">
-                                Cupom utilizado
+                            <small class="text-muted d-block">
+                                <i class="bi bi-tag-fill me-2" style="color: #28a745;"></i>Cupom utilizado
                             </small>
 
-                            <h5 class="mb-1">
+                            <h5 class="mb-1 fw-bold">
                                 @Model.CupomCodigo
                             </h5>
 
-                            <small class="text-success">
+                            <small class="text-success fw-bold">
                                 @Model.PercentualDesconto% de desconto
                             </small>
                         </div>
 
                         <div class="text-end">
 
-                            <small class="text-muted">
-                                Desconto
+                            <small class="text-muted d-block">
+                                Desconto aplicado
                             </small>
 
-                            <h5 class="mb-0 text-success">
+                            <h4 class="mb-0 text-success fw-bold">
                                 - @Model.Desconto.ToString("C")
-                            </h5>
+                            </h4>
 
                         </div>
 
@@ -205,8 +205,6 @@
             Continuar comprando
 
         </a>
-
-    </div>
     <a asp-controller="Order"
        asp-action="Tracking"
        asp-route-id="@Model.Id"
@@ -216,5 +214,7 @@
         Acompanhar pedido
 
     </a>
+
+    </div>
 
 </div>

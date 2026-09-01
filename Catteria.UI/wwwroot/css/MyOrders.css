@@ -1,6 +1,8 @@
 ﻿.orders-header-icon {
-    ``` width: 70px;
+    width: 70px;
     height: 70px;
+    min-width: 70px;
+    min-height: 70px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -9,26 +11,25 @@
     background: #f3e6df;
     color: #8b5e4b;
     font-size: 30px;
-    ```
+    flex-shrink: 0;
 }
 
 .orders-list {
-    ``` display: flex;
+    display: flex;
     flex-direction: column;
-    gap: 15px;
-    ```
+    gap: 20px;
 }
 
 .order-card {
-    ``` display: flex;
+    display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 20px;
     padding: 20px;
     background: white;
     border-radius: 16px;
     box-shadow: 0 3px 15px rgba(0, 0, 0, .06);
     transition: transform .2s, box-shadow .2s;
-    ```
+    flex-wrap: wrap;
 }
 
     .order-card:hover {
@@ -38,16 +39,18 @@
     }
 
 .order-main {
-    ``` display: flex;
+    display: flex;
     align-items: center;
     gap: 14px;
-    flex: 1;
-    ```
+    flex: 1 1 auto;
+    min-width: 200px;
 }
 
 .order-icon {
-    ``` width: 48px;
+    width: 48px;
     height: 48px;
+    min-width: 48px;
+    min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,7 +58,7 @@
     background: #f3e6df;
     color: #8b5e4b;
     font-size: 20px;
-    ```
+    flex-shrink: 0;
 }
 
 .order-status {
@@ -86,13 +89,17 @@
     ```
 }
 
-.order-total {
-    ``` min-width: 100px;
-    text-align: right;
-    ```
+.order-status-area {
+    display: flex;
+    align-items: center;
+    flex: 0 1 auto;
 }
 
-.empty-orders {
+.order-total {
+    min-width: 120px;
+    text-align: right;
+    flex: 0 1 auto;
+}
     ``` text-align: center;
     padding: 70px 20px;
     background: white;

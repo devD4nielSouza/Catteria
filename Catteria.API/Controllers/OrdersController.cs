@@ -92,9 +92,10 @@ namespace Catteria.API.Controllers
                     StatusId = 1,
 
                     Observations = dto.Observations,
-                    PaymentMethod = dto.PaymentMethod
+                    PaymentMethod = dto.PaymentMethod,
+                    CupomCodigo = dto.CupomCodigo // Adicionar o código do cupom
                 };
-            decimal subtotal = 0;
+                decimal subtotal = 0;
 
             foreach (var item in dto.Items)
             {
@@ -134,6 +135,7 @@ namespace Catteria.API.Controllers
                 var percentual = resultadoCupom.Cupom!.PercentualDesconto;
 
                 desconto = subtotal * (percentual / 100);
+                order.PercentualDesconto = percentual; // Adicionar percentual
 
                 order.CupomId = resultadoCupom.Cupom.Id;
             }

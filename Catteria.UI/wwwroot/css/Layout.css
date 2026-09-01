@@ -65,8 +65,32 @@ main {
     transition: color 0.2s;
 }
 
-    .nav-links a:hover, .nav-links a.active {
+         .nav-links a:hover, .nav-links a.active {
+            color: var(--azul-escuro);
+        }
+
+    /* Menu Mobile */
+    .nav-link-mobile {
+        color: var(--texto-escuro);
+        text-decoration: none;
+        font-weight: 500;
+        display: block;
+        padding: 10px 0;
+        border-radius: 5px;
+        transition: background-color 0.2s;
+    }
+
+    .nav-link-mobile:hover {
+        background-color: rgba(44, 123, 182, 0.1);
         color: var(--azul-escuro);
+    }
+
+    #hamburgerBtn {
+        cursor: pointer;
+    }
+
+    #mobileMenu a[asp-controller] {
+        color: inherit !important;
     }
 
 .logoImg {
