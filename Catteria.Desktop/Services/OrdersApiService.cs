@@ -53,5 +53,17 @@ namespace Catteria.Desktop.Services
             return await _http.DeleteAsync($"/api/orders/{id}");
         }
 
+        public async Task<List<OrderStatusResponseDto>> GetStatusesAsync()
+        {
+            try
+            {
+                var list = await _http.GetAsync<List<OrderStatusResponseDto>>("/api/orders/statuses");
+                return list ?? new List<OrderStatusResponseDto>();
+            }
+            catch
+            {
+                return new List<OrderStatusResponseDto>();
+            }
+        }
     }
 }
