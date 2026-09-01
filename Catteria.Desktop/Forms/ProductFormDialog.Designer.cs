@@ -42,7 +42,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblTituloForm = new Label();
             lblCampTitulo = new Label();
-            txtTitulo = new Guna.UI2.WinForms.Guna2TextBox();
+            txtNome = new Guna.UI2.WinForms.Guna2TextBox();
             lblCampDesc = new Label();
             txtDescricao = new Guna.UI2.WinForms.Guna2TextBox();
             lblCampCover = new Label();
@@ -76,20 +76,20 @@
             lblCampTitulo.TabIndex = 15;
             lblCampTitulo.Text = "NOME DO PRODUTO *";
             // 
-            // txtTitulo
+            // txtNome
             // 
-            txtTitulo.BorderColor = Color.FromArgb(224, 228, 235);
-            txtTitulo.BorderRadius = 6;
-            txtTitulo.CustomizableEdges = customizableEdges1;
-            txtTitulo.DefaultText = "";
-            txtTitulo.Font = new Font("Segoe UI", 9.5F);
-            txtTitulo.Location = new Point(34, 90);
-            txtTitulo.Name = "txtTitulo";
-            txtTitulo.PlaceholderText = "Ex: Bolo, Sanduiche...";
-            txtTitulo.SelectedText = "";
-            txtTitulo.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtTitulo.Size = new Size(460, 40);
-            txtTitulo.TabIndex = 16;
+            txtNome.BorderColor = Color.FromArgb(224, 228, 235);
+            txtNome.BorderRadius = 6;
+            txtNome.CustomizableEdges = customizableEdges1;
+            txtNome.DefaultText = "";
+            txtNome.Font = new Font("Segoe UI", 9.5F);
+            txtNome.Location = new Point(34, 90);
+            txtNome.Name = "txtNome";
+            txtNome.PlaceholderText = "Ex: Bolo, Sanduiche...";
+            txtNome.SelectedText = "";
+            txtNome.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtNome.Size = new Size(460, 40);
+            txtNome.TabIndex = 16;
             // 
             // lblCampDesc
             // 
@@ -205,6 +205,7 @@
             btnCancelar.Size = new Size(100, 42);
             btnCancelar.TabIndex = 27;
             btnCancelar.Text = "Cancelar";
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // lblCampPreco
             // 
@@ -225,7 +226,7 @@
             txtPreco.Font = new Font("Segoe UI", 9.5F);
             txtPreco.Location = new Point(34, 287);
             txtPreco.Name = "txtPreco";
-            txtPreco.PlaceholderText = "https://...";
+            txtPreco.PlaceholderText = "R$000,00";
             txtPreco.SelectedText = "";
             txtPreco.ShadowDecoration.CustomizableEdges = customizableEdges12;
             txtPreco.Size = new Size(460, 40);
@@ -239,7 +240,7 @@
             ClientSize = new Size(521, 578);
             Controls.Add(lblTituloForm);
             Controls.Add(lblCampTitulo);
-            Controls.Add(txtTitulo);
+            Controls.Add(txtNome);
             Controls.Add(lblCampDesc);
             Controls.Add(txtDescricao);
             Controls.Add(lblCampPreco);
@@ -262,7 +263,7 @@
 
         private Label lblTituloForm;
         private Label lblCampTitulo;
-        private Guna.UI2.WinForms.Guna2TextBox txtTitulo;
+        private Guna.UI2.WinForms.Guna2TextBox txtNome;
         private Label lblCampDesc;
         private Guna.UI2.WinForms.Guna2TextBox txtDescricao;
         private Label lblCampCover;

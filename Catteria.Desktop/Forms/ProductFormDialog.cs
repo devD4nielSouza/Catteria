@@ -51,7 +51,7 @@ namespace Catteria.Desktop.Forms
         {
             if (_produtoExistente == null) return;
 
-            txtTitulo.Text = _produtoExistente.Name;
+            txtNome.Text = _produtoExistente.Name;
             txtDescricao.Text = _produtoExistente.Description;
             txtPreco.Text = _produtoExistente.Price.ToString();
             txtCoverUrl.Text = _produtoExistente.CoverImageUrl;
@@ -63,14 +63,69 @@ namespace Catteria.Desktop.Forms
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTitulo.Text))
+            if (string.IsNullOrWhiteSpace(txtNome.Text))
             {
                 MessageBox.Show(
                     "Informe o titulo do produto.",
                     "Validação",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
+                return;
             }
+
+            if (!decimal.TryParse(txtPreco.Text, out decimal preco) || preco < 0)
+            {
+                MessageBox.Show(
+                    "Informe um preço acima de 0",
+                    "Validação",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (cmbCategoria.SelectedIndex <= 0)
+            {
+                MessageBox.Show(
+                    "Selecione uma categoria",
+                    "Validação",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            var categoriaIdx = cmbCategoria.SelectedIndex - 1;
+            var categoriaId = _categorias[categoriaIdx].Id;
+
+            if (_produtoExistente == null)
+            {
+                ProductDto = new CreateProductDto
+                {
+                    Name = txtNome.Text.Trim(),
+                    Description = txtDescricao.Text.Trim(),
+                    CoverImageUrl = txtCoverUrl.Text.Trim(),
+                    Price = Convert.ToDecimal(txtPreco.Text),
+                    IsFeatured = chkDestaque.Checked,
+                    CategoryId = categoriaId
+                };
+            }
+            else
+            {
+                UpdateDto = new UpdateProductDto
+                {
+                    Name = txtNome.Text.Trim(),
+                    Description = txtDescricao.Text.Trim(),
+                    CoverImageUrl = txtCoverUrl.Text.Trim(),
+                    Price = Convert.ToDecimal(txtPreco.Text),
+                    IsFeatured = chkDestaque.Checked,
+                    CategoryId = categoriaId
+                };
+            }
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e) => this.Close();
+
     }
 }
