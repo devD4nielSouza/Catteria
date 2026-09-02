@@ -221,6 +221,9 @@ namespace Catteria.Infraestructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("PercentualDesconto")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
 

@@ -56,7 +56,7 @@ namespace Catteria.Desktop.Services
             }
         }
 
-        public async Task <(bool Success, UsuariosResponseDto? Usuario, string ErrorMessage)> UpdateAsync(UpdateUsuarioDto dto, string id)
+        public async Task <(bool Success, UsuariosResponseDto? Usuario, string ErrorMessage)> UpdateAsync(string id, UpdateUsuarioDto dto)
         {
             try
             {

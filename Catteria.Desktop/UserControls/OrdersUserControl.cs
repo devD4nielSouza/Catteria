@@ -181,7 +181,7 @@ namespace Catteria.Desktop.UserControls
                 {
                     Status = form.UpdateDto.Status // ajuste conforme nomes reais
                 };
-                var (success, error) = await _ordersService.UpdateAsync(pedido.Id, updateDto);
+                var (success, errorUpd, error) = await _ordersService.UpdateAsync(pedido.Id, updateDto);
                 if (success)
                 {
                     MessageBox.Show("Status do pedido atualizado com sucesso!",

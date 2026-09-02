@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Catteria.Infraestructure.Migrations
 {
     [DbContext(typeof(CatteriaDbContext))]
-    [Migration("20260831181836_AdidionandoOrderStatus")]
-    partial class AdidionandoOrderStatus
+    [Migration("20260902173222_NovaMigration")]
+    partial class NovaMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -224,6 +224,9 @@ namespace Catteria.Infraestructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("PercentualDesconto")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
 
@@ -289,6 +292,50 @@ namespace Catteria.Infraestructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OrderStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Pedido recebido e aguardando confirmação.",
+                            Name = "Pendente"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Pedido confirmado.",
+                            Name = "Confirmado"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "O pedido está sendo preparado.",
+                            Name = "Preparando"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "O pedido está pronto.",
+                            Name = "Pronto"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "O pedido está a caminho.",
+                            Name = "Saiu para entrega"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Pedido entregue ao cliente.",
+                            Name = "Entregue"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Pedido cancelado.",
+                            Name = "Cancelado"
+                        });
                 });
 
             modelBuilder.Entity("Catteria.Domain.Entities.Product", b =>

@@ -37,10 +37,7 @@ namespace Catteria.Desktop.Forms
             this.Text = $"Catteria Desktop - {AppConfig.Version}";
 
             lblUsuario.Text = $"{SessionManager.Instance.GetDisplayName()}";
-            lblPerfil.Text = SessionManager.Instance.IsAdmin ? "Administrador" : "Usuário Comum";
-            lblPerfil.ForeColor = SessionManager.Instance.IsAdmin
-                ? Color.DeepPink
-                : Color.CornflowerBlue;
+            
             lblSessao.Text = $"{SessionManager.Instance.GetEmail()}";
 
             ConfigurarPermissoes();
