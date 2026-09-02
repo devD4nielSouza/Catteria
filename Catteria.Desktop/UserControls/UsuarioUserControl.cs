@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Catteria.Desktop.Forms;
 
 namespace Catteria.Desktop.UserControls
 {
@@ -18,17 +19,16 @@ namespace Catteria.Desktop.UserControls
     {
         private UsuariosApiService _usuariosService = null!;
         private List<UsuariosResponseDto> _todosUsuarios = new();
-
+        private List<string> _perfis = new();
         public UsuarioUserControl()
         {
             InitializeComponent();
+            _usuariosService = new UsuariosApiService();
         }
 
         private async void UsuarioUserControl_Load(object sender, EventArgs e)
         {
-
-
-            _usuariosService = new UsuariosApiService();
+            if (DesignMode) return;
 
             ConfigurarPermissoes();
 
@@ -68,7 +68,7 @@ namespace Catteria.Desktop.UserControls
                     u.Nome,
                     u.Email,
                     u.Telephone,
-                    u.Type,
+                    u.Perfil,
                     u.Address
                 );
             }
@@ -88,7 +88,7 @@ namespace Catteria.Desktop.UserControls
                     (u.Nome ?? "").Contains(termo, StringComparison.OrdinalIgnoreCase)
                     || (u.Email ?? "").Contains(termo, StringComparison.OrdinalIgnoreCase)
                     || (u.Telephone ?? "").Contains(termo, StringComparison.OrdinalIgnoreCase)
-                    || (u.Type ?? "").Contains(termo, StringComparison.OrdinalIgnoreCase)
+                    || (u.Perfil ?? "").Contains(termo, StringComparison.OrdinalIgnoreCase)
                     || (u.Address ?? "").Contains(termo, StringComparison.OrdinalIgnoreCase)
                 )
                 .ToList();
@@ -141,23 +141,67 @@ namespace Catteria.Desktop.UserControls
             }
         }
 
-        private void btnEditar_Click_1(object sender, EventArgs e)
+        //
+        // 
+        //
+
+        private async void btnEditar_Click_1(object sender, EventArgs e)
         {
             var usuario = ObterUsuarioSelecionado();
             if (usuario == null)
             {
-                MessageBox.Show("Selecione um usuário para editar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Selecione um usuário para editar.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
-            // Implementar abertura de formulário de edição se existir (ex: UsuarioFormDialog).
-            MessageBox.Show($"Editar usuário '{usuario.Nome}' não implementado aqui. ID: {usuario.Id}", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            using var form = new UsuarioFormDialog(_perfis, usuario);
+            if (form.ShowDialog() == DialogResult.OK && form.UpdateDto != null)
+            {
+                var (success, _, error) = await _usuariosService.UpdateAsync(usuario.Id, form.UpdateDto);
+                if (success)
+                {
+                    MessageBox.Show(
+                        "✅ Usuário atualizado com sucesso!",
+                        "Sucesso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    await CarregarDadosAsync();
+                }
+                else
+                {
+                    MessageBox.Show(
+                        $"❌ {error}",
+                        "Erro",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
         }
 
-        private void btnNovo_Click_1(object sender, EventArgs e)
+        private async void btnNovo_Click_1(object sender, EventArgs e)
         {
-            // Implementação do formulário de criação de usuário pode ser adicionada aqui.
-            MessageBox.Show("Funcionalidade de criação de usuário não implementada nesta versão.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            using var form = new UsuarioFormDialog(_perfis, null);
+            if (form.ShowDialog() == DialogResult.OK && form.CreateDto != null)
+            {
+                var (success, _, error) = await _usuariosService.CreateAsync(form.CreateDto);
+                if (success)
+                {
+                    MessageBox.Show(
+                        "✅ Usuário criado com sucesso!",
+                        "Sucesso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    await CarregarDadosAsync();
+                }
+                else
+                {
+                    MessageBox.Show($"❌ {error}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void txtPesquisa_TextChanged(object sender, EventArgs e) => FiltrarUsuarios();
