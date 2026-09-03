@@ -39,16 +39,16 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             gridProdutos = new DataGridView();
-            colId = new DataGridViewTextBoxColumn();
-            colCategoryName = new DataGridViewTextBoxColumn();
-            colPride = new DataGridViewTextBoxColumn();
-            colName = new DataGridViewTextBoxColumn();
             lblTitulo = new Label();
             btnAtualizar = new Guna.UI2.WinForms.Guna2Button();
             btnExcluir = new Guna.UI2.WinForms.Guna2Button();
             btnEditar = new Guna.UI2.WinForms.Guna2Button();
             btnNovo = new Guna.UI2.WinForms.Guna2Button();
             txtPesquisa = new Guna.UI2.WinForms.Guna2TextBox();
+            colId = new DataGridViewTextBoxColumn();
+            colName = new DataGridViewTextBoxColumn();
+            colCategoryName = new DataGridViewTextBoxColumn();
+            colPride = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)gridProdutos).BeginInit();
             SuspendLayout();
             // 
@@ -56,36 +56,12 @@
             // 
             gridProdutos.BackgroundColor = SystemColors.ActiveCaption;
             gridProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridProdutos.Columns.AddRange(new DataGridViewColumn[] { colId, colCategoryName, colPride, colName });
+            gridProdutos.Columns.AddRange(new DataGridViewColumn[] { colId, colName, colCategoryName, colPride });
             gridProdutos.GridColor = SystemColors.InactiveCaption;
             gridProdutos.Location = new Point(14, 128);
             gridProdutos.Name = "gridProdutos";
             gridProdutos.Size = new Size(764, 340);
             gridProdutos.TabIndex = 0;
-            // 
-            // colId
-            // 
-            colId.HeaderText = "ID";
-            colId.Name = "colId";
-            colId.Width = 80;
-            // 
-            // colCategoryName
-            // 
-            colCategoryName.HeaderText = "Categoria";
-            colCategoryName.Name = "colCategoryName";
-            colCategoryName.Width = 200;
-            // 
-            // colPride
-            // 
-            colPride.HeaderText = "Preço do Produto";
-            colPride.Name = "colPride";
-            colPride.Width = 140;
-            // 
-            // colName
-            // 
-            colName.HeaderText = "Nome do Produto";
-            colName.Name = "colName";
-            colName.Width = 300;
             // 
             // lblTitulo
             // 
@@ -197,6 +173,30 @@
             txtPesquisa.TabIndex = 6;
             txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
+            // colId
+            // 
+            colId.HeaderText = "ID";
+            colId.Name = "colId";
+            colId.Width = 80;
+            // 
+            // colName
+            // 
+            colName.HeaderText = "Nome do Produto";
+            colName.Name = "colName";
+            colName.Width = 300;
+            // 
+            // colCategoryName
+            // 
+            colCategoryName.HeaderText = "Categoria";
+            colCategoryName.Name = "colCategoryName";
+            colCategoryName.Width = 200;
+            // 
+            // colPride
+            // 
+            colPride.HeaderText = "Preço do Produto";
+            colPride.Name = "colPride";
+            colPride.Width = 140;
+            // 
             // ProductsUserControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -227,8 +227,8 @@
         private Guna.UI2.WinForms.Guna2Button btnNovo;
         private Guna.UI2.WinForms.Guna2TextBox txtPesquisa;
         private DataGridViewTextBoxColumn colId;
+        private DataGridViewTextBoxColumn colName;
         private DataGridViewTextBoxColumn colCategoryName;
         private DataGridViewTextBoxColumn colPride;
-        private DataGridViewTextBoxColumn colName;
     }
 }
