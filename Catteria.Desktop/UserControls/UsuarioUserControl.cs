@@ -67,7 +67,14 @@ namespace Catteria.Desktop.UserControls
                 // Chama o método GetAllAsync() do serviço,
                 // que faz uma requisição GET para buscar todos os usuários.
 
-                _todosUsuarios = await _usuariosService.GetAllAsync();
+                //_todosUsuarios = await _usuariosService.GetAllAsync();
+                var tarefaUsuarios = _usuariosService.GetAllAsync();
+                var tarefaPerfis = _usuariosService.GetPerfisAsync();
+                await Task.WhenAll(tarefaUsuarios, tarefaPerfis);
+
+                _todosUsuarios = tarefaUsuarios.Result;
+                _perfis = tarefaPerfis.Result;
+
                 PopularGrid(_todosUsuarios);
             }
             catch (Exception ex)

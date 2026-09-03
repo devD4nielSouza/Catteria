@@ -6,15 +6,16 @@ namespace Catteria.Desktop.Forms
     {
         public CreateUsuarioDto? CreateDto { get; private set; }
         public UpdateUsuarioDto? UpdateDto { get; private set; }
-
         private List<string> _perfis = new();
         private UsuariosResponseDto? _usuarioExistente;
+
         public UsuarioFormDialog()
         {
             InitializeComponent();
         }
 
-        public UsuarioFormDialog(List<string> perfis, UsuariosResponseDto? usuarioExistente = null) : this()
+        public UsuarioFormDialog(List<string> perfis, UsuariosResponseDto? usuarioExistente = null)
+            : this()
         {
             _perfis = perfis;
             _usuarioExistente = usuarioExistente;
@@ -26,6 +27,8 @@ namespace Catteria.Desktop.Forms
                 lblTituloForm.Text = "Editar Usuário";
                 txtNome.Text = _usuarioExistente.Nome;
                 txtEmail.Text = _usuarioExistente.Email;
+                txtEndereco.Text = _usuarioExistente.Address;
+                txtTelefone.Text = _usuarioExistente.Telephone;
 
                 if (cmbPerfil.Items.Contains(_usuarioExistente.Perfil))
                 {
@@ -53,41 +56,25 @@ namespace Catteria.Desktop.Forms
         {
             if (string.IsNullOrWhiteSpace(txtNome.Text) || string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                MessageBox.Show(
-                    "Nome e Email são obrigatórios.",
-                    "Validação",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                MessageBox.Show("Nome e Email são obrigatórios.", "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (_usuarioExistente == null && string.IsNullOrWhiteSpace(txtSenha.Text))
             {
-                MessageBox.Show(
-                    "Senha é obrigatória para novos usuários.",
-                    "Validação",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                MessageBox.Show("Senha é obrigatória para novos usuários.", "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (txtSenha.Text != txtConfirmarSenha.Text)
             {
-                MessageBox.Show(
-                    "As senhas não coincidem.",
-                    "Validação",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                MessageBox.Show("As senhas não coincidem.", "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (cmbPerfil.SelectedItem == null)
             {
-                MessageBox.Show(
-                    "Selecione um perfil.",
-                    "Validação",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione um perfil.", "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -122,6 +109,11 @@ namespace Catteria.Desktop.Forms
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void UsuarioFormDialog_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

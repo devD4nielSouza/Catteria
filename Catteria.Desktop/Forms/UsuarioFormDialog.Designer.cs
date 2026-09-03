@@ -56,11 +56,11 @@
             txtNome = new Guna.UI2.WinForms.Guna2TextBox();
             lblCampNome = new Label();
             lblTituloForm = new Label();
-            guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
-            guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
+            txtTelefone = new Guna.UI2.WinForms.Guna2TextBox();
             label1 = new Label();
             label2 = new Label();
             btnCancelar = new Guna.UI2.WinForms.Guna2Button();
+            txtEndereco = new Guna.UI2.WinForms.Guna2TextBox();
             SuspendLayout();
             // 
             // btnSalvar
@@ -211,35 +211,20 @@
             lblTituloForm.TabIndex = 25;
             lblTituloForm.Text = "Usuário";
             // 
-            // guna2TextBox1
+            // txtTelefone
             // 
-            guna2TextBox1.BorderRadius = 6;
-            guna2TextBox1.CustomizableEdges = customizableEdges11;
-            guna2TextBox1.DefaultText = "";
-            guna2TextBox1.Font = new Font("Segoe UI", 9F);
-            guna2TextBox1.Location = new Point(25, 252);
-            guna2TextBox1.Margin = new Padding(3, 2, 3, 2);
-            guna2TextBox1.Name = "guna2TextBox1";
-            guna2TextBox1.PlaceholderText = "";
-            guna2TextBox1.SelectedText = "";
-            guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            guna2TextBox1.Size = new Size(402, 30);
-            guna2TextBox1.TabIndex = 21;
-            // 
-            // guna2TextBox2
-            // 
-            guna2TextBox2.BorderRadius = 6;
-            guna2TextBox2.CustomizableEdges = customizableEdges13;
-            guna2TextBox2.DefaultText = "";
-            guna2TextBox2.Font = new Font("Segoe UI", 9F);
-            guna2TextBox2.Location = new Point(25, 311);
-            guna2TextBox2.Margin = new Padding(3, 2, 3, 2);
-            guna2TextBox2.Name = "guna2TextBox2";
-            guna2TextBox2.PlaceholderText = "";
-            guna2TextBox2.SelectedText = "";
-            guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            guna2TextBox2.Size = new Size(402, 30);
-            guna2TextBox2.TabIndex = 21;
+            txtTelefone.BorderRadius = 6;
+            txtTelefone.CustomizableEdges = customizableEdges11;
+            txtTelefone.DefaultText = "";
+            txtTelefone.Font = new Font("Segoe UI", 9F);
+            txtTelefone.Location = new Point(25, 311);
+            txtTelefone.Margin = new Padding(3, 2, 3, 2);
+            txtTelefone.Name = "txtTelefone";
+            txtTelefone.PlaceholderText = "";
+            txtTelefone.SelectedText = "";
+            txtTelefone.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            txtTelefone.Size = new Size(402, 30);
+            txtTelefone.TabIndex = 21;
             // 
             // label1
             // 
@@ -266,18 +251,33 @@
             btnCancelar.BorderColor = Color.Gray;
             btnCancelar.BorderRadius = 8;
             btnCancelar.BorderThickness = 1;
-            btnCancelar.CustomizableEdges = customizableEdges15;
+            btnCancelar.CustomizableEdges = customizableEdges13;
             btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.FillColor = Color.FromArgb(245, 247, 250);
             btnCancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancelar.ForeColor = Color.FromArgb(51, 61, 75);
             btnCancelar.Location = new Point(329, 467);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            btnCancelar.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnCancelar.Size = new Size(100, 34);
             btnCancelar.TabIndex = 28;
             btnCancelar.Text = "Cancelar";
             btnCancelar.Click += btnCancelar_Click;
+            // 
+            // txtEndereco
+            // 
+            txtEndereco.BorderRadius = 6;
+            txtEndereco.CustomizableEdges = customizableEdges15;
+            txtEndereco.DefaultText = "";
+            txtEndereco.Font = new Font("Segoe UI", 9F);
+            txtEndereco.Location = new Point(27, 252);
+            txtEndereco.Margin = new Padding(3, 2, 3, 2);
+            txtEndereco.Name = "txtEndereco";
+            txtEndereco.PlaceholderText = "";
+            txtEndereco.SelectedText = "";
+            txtEndereco.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            txtEndereco.Size = new Size(402, 30);
+            txtEndereco.TabIndex = 21;
             // 
             // UsuarioFormDialog
             // 
@@ -295,8 +295,8 @@
             Controls.Add(lblCampConfirmarSenha);
             Controls.Add(txtSenha);
             Controls.Add(lblCampSenha);
-            Controls.Add(guna2TextBox2);
-            Controls.Add(guna2TextBox1);
+            Controls.Add(txtEndereco);
+            Controls.Add(txtTelefone);
             Controls.Add(txtEmail);
             Controls.Add(lblCampEmail);
             Controls.Add(txtNome);
@@ -304,6 +304,7 @@
             Controls.Add(lblTituloForm);
             Name = "UsuarioFormDialog";
             Text = "UsuarioFormDialog";
+            Load += UsuarioFormDialog_Load;
             ResumeLayout(false);
         }
 
@@ -321,9 +322,10 @@
         private Label lblCampNome;
         private Label lblTituloForm;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox2;
+        private Guna.UI2.WinForms.Guna2TextBox txtTelefone;
         private Label label1;
         private Label label2;
         private Guna.UI2.WinForms.Guna2Button btnCancelar;
+        private Guna.UI2.WinForms.Guna2TextBox txtEndereco;
     }
 }
