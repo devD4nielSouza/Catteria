@@ -48,6 +48,7 @@
             lblTitulo = new Label();
             colId = new DataGridViewTextBoxColumn();
             colName = new DataGridViewTextBoxColumn();
+            colRole = new DataGridViewTextBoxColumn();
             colEmail = new DataGridViewTextBoxColumn();
             colPhone = new DataGridViewTextBoxColumn();
             colAddress = new DataGridViewTextBoxColumn();
@@ -59,7 +60,7 @@
             // 
             gridUsuarios.BackgroundColor = Color.FromArgb(164, 188, 233);
             gridUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridUsuarios.Columns.AddRange(new DataGridViewColumn[] { colId, colName, colEmail, colPhone, colAddress });
+            gridUsuarios.Columns.AddRange(new DataGridViewColumn[] { colId, colName, colRole, colEmail, colPhone, colAddress });
             gridUsuarios.Location = new Point(14, 154);
             gridUsuarios.Name = "gridUsuarios";
             gridUsuarios.Size = new Size(764, 313);
@@ -199,6 +200,11 @@
             colName.Name = "colName";
             colName.Width = 150;
             // 
+            // colRole
+            // 
+            colRole.HeaderText = "Tipo";
+            colRole.Name = "colRole";
+            // 
             // colEmail
             // 
             colEmail.HeaderText = "Email";
@@ -228,6 +234,7 @@
             ForeColor = SystemColors.ControlText;
             Name = "UsuarioUserControl";
             Size = new Size(793, 482);
+            Load += UsuarioUserControl_Load_1;
             ((System.ComponentModel.ISupportInitialize)gridUsuarios).EndInit();
             pnlToolbar.ResumeLayout(false);
             ResumeLayout(false);
@@ -246,6 +253,7 @@
         private Label lblTitulo;
         private DataGridViewTextBoxColumn colId;
         private DataGridViewTextBoxColumn colName;
+        private DataGridViewTextBoxColumn colRole;
         private DataGridViewTextBoxColumn colEmail;
         private DataGridViewTextBoxColumn colPhone;
         private DataGridViewTextBoxColumn colAddress;

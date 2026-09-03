@@ -17,15 +17,31 @@ namespace Catteria.Desktop.Services
             _http = HttpClientHelper.Instance;
         }
 
+        /// <summary> ///
+        /// Busca todos os usuários cadastrados através da API.
+        /// /// </summary>
         public async Task <List<UsuariosResponseDto>> GetAllAsync()
         {
             try
             {
-                var users = await _http.GetAsync<List<UsuariosResponseDto>>("/api/usuarios");
+                // REQUISIÇÃO PARA API: //
+                // Faz uma requisição GET para a rota /api/usuarios. 
+                // 
+                // A API deve retornar uma lista de usuários.
+                var users = await _http.GetAsync<List<UsuariosResponseDto>>("/api/usuario");
+                // Retorna os usuários recebidos. 
+                //
+                // Caso a API retorne null, retorna uma lista vazia 
+                // para evitar problemas no restante da aplicação.
                 return users ?? new List<UsuariosResponseDto>();
             }
             catch
             {
+                // Caso aconteça algum erro na requisição,
+                // retorna uma lista vazia. 
+                // 
+                // OBS:
+                // Isso impede que o programa quebre, mas também // pode esconder o motivo real do erro.
                 return new List<UsuariosResponseDto>();
             }
         }
@@ -34,7 +50,7 @@ namespace Catteria.Desktop.Services
         {
             try
             {
-                var perfis = await _http.GetAsync<List<string>>("/api/usuarios/perfis");
+                var perfis = await _http.GetAsync<List<string>>("/api/usuario/perfis");
                 return perfis ?? new List<string>();
             }
             catch
@@ -47,7 +63,7 @@ namespace Catteria.Desktop.Services
         {
             try
             {
-                var (success, data, errorMessage) = await _http.PostAsync<UsuariosResponseDto>("/api/usuarios", dto);
+                var (success, data, errorMessage) = await _http.PostAsync<UsuariosResponseDto>("/api/usuario", dto);
                 return(success, data, errorMessage);
             }
             catch (Exception ex)

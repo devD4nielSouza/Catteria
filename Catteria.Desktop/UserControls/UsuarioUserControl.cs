@@ -26,7 +26,12 @@ namespace Catteria.Desktop.UserControls
             _usuariosService = new UsuariosApiService();
         }
 
-        private async void UsuarioUserControl_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Executa quando o UserControl é carregado.
+        /// Configura as permissões e carrega os usuários da API.
+        /// </summary>
+      
+        private async void UsuarioUserControl_Load_1(object sender, EventArgs e)
         {
             if (DesignMode) return;
 
@@ -35,6 +40,10 @@ namespace Catteria.Desktop.UserControls
             await CarregarDadosAsync();
         }
 
+        /// <summary>
+        /// Configura a visibilidade dos botões de acordo
+        /// com o nível de acesso do usuário logado.
+        /// </summary>
         private void ConfigurarPermissoes()
         {
             bool isAdmin = SessionManager.Instance.IsAdmin;
@@ -43,12 +52,21 @@ namespace Catteria.Desktop.UserControls
             btnExcluir.Visible = isAdmin;
         }
 
+
+        /// <summary>
+        /// Busca todos os usuários na API e atualiza o DataGridView.
+        /// </summary>
         private async Task CarregarDadosAsync()
         {
             gridUsuarios.Rows.Clear();
 
             try
             {
+
+                // REQUISIÇÃO PARA API:
+                // Chama o método GetAllAsync() do serviço,
+                // que faz uma requisição GET para buscar todos os usuários.
+
                 _todosUsuarios = await _usuariosService.GetAllAsync();
                 PopularGrid(_todosUsuarios);
             }
@@ -58,6 +76,9 @@ namespace Catteria.Desktop.UserControls
             }
         }
 
+        /// <summary>
+        /// Preenche o DataGridView com os usuários recebidos.
+        /// </summary>
         private void PopularGrid(List<UsuariosResponseDto> usuarios)
         {
             gridUsuarios.Rows.Clear();
@@ -65,15 +86,19 @@ namespace Catteria.Desktop.UserControls
             {
                 gridUsuarios.Rows.Add(
                     u.Id,
-                    u.Nome,
+                    u.Nome, 
+                    u.Perfil,
                     u.Email,
                     u.Telephone,
-                    u.Perfil,
                     u.Address
                 );
             }
         }
 
+        /// <summary>
+        /// Filtra os usuários pelo nome, e-mail, telefone,
+        /// perfil ou endereço informado no campo de pesquisa.
+        /// </summary>
         private void FiltrarUsuarios()
         {
             var termo = txtPesquisa.Text?.Trim();
@@ -98,7 +123,9 @@ namespace Catteria.Desktop.UserControls
 
 
 
-
+        /// <summary>
+        /// Retorna o usuário atualmente selecionado no DataGridView.
+        /// </summary>
         private UsuariosResponseDto? ObterUsuarioSelecionado()
         {
             if (gridUsuarios.SelectedRows.Count == 0) return null;
@@ -109,7 +136,9 @@ namespace Catteria.Desktop.UserControls
         }
 
 
-
+        /// <summary>
+        /// Exclui o usuário selecionado após confirmação.
+        /// </summary>
         private async void btnExcluir_Click_1(object sender, EventArgs e)
         {
             var usuario = ObterUsuarioSelecionado();
@@ -124,6 +153,9 @@ namespace Catteria.Desktop.UserControls
 
             try
             {
+                // REQUISIÇÃO PARA API:
+                // Envia o ID do usuário para o service,
+                // que realiza a requisição DELETE para a API.
                 var (success, error) = await _usuariosService.DeleteAsync(usuario.Id?.ToString() ?? "");
                 if (success)
                 {
@@ -141,9 +173,9 @@ namespace Catteria.Desktop.UserControls
             }
         }
 
-        //
-        // 
-        //
+        /// <summary>
+        /// Abre o formulário de edição e atualiza os dados do usuário.
+        /// </summary>
 
         private async void btnEditar_Click_1(object sender, EventArgs e)
         {
@@ -161,6 +193,9 @@ namespace Catteria.Desktop.UserControls
             using var form = new UsuarioFormDialog(_perfis, usuario);
             if (form.ShowDialog() == DialogResult.OK && form.UpdateDto != null)
             {
+                // REQUISIÇÃO PARA API:
+                // Envia os dados atualizados do usuário para o service,
+                // que realiza a requisição de atualização na API.
                 var (success, _, error) = await _usuariosService.UpdateAsync(usuario.Id, form.UpdateDto);
                 if (success)
                 {
@@ -182,11 +217,17 @@ namespace Catteria.Desktop.UserControls
             }
         }
 
+        /// <summary>
+        /// Abre o formulário para criação de um novo usuário.
+        /// </summary>
         private async void btnNovo_Click_1(object sender, EventArgs e)
         {
             using var form = new UsuarioFormDialog(_perfis, null);
             if (form.ShowDialog() == DialogResult.OK && form.CreateDto != null)
             {
+                // REQUISIÇÃO PARA API:
+                // Envia os dados do novo usuário para o service,
+                // que realiza a requisição POST para a API.
                 var (success, _, error) = await _usuariosService.CreateAsync(form.CreateDto);
                 if (success)
                 {
@@ -204,9 +245,16 @@ namespace Catteria.Desktop.UserControls
             }
         }
 
+        /// <summary>
+        /// Executa o filtro sempre que o texto da pesquisa é alterado.
+        /// </summary>
         private void txtPesquisa_TextChanged(object sender, EventArgs e) => FiltrarUsuarios();
 
+        /// <summary>
+        /// Recarrega os usuários da API quando o botão Atualizar é clicado.
+        /// </summary>
         private async void btnAtualizar_Click(object sender, EventArgs e) => await CarregarDadosAsync();
 
+     
     }
 }
