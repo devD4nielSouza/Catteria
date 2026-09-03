@@ -23,8 +23,10 @@ namespace Catteria.Infraestructure.Repositories
         public async Task<IEnumerable<Order>> GetAllAsync()
         {
             return await _context.Orders
+                .Include(o => o.Status) // inclui o status para preencher o nome corretamente
                 .Include(o => o.User) // o = pedido atual | pega o usuário do pedido
                 .Include(o => o.OrderItems) // o = pedido atual | pega os itens do pedido
+                    .ThenInclude(i => i.Product)
                 .OrderByDescending(d => d.Date) // d = pedido atual | ordena pela data mais recente
                 .ToListAsync();
         }

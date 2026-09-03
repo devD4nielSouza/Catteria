@@ -18,9 +18,9 @@ namespace Catteria.UI.Controllers
         /// <summary>
         ///
         /// </summary>
-        public async Task<IActionResult> Index(int? SelectedCategoryById, string search, int page = 1)
+        public async Task<IActionResult> Index(int? SelectedCategoryById, string search, int page = 1, int pageSize = 5)
         {
-            const int pageSize = 5;
+            // pageSize pode ser controlado pelo cliente via query string
 
             var viewModel = new ProductListViewModel
             {

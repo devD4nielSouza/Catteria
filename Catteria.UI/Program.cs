@@ -148,8 +148,17 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}"
 );
 
-//Seed Data: Popula o banco de dados com dados iniciais (categorias e jogos) se estiver vazio.
-await SeedData.SeedAsync(app.Services);
+// Executa migrations e popula dados iniciais com log de erro
+try
+{
+    await SeedData.SeedAsync(app.Services);
+}
+catch (Exception ex)
+{
+    var logger = app.Services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "Erro ao executar SeedData na UI");
+    throw; // opcional: re-lança para ver a exceção no startup
+}
 
 // Inicia o servidor web e começa a ouvir as requisições HTTP.
 app.Run();

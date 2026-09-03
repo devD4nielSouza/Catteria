@@ -166,6 +166,16 @@ app.MapControllers();
 // 📌 CONCEITO: O seed é executado na inicialização da aplicação.
 // Ele cria categorias, games de exemplo e o usuário admin.
 // =====================================================================
-await SeedData.SeedAsync(app.Services);
+// Executa migrations e popula dados iniciais com log de erro
+try
+{
+    await SeedData.SeedAsync(app.Services);
+}
+catch (Exception ex)
+{
+    var logger = app.Services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "Erro ao executar SeedData na UI");
+    throw; // opcional: re-lança para ver a exceção no startup
+}
 
 app.Run();

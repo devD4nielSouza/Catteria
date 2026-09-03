@@ -143,7 +143,7 @@
                        asp-action="Index"
                        asp-route-selectedcategorybyid="@Model.SelectedCategoryById"
                        asp-route-search="@Context.Request.Query["search"]"
-                       asp-route-page="@(Model.CurrentPage - 1)">
+                       asp-route-page="@(Model.CurrentPage - 1)" asp-route-pageSize="@Model.PageSize">
                         Anterior
                     </a>
                 </li>
@@ -156,7 +156,7 @@
                            asp-action="Index"
                            asp-route-selectedcategorybyid="@Model.SelectedCategoryById"
                            asp-route-search="@Context.Request.Query["search"]"
-                           asp-route-page="@i">
+                           asp-route-page="@i" asp-route-pageSize="@Model.PageSize">
                             @i
                         </a>
                     </li>
@@ -168,7 +168,7 @@
                        asp-action="Index"
                        asp-route-selectedcategorybyid="@Model.SelectedCategoryById"
                        asp-route-search="@Context.Request.Query["search"]"
-                       asp-route-page="@(Model.CurrentPage + 1)">
+                       asp-route-page="@(Model.CurrentPage + 1)" asp-route-pageSize="@Model.PageSize">
                         Próximo
                     </a>
                 </li>
@@ -180,3 +180,8 @@
     <br />
     <br />
 </div>
+
+@section Scripts {
+    <script src="~/js/shared-scripts.js" asp-append-version="true"></script>
+}
+

@@ -56,13 +56,39 @@ main {
     outline: none;
 }
 
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem; /* espaço entre ícones */
+    margin-right: 0; /* garantir que container padding gerencie distância até a borda */
+}
+
 .nav-links a {
     color: var(--texto-escuro);
     text-decoration: none;
     font-weight: bold;
-    margin-left: 15px;
+    margin-left: 0; /* gerenciado pelo gap */
     font-size: 0.95rem;
     transition: color 0.2s;
+}
+
+.nav-links .bi {
+    margin-right: 0.25rem; /* espaço entre ícone e texto quando houver */
+}
+
+/* Tornar navbar full-width e controlar paddings para manter ícones a no máximo 50px da borda */
+.navbar-custom .container-fluid {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Se desejar garantir máximo 50px em telas grandes, limitar max padding */
+@media (min-width: 1200px) {
+    .navbar-custom .container-fluid {
+        padding-left: 20px;
+        padding-right: 20px;
+        max-width: 100%;
+    }
 }
 
          .nav-links a:hover, .nav-links a.active {

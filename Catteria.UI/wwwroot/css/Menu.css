@@ -144,6 +144,26 @@
     .cat-image {
         height: 190px;
     }
+
+    /* Garantir que a paginação seja visível e usável no mobile */
+    .pagination {
+        display: flex !important;
+        flex-wrap: wrap;
+        gap: 6px;
+        justify-content: center;
+        padding: 8px 0;
+    }
+
+    .pagination .page-link {
+        padding: .35rem .6rem;
+        font-size: .9rem;
+    }
+
+    /* Permitir que o container role horizontalmente sem esconder a paginação */
+    .table-responsive {
+        overflow-x: auto;
+    }
+
 }
 /*================================================================*/ /*DETALHES DO MENU*/ /*=================================================================*/ /*======================================
     HERO DETALHE

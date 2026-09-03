@@ -61,5 +61,10 @@ namespace Catteria.UI.Controllers
 
             return View(viewModel);
         }
+
+        public async Task<IActionResult> Sobre()
+        {
+            return View();
+        }
     }
 }

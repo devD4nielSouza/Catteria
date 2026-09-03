@@ -110,7 +110,7 @@ namespace Catteria.Infraestructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Catteria.Domain.Entities.Cupom", b =>
@@ -138,7 +138,7 @@ namespace Catteria.Infraestructure.Migrations
                     b.HasIndex("Codigo")
                         .IsUnique();
 
-                    b.ToTable("Cupons");
+                    b.ToTable("Cupons", (string)null);
                 });
 
             modelBuilder.Entity("Catteria.Domain.Entities.CupomUso", b =>
@@ -165,7 +165,7 @@ namespace Catteria.Infraestructure.Migrations
                     b.HasIndex("CupomId", "UsuarioId")
                         .IsUnique();
 
-                    b.ToTable("CupomUsos");
+                    b.ToTable("CupomUsos", (string)null);
                 });
 
             modelBuilder.Entity("Catteria.Domain.Entities.Favorite", b =>
@@ -187,7 +187,7 @@ namespace Catteria.Infraestructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Favorites");
+                    b.ToTable("Favorites", (string)null);
                 });
 
             modelBuilder.Entity("Catteria.Domain.Entities.Order", b =>
@@ -236,7 +236,7 @@ namespace Catteria.Infraestructure.Migrations
 
                     b.HasIndex("StatusId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("Catteria.Domain.Entities.OrderItem", b =>
@@ -268,7 +268,7 @@ namespace Catteria.Infraestructure.Migrations
 
                     b.HasIndex("IdProduct");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItems", (string)null);
                 });
 
             modelBuilder.Entity("Catteria.Domain.Entities.OrderStatus", b =>
@@ -288,7 +288,7 @@ namespace Catteria.Infraestructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OrderStatuses");
+                    b.ToTable("OrderStatuses", (string)null);
 
                     b.HasData(
                         new
@@ -374,7 +374,7 @@ namespace Catteria.Infraestructure.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

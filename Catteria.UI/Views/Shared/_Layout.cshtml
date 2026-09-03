@@ -31,13 +31,13 @@
     </div>
 
     <div class="navbar-custom shadow-sm">
-        <div class="container d-flex align-items-center justify-content-between">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-3 w-100">
                 <a asp-controller="Home" asp-action="Index">
                     <img class="logoImg" src="~/Imagens/logo1.png" alt="Logo Catteria">
                 </a>
 
-                <form asp-controller="Products" asp-action="Index" method="get" class="d-none d-md-flex flex-grow-1 mx-md-4" style="max-width: 500px;">
+                <form asp-controller="Products" asp-action="Index" method="get" class="d-none d-md-flex flex-grow-1 mx-md-2" style="max-width: 420px;">
                     <div class="input-group d-flex">
                         <input type="text"
                                name="search"
@@ -52,9 +52,7 @@
                 </form>
 
                 <div class="nav-links ms-auto d-none d-md-flex align-items-center">
-                    <a asp-controller="Home" asp-action="Index">Home</a>
-                    <a asp-controller="Products" asp-action="Index">Cardápio</a>
-                    <a asp-controller="Home" asp-action="Index" asp-fragment="sobre-nos">Sobre</a>
+                   
                     @if (User.Identity != null && User.Identity.IsAuthenticated)
                     {
                         <a asp-controller="Favorites"
@@ -94,8 +92,8 @@
                             <a asp-controller="Admin" asp-action="Index" style="color: var(--azul-escuro);">
                                 <i class="bi bi-building fs-4"></i></a>
                         }
-                        <span class="ms-2 text-truncate" style="max-width: 100px; font-weight: bold;"><i class="bi bi-person-circle"></i> @User.Identity.Name</span>
-                        <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline ms-2">
+                        <span class="ms-1 text-truncate nav-user" style="max-width: 100px; font-weight: bold;"><i class="bi bi-person-circle"></i> @User.Identity.Name</span>
+                        <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline ms-1 nav-logout-form">
                             <button class="btn btn-sair btn-sm py-0 px-2" style="font-weight:bold;">Sair</button>
                         </form>
                     }
@@ -131,9 +129,7 @@
                 </form>
 
                 <div class="d-flex flex-column gap-2">
-                    <a asp-controller="Home" asp-action="Index" class="nav-link-mobile">Home</a>
-                    <a asp-controller="Products" asp-action="Index" class="nav-link-mobile">Cardápio</a>
-                    <a asp-controller="Home" asp-action="Index" asp-fragment="sobre-nos" class="nav-link-mobile">Sobre</a>
+
 
                     @if (User.Identity != null && User.Identity.IsAuthenticated)
                     {
@@ -201,7 +197,7 @@
                         <ul class="list-unstyled d-flex flex-column gap-2">
                             <li><a asp-controller="Home" asp-action="Sobre"><i class="bi bi-geo-alt-fill me-1"></i> Localização</a></li>
                             <li><a asp-controller="Home" asp-action="Sobre"><i class="bi bi-clock-fill me-1"></i> Horário de Funcionamento</a></li>
-                            <li><a asp-controller="Home" asp-action="Felinos"><i class="bi bi-heart-fill me-1"></i> Nossos Felinos</a></li>
+                            
                         </ul>
                     </div>
 
@@ -212,10 +208,8 @@
                             <li><a href="https://www.ifood.com.br" target="_blank"><i class="bi bi-bag-dash-fill me-1"></i> iFood</a></li>
                         </ul>
 
-                        <h5 class="fw-bold mb-2">Suporte</h5>
-                        <ul class="list-unstyled">
-                            <li><a asp-controller="Home" asp-action="Contato"><i class="bi bi-envelope-fill me-1"></i> Fale Conosco</a></li>
-                        </ul>
+                       
+
                     </div>
 
                 </div>
@@ -228,31 +222,9 @@
             </div>
         </footer>
 
+        <script src="~/js/shared-scripts.js" asp-append-version="true"></script>  
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-        <script>
-            // Menu Hamburger Toggle
-            const hamburgerBtn = document.getElementById('hamburgerBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-
-            if (hamburgerBtn && mobileMenu) {
-                hamburgerBtn.addEventListener('click', function() {
-                    if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
-                        mobileMenu.style.display = 'block';
-                    } else {
-                        mobileMenu.style.display = 'none';
-                    }
-                });
-
-                // Fechar menu ao clicar em um link
-                const mobileLinks = mobileMenu.querySelectorAll('a');
-                mobileLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        mobileMenu.style.display = 'none';
-                    });
-                });
-            }
-        </script>
 
         @await RenderSectionAsync("Scripts", required: false)
 
