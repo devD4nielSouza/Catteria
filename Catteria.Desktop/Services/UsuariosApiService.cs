@@ -89,7 +89,7 @@ namespace Catteria.Desktop.Services
         {
             try
             {
-                await _http.DeleteAsync($"/api/usuarios/{id}");
+                await _http.DeleteAsync($"/api/usuario/{id}");
                 return (true, string.Empty);
             }
             catch (Exception ex)
