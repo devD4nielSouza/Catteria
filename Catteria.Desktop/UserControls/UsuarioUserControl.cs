@@ -20,10 +20,11 @@ namespace Catteria.Desktop.UserControls
         private UsuariosApiService _usuariosService = null!;
         private List<UsuariosResponseDto> _todosUsuarios = new();
         private List<string> _perfis = new();
+
         public UsuarioUserControl()
         {
             InitializeComponent();
-            _usuariosService = new UsuariosApiService();
+            
         }
 
         /// <summary>
@@ -35,6 +36,7 @@ namespace Catteria.Desktop.UserControls
         {
             if (DesignMode) return;
 
+            _usuariosService = new UsuariosApiService();
             ConfigurarPermissoes();
 
             await CarregarDadosAsync();
@@ -62,7 +64,6 @@ namespace Catteria.Desktop.UserControls
 
             try
             {
-
                 // REQUISIÇÃO PARA API:
                 // Chama o método GetAllAsync() do serviço,
                 // que faz uma requisição GET para buscar todos os usuários.
@@ -89,16 +90,17 @@ namespace Catteria.Desktop.UserControls
         private void PopularGrid(List<UsuariosResponseDto> usuarios)
         {
             gridUsuarios.Rows.Clear();
+
             foreach (var u in usuarios)
             {
                 gridUsuarios.Rows.Add(
                     u.Id,
-                    u.Nome, 
+                    u.Nome,
                     u.Perfil,
                     u.Email,
                     u.Telephone,
                     u.Address
-                );
+                    );
             }
         }
 

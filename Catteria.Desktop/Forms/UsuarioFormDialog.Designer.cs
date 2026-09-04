@@ -304,7 +304,6 @@
             Controls.Add(lblTituloForm);
             Name = "UsuarioFormDialog";
             Text = "UsuarioFormDialog";
-            Load += UsuarioFormDialog_Load;
             ResumeLayout(false);
         }
 

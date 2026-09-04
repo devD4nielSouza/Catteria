@@ -76,7 +76,7 @@ namespace Catteria.Desktop.Services
         {
             try
             {
-                var (success, data, errorMessage) = await _http.PutAsync<UsuariosResponseDto>("/api/usuario/{id", dto);
+                var (success, data, errorMessage) = await _http.PutAsync<UsuariosResponseDto>($"/api/usuario/{id}", dto);
                 return (success, data, errorMessage);
             }
             catch (Exception ex)

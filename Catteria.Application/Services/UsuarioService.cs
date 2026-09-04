@@ -31,7 +31,9 @@ namespace Catteria.Application.Services
                     Id = user.Id,
                     Nome = user.UserName ?? string.Empty, // UserName é usado como Nome no projeto atual
                     Email = user.Email ?? string.Empty,
-                    Perfil = roles.FirstOrDefault() ?? "Usuario"
+                    Perfil = roles.FirstOrDefault() ?? "Usuario",
+                    Address = user.Address ?? string.Empty,
+                    Telephone = user.PhoneNumber ?? string.Empty,
                 });
             }
 
@@ -50,7 +52,9 @@ namespace Catteria.Application.Services
                 Id = user.Id,
                 Nome = user.UserName ?? string.Empty,
                 Email = user.Email ?? string.Empty,
-                Perfil = roles.FirstOrDefault() ?? "Usuario"
+                Perfil = roles.FirstOrDefault() ?? "Usuario",
+                Address = user.Address ?? string.Empty,
+                Telephone = user.PhoneNumber ?? string.Empty
             };
         }
 
@@ -67,7 +71,9 @@ namespace Catteria.Application.Services
             var user = new ApplicationUser
             {
                 UserName = dto.Nome,
-                Email = dto.Email
+                Email = dto.Email,
+                Address = dto.Address,
+                PhoneNumber = dto.Telephone
             };
 
             var result = await _userManager.CreateAsync(user, dto.Senha);
@@ -109,6 +115,8 @@ namespace Catteria.Application.Services
 
             user.UserName = dto.Nome;
             user.Email = dto.Email;
+            user.PhoneNumber = dto.Telephone;
+            user.Address = dto.Address;
 
             var updateResult = await _userManager.UpdateAsync(user);
             if (!updateResult.Succeeded) return null;

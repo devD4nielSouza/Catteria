@@ -1,7 +1,4 @@
 <Solution>
-  <Folder Name="/Itens de Solução/">
-    <File Path="README.md" />
-  </Folder>
   <Project Path="Catteria.API/Catteria.API.csproj" />
   <Project Path="Catteria.Application/Catteria.Application.csproj" />
   <Project Path="Catteria.Desktop/Catteria.Desktop.csproj" Id="51e51be8-9f1a-40c2-9264-d2f74c64064c" />

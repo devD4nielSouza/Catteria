@@ -31,6 +31,8 @@ namespace Catteria.Desktop.DTOs
     {
         public string Nome { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
+        public string Telephone { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
         public string? Senha { get; set; }
         public string? ConfirmarSenha { get; set; }
         public string Perfil { get; set; } = string.Empty;

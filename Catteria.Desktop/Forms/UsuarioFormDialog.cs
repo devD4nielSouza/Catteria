@@ -85,6 +85,8 @@ namespace Catteria.Desktop.Forms
                     Nome = txtNome.Text.Trim(),
                     Email = txtEmail.Text.Trim(),
                     Senha = txtSenha.Text,
+                    Telephone = txtTelefone.Text,
+                    Address = txtEndereco.Text,
                     ConfirmarSenha = txtConfirmarSenha.Text,
                     Perfil = cmbPerfil.SelectedItem.ToString()!
                 };
@@ -96,6 +98,8 @@ namespace Catteria.Desktop.Forms
                     Nome = txtNome.Text.Trim(),
                     Email = txtEmail.Text.Trim(),
                     Senha = string.IsNullOrEmpty(txtSenha.Text) ? null : txtSenha.Text,
+                    Telephone = txtTelefone.Text,
+                    Address = txtEndereco.Text,
                     ConfirmarSenha = string.IsNullOrEmpty(txtConfirmarSenha.Text) ? null : txtConfirmarSenha.Text,
                     Perfil = cmbPerfil.SelectedItem.ToString()!
                 };
@@ -111,10 +115,7 @@ namespace Catteria.Desktop.Forms
             this.Close();
         }
 
-        private void UsuarioFormDialog_Load(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
 
