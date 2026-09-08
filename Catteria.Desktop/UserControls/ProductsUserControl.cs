@@ -79,13 +79,14 @@ namespace Catteria.Desktop.UserControls
 
             foreach (var p in produtos) // Percorre cada produto da lista, um por vez
             {
+
                 // A API só manda o CategoryId (número) do produto, não o nome da categoria.
                 // Então aqui a gente procura, na lista de categorias já carregada (_categorias),
                 // qual categoria tem o Id igual ao CategoryId do produto.
                 var nomeCategoria = _categorias
-                    .FirstOrDefault(c => c.Id == p.CategoryId) // Procura a categoria com esse Id na lista
-                    ?.Name                                     // Se encontrou, pega o nome dela
-                    ?? "Sem categoria";                         // Se não encontrou (Id inválido/nulo), usa esse texto padrão
+                .FirstOrDefault(c => c.Id == p.CategoryId) // Procura a categoria com esse Id na lista
+                ?.Name                                     // Se encontrou, pega o nome dela
+                ?? "Sem categoria";                         // Se não encontrou (Id inválido/nulo), usa esse texto padrão
 
                 // Adiciona uma nova linha na grid, uma coluna de cada vez, na ordem: Id, Categoria, Preço, Nome
                 gridProdutos.Rows.Add(
@@ -93,7 +94,6 @@ namespace Catteria.Desktop.UserControls
                     p.Name,         // Coluna "Nome do Produto" -> nome do produto vindo da API
                     nomeCategoria,  // Coluna "Categoria" -> nome que acabamos de descobrir (não mais o número)        // Coluna "Preço do Produto" -> preço vindo da API
                     p.Price
-                 
                 );
             }
         }

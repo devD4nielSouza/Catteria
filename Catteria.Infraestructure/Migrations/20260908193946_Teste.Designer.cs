@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Catteria.Infraestructure.Migrations
 {
     [DbContext(typeof(CatteriaDbContext))]
-    [Migration("20260903165100_Teste")]
+    [Migration("20260908193946_Teste")]
     partial class Teste
     {
         /// <inheritdoc />

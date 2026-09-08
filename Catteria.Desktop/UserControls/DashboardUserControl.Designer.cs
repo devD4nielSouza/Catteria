@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             cardCategorias = new Panel();
             cardCategoriasLblNumero = new Label();
             cardCategoriasLblTitulo = new Label();
@@ -49,7 +49,6 @@
             colId = new DataGridViewTextBoxColumn();
             colTitle = new DataGridViewTextBoxColumn();
             colCategoryName = new DataGridViewTextBoxColumn();
-            colReleaseYear = new DataGridViewTextBoxColumn();
             colIsFeatured = new DataGridViewCheckBoxColumn();
             colCreatedAt = new DataGridViewTextBoxColumn();
             cardCategorias.SuspendLayout();
@@ -107,7 +106,7 @@
             // 
             gridUltimosProdutos.BackgroundColor = Color.FromArgb(164, 188, 233);
             gridUltimosProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridUltimosProdutos.Columns.AddRange(new DataGridViewColumn[] { colId, colTitle, colCategoryName, colReleaseYear, colIsFeatured, colCreatedAt });
+            gridUltimosProdutos.Columns.AddRange(new DataGridViewColumn[] { colId, colTitle, colCategoryName, colIsFeatured, colCreatedAt });
             gridUltimosProdutos.Location = new Point(24, 260);
             gridUltimosProdutos.Name = "gridUltimosProdutos";
             gridUltimosProdutos.Size = new Size(671, 215);
@@ -137,11 +136,11 @@
             // 
             // pnlCorCategorias
             // 
-            pnlCorCategorias.CustomizableEdges = customizableEdges1;
+            pnlCorCategorias.CustomizableEdges = customizableEdges5;
             pnlCorCategorias.FillColor = Color.FromArgb(164, 188, 233);
             pnlCorCategorias.Location = new Point(346, 59);
             pnlCorCategorias.Name = "pnlCorCategorias";
-            pnlCorCategorias.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            pnlCorCategorias.ShadowDecoration.CustomizableEdges = customizableEdges6;
             pnlCorCategorias.Size = new Size(253, 18);
             pnlCorCategorias.TabIndex = 6;
             // 
@@ -193,11 +192,11 @@
             // 
             // pnlCorProdutos
             // 
-            pnlCorProdutos.CustomizableEdges = customizableEdges3;
+            pnlCorProdutos.CustomizableEdges = customizableEdges7;
             pnlCorProdutos.FillColor = Color.FromArgb(76, 120, 178);
             pnlCorProdutos.Location = new Point(24, 59);
             pnlCorProdutos.Name = "pnlCorProdutos";
-            pnlCorProdutos.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            pnlCorProdutos.ShadowDecoration.CustomizableEdges = customizableEdges8;
             pnlCorProdutos.Size = new Size(267, 18);
             pnlCorProdutos.TabIndex = 6;
             // 
@@ -216,24 +215,19 @@
             // 
             colId.HeaderText = "ID";
             colId.Name = "colId";
-            colId.Width = 70;
+            colId.Width = 60;
             // 
             // colTitle
             // 
-            colTitle.HeaderText = "Título";
+            colTitle.HeaderText = "Nome";
             colTitle.Name = "colTitle";
-            colTitle.Width = 140;
+            colTitle.Width = 200;
             // 
             // colCategoryName
             // 
             colCategoryName.HeaderText = "Categoria";
             colCategoryName.Name = "colCategoryName";
-            colCategoryName.Width = 110;
-            // 
-            // colReleaseYear
-            // 
-            colReleaseYear.HeaderText = "Ano";
-            colReleaseYear.Name = "colReleaseYear";
+            colCategoryName.Width = 140;
             // 
             // colIsFeatured
             // 
@@ -246,6 +240,7 @@
             colCreatedAt.Name = "colCreatedAt";
             colCreatedAt.Resizable = DataGridViewTriState.True;
             colCreatedAt.SortMode = DataGridViewColumnSortMode.NotSortable;
+            colCreatedAt.Width = 109;
             // 
             // DashboardUserControl
             // 
@@ -291,7 +286,6 @@
         private DataGridViewTextBoxColumn colId;
         private DataGridViewTextBoxColumn colTitle;
         private DataGridViewTextBoxColumn colCategoryName;
-        private DataGridViewTextBoxColumn colReleaseYear;
         private DataGridViewCheckBoxColumn colIsFeatured;
         private DataGridViewTextBoxColumn colCreatedAt;
     }

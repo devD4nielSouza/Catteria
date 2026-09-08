@@ -14,6 +14,7 @@ namespace Catteria.Desktop.DTOs
         public string Description { get; set; } = string.Empty;
         public string CoverImageUrl { get; set; } = string.Empty; // URL da imagem de capa do produto
         public int CategoryId { get; set; } // Chave estrangeira para a categoria do produto
+        public string CategoryName { get; set; } = string.Empty;
         public bool IsFeatured { get; set; } // Indica se o produto é destaque ou não
         public DateTime CreatedAt { get; set; } = DateTime.Now; // Data de criação do produto, definida automaticamente para a data atual
 
