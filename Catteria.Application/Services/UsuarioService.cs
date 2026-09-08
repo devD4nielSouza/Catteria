@@ -29,7 +29,7 @@ namespace Catteria.Application.Services
                 result.Add(new UsuarioDto
                 {
                     Id = user.Id,
-                    Nome = user.UserName ?? string.Empty, // UserName é usado como Nome no projeto atual
+                    Nome = user.Name ?? string.Empty, // Usar Name (coluna do banco) ao invés de UserName
                     Email = user.Email ?? string.Empty,
                     Perfil = roles.FirstOrDefault() ?? "Usuario",
                     Address = user.Address ?? string.Empty,
@@ -50,7 +50,7 @@ namespace Catteria.Application.Services
             return new UsuarioDto
             {
                 Id = user.Id,
-                Nome = user.UserName ?? string.Empty,
+                Nome = user.Name ?? string.Empty, // Usar Name (coluna do banco) ao invés de UserName
                 Email = user.Email ?? string.Empty,
                 Perfil = roles.FirstOrDefault() ?? "Usuario",
                 Address = user.Address ?? string.Empty,
@@ -70,7 +70,8 @@ namespace Catteria.Application.Services
 
             var user = new ApplicationUser
             {
-                UserName = dto.Nome,
+                UserName = dto.Email, // UserName usa o email (padrão do Identity)
+                Name = dto.Nome,      // Name armazena o nome completo no banco
                 Email = dto.Email,
                 Address = dto.Address,
                 PhoneNumber = dto.Telephone
@@ -113,7 +114,8 @@ namespace Catteria.Application.Services
             var existingUser = await _userManager.FindByEmailAsync(dto.Email);
             if (existingUser != null && existingUser.Id != user.Id) return null;
 
-            user.UserName = dto.Nome;
+            user.UserName = dto.Email; // Manter email como username
+            user.Name = dto.Nome;       // Atualizar propriedade Name
             user.Email = dto.Email;
             user.PhoneNumber = dto.Telephone;
             user.Address = dto.Address;
