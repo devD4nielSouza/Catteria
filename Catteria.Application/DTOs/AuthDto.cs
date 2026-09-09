@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Catteria.Application.DTOs
@@ -28,5 +29,25 @@ namespace Catteria.Application.DTOs
         public IList<string> Roles { get; set; } = new List<string>();
     }
 
+    public class ForgotPasswordDto
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; } = default!;
+    }
 
+    public class ResetPasswordDto
+    {
+        public string UserId { get; set; } = default!;
+        public string Token { get; set; } = default!;
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; } = default!;
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "As senhas não coincidem.")]
+        public string ConfirmPassword { get; set; } = default!;
+    }
 }

@@ -210,7 +210,7 @@ namespace Catteria.Desktop.Themes
                 case Guna2Panel gPanel:
                     if (escuro)
                     {
-                        gPanel.FillColor = BgDark;
+                        gPanel.FillColor = BgDarkSecondary;
                         gPanel.BorderThickness = 0;
                         gPanel.ForeColor = FgDark;
                     }

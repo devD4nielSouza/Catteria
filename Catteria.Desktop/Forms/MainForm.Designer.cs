@@ -280,6 +280,7 @@
             // 
             // BtnTema
             // 
+            BtnTema.BorderRadius = 5;
             BtnTema.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
             BtnTema.CustomizableEdges = customizableEdges15;
             BtnTema.DisabledState.BorderColor = Color.DarkGray;
@@ -289,7 +290,7 @@
             BtnTema.FillColor = Color.FromArgb(76, 120, 178);
             BtnTema.Font = new Font("Segoe UI", 14F);
             BtnTema.ForeColor = Color.White;
-            BtnTema.Location = new Point(597, 17);
+            BtnTema.Location = new Point(599, 17);
             BtnTema.Name = "BtnTema";
             BtnTema.ShadowDecoration.CustomizableEdges = customizableEdges16;
             BtnTema.Size = new Size(58, 33);

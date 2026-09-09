@@ -3,6 +3,7 @@ using Catteria.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Catteria.UI.Controllers
 {
@@ -50,12 +51,31 @@ namespace Catteria.UI.Controllers
 
             if (result.Succeeded)
             {
+                // on success, reset failed login counter
+                if (TempData.ContainsKey("FailedLoginCount"))
+                    TempData.Remove("FailedLoginCount");
+
                 //Redireciona para a URL anterior ou para a Home
                 if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                     return Redirect(returnUrl);
 
                 return RedirectToAction("Index", "Home");
             }
+
+            // Se falhou, incrementa contador de tentativas falhas usando TempData (permanece entre requisições)
+            int failed = 0;
+            var peek = TempData.Peek("FailedLoginCount");
+            if (peek != null && int.TryParse(peek.ToString(), out var existing))
+            {
+                failed = existing;
+            }
+
+            failed++;
+            TempData["FailedLoginCount"] = failed;
+
+            // Se já falhou 2 ou mais vezes, informa a View para exibir o link de 'Esqueci a senha'
+            if (failed >= 2)
+                ViewBag.ShowForgotPassword = true;
 
             // Se falhou, exibe a mensagem de erro
             ModelState.AddModelError(string.Empty, "Email ou senha inválidos.");
@@ -189,6 +209,102 @@ namespace Catteria.UI.Controllers
 
         [HttpGet]
         public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
+        //=============================================
+        // FORGOT PASSWORD
+        //=============================================
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [EnableRateLimiting("forgot-password")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordDto dto)
+        {
+            if (!ModelState.IsValid) return View(dto);
+
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+            // Sempre redirecione para a confirmação para evitar enumeração de contas
+            if (user == null)
+                return RedirectToAction(nameof(ForgotPasswordConfirmation));
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var encodedToken = Uri.EscapeDataString(token);
+            var resetLink = Url.Action(
+                "ResetPassword",
+                "Account",
+                new { userId = user.Id, token = encodedToken },
+                Request.Scheme
+            );
+
+            await _emailSender.SendEmailAsync(
+                user.Email!,
+                "Redefinir sua senha",
+                $"""
+        <p>Você solicitou redefinir sua senha.</p>
+        <p><a href="{resetLink}">Clique aqui para redefinir a senha</a></p>
+        """
+            );
+
+            return RedirectToAction(nameof(ForgotPasswordConfirmation));
+        }
+
+        [AllowAnonymous]
+        public IActionResult ForgotPasswordConfirmation()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ResetPassword(string userId, string token)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(token))
+                return RedirectToAction("Index", "Home");
+
+            var model = new ResetPasswordDto
+            {
+                UserId = userId,
+                Token = token
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto dto)
+        {
+            if (!ModelState.IsValid) return View(dto);
+
+            var user = await _userManager.FindByIdAsync(dto.UserId);
+            if (user == null)
+                return RedirectToAction(nameof(ResetPasswordConfirmation));
+
+            var token = Uri.UnescapeDataString(dto.Token);
+            var result = await _userManager.ResetPasswordAsync(user, token, dto.Password);
+
+            if (result.Succeeded)
+                return RedirectToAction(nameof(ResetPasswordConfirmation));
+
+            foreach (var error in result.Errors)
+                ModelState.AddModelError(string.Empty, error.Description);
+
+            return View(dto);
+        }
+
+        [AllowAnonymous]
+        public IActionResult ResetPasswordConfirmation()
         {
             return View();
         }

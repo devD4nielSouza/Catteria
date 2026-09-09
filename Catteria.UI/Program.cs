@@ -19,7 +19,8 @@ using Catteria.Infraestructure.Services;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -104,6 +105,21 @@ builder.Services.AddHttpClient("CatteriaApi", client =>
     client.BaseAddress = new Uri("http://localhost:5273/");
 });
 
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+
+    options.AddPolicy("forgot-password", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 3,                    // até 3 tentativas
+                Window = TimeSpan.FromMinutes(15),  // a cada 15 min
+                QueueLimit = 0,
+                AutoReplenishment = true
+            }));
+});
 
 // ========================================================================
 // MVC - Adiciona suporte para controladores e views (páginas HTML) | Razor
@@ -131,6 +147,8 @@ app.UseStaticFiles(); // Permite servir arquivos estáticos (CSS, JS, Imagens) d
 
 // Configura o roteamento das requisições para os controladores (controllers) e ações.
 app.UseRouting();
+
+app.UseRateLimiter(); // antes de auth/authorization
 
 // Habilita o Middleware de Session LOGO APÓS o Routing e ANTES da Autenticação/Autorização
 app.UseSession();
