@@ -10,10 +10,10 @@ namespace Catteria.Desktop.DTOs
     {
         public int Id { get; set; }
         public int StatusId { get; set; }
-        public DateTime Date { get; set; } = DateTime.Now; // Data do pedido, definida automaticamente para a data atual
-        public decimal TotalValue { get; set; } // Valor total do pedido
-        public string Status { get; set; } = string.Empty; // Status do pedido (ex: "Pendente", "Em andamento", "Concluído")
-        public int IdUser { get; set; } // Chave estrangeira para o usuário que fez o pedido (relacionamento com a entidade User)
+        public DateTime Date { get; set; } = DateTime.Now;
+        public decimal TotalValue { get; set; }
+        public string Status { get; set; } = string.Empty;
+        public string IdUser { get; set; } = string.Empty; // <- mudou de int para string
         public string CustomerName { get; set; } = string.Empty;
     }
 
@@ -30,7 +30,6 @@ namespace Catteria.Desktop.DTOs
     {
         public int Id { get; set; }
         public int StatusId { get; set; }
-
         public string Status { get; set; } = string.Empty;
     }
 }

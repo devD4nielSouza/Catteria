@@ -230,6 +230,7 @@ namespace Catteria.Desktop.UserControls
         }
 
         private async void btnAtualizar_Click(object sender, EventArgs e) => await CarregarDadosAsync();
+
     }
 
 }
