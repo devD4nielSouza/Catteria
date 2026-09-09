@@ -228,7 +228,7 @@
             btnExcluir.FillColor = Color.FromArgb(223, 77, 72);
             btnExcluir.Font = new Font("Segoe UI", 9F);
             btnExcluir.ForeColor = Color.White;
-            btnExcluir.Location = new Point(268, 25);
+            btnExcluir.Location = new Point(275, 25);
             btnExcluir.Name = "btnExcluir";
             btnExcluir.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnExcluir.Size = new Size(108, 45);
