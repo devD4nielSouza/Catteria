@@ -105,7 +105,7 @@ namespace Catteria.Desktop.UserControls
                     pedido.Date.ToString("dd/MM/yyyy HH:mm"),
                     pedido.TotalValue.ToString("C2"),
                     pedido.Status,
-                    pedido.IdUser
+                   pedido.CustomerName  
                 );
             }
         }
