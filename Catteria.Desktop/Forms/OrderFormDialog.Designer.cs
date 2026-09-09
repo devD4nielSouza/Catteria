@@ -113,6 +113,7 @@
             Controls.Add(lblTituloForm);
             Controls.Add(lblCampTitulo);
             Controls.Add(btnSalvar);
+            ForeColor = Color.White;
             Name = "OrderFormDialog";
             Text = "OrderFormDialog";
             Load += OrderFormDialog_Load;

@@ -1,5 +1,6 @@
 ﻿using Catteria.Desktop.Helpers;
 using Catteria.Desktop.Services;
+using Catteria.Desktop.Themes;
 using Catteria.Desktop.UserControls;
 using Guna.UI2.WinForms;
 using System;
@@ -28,6 +29,7 @@ namespace Catteria.Desktop.Forms
             InitializeComponent();
         }
 
+        private bool _temaEscuro = false;
         private void MainForm_Load(object sender, EventArgs e)
         {
             if (DesignMode) return;
@@ -37,7 +39,7 @@ namespace Catteria.Desktop.Forms
             this.Text = $"Catteria Desktop - {AppConfig.Version}";
 
             lblUsuario.Text = $"{SessionManager.Instance.GetDisplayName()}";
-            
+
             lblSessao.Text = $"{SessionManager.Instance.GetEmail()}";
 
             ConfigurarPermissoes();
@@ -117,6 +119,42 @@ namespace Catteria.Desktop.Forms
             }
         }
 
+        private void EstilizarBotaoMenu(Guna2Button btn, bool selecionado = false)
+        {
+            Color cor = selecionado
+                ? Color.FromArgb(0, 120, 215)
+                : Color.FromArgb(50, 50, 53);
+
+            // Fundo e borda com a mesma cor
+            btn.FillColor = cor;
+            btn.BorderColor = cor;
+            btn.BorderThickness = 1;
+
+            btn.ForeColor = Color.White;
+
+            // Hover
+            Color corHover = Color.FromArgb(65, 65, 68);
+
+            btn.HoverState.FillColor = corHover;
+            btn.HoverState.BorderColor = corHover;
+            btn.HoverState.ForeColor = Color.White;
+
+            // Pressionado
+            Color corPressed = Color.FromArgb(0, 90, 160);
+
+            btn.PressedColor = corPressed;
+            btn.BorderColor = corPressed;
+
+            btn.TextAlign = HorizontalAlignment.Left;
+            btn.Padding = new Padding(10, 0, 0, 0);
+        }
+
+        private void EstilizarMenu()
+        {
+            foreach (var btn in new[] { btnDashboard, btnProdutos, btnCategorias, btnPedidos, btnUsuarios, btnCupom })
+                EstilizarBotaoMenu(btn);
+        }
+
         private void btnDashboard_Click(object sender, EventArgs e) => Navegar(new DashboardUserControl(), btnDashboard);
 
         private void btnProdutos_Click(object sender, EventArgs e) => Navegar(new ProductsUserControl(), btnProdutos);
@@ -128,6 +166,11 @@ namespace Catteria.Desktop.Forms
         private void btnUsuarios_Click(object sender, EventArgs e) => Navegar(new UsuarioUserControl(), btnUsuarios);
 
         private void btnCupom_Click(object sender, EventArgs e) => Navegar(new CupomUserControl(), btnCupom);
-     
+
+        private void BtnTema_Click(object sender, EventArgs e)
+        {
+            ThemeManager.Aplicar(this, !ThemeManager.TemaEscuroAtual);
+        }
     }
+
 }

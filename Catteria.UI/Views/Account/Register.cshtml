@@ -43,7 +43,7 @@
                     }
 
                     @* CORRIGIDO: Direciona o envio para o controlador Account e a ação Register via POST *@
-                    <form asp-controller="Account" asp-action="Register" method="post">
+                    <form id="registerForm" asp-controller="Account" asp-action="Register" method="post">
                         
                         <div class="mb-3">
                             <label class="form-label">Nome</label>
@@ -82,8 +82,12 @@
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">
-                                Cadastrar
+                            <button id="submitBtn" type="submit" class="btn btn-primary">
+                                <span id="btnText">Cadastrar</span>
+                                <span id="btnSpinner" style="display: none;">
+                                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    Processando...
+                                </span>
                             </button>
                         </div>
               
@@ -97,7 +101,28 @@
                 </div>
             </div>
 
-        </div>
-    </div>
-</body>
-</html>
+            </div>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const registerForm = document.getElementById('registerForm');
+                    const submitBtn = document.getElementById('submitBtn');
+                    const btnText = document.getElementById('btnText');
+                    const btnSpinner = document.getElementById('btnSpinner');
+
+                    registerForm.addEventListener('submit', function(e) {
+                        // Desabilita o botão ao enviar o formulário
+                        submitBtn.disabled = true;
+                        submitBtn.classList.add('opacity-75');
+
+                        // Alterna o texto do botão
+                        btnText.style.display = 'none';
+                        btnSpinner.style.display = 'inline';
+                    });
+                });
+            </script>
+        </body>
+        </html>

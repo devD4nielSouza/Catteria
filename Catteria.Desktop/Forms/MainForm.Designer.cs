@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -42,10 +44,11 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblSessao = new Label();
             pnlSidebar = new Panel();
+            btnCupom = new Guna.UI2.WinForms.Guna2Button();
             btnUsuarios = new Guna.UI2.WinForms.Guna2Button();
             btnPedidos = new Guna.UI2.WinForms.Guna2Button();
             btnCategorias = new Guna.UI2.WinForms.Guna2Button();
@@ -56,12 +59,12 @@
             btnLogout = new Guna.UI2.WinForms.Guna2Button();
             lblTituloApp = new Label();
             pnlHeader = new Panel();
+            BtnTema = new Guna.UI2.WinForms.Guna2Button();
             lblSubtituloApp = new Label();
             lblUsuario = new Label();
             pnlConteudo = new Panel();
             lblUsuarioEmoji = new Label();
             pnlUsuario = new Guna.UI2.WinForms.Guna2Panel();
-            btnCupom = new Guna.UI2.WinForms.Guna2Button();
             pnlSidebar.SuspendLayout();
             pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pblLogo).BeginInit();
@@ -94,11 +97,28 @@
             pnlSidebar.Size = new Size(200, 441);
             pnlSidebar.TabIndex = 1;
             // 
+            // btnCupom
+            // 
+            btnCupom.CustomizableEdges = customizableEdges1;
+            btnCupom.DisabledState.BorderColor = Color.DarkGray;
+            btnCupom.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnCupom.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnCupom.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnCupom.FillColor = Color.FromArgb(253, 247, 242);
+            btnCupom.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
+            btnCupom.ForeColor = Color.FromArgb(76, 120, 178);
+            btnCupom.Location = new Point(3, 261);
+            btnCupom.Name = "btnCupom";
+            btnCupom.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnCupom.Size = new Size(194, 45);
+            btnCupom.TabIndex = 2;
+            btnCupom.Text = "Cupom";
+            btnCupom.Click += btnCupom_Click;
+            // 
             // btnUsuarios
             // 
             btnUsuarios.Animated = true;
             btnUsuarios.BackColor = SystemColors.Control;
-            btnUsuarios.BorderRadius = 5;
             btnUsuarios.CustomizableEdges = customizableEdges3;
             btnUsuarios.DisabledState.BorderColor = Color.DarkGray;
             btnUsuarios.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -119,7 +139,6 @@
             // 
             btnPedidos.Animated = true;
             btnPedidos.BackColor = SystemColors.Control;
-            btnPedidos.BorderRadius = 5;
             btnPedidos.CustomizableEdges = customizableEdges5;
             btnPedidos.DisabledState.BorderColor = Color.DarkGray;
             btnPedidos.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -140,7 +159,6 @@
             // 
             btnCategorias.Animated = true;
             btnCategorias.BackColor = SystemColors.Control;
-            btnCategorias.BorderRadius = 5;
             btnCategorias.CustomizableEdges = customizableEdges7;
             btnCategorias.DisabledState.BorderColor = Color.DarkGray;
             btnCategorias.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -162,7 +180,6 @@
             btnProdutos.Animated = true;
             btnProdutos.BackColor = SystemColors.Control;
             btnProdutos.BorderColor = Color.IndianRed;
-            btnProdutos.BorderRadius = 5;
             btnProdutos.CustomBorderColor = Color.White;
             btnProdutos.CustomizableEdges = customizableEdges9;
             btnProdutos.DisabledState.BorderColor = Color.DarkGray;
@@ -184,7 +201,6 @@
             // 
             btnDashboard.Animated = true;
             btnDashboard.BackColor = SystemColors.Control;
-            btnDashboard.BorderRadius = 5;
             btnDashboard.CustomizableEdges = customizableEdges11;
             btnDashboard.DisabledState.BorderColor = Color.DarkGray;
             btnDashboard.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -253,6 +269,7 @@
             // 
             // pnlHeader
             // 
+            pnlHeader.Controls.Add(BtnTema);
             pnlHeader.Controls.Add(btnLogout);
             pnlHeader.Controls.Add(lblSubtituloApp);
             pnlHeader.Controls.Add(lblTituloApp);
@@ -260,6 +277,25 @@
             pnlHeader.Name = "pnlHeader";
             pnlHeader.Size = new Size(794, 76);
             pnlHeader.TabIndex = 3;
+            // 
+            // BtnTema
+            // 
+            BtnTema.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
+            BtnTema.CustomizableEdges = customizableEdges15;
+            BtnTema.DisabledState.BorderColor = Color.DarkGray;
+            BtnTema.DisabledState.CustomBorderColor = Color.DarkGray;
+            BtnTema.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            BtnTema.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            BtnTema.FillColor = Color.FromArgb(76, 120, 178);
+            BtnTema.Font = new Font("Segoe UI", 14F);
+            BtnTema.ForeColor = Color.White;
+            BtnTema.Location = new Point(597, 17);
+            BtnTema.Name = "BtnTema";
+            BtnTema.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            BtnTema.Size = new Size(58, 33);
+            BtnTema.TabIndex = 4;
+            BtnTema.Text = "🌙";
+            BtnTema.Click += BtnTema_Click;
             // 
             // lblSubtituloApp
             // 
@@ -305,35 +341,16 @@
             // 
             pnlUsuario.BackColor = Color.FromArgb(76, 120, 178);
             pnlUsuario.BorderColor = Color.White;
-            pnlUsuario.BorderRadius = 10;
             pnlUsuario.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
             pnlUsuario.Controls.Add(lblSessao);
             pnlUsuario.Controls.Add(lblUsuario);
             pnlUsuario.Controls.Add(lblUsuarioEmoji);
-            pnlUsuario.CustomizableEdges = customizableEdges15;
+            pnlUsuario.CustomizableEdges = customizableEdges17;
             pnlUsuario.Location = new Point(1, 80);
             pnlUsuario.Name = "pnlUsuario";
-            pnlUsuario.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            pnlUsuario.ShadowDecoration.CustomizableEdges = customizableEdges18;
             pnlUsuario.Size = new Size(197, 60);
             pnlUsuario.TabIndex = 0;
-            // 
-            // btnCupom
-            // 
-            btnCupom.CustomizableEdges = customizableEdges1;
-            btnCupom.DisabledState.BorderColor = Color.DarkGray;
-            btnCupom.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnCupom.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnCupom.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnCupom.FillColor = Color.FromArgb(253, 247, 242);
-            btnCupom.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold);
-            btnCupom.ForeColor = Color.FromArgb(76, 120, 178);
-            btnCupom.Location = new Point(3, 261);
-            btnCupom.Name = "btnCupom";
-            btnCupom.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnCupom.Size = new Size(194, 45);
-            btnCupom.TabIndex = 2;
-            btnCupom.Text = "Cupom";
-            btnCupom.Click += btnCupom_Click;
             // 
             // MainForm
             // 
@@ -383,5 +400,6 @@
         private Guna.UI2.WinForms.Guna2Button btnUsuarios;
         private Guna.UI2.WinForms.Guna2Button btnPedidos;
         private Guna.UI2.WinForms.Guna2Button btnCupom;
+        private Guna.UI2.WinForms.Guna2Button BtnTema;
     }
 }
