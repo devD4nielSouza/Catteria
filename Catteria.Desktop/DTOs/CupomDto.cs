@@ -1,27 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Catteria.Desktop.DTOs
 {
+    /// <summary>
+    /// Dados de um cupom vindos da API.
+    /// Setter precisa ser público para o System.Text.Json conseguir
+    /// desserializar — com "private set" os campos ficam com valor
+    /// padrão sem lançar nenhum erro visível.
+    /// </summary>
     public class CupomResponseDto
     {
-        public Guid Id { get; private set; }
-        public string Codigo { get; private set; } = string.Empty;
-        public int PercentualDesconto { get; private set; }
-        public bool Ativo { get; private set; }
-        public DateTime DataCriacao { get; private set; }
+        public Guid Id { get; set; }
+        public string Codigo { get; set; } = string.Empty;
+        public decimal PercentualDesconto { get; set; }
+        public bool Ativo { get; set; }
+        public DateTime DataCriacao { get; set; }
     }
+
+    /// <summary>
+    /// Espelha o CriarCupomRequest da Application: só Código e Percentual.
+    /// O cupom já nasce ativo no backend, por isso não tem campo "Ativo".
+    /// </summary>
     public class CreateCupomDto
     {
-        public string Codigo { get; private set; } = string.Empty;
-        public int PercentualDesconto { get; private set; }
-        public bool Ativo { get; private set; }
+        public string Codigo { get; set; } = string.Empty;
+        public decimal PercentualDesconto { get; set; }
     }
+
+    /// <summary>
+    /// Espelha o AtualizarCupomRequest da Application: só dá pra mudar
+    /// o percentual de desconto por aqui. Código e Ativo/Inativo têm
+    /// fluxos próprios.
+    /// </summary>
     public class UpdateCupomDto
     {
-        public string Codigo { get; private set; } = string.Empty;
-        public int PercentualDesconto { get; private set; }
-        public bool Ativo { get; private set; }
+        public decimal PercentualDesconto { get; set; }
     }
 }

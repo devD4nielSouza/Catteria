@@ -15,6 +15,14 @@ namespace Catteria.Desktop.UserControls
             InitializeComponent();
         }
 
+        private void CupomUserControl_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -40,7 +40,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             txtPesquisa = new Guna.UI2.WinForms.Guna2TextBox();
             btnEditar = new Guna.UI2.WinForms.Guna2Button();
-            btnExcluir = new Guna.UI2.WinForms.Guna2Button();
+            btnDesabilitar = new Guna.UI2.WinForms.Guna2Button();
             btnAtualizar = new Guna.UI2.WinForms.Guna2Button();
             lblTitulo = new Label();
             gridPedidos = new DataGridView();
@@ -66,13 +66,13 @@
             txtPesquisa.Font = new Font("Segoe UI", 9F);
             txtPesquisa.ForeColor = Color.DimGray;
             txtPesquisa.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPesquisa.Location = new Point(64, 75);
+            txtPesquisa.Location = new Point(15, 85);
             txtPesquisa.Name = "txtPesquisa";
             txtPesquisa.PlaceholderForeColor = Color.Gray;
             txtPesquisa.PlaceholderText = "Pesquisa por nome";
             txtPesquisa.SelectedText = "";
             txtPesquisa.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtPesquisa.Size = new Size(228, 36);
+            txtPesquisa.Size = new Size(284, 36);
             txtPesquisa.TabIndex = 19;
             // 
             // btnEditar
@@ -86,30 +86,31 @@
             btnEditar.FillColor = Color.FromArgb(53, 109, 202);
             btnEditar.Font = new Font("Segoe UI", 9F);
             btnEditar.ForeColor = Color.White;
-            btnEditar.Location = new Point(417, 66);
+            btnEditar.Location = new Point(431, 76);
             btnEditar.Name = "btnEditar";
             btnEditar.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnEditar.Size = new Size(90, 45);
+            btnEditar.Size = new Size(106, 45);
             btnEditar.TabIndex = 16;
             btnEditar.Text = "✏️ Editar";
             // 
-            // btnExcluir
+            // btnDesabilitar
             // 
-            btnExcluir.BorderRadius = 5;
-            btnExcluir.CustomizableEdges = customizableEdges5;
-            btnExcluir.DisabledState.BorderColor = Color.DarkGray;
-            btnExcluir.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnExcluir.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnExcluir.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnExcluir.FillColor = Color.FromArgb(223, 77, 72);
-            btnExcluir.Font = new Font("Segoe UI", 9F);
-            btnExcluir.ForeColor = Color.White;
-            btnExcluir.Location = new Point(529, 66);
-            btnExcluir.Name = "btnExcluir";
-            btnExcluir.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnExcluir.Size = new Size(90, 45);
-            btnExcluir.TabIndex = 17;
-            btnExcluir.Text = "Excluir";
+            btnDesabilitar.BorderRadius = 5;
+            btnDesabilitar.CustomizableEdges = customizableEdges5;
+            btnDesabilitar.DisabledState.BorderColor = Color.DarkGray;
+            btnDesabilitar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnDesabilitar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnDesabilitar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnDesabilitar.FillColor = Color.FromArgb(223, 77, 72);
+            btnDesabilitar.Font = new Font("Segoe UI", 9F);
+            btnDesabilitar.ForeColor = Color.White;
+            btnDesabilitar.Location = new Point(554, 76);
+            btnDesabilitar.Name = "btnDesabilitar";
+            btnDesabilitar.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnDesabilitar.Size = new Size(105, 45);
+            btnDesabilitar.TabIndex = 17;
+            btnDesabilitar.Text = "🗑️ Desabilitar";
+            btnDesabilitar.Click += btnExcluir_Click;
             // 
             // btnAtualizar
             // 
@@ -122,23 +123,23 @@
             btnAtualizar.FillColor = Color.FromArgb(199, 209, 69);
             btnAtualizar.Font = new Font("Segoe UI", 9F);
             btnAtualizar.ForeColor = Color.White;
-            btnAtualizar.Location = new Point(640, 66);
+            btnAtualizar.Location = new Point(678, 76);
             btnAtualizar.Name = "btnAtualizar";
             btnAtualizar.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnAtualizar.Size = new Size(90, 45);
+            btnAtualizar.Size = new Size(101, 45);
             btnAtualizar.TabIndex = 18;
-            btnAtualizar.Text = "Atualizar";
+            btnAtualizar.Text = "🔄️ Atualizar";
             // 
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitulo.ForeColor = Color.FromArgb(64, 64, 64);
-            lblTitulo.Location = new Point(58, 25);
+            lblTitulo.Location = new Point(15, 27);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(222, 25);
+            lblTitulo.Size = new Size(249, 25);
             lblTitulo.TabIndex = 15;
-            lblTitulo.Text = "Gerenciador de Cupons";
+            lblTitulo.Text = "Gerenciador de Cupons 🎟️";
             // 
             // gridPedidos
             // 
@@ -146,9 +147,9 @@
             gridPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridPedidos.Columns.AddRange(new DataGridViewColumn[] { colId, colDate, colPrice, colStatus, colClient });
             gridPedidos.GridColor = SystemColors.InactiveCaption;
-            gridPedidos.Location = new Point(64, 117);
+            gridPedidos.Location = new Point(15, 136);
             gridPedidos.Name = "gridPedidos";
-            gridPedidos.Size = new Size(670, 340);
+            gridPedidos.Size = new Size(764, 332);
             gridPedidos.TabIndex = 14;
             // 
             // colId
@@ -161,7 +162,7 @@
             // 
             colDate.HeaderText = "DataPedido";
             colDate.Name = "colDate";
-            colDate.Width = 120;
+            colDate.Width = 200;
             // 
             // colPrice
             // 
@@ -172,7 +173,7 @@
             // 
             colStatus.HeaderText = "Status";
             colStatus.Name = "colStatus";
-            colStatus.Width = 110;
+            colStatus.Width = 140;
             // 
             // colClient
             // 
@@ -191,10 +192,10 @@
             btnNovo.FillColor = Color.FromArgb(47, 179, 77);
             btnNovo.Font = new Font("Segoe UI", 9F);
             btnNovo.ForeColor = Color.White;
-            btnNovo.Location = new Point(305, 66);
+            btnNovo.Location = new Point(305, 76);
             btnNovo.Name = "btnNovo";
             btnNovo.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnNovo.Size = new Size(90, 45);
+            btnNovo.Size = new Size(106, 45);
             btnNovo.TabIndex = 16;
             btnNovo.Text = "+ Novo Cupom";
             // 
@@ -202,15 +203,17 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 248, 241);
             Controls.Add(txtPesquisa);
             Controls.Add(btnNovo);
             Controls.Add(btnEditar);
-            Controls.Add(btnExcluir);
+            Controls.Add(btnDesabilitar);
             Controls.Add(btnAtualizar);
             Controls.Add(lblTitulo);
             Controls.Add(gridPedidos);
             Name = "CupomUserControl";
             Size = new Size(793, 482);
+            Load += CupomUserControl_Load;
             ((System.ComponentModel.ISupportInitialize)gridPedidos).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -220,15 +223,15 @@
 
         private Guna.UI2.WinForms.Guna2TextBox txtPesquisa;
         private Guna.UI2.WinForms.Guna2Button btnEditar;
-        private Guna.UI2.WinForms.Guna2Button btnExcluir;
+        private Guna.UI2.WinForms.Guna2Button btnDesabilitar;
         private Guna.UI2.WinForms.Guna2Button btnAtualizar;
         private Label lblTitulo;
         private DataGridView gridPedidos;
+        private Guna.UI2.WinForms.Guna2Button btnNovo;
         private DataGridViewTextBoxColumn colId;
         private DataGridViewTextBoxColumn colDate;
         private DataGridViewTextBoxColumn colPrice;
         private DataGridViewTextBoxColumn colStatus;
         private DataGridViewTextBoxColumn colClient;
-        private Guna.UI2.WinForms.Guna2Button btnNovo;
     }
 }
