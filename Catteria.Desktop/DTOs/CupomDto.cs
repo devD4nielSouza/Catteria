@@ -8,7 +8,7 @@ namespace Catteria.Desktop.DTOs
     /// desserializar — com "private set" os campos ficam com valor
     /// padrão sem lançar nenhum erro visível.
     /// </summary>
-    public class CupomResponseDto
+    public class CuponsResponseDto
     {
         public Guid Id { get; set; }
         public string Codigo { get; set; } = string.Empty;
@@ -25,6 +25,8 @@ namespace Catteria.Desktop.DTOs
     {
         public string Codigo { get; set; } = string.Empty;
         public decimal PercentualDesconto { get; set; }
+
+        public bool Ativo { get; set; }
     }
 
     /// <summary>

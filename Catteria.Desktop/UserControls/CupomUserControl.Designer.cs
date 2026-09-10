@@ -36,21 +36,18 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             txtPesquisa = new Guna.UI2.WinForms.Guna2TextBox();
             btnEditar = new Guna.UI2.WinForms.Guna2Button();
-            btnDesabilitar = new Guna.UI2.WinForms.Guna2Button();
             btnAtualizar = new Guna.UI2.WinForms.Guna2Button();
             lblTitulo = new Label();
-            gridPedidos = new DataGridView();
+            gridCupons = new DataGridView();
             colId = new DataGridViewTextBoxColumn();
-            colDate = new DataGridViewTextBoxColumn();
-            colPrice = new DataGridViewTextBoxColumn();
+            colCode = new DataGridViewTextBoxColumn();
+            colPromo = new DataGridViewTextBoxColumn();
             colStatus = new DataGridViewTextBoxColumn();
-            colClient = new DataGridViewTextBoxColumn();
+            colDate = new DataGridViewTextBoxColumn();
             btnNovo = new Guna.UI2.WinForms.Guna2Button();
-            ((System.ComponentModel.ISupportInitialize)gridPedidos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridCupons).BeginInit();
             SuspendLayout();
             // 
             // txtPesquisa
@@ -74,6 +71,7 @@
             txtPesquisa.ShadowDecoration.CustomizableEdges = customizableEdges2;
             txtPesquisa.Size = new Size(284, 36);
             txtPesquisa.TabIndex = 19;
+            txtPesquisa.TextChanged += txtPesquisa_TextChanged;
             // 
             // btnEditar
             // 
@@ -86,36 +84,18 @@
             btnEditar.FillColor = Color.FromArgb(53, 109, 202);
             btnEditar.Font = new Font("Segoe UI", 9F);
             btnEditar.ForeColor = Color.White;
-            btnEditar.Location = new Point(431, 76);
+            btnEditar.Location = new Point(427, 76);
             btnEditar.Name = "btnEditar";
             btnEditar.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnEditar.Size = new Size(106, 45);
             btnEditar.TabIndex = 16;
             btnEditar.Text = "✏️ Editar";
-            // 
-            // btnDesabilitar
-            // 
-            btnDesabilitar.BorderRadius = 5;
-            btnDesabilitar.CustomizableEdges = customizableEdges5;
-            btnDesabilitar.DisabledState.BorderColor = Color.DarkGray;
-            btnDesabilitar.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnDesabilitar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnDesabilitar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnDesabilitar.FillColor = Color.FromArgb(223, 77, 72);
-            btnDesabilitar.Font = new Font("Segoe UI", 9F);
-            btnDesabilitar.ForeColor = Color.White;
-            btnDesabilitar.Location = new Point(554, 76);
-            btnDesabilitar.Name = "btnDesabilitar";
-            btnDesabilitar.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnDesabilitar.Size = new Size(105, 45);
-            btnDesabilitar.TabIndex = 17;
-            btnDesabilitar.Text = "🗑️ Desabilitar";
-            btnDesabilitar.Click += btnExcluir_Click;
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnAtualizar
             // 
             btnAtualizar.BorderRadius = 5;
-            btnAtualizar.CustomizableEdges = customizableEdges7;
+            btnAtualizar.CustomizableEdges = customizableEdges5;
             btnAtualizar.DisabledState.BorderColor = Color.DarkGray;
             btnAtualizar.DisabledState.CustomBorderColor = Color.DarkGray;
             btnAtualizar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -123,12 +103,13 @@
             btnAtualizar.FillColor = Color.FromArgb(199, 209, 69);
             btnAtualizar.Font = new Font("Segoe UI", 9F);
             btnAtualizar.ForeColor = Color.White;
-            btnAtualizar.Location = new Point(678, 76);
+            btnAtualizar.Location = new Point(551, 76);
             btnAtualizar.Name = "btnAtualizar";
-            btnAtualizar.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnAtualizar.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnAtualizar.Size = new Size(101, 45);
             btnAtualizar.TabIndex = 18;
             btnAtualizar.Text = "🔄️ Atualizar";
+            btnAtualizar.Click += btnAtualizar_Click_1;
             // 
             // lblTitulo
             // 
@@ -141,16 +122,16 @@
             lblTitulo.TabIndex = 15;
             lblTitulo.Text = "Gerenciador de Cupons 🎟️";
             // 
-            // gridPedidos
+            // gridCupons
             // 
-            gridPedidos.BackgroundColor = SystemColors.ActiveCaption;
-            gridPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridPedidos.Columns.AddRange(new DataGridViewColumn[] { colId, colDate, colPrice, colStatus, colClient });
-            gridPedidos.GridColor = SystemColors.InactiveCaption;
-            gridPedidos.Location = new Point(15, 136);
-            gridPedidos.Name = "gridPedidos";
-            gridPedidos.Size = new Size(764, 332);
-            gridPedidos.TabIndex = 14;
+            gridCupons.BackgroundColor = SystemColors.ActiveCaption;
+            gridCupons.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridCupons.Columns.AddRange(new DataGridViewColumn[] { colId, colCode, colPromo, colStatus, colDate });
+            gridCupons.GridColor = SystemColors.InactiveCaption;
+            gridCupons.Location = new Point(15, 136);
+            gridCupons.Name = "gridCupons";
+            gridCupons.Size = new Size(764, 332);
+            gridCupons.TabIndex = 14;
             // 
             // colId
             // 
@@ -158,33 +139,34 @@
             colId.Name = "colId";
             colId.Width = 80;
             // 
-            // colDate
+            // colCode
             // 
-            colDate.HeaderText = "DataPedido";
-            colDate.Name = "colDate";
-            colDate.Width = 200;
+            colCode.HeaderText = "Código";
+            colCode.Name = "colCode";
+            colCode.Width = 210;
             // 
-            // colPrice
+            // colPromo
             // 
-            colPrice.HeaderText = "Valor Total";
-            colPrice.Name = "colPrice";
+            colPromo.HeaderText = "Desconto";
+            colPromo.Name = "colPromo";
+            colPromo.Width = 150;
             // 
             // colStatus
             // 
             colStatus.HeaderText = "Status";
             colStatus.Name = "colStatus";
-            colStatus.Width = 140;
+            colStatus.Width = 130;
             // 
-            // colClient
+            // colDate
             // 
-            colClient.HeaderText = "Cliente";
-            colClient.Name = "colClient";
-            colClient.Width = 200;
+            colDate.HeaderText = "Data de Criação";
+            colDate.Name = "colDate";
+            colDate.Width = 150;
             // 
             // btnNovo
             // 
             btnNovo.BorderRadius = 5;
-            btnNovo.CustomizableEdges = customizableEdges9;
+            btnNovo.CustomizableEdges = customizableEdges7;
             btnNovo.DisabledState.BorderColor = Color.DarkGray;
             btnNovo.DisabledState.CustomBorderColor = Color.DarkGray;
             btnNovo.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -194,10 +176,11 @@
             btnNovo.ForeColor = Color.White;
             btnNovo.Location = new Point(305, 76);
             btnNovo.Name = "btnNovo";
-            btnNovo.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnNovo.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnNovo.Size = new Size(106, 45);
             btnNovo.TabIndex = 16;
             btnNovo.Text = "+ Novo Cupom";
+            btnNovo.Click += btnNovo_Click;
             // 
             // CupomUserControl
             // 
@@ -207,14 +190,13 @@
             Controls.Add(txtPesquisa);
             Controls.Add(btnNovo);
             Controls.Add(btnEditar);
-            Controls.Add(btnDesabilitar);
             Controls.Add(btnAtualizar);
             Controls.Add(lblTitulo);
-            Controls.Add(gridPedidos);
+            Controls.Add(gridCupons);
             Name = "CupomUserControl";
             Size = new Size(793, 482);
             Load += CupomUserControl_Load;
-            ((System.ComponentModel.ISupportInitialize)gridPedidos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridCupons).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -223,15 +205,14 @@
 
         private Guna.UI2.WinForms.Guna2TextBox txtPesquisa;
         private Guna.UI2.WinForms.Guna2Button btnEditar;
-        private Guna.UI2.WinForms.Guna2Button btnDesabilitar;
         private Guna.UI2.WinForms.Guna2Button btnAtualizar;
         private Label lblTitulo;
-        private DataGridView gridPedidos;
+        private DataGridView gridCupons;
         private Guna.UI2.WinForms.Guna2Button btnNovo;
         private DataGridViewTextBoxColumn colId;
-        private DataGridViewTextBoxColumn colDate;
-        private DataGridViewTextBoxColumn colPrice;
+        private DataGridViewTextBoxColumn colCode;
+        private DataGridViewTextBoxColumn colPromo;
         private DataGridViewTextBoxColumn colStatus;
-        private DataGridViewTextBoxColumn colClient;
+        private DataGridViewTextBoxColumn colDate;
     }
 }

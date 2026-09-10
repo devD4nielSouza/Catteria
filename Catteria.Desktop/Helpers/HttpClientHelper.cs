@@ -385,5 +385,27 @@ namespace Catteria.Desktop.Helpers
                 // ── Erro genérico ─────────────────────────────────────────────────
                 return $"⚠ Erro inesperado:\n{ex.Message}";
             }
+
+        /// <summary>
+        /// Realiza uma requisição PATCH sem corpo (usada para endpoints de ação, como alternar status).
+        /// </summary>
+        public async Task<(bool Success, string ErrorMessage)> PatchAsync(string endpoint)
+        {
+            try
+            {
+                var request = new HttpRequestMessage(HttpMethod.Patch, endpoint);
+                var response = await _client.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                    return (true, string.Empty);
+
+                var body = await response.Content.ReadAsStringAsync();
+                return (false, TryExtractErrorMessage(body));
+            }
+            catch (Exception ex)
+            {
+                return (false, CategorizeConnectionError(ex, endpoint));
+            }
         }
+    }
 }

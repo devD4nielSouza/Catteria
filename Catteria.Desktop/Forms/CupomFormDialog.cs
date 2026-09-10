@@ -13,7 +13,7 @@ namespace Catteria.Desktop.Forms
 {
     public partial class CupomFormDialog : Form
     {
-        private CupomResponseDto? _cupomExistente;
+        private CuponsResponseDto? _cupomExistente;
         public CreateCupomDto? CupomDto { get; private set; }
         public UpdateCupomDto? UpdateDto { get; private set; }
         public CupomFormDialog()
@@ -33,9 +33,11 @@ namespace Catteria.Desktop.Forms
         {
             if (DesignMode) return;
 
+            // Define o título de acordo com o modo do formulário.
             this.Text = _cupomExistente == null ? "Novo Cupom" : "Editar Cupom";
             lblTituloForm.Text = _cupomExistente == null ? "Novo Cupom" : "Editar Cupom";
 
+            // Preenche os campos caso seja uma edição.
             PreencherCampos();
         }
 
@@ -50,15 +52,78 @@ namespace Catteria.Desktop.Forms
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            // Verifica se o código foi preenchido.
             if (string.IsNullOrWhiteSpace(txtCod.Text))
             {
-               MessageBox.Show(
-                   "Informe o titulo do game.",
-                   "Validação",
+                MessageBox.Show(
+                    "Informe o código do cupom.",
+                    "Validação",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
+
+                txtCod.Focus();
+                return;
             }
+
+            // Verifica se a porcentagem foi preenchida.
+            if (string.IsNullOrWhiteSpace(txtPorcent.Text))
+            {
+                MessageBox.Show(
+                    "Informe a porcentagem do desconto.",
+                    "Validação",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                txtPorcent.Focus();
+                return;
+            }
+
+            // Converte a porcentagem para número.
+            if (!decimal.TryParse(txtPorcent.Text, out decimal percentual))
+            {
+                MessageBox.Show(
+                    "Informe uma porcentagem válida.",
+                    "Validação",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                txtPorcent.Focus();
+                return;
+            }
+
+            // Verifica se a porcentagem está entre 0 e 100.
+            if (percentual <= 0 || percentual > 100)
+            {
+                MessageBox.Show(
+                    "A porcentagem deve estar entre 1 e 100.",
+                    "Validação",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                txtPorcent.Focus();
+                return;
+            }
+
+            // Cria o DTO com os dados preenchidos no formulário.
+            CupomDto = new CreateCupomDto
+            {
+                Codigo = txtCod.Text.Trim(),
+                PercentualDesconto = percentual,
+                Ativo = chkWorking.Checked
+            };
+
+            // Indica que o formulário foi concluído com sucesso.
+            DialogResult = DialogResult.OK;
+            Close();
         }
-        
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            // Fecha o formulário sem salvar.
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
     }
+
 }
+

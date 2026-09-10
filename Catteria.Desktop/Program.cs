@@ -14,7 +14,7 @@ namespace Catteria.Desktop
         {
             // Para .NET 10 / WinForms
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginForm());
+            System.Windows.Forms.Application.Run(new LoginForm());
         }
     }
 }

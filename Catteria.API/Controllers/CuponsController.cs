@@ -24,7 +24,7 @@ namespace Catteria.API.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<List<CupomDto>>> Listar()
+        public async Task<ActionResult<List<CuponsDto>>> Listar()
         {
             var cupons = await _cupomService.ListarAsync();
             return Ok(cupons);
@@ -32,7 +32,7 @@ namespace Catteria.API.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<CupomDto>> Criar([FromBody] CriarCupomRequest request)
+        public async Task<ActionResult<CuponsDto>> Criar([FromBody] CriarCupomRequest request)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace Catteria.API.Controllers
 
         [HttpPut("{id:guid}")]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<CupomDto>> Atualizar(Guid id, [FromBody] AtualizarCupomRequest request)
+        public async Task<ActionResult<CuponsDto>> Atualizar(Guid id, [FromBody] AtualizarCupomRequest request)
         {
             try
             {

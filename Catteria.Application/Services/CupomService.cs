@@ -17,7 +17,7 @@ namespace Catteria.Application.Services
             _repository = repository;
         }
 
-        public async Task<CupomDto> CriarAsync(CriarCupomRequest request)
+        public async Task<CuponsDto> CriarAsync(CriarCupomRequest request)
         {
             var existente = await _repository.ObterPorCodigoAsync(request.Codigo);
             if (existente is not null)
@@ -30,13 +30,13 @@ namespace Catteria.Application.Services
             return MapearParaDto(cupom);
         }
 
-        public async Task<List<CupomDto>> ListarAsync()
+        public async Task<List<CuponsDto>> ListarAsync()
         {
             var cupons = await _repository.ListarTodosAsync();
             return cupons.Select(MapearParaDto).ToList();
         }
 
-        public async Task<CupomDto> AtualizarAsync(Guid id, AtualizarCupomRequest request)
+        public async Task<CuponsDto> AtualizarAsync(Guid id, AtualizarCupomRequest request)
         {
             var cupom = await _repository.ObterPorIdAsync(id)
                 ?? throw new KeyNotFoundException("Cupom não encontrado.");
@@ -75,7 +75,7 @@ namespace Catteria.Application.Services
             return new ValidarCupomResult(true, null, cupom);
         }
 
-        private static CupomDto MapearParaDto(Cupom cupom) =>
+        private static CuponsDto MapearParaDto(Cupom cupom) =>
             new(cupom.Id, cupom.Codigo, cupom.PercentualDesconto, cupom.Ativo, cupom.DataCriacao);
     }
 }

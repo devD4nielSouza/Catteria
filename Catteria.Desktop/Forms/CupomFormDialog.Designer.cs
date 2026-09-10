@@ -149,6 +149,7 @@
             btnCancelar.Size = new Size(115, 42);
             btnCancelar.TabIndex = 41;
             btnCancelar.Text = "Cancelar";
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // CupomFormDialog
             // 
