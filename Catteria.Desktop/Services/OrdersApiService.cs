@@ -60,8 +60,13 @@ namespace Catteria.Desktop.Services
                 var list = await _http.GetAsync<List<OrderStatusResponseDto>>("/api/orders/statuses");
                 return list ?? new List<OrderStatusResponseDto>();
             }
-            catch
+            catch (Exception ex)
             {
+                System.Windows.Forms.MessageBox.Show(
+                    $"Erro ao carregar status: {ex.Message}\n\n{ex}",
+                    "Erro na API",
+                    System.Windows.Forms.MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBoxIcon.Error);
                 return new List<OrderStatusResponseDto>();
             }
         }

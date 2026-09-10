@@ -179,7 +179,8 @@ namespace Catteria.Desktop.UserControls
                 // Mapear para o DTO que o OrdersApiService espera (ex.: UpdateOrderDto)
                 var updateDto = new UpdateOrderDto
                 {
-                    Status = form.UpdateDto.Status // ajuste conforme nomes reais
+                    StatusId = form.UpdateDto.StatusId,
+                    Status = form.UpdateDto.Status
                 };
                 var (success, errorUpd, error) = await _ordersService.UpdateAsync(pedido.Id, updateDto);
                 if (success)

@@ -32,5 +32,7 @@ namespace Catteria.Domain.Interfaces
         /// Deleta um pedido
         /// </summary>
         Task DeleteAsync(int id);
+
+        Task<IEnumerable<OrderStatus>> GetAllStatusesAsync();
     }
 }

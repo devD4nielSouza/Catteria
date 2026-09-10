@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Catteria.Application.DTOs;
+﻿using Catteria.Application.DTOs;
 using Catteria.Application.Interfaces;
 using Catteria.Domain.Entities;
 using Catteria.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Catteria.Application.Services
 {
@@ -90,7 +91,6 @@ namespace Catteria.Application.Services
                 return null;
 
             order.StatusId = dto.StatusId;
-
             await _orderRepository.UpdateAsync(order);
 
             var orderAtualizado = await _orderRepository.GetByIdAsync(id);
@@ -141,5 +141,20 @@ namespace Catteria.Application.Services
             };
         }
 
+        public async Task<IEnumerable<OrderStatusDto>> GetAllStatusesAsync()
+        {
+            var statuses = await _orderRepository.GetAllStatusesAsync();
+            return statuses.Select(MapToStatusDto);
+        }
+
+        private static OrderStatusDto MapToStatusDto(OrderStatus status)
+        {
+            return new OrderStatusDto
+            {
+                Id = status.Id,
+                Name = status.Name,
+                Description = status.Description
+            };
+        }
     }
 }

@@ -92,5 +92,13 @@ namespace Catteria.Infraestructure.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<IEnumerable<OrderStatus>> GetAllStatusesAsync()
+        {
+            return await _context.OrderStatuses
+                .AsNoTracking()
+                .OrderBy(s => s.Id)
+                .ToListAsync();
+        }
     }
 }

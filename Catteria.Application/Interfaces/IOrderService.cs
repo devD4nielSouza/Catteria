@@ -20,5 +20,7 @@ namespace Catteria.Application.Interfaces
         Task<bool> DeleteAsync(int id);
         //totais
         Task<int> CountAsync();
+        Task<IEnumerable<OrderStatusDto>> GetAllStatusesAsync();
+
     }
 }

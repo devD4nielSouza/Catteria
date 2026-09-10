@@ -64,38 +64,38 @@ namespace Catteria.API.Controllers
         [Authorize]
         public async Task<IActionResult> CreateOrder(
             [FromBody] CreateOrderDto dto)
+        {
+            var userId = _userManager.GetUserId(User);
+
+            if (userId == null)
             {
-                var userId = _userManager.GetUserId(User);
-
-                if (userId == null)
+                return Unauthorized(new
                 {
-                    return Unauthorized(new
-                    {
-                        message = "Usuário não autenticado."
-                    });
-                }
+                    message = "Usuário não autenticado."
+                });
+            }
 
-                if (dto.Items == null || !dto.Items.Any())
+            if (dto.Items == null || !dto.Items.Any())
+            {
+                return BadRequest(new
                 {
-                    return BadRequest(new
-                    {
-                        message = "O pedido não possui itens."
-                    });
-                }
+                    message = "O pedido não possui itens."
+                });
+            }
 
-                var order = new Order
-                {
-                    IdUser = userId,
-                    Date = DateTime.Now,
+            var order = new Order
+            {
+                IdUser = userId,
+                Date = DateTime.Now,
 
-                    // Status inicial do pedido
-                    StatusId = 1,
+                // Status inicial do pedido
+                StatusId = 1,
 
-                    Observations = dto.Observations,
-                    PaymentMethod = dto.PaymentMethod,
-                    CupomCodigo = dto.CupomCodigo // Adicionar o código do cupom
-                };
-                decimal subtotal = 0;
+                Observations = dto.Observations,
+                PaymentMethod = dto.PaymentMethod,
+                CupomCodigo = dto.CupomCodigo // Adicionar o código do cupom
+            };
+            decimal subtotal = 0;
 
             foreach (var item in dto.Items)
             {
@@ -164,42 +164,49 @@ namespace Catteria.API.Controllers
                 TotalValue = order.TotalValue
             });
         }
-            /// <summary>
-            /// Atualiza um pedido existente
-            /// </summary>
-            /// <param name="id"></param>
-            /// <param name="dto"></param>
-            /// <returns></returns>
+        /// <summary>
+        /// Atualiza um pedido existente
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
 
-            [HttpPut("{id}")]
-            [Authorize(Roles = "Admin")]
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
 
-             public async Task<ActionResult<CategoryDto>> Update(int id, [FromBody] UpdateOrderDto dto)
-            {
-                var order = await _orderService.UpdateAsync(id, dto);
+        public async Task<ActionResult<CategoryDto>> Update(int id, [FromBody] UpdateOrderDto dto)
+        {
+            var order = await _orderService.UpdateAsync(id, dto);
 
-                if (order == null)
-                    return NotFound(new { message = "Pedido não encontrado." });
+            if (order == null)
+                return NotFound(new { message = "Pedido não encontrado." });
 
-                return Ok(order);
-            }
+            return Ok(order);
+        }
 
-            /// <summary>
-            /// Exclui um pedido existente
-            /// </summary>
-            /// <param name="id"></param>
-            /// <returns></returns>
-            [HttpDelete("{id}")]
-            [Authorize(Roles = "Admin")]
+        /// <summary>
+        /// Exclui um pedido existente
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
 
-            public async Task<ActionResult> Delete(int id)
-            {
-                var deleted = await _orderService.DeleteAsync(id);
+        public async Task<ActionResult> Delete(int id)
+        {
+            var deleted = await _orderService.DeleteAsync(id);
 
-                if (!deleted)
-                    return NotFound(new { message = "Pedido não encontrado." });
+            if (!deleted)
+                return NotFound(new { message = "Pedido não encontrado." });
 
-                return NoContent();
-            }
-    } 
+            return NoContent();
+        }
+
+        [HttpGet("statuses")]
+        public async Task<ActionResult<IEnumerable<OrderStatusDto>>> GetStatuses()
+        {
+            var statuses = await _orderService.GetAllStatusesAsync();
+            return Ok(statuses);
+        }
+    }
 }

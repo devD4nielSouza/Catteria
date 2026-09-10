@@ -49,7 +49,7 @@
             btnCancelar.FillColor = Color.FromArgb(245, 247, 250);
             btnCancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancelar.ForeColor = Color.FromArgb(51, 61, 75);
-            btnCancelar.Location = new Point(212, 590);
+            btnCancelar.Location = new Point(277, 164);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btnCancelar.Size = new Size(115, 42);
@@ -84,7 +84,7 @@
             btnSalvar.FillColor = Color.FromArgb(164, 188, 223);
             btnSalvar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSalvar.ForeColor = Color.White;
-            btnSalvar.Location = new Point(36, 590);
+            btnSalvar.Location = new Point(101, 164);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnSalvar.Size = new Size(140, 42);
@@ -107,7 +107,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(524, 658);
+            ClientSize = new Size(524, 221);
             Controls.Add(cmbStatus);
             Controls.Add(btnCancelar);
             Controls.Add(lblTituloForm);
