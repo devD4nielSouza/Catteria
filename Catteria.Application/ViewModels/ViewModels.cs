@@ -14,6 +14,7 @@ namespace Catteria.Application.ViewModels
         public IEnumerable<ProductDto> FeaturedProducts { get; set; } = new List<ProductDto>();
         public IEnumerable<CategoryDto> Categories { get; set; } = new List<CategoryDto>();
         public List<OrderDto> Orders { get; set; } = new();
+        public ProductDto Product { get; set; } = new ProductDto();
     }
     /// <summary>
     /// ViewModel da página de cardápio.
@@ -106,24 +107,6 @@ namespace Catteria.Application.ViewModels
         public IEnumerable<OrderItemDto> ItemsOrder { get; set; } = new List<OrderItemDto>();
         public string status { get; set; } = string.Empty;
 
-
-        //public class LoanDetailsViewModel
-
-        //{
-
-        // public ReaderDto Reader { get; set; }
-
-        //public BookDto Book { get; set; }
-
-        //public DateTime LoanDate { get; set; }
-
-        //public DateTime ReturnDate { get; set; }
-
-        //public string Status { get; set; }
-
-        //} EXEMPLO GENÉRICO 
-
-        //Cliente não existe ainda
     }
 
     /// <summary>

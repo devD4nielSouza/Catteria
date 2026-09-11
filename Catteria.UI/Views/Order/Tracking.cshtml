@@ -101,15 +101,38 @@ var statusId = Model.StatusId;
     </div>
 
 
-    <!-- Status atual -->
-    <div class="card tracking-card border-0 shadow-sm mb-4">
+<!-- Status atual -->
+<div class="card tracking-card border-0 shadow-sm mb-4">
 
-        <div class="card-body p-4">
+    <div class="card-body p-4">
 
+        @if (statusId == 7)
+        {
+            <!-- PEDIDO CANCELADO -->
+            <div class="cancelled-order">
+
+                <div class="cancelled-icon">
+                    <i class="bi bi-x-circle-fill"></i>
+                </div>
+
+                <div>
+                    <h4 class="fw-bold mb-1">
+                        Pedido cancelado
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        Este pedido foi cancelado e não será processado.
+                    </p>
+                </div>
+
+            </div>
+        }
+        else
+        {
+            <!-- STATUS NORMAL -->
             <div class="current-status">
 
                 <div>
-
                     <span class="text-muted small">
                         Status atual
                     </span>
@@ -117,42 +140,10 @@ var statusId = Model.StatusId;
                     <h4 class="fw-bold mb-0">
                         @statusAtual
                     </h4>
-
                 </div>
 
                 <div class="current-status-icon">
-                    @if (statusId == 7)
-                    {
-                        <div class="card tracking-card border-0 shadow-sm mb-4">
 
-                            ```
-                            <div class="card-body p-4">
-
-                                <div class="cancelled-order">
-
-                                    <div class="cancelled-icon">
-                                        <i class="bi bi-x-circle-fill"></i>
-                                    </div>
-
-                                    <div>
-
-                                        <h4 class="fw-bold mb-1">
-                                            Pedido cancelado
-                                        </h4>
-
-                                        <p class="text-muted mb-0">
-                                            Este pedido foi cancelado e não será processado.
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-                        
-                    }
                     @if (statusId >= 6)
                     {
                         <i class="bi bi-house-check-fill"></i>
@@ -181,12 +172,15 @@ var statusId = Model.StatusId;
                 </div>
 
             </div>
-
-        </div>
+        }
 
     </div>
 
+</div>
 
+
+@if (statusId != 7)
+{
     <!-- Linha do tempo -->
     <div class="card tracking-card border-0 shadow-sm">
 
@@ -195,7 +189,6 @@ var statusId = Model.StatusId;
             <h4 class="fw-bold mb-5">
                 Acompanhe seu pedido
             </h4>
-
 
             <div class="order-timeline">
 
@@ -335,9 +328,7 @@ var statusId = Model.StatusId;
         </div>
 
     </div>
-
-
-</div>
+}
 
 <style>
 

@@ -172,6 +172,24 @@ namespace Catteria.Desktop.UserControls
                 return;
             }
 
+            if(pedido.StatusId == 7)
+            {
+                MessageBox.Show("Não é possível alterar o status de um pedido Cancelado.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if(pedido.StatusId == 6)
+            {
+                MessageBox.Show("Não é possível alterar o status de um pedido Entregue.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             // Dialog simples que só deixa escolher o novo status (ver OrderStatusFormDialog).
             using var form = new OrderFormDialog(_statusList, pedido);
             if (form.ShowDialog() == DialogResult.OK && form.UpdateDto != null)
