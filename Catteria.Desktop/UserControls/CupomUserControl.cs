@@ -78,14 +78,19 @@ namespace Catteria.Desktop.UserControls
 
             foreach (var cupom in cupons)
             {
+                var percentualDisplay = $"{cupom.PercentualDesconto:0.##}%"; // ex: "10%"
                 gridCupons.Rows.Add(
                     cupom.Id,
                     cupom.Codigo,
-                    cupom.PercentualDesconto,
-                    cupom.Ativo,
+                    percentualDisplay, // string com % aqui
+                    cupom.Ativo ? "Ativo" : "Desativado",
                     cupom.DataCriacao.ToString("dd/MM/yyyy HH:mm")
                 );
             }
+
+            // opcional: alinhar coluna percentual à direita
+            if (gridCupons.Columns["colPercentual"] is DataGridViewColumn col)
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
 
@@ -104,16 +109,22 @@ namespace Catteria.Desktop.UserControls
             // Procura o termo nos campos do cupom.
             var cuponsFiltrados = _todosCupons
                 .Where(c =>
-                    // Percentual de desconto
-                    c.PercentualDesconto.ToString("C2")
+                    // Código do cupom.
+                    (c.Codigo ?? "")
                         .Contains(termo, StringComparison.OrdinalIgnoreCase)
 
-                    // Data de criação
-                    || c.DataCriacao.ToString("dd/MM/yyyy HH:mm")
+                    // Percentual de desconto.
+                    || c.PercentualDesconto
+                        .ToString()
                         .Contains(termo, StringComparison.OrdinalIgnoreCase)
 
-                    // Ativo/Inativo
-                    || c.Ativo.ToString()
+                    // Data de criação.
+                    || c.DataCriacao
+                        .ToString("dd/MM/yyyy HH:mm")
+                        .Contains(termo, StringComparison.OrdinalIgnoreCase)
+
+                    // Status.
+                    || (c.Ativo ? "Ativo" : "Desativado")
                         .Contains(termo, StringComparison.OrdinalIgnoreCase)
                 )
                 .ToList();
@@ -122,7 +133,9 @@ namespace Catteria.Desktop.UserControls
             PopularGrid(cuponsFiltrados);
         }
 
+
         private void txtPesquisa_TextChanged(object sender, EventArgs e) => FiltrarCupons();
+
         private CuponsResponseDto? ObterCupomSelecionado()
         {
             if (gridCupons.SelectedRows.Count == 0) return null;
@@ -133,11 +146,16 @@ namespace Catteria.Desktop.UserControls
 
         private async void btnNovo_Click(object sender, EventArgs e)
         {
+            // Abre o formulário vazio para cadastrar um novo cupom.
             using var form = new CupomFormDialog();
 
-            if (form.ShowDialog() == DialogResult.OK && form.CupomDto != null)
+            // Verifica se o usuário salvou o formulário.
+            if (form.ShowDialog() == DialogResult.OK &&
+                form.CupomDto != null)
             {
-                var (success, _, error) = await _cuponsService.CreateAsync(form.CupomDto);
+                // Envia o novo cupom para a API.
+                var (success, _, error) =
+                    await _cuponsService.CreateAsync(form.CupomDto);
 
                 if (success)
                 {
@@ -147,6 +165,7 @@ namespace Catteria.Desktop.UserControls
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
 
+                    // Atualiza a grid.
                     await CarregarDadosAsync();
                 }
                 else
@@ -165,34 +184,28 @@ namespace Catteria.Desktop.UserControls
             var cupom = ObterCupomSelecionado();
             if (cupom == null)
             {
-                MessageBox.Show($"Selecione um Cupom para editar",
+                MessageBox.Show("Selecione um cupom para editar.",
                     "Aviso",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
-
                 return;
-
             }
-            using var form = new CupomFormDialog();
 
-            if (form.ShowDialog() == DialogResult.OK && form.CupomDto != null)
+            using var form = new CupomFormDialog(cupom);
+            if (form.ShowDialog() == DialogResult.OK && form.UpdateDto != null)
             {
-                var (success, _, error) = await _cuponsService.UpdateAsync (cupom.Id, form.UpdateDto);
-
+                var (success, _, error) = await _cuponsService.UpdateAsync(cupom.Id, form.UpdateDto);
                 if (success)
                 {
-                    MessageBox.Show(
-                        "Cupom cadastrado com sucesso!",
+                    MessageBox.Show("✅ Cupom atualizado com sucesso!",
                         "Sucesso",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
-
                     await CarregarDadosAsync();
                 }
                 else
                 {
-                    MessageBox.Show(
-                        $"{error}",
+                    MessageBox.Show($"❌ {error}",
                         "Erro",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -204,7 +217,7 @@ namespace Catteria.Desktop.UserControls
 
         private async void btnAtualizar_Click_1(object sender, EventArgs e) => await CarregarDadosAsync();
 
-       
+
     }
 
 }

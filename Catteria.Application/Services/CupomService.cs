@@ -41,7 +41,26 @@ namespace Catteria.Application.Services
             var cupom = await _repository.ObterPorIdAsync(id)
                 ?? throw new KeyNotFoundException("Cupom não encontrado.");
 
+            // --- Se tentou mudar o código, valida unicidade e atualiza ---
+            if (!string.Equals(cupom.Codigo, request.Codigo, StringComparison.OrdinalIgnoreCase))
+            {
+                var existente = await _repository.ObterPorCodigoAsync(request.Codigo);
+                if (existente is not null && existente.Id != id)
+                    throw new InvalidOperationException($"Já existe um cupom com o código '{request.Codigo}'.");
+
+                // Entidade de domínio deve expor um método para atualizar o código
+                cupom.AtualizarCodigo(request.Codigo);
+            }
+
+            // Atualiza desconto (lógica existente)
             cupom.AtualizarDesconto(request.PercentualDesconto);
+
+            // Atualiza ativo/desativo se necessário
+            if (request.Ativo && !cupom.Ativo)
+                cupom.Ativar();
+            else if (!request.Ativo && cupom.Ativo)
+                cupom.Desativar();
+
             await _repository.SalvarAlteracoesAsync();
 
             return MapearParaDto(cupom);

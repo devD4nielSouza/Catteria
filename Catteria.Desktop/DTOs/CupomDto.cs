@@ -36,6 +36,8 @@ namespace Catteria.Desktop.DTOs
     /// </summary>
     public class UpdateCupomDto
     {
+        public bool Ativo { get; set; }
+        public string Codigo { get; set; } = string.Empty;
         public decimal PercentualDesconto { get; set; }
     }
 }

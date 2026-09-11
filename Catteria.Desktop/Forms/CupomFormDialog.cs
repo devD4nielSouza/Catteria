@@ -16,16 +16,27 @@ namespace Catteria.Desktop.Forms
         private CuponsResponseDto? _cupomExistente;
         public CreateCupomDto? CupomDto { get; private set; }
         public UpdateCupomDto? UpdateDto { get; private set; }
-        public CupomFormDialog()
+
+        public CupomFormDialog(CuponsResponseDto? cupom = null)
         {
             InitializeComponent();
+
+        _cupomExistente = cupom;
+
+            // Quando for um novo cupom, começa desativado.
+            if (_cupomExistente == null)
+            {
+                chkWorking.Checked = false;
+            }
         }
 
         private void txtPorcent_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            // Permite apenas números e Backspace.
+            if (!char.IsDigit(e.KeyChar) &&
+                e.KeyChar != (char)8)
             {
-                e.Handled = true; // Cancela o evento, impedindo a digitação
+                e.Handled = true;
             }
         }
 
@@ -46,11 +57,13 @@ namespace Catteria.Desktop.Forms
             if (_cupomExistente == null) return;
 
             txtCod.Text = _cupomExistente.Codigo;
-            txtPorcent.Text = _cupomExistente.PercentualDesconto.ToString();
+            txtPorcent.Text = _cupomExistente.PercentualDesconto.ToString("0.##", System.Globalization.CultureInfo.CurrentCulture);
             chkWorking.Checked = _cupomExistente.Ativo;
         }
+        
 
         private void btnSalvar_Click(object sender, EventArgs e)
+
         {
             // Verifica se o código foi preenchido.
             if (string.IsNullOrWhiteSpace(txtCod.Text))
@@ -79,7 +92,9 @@ namespace Catteria.Desktop.Forms
             }
 
             // Converte a porcentagem para número.
-            if (!decimal.TryParse(txtPorcent.Text, out decimal percentual))
+            if (!decimal.TryParse(
+                    txtPorcent.Text,
+                    out decimal percentual))
             {
                 MessageBox.Show(
                     "Informe uma porcentagem válida.",
@@ -91,7 +106,7 @@ namespace Catteria.Desktop.Forms
                 return;
             }
 
-            // Verifica se a porcentagem está entre 0 e 100.
+            // Verifica se a porcentagem está entre 1 e 100.
             if (percentual <= 0 || percentual > 100)
             {
                 MessageBox.Show(
@@ -104,16 +119,38 @@ namespace Catteria.Desktop.Forms
                 return;
             }
 
-            // Cria o DTO com os dados preenchidos no formulário.
-            CupomDto = new CreateCupomDto
-            {
-                Codigo = txtCod.Text.Trim(),
-                PercentualDesconto = percentual,
-                Ativo = chkWorking.Checked
-            };
+            // ================================================================
+            // NOVO CUPOM
+            // ================================================================
 
-            // Indica que o formulário foi concluído com sucesso.
+            if (_cupomExistente == null)
+            {
+                CupomDto = new CreateCupomDto
+                {
+                    Codigo = txtCod.Text.Trim(),
+                    PercentualDesconto = percentual,
+                    Ativo = chkWorking.Checked
+                };
+            }
+
+            // ================================================================
+            // EDITAR CUPOM
+            // ================================================================
+
+            else
+            {
+                UpdateDto = new UpdateCupomDto
+                {
+                    Codigo = txtCod.Text.Trim(),
+                    PercentualDesconto = percentual,
+                    Ativo = chkWorking.Checked
+                };
+            }
+
+            // Informa ao UserControl que o formulário foi salvo.
             DialogResult = DialogResult.OK;
+
+            // Fecha o formulário.
             Close();
         }
 

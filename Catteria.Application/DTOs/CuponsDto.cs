@@ -12,7 +12,7 @@ namespace Catteria.Application.DTOs
     public record CriarCupomRequest(string Codigo, decimal PercentualDesconto, bool Ativo);
 
     // Application/DTOs/AtualizarCupomRequest.cs
-    public record AtualizarCupomRequest(decimal PercentualDesconto);
+    public record AtualizarCupomRequest(decimal PercentualDesconto, string Codigo, bool Ativo);
 
     // Application/DTOs/ValidarCupomResult.cs
     public record ValidarCupomResult(bool Valido, string? MotivoInvalido, Cupom? Cupom);

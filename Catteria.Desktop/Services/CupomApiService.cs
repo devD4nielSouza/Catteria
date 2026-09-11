@@ -66,7 +66,7 @@ namespace Catteria.Desktop.Services
 
         /// <summary>
         /// Reabilita um cupom via PATCH /api/cupons/{id}/status?ativo=true.
-        /// Não há botão para isso na tela ainda, mas o método já fica pronto.
+        ///
         /// </summary>
         public async Task<(bool Success, string ErrorMessage)> HabilitarAsync(Guid id)
         {

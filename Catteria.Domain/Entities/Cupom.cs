@@ -48,6 +48,15 @@
             DataCriacao = DateTime.UtcNow;
         }
 
+        public void AtualizarCodigo(string novoCodigo)
+        {
+            if (string.IsNullOrWhiteSpace(novoCodigo))
+                throw new ArgumentException("Código inválido.", nameof(novoCodigo));
+
+            // validações de domínio (formato, tamanho) podem ser aplicadas aqui
+            Codigo = novoCodigo.Trim().ToUpperInvariant();
+        }
+
         // Ativa o cupom.
         public void Ativar() => Ativo = true;
 
