@@ -13,15 +13,18 @@ namespace Catteria.UI.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly Catteria.Domain.Interfaces.IEmailSender _emailSender;
         private readonly LinkGenerator _linkGenerator;
+        private readonly IHttpClientFactory _httpClientFactory;
         public AccountController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             Domain.Interfaces.IEmailSender emailSender,
-            LinkGenerator linkGenerator)
+            LinkGenerator linkGenerator,
+            IHttpClientFactory httpClientFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _linkGenerator = linkGenerator;
+            _httpClientFactory = httpClientFactory;
         }
 
         //=============================================
@@ -103,76 +106,20 @@ namespace Catteria.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterDto dto)
         {
-            if (dto.Password != dto.ConfirmPassword)
-            {
-                ModelState.AddModelError(
-                    string.Empty,
-                    "As senhas não coincidem"
-                );
-
+            if (!ModelState.IsValid)
                 return View(dto);
-            }
 
-            var user = new ApplicationUser
+            var client = _httpClientFactory.CreateClient();
+
+            var response = await client.PostAsJsonAsync(
+                "http://localhost:5273/api/Auth/register",
+                dto);
+
+            if (response.IsSuccessStatusCode)
             {
-                UserName = dto.Email,
-                Email = dto.Email,
-                Name = dto.Name,
-                Address = dto.Address,
-                PhoneNumber = dto.Telephone
-            };
-
-            var result = await _userManager.CreateAsync(
-                user,
-                dto.Password
-            );
-
-            if (result.Succeeded)
-            {
-                // Gera o token
-                var token = await _userManager
-                    .GenerateEmailConfirmationTokenAsync(user);
-
-                // URL da API que confirma o e-mail
-                var confirmationLink = $"http://localhost:5273/api/Auth/confirmar-email" +
-                      $"?userId={Uri.EscapeDataString(user.Id)}" +
-                      $"&token={Uri.EscapeDataString(token)}";
-
-                // Envia o e-mail
-                await _emailSender.SendEmailAsync(
-                    user.Email!,
-                    "Confirme seu cadastro",
-                    $"""
-            <h2>Bem-vindo!</h2>
-
-            <p>
-                Obrigado por se cadastrar.
-            </p>
-
-            <p>
-                Clique no botão abaixo para confirmar seu e-mail:
-            </p>
-
-            <p>
-                <a href="{confirmationLink}">
-                    Confirmar meu e-mail
-                </a>
-            </p>
-            """
-                );
-
                 return RedirectToAction(
                     "ConfirmEmailNotice",
-                    new { email = user.Email }
-                );
-            }
-
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(
-                    string.Empty,
-                    error.Description
-                );
+                    new { email = dto.Email });
             }
 
             return View(dto);
@@ -230,32 +177,26 @@ namespace Catteria.UI.Controllers
         [EnableRateLimiting("forgot-password")]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordDto dto)
         {
-            if (!ModelState.IsValid) return View(dto);
+            if (!ModelState.IsValid)
+                return View(dto);
 
-            var user = await _userManager.FindByEmailAsync(dto.Email);
-            // Sempre redirecione para a confirmação para evitar enumeração de contas
-            if (user == null)
-                return RedirectToAction(nameof(ForgotPasswordConfirmation));
+            var client = _httpClientFactory.CreateClient();
 
-            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var encodedToken = Uri.EscapeDataString(token);
-            var resetLink = Url.Action(
-                "ResetPassword",
-                "Account",
-                new { userId = user.Id, token = encodedToken },
-                Request.Scheme
-            );
+            var response = await client.PostAsJsonAsync(
+                "http://localhost:5273/api/Auth/forgot-password",
+                dto);
 
-            await _emailSender.SendEmailAsync(
-                user.Email!,
-                "Redefinir sua senha",
-                $"""
-        <p>Você solicitou redefinir sua senha.</p>
-        <p><a href="{resetLink}">Clique aqui para redefinir a senha</a></p>
-        """
-            );
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction(
+                    nameof(ForgotPasswordConfirmation));
+            }
 
-            return RedirectToAction(nameof(ForgotPasswordConfirmation));
+            ModelState.AddModelError(
+                string.Empty,
+                "Não foi possível processar a solicitação.");
+
+            return View(dto);
         }
 
         [AllowAnonymous]
@@ -263,6 +204,10 @@ namespace Catteria.UI.Controllers
         {
             return View();
         }
+
+        //=============================================
+        //RESET PASSWORD
+        //==============================================
 
         [HttpGet]
         [AllowAnonymous]

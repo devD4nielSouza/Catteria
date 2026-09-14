@@ -19,7 +19,7 @@ namespace Catteria.API.Controllers
 
         public AuthController(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager, 
+            SignInManager<ApplicationUser> signInManager,
             Catteria.Domain.Interfaces.IEmailSender emailSender,
             LinkGenerator linkGenerator)
         {
@@ -62,9 +62,25 @@ namespace Catteria.API.Controllers
                 values: new { userId = user.Id, token });
 
             await _emailSender.SendEmailAsync(
-                user.Email!,
-                "Confirme seu cadastro",
-                $"<p>Bem-vindo! Clique <a href='{link}'>aqui</a> para confirmar seu email.</p>");
+              user.Email!,
+                    "Confirme seu cadastro",
+                    $"""
+            <h2>Bem-vindo!</h2>
+
+            <p>
+                Obrigado por se cadastrar.
+            </p>
+
+            <p>
+                Clique no botão abaixo para confirmar seu e-mail:
+            </p>
+
+            <p>
+                <a href="{link}">
+                    Confirmar meu e-mail
+                </a>
+            </p>
+            """);
 
             return Ok(new { message = "Usuario registrado com sucesso! Verifique seu email para confirmar a conta." });
         }
@@ -125,6 +141,93 @@ namespace Catteria.API.Controllers
                 Id = user.Id,
                 Email = user.Email!,
                 Roles = roles
+            });
+        }
+
+        [HttpPost("forgot-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+
+            // Não revela se o e-mail existe ou não
+            if (user == null)
+                return Ok(new
+                {
+                    message = "Se o e-mail estiver cadastrado, você receberá um link para redefinir sua senha."
+                });
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var encodedToken = Uri.EscapeDataString(token);
+
+            var resetLink =
+    $"http://localhost:5246/Account/ResetPassword" +
+    $"?userId={Uri.EscapeDataString(user.Id)}" +
+    $"&token={Uri.EscapeDataString(token)}";
+
+            await _emailSender.SendEmailAsync(
+                user.Email!,
+                "Redefinir sua senha",
+                $"""
+        <h2>Redefinição de senha</h2>
+
+        <p>Você solicitou a redefinição da sua senha.</p>
+
+        <p>
+            <a href="{resetLink}">
+                Clique aqui para redefinir sua senha
+            </a>
+        </p>
+
+        <p>Se você não solicitou isso, ignore este e-mail.</p>
+        """
+            );
+
+            return Ok(new
+            {
+                message = "Se o e-mail estiver cadastrado, você receberá um link para redefinir sua senha."
+            });
+        }
+
+        [HttpPost("reset-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPassword(
+    [FromBody] ResetPasswordDto dto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = await _userManager.FindByIdAsync(dto.UserId);
+
+            if (user == null)
+                return BadRequest(new
+                {
+                    message = "Não foi possível redefinir a senha."
+                });
+
+            var token = Uri.UnescapeDataString(dto.Token);
+
+            var result = await _userManager.ResetPasswordAsync(
+                user,
+                token,
+                dto.Password);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest(new
+                {
+                    message = "Não foi possível redefinir a senha.",
+                    errors = result.Errors.Select(e => e.Description)
+                });
+            }
+
+            return Ok(new
+            {
+                message = "Senha redefinida com sucesso!"
             });
         }
     }

@@ -107,7 +107,9 @@ namespace Catteria.API.Controllers
                 {
                     IdProduct = item.IdProduct,
                     Quantity = item.Quantity,
-                    UnitPrice = item.UnitPrice
+                    UnitPrice = item.UnitPrice,
+                    SubTotal = item.UnitPrice * item.Quantity
+
                 };
 
                 order.OrderItems.Add(orderItem);

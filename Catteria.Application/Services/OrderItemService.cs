@@ -71,7 +71,8 @@ namespace Catteria.Application.Services
                 Quantity = item.Quantity,
                 IdOrder = item.IdOrder,
                 IdProduct = item.IdProduct,
-                UnitPrice = item.UnitPrice
+                UnitPrice = item.UnitPrice,
+                SubTotal = item.Quantity * item.UnitPrice
             };
         }
     }

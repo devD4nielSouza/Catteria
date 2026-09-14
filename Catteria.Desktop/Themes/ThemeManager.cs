@@ -236,6 +236,16 @@ namespace Catteria.Desktop.Themes
                         gGroup.ForeColor = original.ForeColor!.Value;
                     }
                     break;
+                case TextBox text:
+                    if (escuro)
+                    {
+                        text.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        text.ForeColor = Color.Black;
+                    }
+                    break;
 
                 case Label:
                     controle.BackColor = escuro ? Color.Transparent : original.BackColor!.Value;

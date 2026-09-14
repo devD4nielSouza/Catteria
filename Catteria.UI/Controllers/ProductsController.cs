@@ -1,5 +1,7 @@
 ﻿using Catteria.Application.Interfaces;
 using Catteria.Application.ViewModels;
+using Catteria.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catteria.UI.Controllers
@@ -8,11 +10,11 @@ namespace Catteria.UI.Controllers
     {
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
-
         public ProductsController(IProductService productService, ICategoryService categoryService)
         {
             _productService = productService;
             _categoryService = categoryService;
+         
         }
 
         /// <summary>
