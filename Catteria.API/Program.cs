@@ -66,7 +66,7 @@ builder.Services.ConfigureApplicationCookie(options =>
         return Task.CompletedTask;
     };
 });
-
+builder.Services.AddMemoryCache();
 // =====================================================================
 // 3. DEPENDENCY INJECTION — Registro de Repositórios e Serviços
 // =====================================================================

@@ -4,6 +4,8 @@ using Catteria.Infraestructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Catteria.API.Controllers
 {
@@ -15,20 +17,24 @@ namespace Catteria.API.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly Catteria.Domain.Interfaces.IEmailSender _emailSender;
         private readonly LinkGenerator _linkGenerator;
-
+        private readonly ILogger<AuthController> _logger;
 
         public AuthController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             Catteria.Domain.Interfaces.IEmailSender emailSender,
-            LinkGenerator linkGenerator)
+            LinkGenerator linkGenerator,
+            ILogger<AuthController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _linkGenerator = linkGenerator;
+            _logger = logger;
         }
-
+        //===================================
+        // REGISTRO
+        //===================================
         [HttpPost("register")]
         public async Task<ActionResult> Register([FromBody] RegisterDto dto)
         {
@@ -89,13 +95,79 @@ namespace Catteria.API.Controllers
         public async Task<IActionResult> ConfirmarEmail(string userId, string token)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            if (user == null) return NotFound();
+            if (user == null) return Redirect("http://localhost:5246/Account/confirmacao?status=erro/");
 
             var result = await _userManager.ConfirmEmailAsync(user, token);
-            return result.Succeeded
-      ? Ok(new { message = "Email confirmado com sucesso!" })
-      : BadRequest(new { errors = result.Errors.Select(e => new { e.Code, e.Description }) });
+            if (result.Succeeded)
+            {
+                return Redirect(
+                    $"http://localhost:5246/Account/confirmacao" +
+                    "?sucesso=true" +
+                    "&mensagem=E-mail confirmado com sucesso!"
+                );
+            }
+
+            return Redirect(
+                $"http://localhost:5246/Account/confirmacao" +
+                "?sucesso=false" +
+                "&mensagem=O link de confirmação é inválido ou expirou."
+            );
         }
+
+        [HttpPost("reenviar-confirmacao")]
+        [EnableRateLimiting("reenviar-confirmacao")]
+        public async Task<IActionResult> ReenviarConfirmacao([FromForm]string email, [FromServices] IMemoryCache cache)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user is null)
+            {
+                _logger.LogWarning("Reenvio: usuário não encontrado para {Email}", email);
+                return Ok();
+            }
+
+            if (await _userManager.IsEmailConfirmedAsync(user))
+            {
+                _logger.LogWarning("Reenvio: e-mail {Email} já estava confirmado", email);
+                return Ok();
+            }
+
+            var cacheKey = $"reenvio-confirmacao:{user.Id}";
+            if (cache.TryGetValue(cacheKey, out _))
+                return StatusCode(429, "Aguarde antes de solicitar um novo reenvio.");
+
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var link = _linkGenerator.GetUriByAction(
+                HttpContext, "ConfirmarEmail", "Auth", new { userId = user.Id, token });
+
+            _logger.LogInformation("Reenvio: enviando link {Link} para {Email}", link, user.Email);
+
+        await _emailSender.SendEmailAsync(user.Email!, "Confirme seu cadastro", $"""
+            <h2>Bem-vindo!</h2>
+
+            <p>
+                Obrigado por se cadastrar.
+            </p>
+
+            <p>
+                Clique no botão abaixo para confirmar seu e-mail:
+            </p>
+
+            <p>
+                <a href="{link}">
+                    Confirmar meu e-mail
+                </a>
+            </p>
+            """);
+
+            cache.Set(cacheKey, true, TimeSpan.FromSeconds(60));
+
+            return Ok();
+        }
+
+        //===================================
+        //LOGIN
+        //===================================
 
         [HttpPost("login")]
         public async Task<ActionResult> Login([FromBody] LoginDto dto)
@@ -116,7 +188,9 @@ namespace Catteria.API.Controllers
                 Roles = roles
             });
         }
-
+        //===================================
+        // LOG-OUT
+        //===================================
         [HttpPost("logout")]
         [Authorize]
         public async Task<ActionResult> Logout()
@@ -144,6 +218,11 @@ namespace Catteria.API.Controllers
             });
         }
 
+
+        //===================================
+        // ESQUECI A SENHA
+        //===================================
+
         [HttpPost("forgot-password")]
         [AllowAnonymous]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
@@ -165,27 +244,27 @@ namespace Catteria.API.Controllers
             var encodedToken = Uri.EscapeDataString(token);
 
             var resetLink =
-    $"http://localhost:5246/Account/ResetPassword" +
-    $"?userId={Uri.EscapeDataString(user.Id)}" +
-    $"&token={Uri.EscapeDataString(token)}";
+            $"http://localhost:5246/Account/ResetPassword" +
+            $"?userId={Uri.EscapeDataString(user.Id)}" +
+            $"&token={Uri.EscapeDataString(token)}";
 
             await _emailSender.SendEmailAsync(
                 user.Email!,
                 "Redefinir sua senha",
                 $"""
-        <h2>Redefinição de senha</h2>
+                <h2>Redefinição de senha</h2>
 
-        <p>Você solicitou a redefinição da sua senha.</p>
+                <p>Você solicitou a redefinição da sua senha.</p>
 
-        <p>
-            <a href="{resetLink}">
-                Clique aqui para redefinir sua senha
-            </a>
-        </p>
+                <p>
+                    <a href="{resetLink}">
+                        Clique aqui para redefinir sua senha
+                    </a>
+                </p>
 
-        <p>Se você não solicitou isso, ignore este e-mail.</p>
-        """
-            );
+                <p>Se você não solicitou isso, ignore este e-mail.</p>
+                """
+                    );
 
             return Ok(new
             {
@@ -195,8 +274,8 @@ namespace Catteria.API.Controllers
 
         [HttpPost("reset-password")]
         [AllowAnonymous]
-        public async Task<IActionResult> ResetPassword(
-    [FromBody] ResetPasswordDto dto)
+                public async Task<IActionResult> ResetPassword(
+            [FromBody] ResetPasswordDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

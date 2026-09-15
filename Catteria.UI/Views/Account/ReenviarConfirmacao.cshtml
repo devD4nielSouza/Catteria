@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "Reenviar confirmação de e-mail";
+}
+
+<div class="container d-flex justify-content-center align-items-center"
+     style="min-height: 75vh;">
+
+    <div class="card border-0 shadow-lg p-4 p-md-5"
+         style="width: 100%; max-width: 460px; border-radius: 20px;">
+
+        <div class="text-center mb-4">
+            <i class="bi bi-envelope-paper text-dark"
+               style="font-size: 64px;"></i>
+
+            <h2 class="fw-bold mt-3">
+                Confirmar e-mail
+            </h2>
+
+            <p class="text-muted">
+                Digite seu e-mail para receber um novo link de confirmação.
+            </p>
+        </div>
+
+        <form asp-controller="Account"
+              asp-action="ReenviarConfirmacao"
+              method="post">
+
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger mb-3">
+            </div>
+
+            <div class="mb-3">
+                <label for="Email" class="form-label">
+                    E-mail
+                </label>
+
+                <input type="email"
+                       id="Email"
+                       name="Email"
+                       class="form-control"
+                       placeholder="Digite seu e-mail"
+                       autocomplete="email"
+                       required />
+            </div>
+
+            <button type="submit"
+                    class="btn btn-dark w-100 py-2">
+                <i class="bi bi-send me-2"></i>
+                Reenviar e-mail
+            </button>
+        </form>
+
+        @if (TempData["Mensagem"] != null)
+        {
+            <div class="alert alert-info mt-3 mb-0 text-center">
+                @TempData["Mensagem"]
+            </div>
+        }
+
+        <div class="text-center mt-4">
+            <a asp-controller="Account"
+               asp-action="Login"
+               class="text-decoration-none text-muted">
+                <i class="bi bi-arrow-left me-1"></i>
+                Voltar para o login
+            </a>
+        </div>
+
+        <div class="text-center mt-4">
+            <small class="text-muted">
+                <i class="bi bi-heart-fill me-1"></i>
+                Catteria
+            </small>
+        </div>
+    </div>
+</div>

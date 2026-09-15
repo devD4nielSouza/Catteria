@@ -124,6 +124,7 @@ namespace Catteria.UI.Controllers
 
             return View(dto);
         }
+
         // Exibe a página de aviso para confirmar o e-mail
         [AllowAnonymous]
         public IActionResult ConfirmEmailNotice(string email)
@@ -133,6 +134,44 @@ namespace Catteria.UI.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult confirmacao(
+            bool sucesso = false,
+            string? mensagem = null)
+        {
+            ViewBag.Sucesso = sucesso;
+            ViewBag.Mensagem = mensagem;
+
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult ReenviarConfirmacao()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> ReenviarConfirmacao(string email)
+        {
+            var client = _httpClientFactory.CreateClient("CatteriaApi");
+
+            var conteudo = new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                ["email"] = email
+            });
+
+            var resposta = await client.PostAsync("api/Auth/reenviar-confirmacao", conteudo);
+
+            TempData["Mensagem"] = resposta.IsSuccessStatusCode
+                ? "Se o e-mail existir, um novo link de confirmação foi enviado."
+                : "Não foi possível reenviar agora, tente novamente em instantes.";
+
+            return View();
+        }
         //=============================================
         // LOGOUT
         //=============================================
