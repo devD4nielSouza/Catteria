@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="~/css/Menu.css" />
     <link rel="stylesheet" href="~/css/MyOrders.css" />
 
-
-
 </head>
 <body>
 
@@ -52,7 +50,8 @@
                 </form>
 
                 <div class="nav-links ms-auto d-none d-md-flex align-items-center">
-                   
+                    <a asp-controller="Home" asp-action="Sobre">Sobre</a>
+                    <a asp-controller="Home" asp-action="SobreNos">Creative Set</a>
                     @if (User.Identity != null && User.Identity.IsAuthenticated)
                     {
                         <a asp-controller="Favorites"
