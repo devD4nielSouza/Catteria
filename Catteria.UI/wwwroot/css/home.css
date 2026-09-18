@@ -124,3 +124,187 @@ body {
 }
 
 /*Seção de Cardapio = Igual do products*/
+
+/* Página Criadores / SobreNos - cores da Catteria */
+.creators-page {
+    background: linear-gradient(180deg, var(--bege-fundo) 0%, #fdfaf5 100%);
+    min-height: 100vh;
+}
+
+.hero-creators {
+    padding: 80px 0 60px;
+    background: linear-gradient(135deg, var(--azul-claro) 0%, #f5f8fb 100%);
+    border-bottom: 1px solid rgba(44, 123, 182, 0.12);
+}
+
+.hero-badge {
+    display: inline-block;
+    background: var(--branco);
+    color: var(--azul-escuro);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(30, 53, 79, 0.08);
+    border: 1px solid rgba(44, 123, 182, 0.12);
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--texto-escuro);
+    line-height: 1.15;
+}
+
+    .hero-title span {
+        color: var(--azul-escuro);
+    }
+
+.hero-text {
+    color: #5f6d7a;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 700px;
+}
+
+.section-title {
+    color: var(--texto-escuro);
+    font-weight: 800;
+}
+
+.section-subtitle {
+    color: #6c7a87;
+}
+
+.about-box {
+    background: var(--branco);
+    border-radius: 25px;
+    padding: 45px;
+    box-shadow: 0 8px 25px rgba(30, 53, 79, 0.08);
+    border: 1px solid rgba(44, 123, 182, 0.08);
+}
+
+.about-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    background: #e8f2fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--azul-escuro);
+    border: 1px solid rgba(44, 123, 182, 0.10);
+}
+
+.team-card {
+    background: var(--branco);
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 100%;
+    transition: transform .25s ease, box-shadow .25s ease;
+    box-shadow: 0 8px 25px rgba(30, 53, 79, 0.08);
+    border: 1px solid rgba(44, 123, 182, 0.08);
+}
+
+    .team-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 15px 35px rgba(30, 53, 79, 0.14);
+    }
+
+.member-photo {
+    height: 230px;
+    background: linear-gradient(135deg, #e7f1f8 0%, #d7e7f2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--azul-escuro);
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.member-info {
+    padding: 25px;
+}
+
+.member-name {
+    color: var(--texto-escuro);
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.member-role {
+    color: var(--azul-escuro);
+    font-size: .9rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.member-description {
+    color: #5f6d7a;
+    line-height: 1.6;
+    font-size: .95rem;
+}
+
+.timeline {
+    border-left: 3px solid var(--azul-claro);
+    padding-left: 25px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+    .timeline-item::before {
+        content: "";
+        position: absolute;
+        width: 13px;
+        height: 13px;
+        background: var(--azul-escuro);
+        border-radius: 50%;
+        left: -33px;
+        top: 5px;
+    }
+
+.timeline-title {
+    color: var(--texto-escuro);
+    font-weight: 700;
+}
+
+.timeline-text {
+    color: #5f6d7a;
+    line-height: 1.7;
+}
+
+.final-box {
+    background: linear-gradient(135deg, var(--texto-escuro) 0%, #26445f 100%);
+    color: white;
+    border-radius: 25px;
+    padding: 50px;
+    box-shadow: 0 14px 30px rgba(30, 53, 79, 0.16);
+}
+
+    .final-box h2 {
+        font-weight: 800;
+    }
+
+    .final-box p {
+        color: #dce8f2;
+        line-height: 1.8;
+        max-width: 750px;
+        margin: 0 auto;
+    }
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .about-box, .final-box {
+        padding: 30px;
+    }
+}

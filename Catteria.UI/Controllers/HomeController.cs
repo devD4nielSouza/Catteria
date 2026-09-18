@@ -66,5 +66,10 @@ namespace Catteria.UI.Controllers
         {
             return View();
         }
+
+        public IActionResult SobreNos()
+        {
+            return View();
+        }
     }
 }
