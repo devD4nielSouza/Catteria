@@ -8,19 +8,22 @@
 // - API: retorna JSON (dados) — AddControllers()
 // - MVC: retorna HTML (páginas) — AddControllersWithViews()
 // =============================================================================
+using Azure.Storage.Blobs;
 using Catteria.Application.Interfaces;
 using Catteria.Application.Services;
 using Catteria.Domain.Entities;
 using Catteria.Domain.Interfaces;
+using Catteria.Infraestructure.Configurations;
 using Catteria.Infraestructure.Context;
 using Catteria.Infraestructure.Identity;
 using Catteria.Infraestructure.Repositories;
 using Catteria.Infraestructure.Services;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.RateLimiting;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,10 +53,28 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 .AddDefaultTokenProviders();
 
 
-//UTILIZADO PARA A VERIFICAÇÃO POR EMAIL FUNCIONAR NA UI NÃO APAGAR PELO AMOR DE DEUS
-builder.Services.AddDataProtection()
-    .PersistKeysToFileSystem(new DirectoryInfo(@"C:\Catteria\dp-keys"))
-    .SetApplicationName("Catteria");
+// UTILIZADO PARA A AUTENTICAÇÃO CROSS-APP FUNCIONAR — NÃO APAGAR
+var dpKeyXmlBase64 = builder.Configuration["DataProtection:KeyXmlBase64"];
+
+if (!string.IsNullOrEmpty(dpKeyXmlBase64))
+{
+    // PRODUÇÃO (Azure): chave fixa, compartilhada via Application Setting,
+    // sem depender de um Storage Account.
+    builder.Services.AddDataProtection()
+        .SetApplicationName("Catteria")
+        .AddKeyManagementOptions(options =>
+        {
+            options.XmlRepository = new FixedXmlRepository(dpKeyXmlBase64);
+        })
+        .DisableAutomaticKeyGeneration();
+}
+else
+{
+    // LOCAL: mantém o comportamento atual.
+    builder.Services.AddDataProtection()
+        .SetApplicationName("Catteria");
+}
+
 
 //Configuração dos cookies de autenticação 
 builder.Services.ConfigureApplicationCookie(options =>
@@ -100,9 +121,19 @@ builder.Services.AddSession(options =>
 });
 
 
+// Configuração do HttpClient para consumir a API Catteria.API
+var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"]
+                 ?? builder.Configuration["ApiBaseUrl"]
+                 ?? "https://app-catteria-api-h7h8ezg6ejgjc9a6.brazilsouth-01.azurewebsites.net/";
+
+if (!apiBaseUrl.EndsWith("/"))
+{
+    apiBaseUrl += "/";
+}
+
 builder.Services.AddHttpClient("CatteriaApi", client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5273/");
+    client.BaseAddress = new Uri(apiBaseUrl);
 });
 
 builder.Services.AddRateLimiter(options =>
@@ -185,9 +216,10 @@ try
 catch (Exception ex)
 {
     var logger = app.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogError(ex, "Erro ao executar SeedData na UI");
-    throw; // opcional: re-lança para ver a exceção no startup
+    logger.LogError(ex, "Erro ao executar SeedData na UI. A aplicação continuará sua execução normalmente.");
+    // O 'throw;' foi removido. Erros de seed não devem derrubar o processo principal da aplicação no Azure.
 }
+
 
 // Inicia o servidor web e começa a ouvir as requisições HTTP.
 app.Run();

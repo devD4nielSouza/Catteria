@@ -1,7 +1,9 @@
+using Azure.Storage.Blobs;
 using Catteria.Application.Interfaces;
 using Catteria.Application.Services;
 using Catteria.Domain.Entities;
 using Catteria.Domain.Interfaces;
+using Catteria.Infraestructure.Configurations;
 using Catteria.Infraestructure.Context;
 using Catteria.Infraestructure.Identity;
 using Catteria.Infraestructure.Repositories;
@@ -24,11 +26,27 @@ builder.Services.AddDbContext<CatteriaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
-//UTILIZADO PARA A VERIFICAÇÃO POR EMAIL FUNCIONAR NA UI NÃO APAGAR PELO AMOR DE DEUS
-builder.Services.AddDataProtection()
-    .PersistKeysToFileSystem(new DirectoryInfo(@"C:\Catteria\dp-keys"))
-    .SetApplicationName("Catteria");
+// UTILIZADO PARA A AUTENTICAÇÃO CROSS-APP FUNCIONAR — NÃO APAGAR
+var dpKeyXmlBase64 = builder.Configuration["DataProtection:KeyXmlBase64"];
 
+if (!string.IsNullOrEmpty(dpKeyXmlBase64))
+{
+    // PRODUÇÃO (Azure): chave fixa, compartilhada via Application Setting,
+    // sem depender de um Storage Account.
+    builder.Services.AddDataProtection()
+        .SetApplicationName("Catteria")
+        .AddKeyManagementOptions(options =>
+        {
+            options.XmlRepository = new FixedXmlRepository(dpKeyXmlBase64);
+        })
+        .DisableAutomaticKeyGeneration();
+}
+else
+{
+    // LOCAL: mantém o comportamento atual.
+    builder.Services.AddDataProtection()
+        .SetApplicationName("Catteria");
+}
 // =====================================================================
 // 2. ASP.NET CORE IDENTITY — Autenticação e Autorização
 // =====================================================================
@@ -122,10 +140,14 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowUI", policy =>
     {
-        policy.WithOrigins("http://localhost:5246")
-              .AllowAnyMethod()
-              .AllowAnyHeader()
-              .AllowCredentials();
+        policy.WithOrigins(
+            "http://localhost:5246",
+            "https://localhost:7039",
+            "https://app-catteria-ui-f9dxajfrbzckfkbt.brazilsouth-01.azurewebsites.net"
+        )
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
     });
 });
 
@@ -143,12 +165,16 @@ var app = builder.Build();
 // A ordem importa! Cada middleware processa a requisição e passa adiante.
 // =====================================================================
 
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
+//{
+// Swagger só é habilitado em ambiente de desenvolvimento
+app.UseSwagger();
+app.UseSwaggerUI(options =>
 {
-    // Swagger só é habilitado em ambiente de desenvolvimento
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Catteria API v1");
+    options.RoutePrefix = string.Empty; // Swagger na raiz da aplicação
+});
+//}
 
 app.UseHttpsRedirection();
 app.UseRouting();
@@ -174,8 +200,8 @@ try
 catch (Exception ex)
 {
     var logger = app.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogError(ex, "Erro ao executar SeedData na UI");
-    throw; // opcional: re-lança para ver a exceção no startup
+    logger.LogError(ex, "Erro ao executar SeedData na API. A aplicação continuará sua execução normalmente.");
+    // O 'throw;' foi removido. Erros de seed não devem derrubar o processo principal da aplicação no Azure.
 }
 
 app.Run();

@@ -1,4 +1,4 @@
-﻿using Catteria.Application.DTOs;
+using Catteria.Application.DTOs;
 using Catteria.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -109,10 +109,10 @@ namespace Catteria.UI.Controllers
             if (!ModelState.IsValid)
                 return View(dto);
 
-            var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient("CatteriaApi");
 
             var response = await client.PostAsJsonAsync(
-                "http://localhost:5273/api/Auth/register",
+                "api/Auth/register",
                 dto);
 
             if (response.IsSuccessStatusCode)
@@ -219,10 +219,10 @@ namespace Catteria.UI.Controllers
             if (!ModelState.IsValid)
                 return View(dto);
 
-            var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient("CatteriaApi");
 
             var response = await client.PostAsJsonAsync(
-                "http://localhost:5273/api/Auth/forgot-password",
+                "api/Auth/forgot-password",
                 dto);
 
             if (response.IsSuccessStatusCode)

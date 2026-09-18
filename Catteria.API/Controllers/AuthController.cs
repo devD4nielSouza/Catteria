@@ -1,4 +1,4 @@
-﻿using Catteria.Application.DTOs;
+using Catteria.Application.DTOs;
 using Catteria.Domain.Entities;
 using Catteria.Infraestructure.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -18,19 +18,29 @@ namespace Catteria.API.Controllers
         private readonly Catteria.Domain.Interfaces.IEmailSender _emailSender;
         private readonly LinkGenerator _linkGenerator;
         private readonly ILogger<AuthController> _logger;
+        private readonly IConfiguration _configuration;
 
         public AuthController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             Catteria.Domain.Interfaces.IEmailSender emailSender,
             LinkGenerator linkGenerator,
-            ILogger<AuthController> logger)
+            ILogger<AuthController> logger,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _linkGenerator = linkGenerator;
             _logger = logger;
+            _configuration = configuration;
+        }
+
+        private string GetClientUrl()
+        {
+            var clientUrl = _configuration["ClientUrl"]
+                            ?? "https://app-catteria-ui-f9dxajfrbzckfkbt.brazilsouth-01.azurewebsites.net";
+            return clientUrl.TrimEnd('/');
         }
         //===================================
         // REGISTRO
@@ -94,21 +104,22 @@ namespace Catteria.API.Controllers
         [HttpGet("confirmar-email")]
         public async Task<IActionResult> ConfirmarEmail(string userId, string token)
         {
+            var clientUrl = GetClientUrl();
             var user = await _userManager.FindByIdAsync(userId);
-            if (user == null) return Redirect("http://localhost:5246/Account/confirmacao?status=erro/");
+            if (user == null) return Redirect($"{clientUrl}/Account/confirmacao?status=erro/");
 
             var result = await _userManager.ConfirmEmailAsync(user, token);
             if (result.Succeeded)
             {
                 return Redirect(
-                    $"http://localhost:5246/Account/confirmacao" +
+                    $"{clientUrl}/Account/confirmacao" +
                     "?sucesso=true" +
                     "&mensagem=E-mail confirmado com sucesso!"
                 );
             }
 
             return Redirect(
-                $"http://localhost:5246/Account/confirmacao" +
+                $"{clientUrl}/Account/confirmacao" +
                 "?sucesso=false" +
                 "&mensagem=O link de confirmação é inválido ou expirou."
             );
@@ -243,8 +254,9 @@ namespace Catteria.API.Controllers
 
             var encodedToken = Uri.EscapeDataString(token);
 
+            var clientUrl = GetClientUrl();
             var resetLink =
-            $"http://localhost:5246/Account/ResetPassword" +
+            $"{clientUrl}/Account/ResetPassword" +
             $"?userId={Uri.EscapeDataString(user.Id)}" +
             $"&token={Uri.EscapeDataString(token)}";
 

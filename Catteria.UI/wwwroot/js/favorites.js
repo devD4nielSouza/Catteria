@@ -1,4 +1,4 @@
-﻿const FAVORITES_API = "http://localhost:5273/api/Favorites";
+const FAVORITES_API = "/Favorites";
 
 
 // ======================================================
@@ -10,15 +10,21 @@ async function toggleFavorite(productId) {
     try {
 
         const response = await fetch(
-            `${FAVORITES_API}/${productId}`,
+            `${FAVORITES_API}/Toggle/${productId}`,
             {
                 method: "POST",
-                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 }
             }
         );
+
+        // Se não estiver logado, o [Authorize] da UI redireciona para a tela
+        // de Login, e o fetch acaba recebendo o HTML dessa página em vez de JSON.
+        if (response.redirected || response.url.includes("/Account/Login")) {
+            alert("Você precisa estar logado para adicionar aos favoritos.");
+            return null;
+        }
 
         if (!response.ok) {
             throw new Error(`Erro HTTP: ${response.status}`);
@@ -87,7 +93,6 @@ async function toggleFavorite(productId) {
     }
 }
 
-
 // ======================================================
 // CARREGAR FAVORITOS
 // ======================================================
@@ -122,10 +127,9 @@ async function carregarFavoritos() {
 
 
         const response = await fetch(
-            FAVORITES_API,
+            `${FAVORITES_API}/Listar`,
             {
-                method: "GET",
-                credentials: "include"
+                method: "GET"
             }
         );
 
@@ -194,10 +198,9 @@ async function carregarFavoritos() {
 
                 <div class="card h-100 shadow-sm">
 
-                    ${
-                        imagem
-                        ?
-                        `
+                    ${imagem
+                    ?
+                    `
                         <img
                             src="${imagem}"
                             class="card-img-top"
@@ -207,8 +210,8 @@ async function carregarFavoritos() {
                             "
                             alt="${nome}">
                         `
-                        :
-                        `
+                    :
+                    `
                         <div
                             class="
                                 d-flex
@@ -229,7 +232,7 @@ async function carregarFavoritos() {
 
                         </div>
                         `
-                    }
+                }
 
 
                     <div class="card-body d-flex flex-column">
@@ -248,12 +251,12 @@ async function carregarFavoritos() {
 
                             R$
                             ${Number(preco).toLocaleString(
-                                "pt-BR",
-                                {
-                                    minimumFractionDigits: 2,
-                                    maximumFractionDigits: 2
-                                }
-                            )}
+                    "pt-BR",
+                    {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }
+                )}
 
                         </h5>
 
@@ -350,10 +353,9 @@ async function removerFavorito(productId) {
     try {
 
         const response = await fetch(
-            `${FAVORITES_API}/${productId}`,
+            `${FAVORITES_API}/Toggle/${productId}`,
             {
                 method: "POST",
-                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 }
