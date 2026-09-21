@@ -35,7 +35,7 @@ Documentação técnica oficial do projeto **Catteria**, refletindo o estado atu
 25. [Estrutura de Configuração](#25-estrutura-de-configuração)
 26. [Checklist para Novo Desenvolvedor](#26-checklist-para-novo-desenvolvedor)
 27. [Checklist para Deploy](#27-checklist-para-deploy)
-28. [Observações e Inconsistências Encontradas](#28-observações-e-inconsistências-encontradas)
+28. [Observações e Inconsistências Encontradas](#28-observações)
 
 ---
 
@@ -1041,9 +1041,7 @@ Cada um dos três projetos web/desktop possui seu próprio `UserSecretsId`:
 
 Lista de inconsistências e pontos de atenção identificados durante a análise do código atual (nenhum deles foi corrigido neste README, conforme solicitado — apenas documentados):
 
-1. **Segredos reais commitados**: `Catteria.API/appsettings.json` e `Catteria.UI/appsettings.json` contêm uma connection string real do Azure SQL Database (com usuário e senha) e credenciais reais de uma conta Gmail para SMTP. Ver seção 22 para o plano de remediação.
-2. **`OrderService.CreateAsync` (camada `Application`) parece não ser o caminho real de criação de pedidos**: ele não atribui `IdUser`, `Observations`, `PaymentMethod`, nem os itens do pedido vindos do DTO à entidade `Order` criada. O fluxo de criação de pedido efetivamente utilizado pela aplicação é implementado diretamente em `OrdersController.CreateOrder` (API), que monta a entidade `Order` manualmente e não chama `IOrderService.CreateAsync`.
-3. **Swagger habilitado incondicionalmente em produção**: em `Catteria.API/Program.cs`, o bloco `if (app.Environment.IsDevelopment()) { ... }` que envolveria `app.UseSwagger()`/`app.UseSwaggerUI()` está comentado, portanto o Swagger fica acessível também quando `ASPNETCORE_ENVIRONMENT != Development`.
+1. **Swagger habilitado incondicionalmente em produção**: em `Catteria.API/Program.cs`, o bloco `if (app.Environment.IsDevelopment()) { ... }` que envolveria `app.UseSwagger()`/`app.UseSwaggerUI()` está comentado, portanto o Swagger fica acessível também quando `ASPNETCORE_ENVIRONMENT != Development`.
 ---
 
 **Última verificação deste README em relação ao código-fonte**: gerado a partir de uma análise direta e completa de todos os projetos, controllers, entidades, configurações e arquivos de publicação presentes no repositório no momento da geração.
