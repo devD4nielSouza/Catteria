@@ -6,7 +6,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5273",
+      "applicationUrl": "https://app-catteria-api-h7h8ezg6ejgjc9a6.brazilsouth-01.azurewebsites.net/index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -16,7 +16,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7115;http://localhost:5273",
+      "applicationUrl": "https://localhost:7115;https://app-catteria-api-h7h8ezg6ejgjc9a6.brazilsouth-01.azurewebsites.net/index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -8,7 +8,6 @@
 // - API: retorna JSON (dados) — AddControllers()
 // - MVC: retorna HTML (páginas) — AddControllersWithViews()
 // =============================================================================
-using Azure.Storage.Blobs;
 using Catteria.Application.Interfaces;
 using Catteria.Application.Services;
 using Catteria.Domain.Entities;
@@ -20,7 +19,6 @@ using Catteria.Infraestructure.Repositories;
 using Catteria.Infraestructure.Services;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.RateLimiting;
 

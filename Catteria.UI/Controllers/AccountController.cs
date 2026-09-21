@@ -11,18 +11,15 @@ namespace Catteria.UI.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly Catteria.Domain.Interfaces.IEmailSender _emailSender;
         private readonly LinkGenerator _linkGenerator;
         private readonly IHttpClientFactory _httpClientFactory;
         public AccountController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            Domain.Interfaces.IEmailSender emailSender,
             LinkGenerator linkGenerator,
             IHttpClientFactory httpClientFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
             _linkGenerator = linkGenerator;
             _httpClientFactory = httpClientFactory;
         }

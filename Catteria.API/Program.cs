@@ -1,4 +1,3 @@
-using Azure.Storage.Blobs;
 using Catteria.Application.Interfaces;
 using Catteria.Application.Services;
 using Catteria.Domain.Entities;
@@ -12,6 +11,7 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -158,6 +158,33 @@ builder.Services.AddTransient<Catteria.Domain.Interfaces.IEmailSender, EmailSend
 
 var app = builder.Build();
 
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+
+    options.AddPolicy("forgot-password", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 3,
+                Window = TimeSpan.FromMinutes(15),
+                QueueLimit = 0,
+                AutoReplenishment = true
+            }));
+
+    options.AddPolicy("reenviar-confirmacao", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 5,
+                Window = TimeSpan.FromMinutes(15),
+                QueueLimit = 0,
+                AutoReplenishment = true
+            }));
+});
+app.UseRateLimiter(); // antes de auth/authorization
 // =====================================================================
 // PIPELINE DE MIDDLEWARES
 // =====================================================================

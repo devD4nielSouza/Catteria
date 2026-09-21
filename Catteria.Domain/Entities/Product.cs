@@ -18,7 +18,6 @@ namespace Catteria.Domain.Entities
         public DateTime CreatedAt { get; set; } = DateTime.Now; // Data de criação do produto, definida automaticamente para a data atual
 
         public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-        OrderItem? orderItem { get; set; }
 
 
 
