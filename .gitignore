@@ -53,3 +53,5 @@ Catteria.UI/Catteria.UI.csproj.user
  
 /CUPOM_IMPLEMENTATION.md
 /GerarChaveDP
+Catteria.UI\appsettings.json
+Catteria.API\appsettings.json

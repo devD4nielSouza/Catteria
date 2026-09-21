@@ -1,5 +1,3 @@
-tire os emojis dos topicos
-
 # ROADMAP — CATTERIA
 
 > Guia passo a passo para desenvolver a solução Catteria, uma cafeteria temática com gatos, sistema próprio de delivery e painel administrativo.  
