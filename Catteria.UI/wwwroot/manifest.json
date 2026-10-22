@@ -1,0 +1,26 @@
+{
+  "id": "/",
+  "name": "Catteria",
+  "short_name": "Catteria",
+  "description": "Aplicação catteria",
+  "start_url": "/Home/Index",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#212529",
+  "icons": [
+    {
+      "src": "/Imagens/logo1.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Imagens/logo2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

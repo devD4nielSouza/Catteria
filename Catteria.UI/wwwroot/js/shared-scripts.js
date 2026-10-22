@@ -83,3 +83,20 @@
         }
     });
 })();
+//Teste app mobile
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", async () => {
+        try {
+            await navigator.serviceWorker.register(
+                "/service-worker.js"
+            );
+
+            console.log("Service Worker registrado.");
+        } catch (error) {
+            console.error(
+                "Erro ao registrar Service Worker:",
+                error
+            );
+        }
+    });
+} 
